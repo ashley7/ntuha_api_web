@@ -10,7 +10,14 @@ use Kreait\Firebase\Database;
 
 class NtuhaDashboardController extends Controller
 {
-    
+
+
+    /** 
+
+     * @connections Connection to the database
+     * @return a database instance
+
+    */     
 
     public static function connection_to_firebase()
     {
@@ -19,8 +26,10 @@ class NtuhaDashboardController extends Controller
         return $firebase->getDatabase();
     }
 
-
-    public function read_ntuha_customers()
+    /*
+      returns all customers
+    */
+    public static function read_ntuha_customers()
     {
         $reference = $this->connection_to_firebase()->getReference('Users');
         $customers = $reference->getChild("Customers");
@@ -48,8 +57,10 @@ class NtuhaDashboardController extends Controller
         return response()->json($data);
     }
 
-
-    public function read_ntuha_drivers()
+    /*
+       returns all drivers
+    */
+    public static function read_ntuha_drivers()
     {
         $reference = $this->connection_to_firebase()->getReference('Users');
         $drivers = $reference->getChild("Drivers");
@@ -81,110 +92,151 @@ class NtuhaDashboardController extends Controller
             }
         }
         $data = array_unique($driver_data, SORT_REGULAR);
-        return response()->json($data);
-        
+        return response()->json($data);   
     }
 
+    /*
 
-    public function single_driver_history($user_type,$user_id)
+      1. Taken in Customer or Driver as user type and the key of that user
+      2. return the history recods of single user
+
+    */
+    public static function single_user_history($user_type,$user_id)
     {
         $driver = $this->user_details($user_type,$user_id);
-    }
-
-
-    public function driver_history($driver_id)
-    {
-
-        $reference = $this->connection_to_firebase()->getReference('Users');
-        $drivers = $reference->getChild("Drivers");
-        if (!empty($drivers->getValue())) {
+        $history_data = array();
+        foreach ($driver as $data_key => $data_value) {
+            // for each history, read details
+            if (!empty($data_value['history'])) {
             
-            foreach ($drivers->getValue() as $driver_key => $driver) {
-                if (gettype($driver)=="array") {
-                    foreach ($driver as $key => $driverValueDetails) {
-                       if (gettype($driverValueDetails) == "array") {
+                foreach ($data_value['history'] as $key_data => $key_value) {
+                    $history_refrence_reference = $this->connection_to_firebase()->getReference('history')->getChild($key_data)->getValue();
 
-                            if ($driver_key === $driver_id) {
-                                $driver_data = [];
-                                foreach ($driverValueDetails as $driver_history_key => $value) {
-                                    // echo $driver_history_key."<br>";
-                                    // read the history of this key
-                                    $history_refrence_reference = $this->connection_to_firebase()->getReference('history');
-                                      foreach ($history_refrence_reference->getValue() as $history_key => $history_value) {
-                                        if ($history_key == $driver_history_key) {
-                                            // print_r($history_value);
-                                            foreach ($history_value as $data_key => $data_value) {
-                                                if ($data_key != "location") {
-                                                    $result = [];
-                                                    $result['customer'] = $history_value['customer'];
-                                                    $result['distance'] = $history_value['distance'];
-                                                    $result['driver'] = $history_value['driver'];
-                                                    $result['rating'] = $history_value['rating'];
-                                                    $result['timestamp'] = $history_value['timestamp'];
-                                                    $result['location'] = (array)$history_value['location'];
-                                                    $driver_data[] = $result;
-                                                }
-                                            }
-                                         }
-                                       }
-                                    }
-                                }                   
-                            }
-                        } 
-                    }
+                    array_push($history_data,$history_refrence_reference);
+
                 }
             }
-
-            $data = array_unique($driver_data, SORT_REGULAR);
-            return response()->json($data); 
         }
 
+        return json_encode($history_data);
 
+    }
 
-        public function user_details($user_type,$user_id)
-        {
-            $data = array();
-            $reference = $this->connection_to_firebase()->getReference('Users');
-            $drivers = $reference->getChild($user_type)->orderByKey()->equalTo($user_id)->getValue();
+    /*
 
-            /*   Loading Driver details */
-            // foreach ($drivers as $key => $value) {
-            //     $result = [];
-            //     $result['name'] = $value['name'];
-            //     $result['phone'] = $value['phone'];
-            //     $result['car'] = $value['car'];
-            //     $result['service'] = $value['service'];
-            //     $result['profileImageUrl'] = $value['profileImageUrl'];
-            //     $data[] = $result;           
-            // }
-            // return json_encode($data);
+    1. Takes in Driver or Customer as $user_type and the ket of that entity
+    2. Returns the user details
 
-             /*   Loading Driver customer */
-            // foreach ($drivers as $key => $value) {
-            //     $result = [];
-            //     $result['name'] = $value['name'];
-            //     $result['phone'] = $value['phone'];         
-            //     $result['profileImageUrl'] = $value['profileImageUrl'];
-            //     $data[] = $result;           
-            // }
-            // return json_encode($data);
+    */ 
 
-            return $drivers;//this is a single index for one user
+    public static function user_details($user_type,$user_id)
+    {
+        $data = array();
+        $reference = $this->connection_to_firebase()->getReference('Users');
+        $user = $reference->getChild($user_type)->orderByKey()->equalTo($user_id)->getValue();
+        return $user;//this is a single object for one user
+    }
+
+    public static function single_customer($customer_id)
+    {
+        $data = array();
+         foreach ($this->user_details("Customers",$customer_id) as $key => $value) {
+            $result = [];
+            try {
+                $result['name'] = $value['name'];
+                $result['phone'] = $value['phone'];         
+                $result['profileImageUrl'] = $value['profileImageUrl'];
+                $data[] = $result; 
+            } catch (\Exception $e) {}
+                      
         }
+        return $data;
+     }
+
+
+    public static function single_driver($driver_id)
+    {
+        $data = array();
+         foreach ($this->user_details("Drivers",$driver_id) as $key => $value) {
+            $result = [];
+            try {
+               $result['name'] = $value['name'];
+               $result['phone'] = $value['phone'];
+               $result['car'] = $value['car'];
+               $result['service'] = $value['service'];
+               $result['profileImageUrl'] = $value['profileImageUrl'];
+               $data[] = $result; 
+            } catch (\Exception $e) {}
+                      
+        }
+        return $data;
+     }
+    
+
+    /*
+
+      1. return all the rides
+
+    */
+    public static function rides()
+    {
+        $rides_data = array();
+        $rides = $this->connection_to_firebase()->getReference('history')->getValue();
+        foreach ($rides as $key_key => $ride_value) {
+            $result = [];
+            $result["customer"] = $this->single_customer($ride_value['customer']);
+            $result["distance"] = $ride_value['distance'];
+            $result["driver"] = $this->single_driver($ride_value['driver']);
+            $result["location"] = (array)$ride_value['location'];
+            $result["rating"] = $ride_value['rating'];
+            $result["timestamp"] = $ride_value['timestamp'];
+            $rides_data[] = $result;
+        }
+        $data = array_unique($rides_data, SORT_REGULAR);
+        return response()->json($data);
+    }
+
+/*
+  This returns drivers that are active, but now warking
+*/ 
+    public static function drivers_available()
+    {
+        $rides_data = array();
+        $rides = $this->connection_to_firebase()->getReference('driversAvailable')->getValue();
+        foreach ($rides as $key => $driver_value) {
+            array_push($rides_data, $this->single_driver($key));
+        }
+        return response()->json($rides_data);
+    }
+
+    /*
+       This will return all the drivers that are working
+    */ 
+
+   public static function working_drivers()
+   {
+        $rides_data = array();
+        $rides = $this->connection_to_firebase()->getReference('workingDrivers');
+        $working_drivers = $rides->getValue();
+        foreach ($rides as $key => $driver_value) {
+            array_push($rides_data, $this->single_driver($key));
+        }
+        return response()->json($rides_data);         
+    }
 
 
 /*
   1. read customers [done]
   2. read drivers [done]
-  3. Read customer history [from to cost]
-  4. Read Driver history
+  3. Read customer history [done]
+  4. Read Driver history [done]
   5. Count THEM
   6. Rides btn periods
   7. Read single data for user[done]
 */
     public function index()
     {  
-      
+        return $this->working_drivers();
     }    
 
     /**

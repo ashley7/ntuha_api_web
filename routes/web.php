@@ -1,4 +1,5 @@
 <?php
+ini_set('max_execution_time', '900');
 Route::get('/', function () {
     return view('welcome');
 });
