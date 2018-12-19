@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/buttons.dataTables.min.css') }}"> 
 </head>
 <body>
     <div id="app">
@@ -76,5 +78,41 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="{{asset('js/jquery-3.3.1.js')}}"></script>
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('js/jszip.min.js') }}"></script>
+    <script src="{{ asset('js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('js/buttons.print.min.js') }}"></script>
+     <script>
+       $(document).ready(function() {
+            var printCounter = 0;
+         
+            // Append a caption to the table before the DataTables initialisation
+         
+            $('#working_drivers').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy',
+                    {
+                        extend: 'excel',
+                    },
+                    {
+                        extend: 'pdf',
+                    },
+                    {
+                        extend: 'print',
+                        messageTop: null
+                    }
+                ]
+            } );
+        } );
+    </script>
+
+
 </body>
 </html>

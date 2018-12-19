@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\NtuhaDashboardController;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $working = NtuhaDashboardController::working_drivers();
+        $customers = count(NtuhaDashboardController::read_ntuha_customers());
+        $drivers = count(NtuhaDashboardController::read_ntuha_drivers());
+        $available_drivers = count(NtuhaDashboardController::drivers_available());
+        $working_drivers = count($working);
+        $rides = count(NtuhaDashboardController::rides());
+        
+        $data = ['customers'=>$customers,'drivers'=>$drivers,'available_drivers'=>$available_drivers,'working_drivers'=>$working_drivers,'rides'=>$rides,'working'=>$working];
+        return view('home')->with($data);
     }
 }

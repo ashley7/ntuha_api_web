@@ -11,7 +11,6 @@ use Kreait\Firebase\Database;
 class NtuhaDashboardController extends Controller
 {
 
-
     /*
       returns all customers
     */
@@ -50,7 +49,8 @@ class NtuhaDashboardController extends Controller
             }
         }
         $data = array_unique($customer_data, SORT_REGULAR);
-        return response()->json($data);
+        return (array)$data;
+        // return response()->json($data);
     }
 
     /*
@@ -92,7 +92,8 @@ class NtuhaDashboardController extends Controller
             }
         }
         $data = array_unique($driver_data, SORT_REGULAR);
-        return response()->json($data);   
+        return (array)$data;
+        // return response()->json($data);   
     }
 
     /*
@@ -198,16 +199,19 @@ class NtuhaDashboardController extends Controller
         $rides = $database->getReference('history')->getValue();
         foreach ($rides as $key_key => $ride_value) {
             $result = [];
-            $result["customer"] = NtuhaDashboardController::single_customer($ride_value['customer']);
-            $result["distance"] = $ride_value['distance'];
-            $result["driver"] = NtuhaDashboardController::single_driver($ride_value['driver']);
-            $result["location"] = (array)$ride_value['location'];
-            $result["rating"] = $ride_value['rating'];
-            $result["timestamp"] = $ride_value['timestamp'];
-            $rides_data[] = $result;
+            if (count(NtuhaDashboardController::single_customer($ride_value['customer'])) != 0) {
+                $result["customer"] = NtuhaDashboardController::single_customer($ride_value['customer']);
+                $result["distance"] = $ride_value['distance'];
+                $result["driver"] = NtuhaDashboardController::single_driver($ride_value['driver']);
+                $result["location"] = (array)$ride_value['location'];
+                $result["rating"] = $ride_value['rating'];
+                $result["timestamp"] = $ride_value['timestamp'];
+                $rides_data[] = $result;
+            }
         }
         $data = array_unique($rides_data, SORT_REGULAR);
-        return response()->json($data);
+        return (array)$data;
+        // return response()->json($data);
     }
 
 /*
@@ -225,7 +229,8 @@ class NtuhaDashboardController extends Controller
         foreach ($rides as $key => $driver_value) {
             array_push($rides_data, NtuhaDashboardController::single_driver($key));
         }
-        return response()->json($rides_data);
+        return (array)$rides_data;
+        // return response()->json($rides_data);
     }
 
     /*
@@ -244,7 +249,9 @@ class NtuhaDashboardController extends Controller
         foreach ($rides as $key => $driver_value) {
             array_push($rides_data, NtuhaDashboardController::single_driver($key));
         }
-        return response()->json($rides_data);         
+
+        return (array)$rides_data;
+        // return response()->json($rides_data);         
     }
 
 
@@ -259,7 +266,8 @@ class NtuhaDashboardController extends Controller
 */
     public function index()
     {  
-         
+       $drivers_available = $this->drivers_available();
+       return $drivers_available;
     }    
 
     /**
