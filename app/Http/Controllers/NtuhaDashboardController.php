@@ -266,8 +266,9 @@ class NtuhaDashboardController extends Controller
 */
     public function index()
     {  
-       $drivers_available = $this->drivers_available();
-       return $drivers_available;
+       // $drivers_available = $this->drivers_available();
+       $rides = $this->working_drivers();
+       return $rides;
     }    
 
     /**
