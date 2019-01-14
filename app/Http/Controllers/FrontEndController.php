@@ -54,4 +54,39 @@ class FrontEndController extends Controller
     
         return view('pages.rides')->with(['ride'=>$data]);
     }
+
+    public static function get_customers()
+    {
+      $customers = NtuhaDashboardController::read_ntuha_customers();
+      return view("pages.customer_list")->with(['customers'=>$customers]);   
+    }
+
+    public function read_single_customer($customer_id)
+    {
+    	$customer = NtuhaDashboardController::single_customer($customer_id);
+    	$customer_history = NtuhaDashboardController::single_user_history("Customers",$customer_id);
+    	$data = ['customer'=>$customer,'customer_history'=>$customer_history];  
+    	return view('pages.customer_details')->with($data);   	 
+    }
+
+    public static function get_drivers()
+    {
+    	$drivers = NtuhaDashboardController::read_ntuha_drivers();
+    	return view('pages.driver_list')->with(['drivers'=>$drivers]);
+    }
+
+    public function read_single_driver($driver_id)
+    {
+    	$driver = NtuhaDashboardController::single_driver($driver_id);
+    	$driver_history = NtuhaDashboardController::single_user_history("Drivers",$driver_id);
+    	$data = ['driver'=>$driver,'driver_history'=>$driver_history];  
+    	return view('pages.driver_details')->with($data);   	 
+    }
+
+
+    public static function available_drivers()
+    {
+    	$available_drivers = NtuhaDashboardController::drivers_available();
+    	return view('pages.available_driver')->with(['available_drivers'=>$available_drivers]);
+    }
 }

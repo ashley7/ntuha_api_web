@@ -83,9 +83,9 @@ class NtuhaDashboardController extends Controller
                         } catch (\Exception $e) {}
                                                  
                        }else{
-                          $result = [];
-                          $result['history'] = (array)$driverValueDetails;
-                          $driver_data[] = $result;
+                          // $result = [];
+                          // $result['history'] = (array)$driverValueDetails;
+                          // $driver_data[] = $result;
                        }
                     } 
                 }
@@ -117,14 +117,12 @@ class NtuhaDashboardController extends Controller
             
                 foreach ($data_value['history'] as $key_data => $key_value) {
                     $history_refrence_reference = $database->getReference('history')->getChild($key_data)->getValue();
-
                     array_push($history_data,$history_refrence_reference);
-
                 }
             }
         }
 
-        return json_encode($history_data);
+        return $history_data;
 
     }
 
@@ -227,7 +225,17 @@ class NtuhaDashboardController extends Controller
 
         $rides = $database->getReference('driversAvailable')->getValue();
         foreach ($rides as $key => $driver_value) {
-            array_push($rides_data, NtuhaDashboardController::single_driver($key));
+            $driver = NtuhaDashboardController::single_driver($key);
+            foreach ($driver as $driver_value) {
+                $data = array();
+                $data['name'] = $driver_value['name'];
+                $data['phone'] = $driver_value['phone'];
+                $data['car'] = $driver_value['car'];
+                $data['service'] = $driver_value['service'];
+                $data['profileImageUrl'] = $driver_value['profileImageUrl'];
+                
+            }
+            array_push($rides_data, $data);
         }
         return (array)$rides_data;
         // return response()->json($rides_data);
@@ -255,6 +263,26 @@ class NtuhaDashboardController extends Controller
     }
 
 
+    public static function getAddress($latitude,$longitude){
+    if(!empty($latitude) && !empty($longitude)){
+        //Send request and receive json data by address
+        $geocodeFromLatLong = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($latitude).','.trim($longitude).'&sensor=true_or_false&key=AIzaSyCfeAhHOje5rr6uQMYgdLpfvKOwAE2tTDs');
+        $output = json_decode($geocodeFromLatLong);
+        $status = $output->status;
+        //Get address from json data
+        $address = ($status=="OK")?$output->results[1]->formatted_address:'';
+        //Return address of the given latitude and longitude
+        if(!empty($address)){
+            return $address;
+        }else{
+            return false;
+        }
+    }else{
+        return false;           
+    }
+}
+
+
 /*
   1. read customers [done]
   2. read drivers [done]
@@ -266,9 +294,17 @@ class NtuhaDashboardController extends Controller
 */
     public function index()
     {  
-       // $drivers_available = $this->drivers_available();
-       $rides = $this->working_drivers();
-       return $rides;
+          $lat= 38.897952; //latitude
+          $lng= -77.036562; //longitude
+          $address= $this->getAddress($lat,$lng);
+          if($address)
+          {
+            echo $address;
+          }
+          else
+          {
+            echo "Not found";
+          }
     }    
 
     /**

@@ -31,8 +31,7 @@
                                       <td>{{$ride_value['from']}}</td>
                                       <td>{{$ride_value['to']}}</td>
                                       <td>{{$ride_value['rate']}}</td>
-                                  </tr>                             
-
+                                  </tr>                          
                                @endforeach
                             </tbody>
                         </table>

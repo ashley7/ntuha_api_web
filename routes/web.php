@@ -13,3 +13,8 @@ Route::get('read_ntuha_drivers','NtuhaDashboardController@read_ntuha_drivers');
 Route::get('driver_history/{driver_id}','NtuhaDashboardController@driver_history');
 
 Route::get('rides','FrontEndController@rides');
+Route::get('get_customers','FrontEndController@get_customers');
+Route::get('read_single_customer/{customer_id}','FrontEndController@read_single_customer');
+Route::get('read_single_driver/{driver_id}','FrontEndController@read_single_driver');
+Route::get('get_drivers','FrontEndController@get_drivers');
+Route::get('available_drivers','FrontEndController@available_drivers');

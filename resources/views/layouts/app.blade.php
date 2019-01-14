@@ -42,8 +42,21 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a href="/rides">Rides</a>
+                            <a class="nav-link" href="/available_drivers">Available drivers</a>
+                        </li>                        
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/get_customers">Customers</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/get_drivers">Drivers</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/rides">Rides</a>
+                        </li>
+                        
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
