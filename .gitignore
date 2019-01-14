@@ -13,3 +13,4 @@ npm-debug.log
 yarn-error.log
 .env
 .phpunit.result.cache
+/app/Http/Controllers/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json
