@@ -1,5 +1,5 @@
 <?php
-ini_set('max_execution_time', '900');
+ini_set('max_execution_time', '1200');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +18,5 @@ Route::get('read_single_customer/{customer_id}','FrontEndController@read_single_
 Route::get('read_single_driver/{driver_id}','FrontEndController@read_single_driver');
 Route::get('get_drivers','FrontEndController@get_drivers');
 Route::get('available_drivers','FrontEndController@available_drivers');
+Route::resource('price','PriceController');
+Route::resource('driver','DriverController');
