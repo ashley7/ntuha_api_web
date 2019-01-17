@@ -46,7 +46,7 @@ class DriverController extends Controller
                 $image->move($destinationPath, $name);
                 $save_driver->input_img = $name;                
             }
-            $save_driver->access_key = rand(4000,5000);
+            $save_driver->access_key = rand(400000,500000);
             $save_driver->save();
         } catch (\Exception $e) {}
         return redirect()->route('driver.index');
@@ -95,5 +95,35 @@ class DriverController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function activate_driver(Request $request)
+    {
+        $response = array();
+        $driver_id = $request->driver_id;
+        $access_key = $request->access_key;
+
+        $driver = Driver::all()->where('driver_id',$driver_id)->where('access_key',$access_key)->where('status',0);
+
+        if ($driver->count() == 0) {
+             $response['status'] = "FAILED";
+             $response['message'] = "Invalid Driver credetials";
+             return \Response::json([$response]);
+        }elseif($driver->count() == 1){
+            $driver_data = $driver->last();
+            $driver_data->status = 1;
+            $driver_data->save();
+            // read the data to upload
+            $response['status'] = "SUCCESS";
+            $response['name'] = $driver_data->name;
+            $response['email'] = $driver_data->email;
+            $response['phone'] = $driver_data->phone_number;
+            $response['driver_id'] = $driver_data->driver_id;
+            $response['motor_type'] = $driver_data->motor_type;
+            $response['motor_plate'] = $driver_data->number_plate;
+            $response['service'] = $driver_data->service;
+            $response['password'] = $access_key;
+            return \Response::json([$response]);
+        }
     }
 }
