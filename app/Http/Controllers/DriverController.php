@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Driver;
+use App\Price;
 
 class DriverController extends Controller
 {
@@ -123,6 +124,21 @@ class DriverController extends Controller
             $response['motor_plate'] = $driver_data->number_plate;
             $response['service'] = $driver_data->service;
             $response['password'] = $access_key;
+            return \Response::json([$response]);
+        }
+    }
+
+    public function service_price(Request $request)
+    {
+        $response = array();
+        $read_price = Price::all()->where('type',$request->service)->last();
+        if (!empty($read_price)) {
+            $response["status"] = "SUCCESS";
+            $response["price"] = $read_price->price;
+            return \Response::json([$response]);          
+        }else{
+            $response["status"] = "FAILED";
+            $response["message"] = "No Price found";
             return \Response::json([$response]);
         }
     }

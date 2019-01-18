@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::any('activate_driver','DriverController@activate_driver');
+Route::any('service_price','DriverController@service_price');
