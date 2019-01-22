@@ -1,11 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">Add Driver</div>
+             <div class="card-box">
+                <h4>Add Driver</h4>
 
                  @if ($errors->any())
                      @foreach ($errors->all() as $error)
@@ -65,8 +62,7 @@
                 </form>
               </div>
             </div>
-          </div>
-        </div>
-      </div>  
+            
+            
 @endsection
  

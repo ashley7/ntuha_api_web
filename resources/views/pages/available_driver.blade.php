@@ -1,11 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">Drivers Available</div>
+ 
+            <div class="card-box">
+                <div class="h4">Drivers Available</div>
 
                 <div class="card-body">
 
@@ -36,10 +34,9 @@
                                @endforeach
                             </tbody>
                         </table>
-                    </div>                
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                    
 @endsection

@@ -197,7 +197,8 @@ class NtuhaDashboardController extends Controller
         $rides = $database->getReference('history')->getValue();
         foreach ($rides as $key_key => $ride_value) {
             $result = [];
-            if (count(NtuhaDashboardController::single_customer($ride_value['customer'])) != 0) {
+            try {
+              if (count(NtuhaDashboardController::single_customer($ride_value['customer'])) != 0) {
                 $result["customer"] = NtuhaDashboardController::single_customer($ride_value['customer']);
                 $result["distance"] = $ride_value['distance'];
                 $result["driver"] = NtuhaDashboardController::single_driver($ride_value['driver']);
@@ -205,7 +206,8 @@ class NtuhaDashboardController extends Controller
                 $result["rating"] = $ride_value['rating'];
                 $result["timestamp"] = $ride_value['timestamp'];
                 $rides_data[] = $result;
-            }
+              }
+          } catch (\Exception $e) {}
         }
         $data = array_unique($rides_data, SORT_REGULAR);
         return (array)$data;
@@ -233,9 +235,10 @@ class NtuhaDashboardController extends Controller
                 $data['car'] = $driver_value['car'];
                 $data['service'] = $driver_value['service'];
                 $data['profileImageUrl'] = $driver_value['profileImageUrl'];
+                array_push($rides_data, $data);
                 
             }
-            array_push($rides_data, $data);
+            
         }
         return (array)$rides_data;
         // return response()->json($rides_data);
@@ -263,24 +266,15 @@ class NtuhaDashboardController extends Controller
     }
 
 
-    public static function getAddress($latitude,$longitude){
-    if(!empty($latitude) && !empty($longitude)){
-        //Send request and receive json data by address
-        $geocodeFromLatLong = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($latitude).','.trim($longitude).'&sensor=true_or_false&key=AIzaSyCfeAhHOje5rr6uQMYgdLpfvKOwAE2tTDs');
-        $output = json_decode($geocodeFromLatLong);
-        $status = $output->status;
-        //Get address from json data
-        $address = ($status=="OK")?$output->results[1]->formatted_address:'';
-        //Return address of the given latitude and longitude
-        if(!empty($address)){
-            return $address;
-        }else{
-            return false;
-        }
-    }else{
-        return false;           
+    public static function getAddress($latitude,$longitude){    
+
+      $geocodeFromLatLong = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($latitude).','.trim($longitude).'&sensor=false'); 
+      $output = json_decode($geocodeFromLatLong);
+      $status = $output->status;
+      $address = ($status=="OK")?$output->results[1]->formatted_address:''; 
+
+      echo  $address; 
     }
-}
 
 
 /*

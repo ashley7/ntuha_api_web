@@ -1,105 +1,90 @@
-@extends('layouts.app')
-
+@extends('layouts.master')
 @section('content')
-<div class="container">
-    <div class="row">
+    <div class="row text-center">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="card-box widget-box-one">
+                <div class="wigdet-one-content">
+                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Drivers</p>
+                    <h2 class="text-danger"><span data-plugin="counterup">{{$drivers}}</span></h2>
+                     
+                </div>
+            </div>
+        </div><!-- end col -->
 
-        <div class="col-md-4">
-            <div class="card"> 
-                <div class="card-body"> 
-                 Drivers<br>
-
-                 {{$drivers}}           
-
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="card-box widget-box-one">
+                <div class="wigdet-one-content">
+                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Customers</p>
+                    <h2 class="text-dark"><span data-plugin="counterup"> {{$customers}} </span> </h2>
                 
                 </div>
             </div>
-        </div>
+        </div><!-- end col -->
 
-
-
-         <div class="col-md-4">
-            <div class="card"> 
-                <div class="card-body"> 
-                    Customers<br>
-                  {{$customers}}                
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="card-box widget-box-one">
+                <div class="wigdet-one-content">
+                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Available drivers</p>
+                    <h2 class="text-success"><span data-plugin="counterup">{{$available_drivers}}</span></h2>
+               
                 </div>
             </div>
-        </div>
-
-
-         <div class="col-md-4">
-            <div class="card"> 
-                <div class="card-body"> 
-                 Available drivers   <br>
-
-                 {{$available_drivers}}             
-
-                
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-
-    <div class="row">
-
-        <div class="col-md-4">
-            <div class="card"> 
-                <div class="card-body"> 
-                 Working driver <br>
-
-                 {{$working_drivers}}              
-
-                
-                </div>
-            </div>
-        </div>
-
-         <div class="col-md-4">
-            <div class="card"> 
-                <div class="card-body"> 
-                 Rides  <br>
-
-                 {{$rides}}         
-
-                
-                </div>
-            </div>
-        </div>
+        </div><!-- end col -->
     </div>
 
-    <br>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card"> 
-                <div class="card-body"> 
-                    <h4>Working Drivers</h4>
-                    <table class="table" id="working_drivers">
-                        <thead>
-                          <th>Photo</th>  <th>Name</th> <th>Phone Number</th> <th>Car type</th> <th>Service</th> <th>Number plate</th>
-                        </thead>
 
-                        <tbody>
-
-                            @foreach ($working as $key => $value)  
-                               @foreach ($working[$key] as $driver_key => $driver_value)
-                                 <tr>
-                                     <td><img src="{{$driver_value['profileImageUrl']}}"></td>
-                                 </tr>
-                               @endforeach
-                            @endforeach                                  
-                              
-
-                             
-                            
-                        </tbody>
-                    </table>
+    <div class="row text-center">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="card-box widget-box-one">
+                <div class="wigdet-one-content">
+                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Working driver</p>
+                    <h2 class="text-danger"><span data-plugin="counterup">  {{$working_drivers}} </span></h2>
+                     
                 </div>
             </div>
+        </div><!-- end col -->
+
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="card-box widget-box-one">
+                <div class="wigdet-one-content">
+                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Rides</p>
+                    <h2 class="text-dark"><span data-plugin="counterup">{{$rides}}</span> </h2>
+                
+                </div>
+            </div>
+        </div><!-- end col -->
+
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="card-box widget-box-one">
+                <div class="wigdet-one-content">
+                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow"></p>
+                    <h2 class="text-success"><span data-plugin="counterup"> </span></h2>
+               
+                </div>
+            </div>
+        </div><!-- end col -->
+    </div>
+  
+    <div class="card-box"> 
+        <div class="card-body"> 
+            <h4>Working Drivers</h4>
+            <table class="table" id="working_drivers">
+                <thead>
+                  <th>Photo</th>  <th>Name</th> <th>Phone Number</th> <th>Car type</th> <th>Service</th> <th>Number plate</th>
+                </thead>
+
+                <tbody>
+
+                    @foreach ($working as $key => $value)  
+                       @foreach ($working[$key] as $driver_key => $driver_value)
+                         <tr>
+                             <td><img src="{{$driver_value['profileImageUrl']}}"></td>
+                         </tr>
+                       @endforeach
+                    @endforeach                                  
+                </tbody>
+            </table>
         </div>
     </div>
-
-</div>
 @endsection

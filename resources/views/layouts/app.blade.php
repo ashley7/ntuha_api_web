@@ -58,10 +58,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/price/create">Price</a>
                             </li>
-
-
-
-                             
                         @endguest
 
                     </ul>
