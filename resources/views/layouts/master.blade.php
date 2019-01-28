@@ -7,39 +7,21 @@
         <meta name="author" content="Thembo Charles Lwanga ()">
         <meta name="author_email" content="ashley7520charles@gmail.com">
 
-         <link rel="icon" href="{{asset('documents/favicon.PNG')}}">
+         <!-- <link rel="icon" href="{{asset('documents/favicon.PNG')}}"> -->
 
          <title>{{ config('app.name', '') }}</title>
 
-        <link href="{{asset('back_end/assets/plugins/switchery/switchery.min.css')}}" rel="stylesheet" />
-        <link href="{{asset('back_end/assets/plugins/custombox/css/custombox.min.css')}}" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.dataTables.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/buttons.dataTables.min.css') }}">
         <link href="{{asset('back_end/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
         <style type="text/css">
             #topnav .topbar-main {
-                background-color: #990E2C;
+                background-color: #3f33ff;
             }
           
         </style>
-
-        
- 
-
         @yield('styles')
-
-        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-        <!-- Modernizr js -->
-        <script src="{{asset('back_end/assets/js/modernizr.min.js')}}"></script>
-
     </head>
-
-
     <body>
 
         <!-- Navigation Bar-->
@@ -122,27 +104,28 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
 
-                         
+                            <li class="has-submenu">
+                                <a href="/home"><i class="zmdi zmdi-view-dashboard"></i>  Dashboard</a>
+                            </li>                        
                              
-
                             <li class="has-submenu">
-                                <a href="/available_drivers"><i class="zmdi zmdi-whatsapp"></i>  Available drivers</a>
+                                <a href="/available_drivers"><i class="zmdi zmdi-car-taxi"></i>  Available drivers</a>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="/get_customers"><i class="zmdi zmdi-account-calendar"></i>  Customers</a>
+                                <a href="/get_customers"><i class="zmdi zmdi-account-box-mail"></i>  Customers</a>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="/get_drivers"><i class="zmdi zmdi-account-calendar"></i>  Drivers</a>
+                                <a href="/get_drivers"><i class="zmdi zmdi-bike"></i>  Drivers</a>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="/rides"><i class="zmdi zmdi-account-calendar"></i>  Rides</a>
+                                <a href="/rides"><i class="zmdi zmdi-car"></i>  Rides</a>
                             </li>                        
 
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-collection-bookmark"></i>Settings</a>
+                                <a href="#"><i class="zmdi zmdi-settings"></i>Settings</a>
                                 <ul class="submenu">
                                     <li><a href="/driver">Drivers</a></li>
                                     <li><a href="/price/create">Prices</a></li>
@@ -177,10 +160,8 @@
         </script>
 
         <script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
+        <script src="{{asset('back_end/assets/js/tether.min.js')}}"></script>
         <script src="{{asset('back_end/assets/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('back_end/assets/js/jquery.nicescroll.js')}}"></script>
-        <script src="{{asset('back_end/assets/plugins/switchery/switchery.min.js')}}"></script>     
-        <script src="{{asset('back_end/assets/js/jquery.app.js')}}"></script>    
 
         <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>

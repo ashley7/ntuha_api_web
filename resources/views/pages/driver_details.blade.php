@@ -13,6 +13,7 @@
           <p>Phone number: {{$customer_value['phone']}}</p>                     
           <p>Motor: {{$customer_value['car']}}</p>                     
           <p>Service: {{$customer_value['service']}}</p>                    
+          <p>Driver number: {{$customer_value['driver_id']}}</p>                    
         </div>
         @endforeach
       </div>
@@ -26,37 +27,21 @@
                     <th>From</th>
                     <th>To</th>
                     <th>Customer</th>
-                    <th>Distance</th>                              
-                    <th>Rate</th>
+                    <th>Distance</th>
                     <th>Price</th>                              
+                    <th>Rate</th>                                                 
                 </thead>
 
                 <tbody>
                   @foreach($driver_history as $key => $history)
                     <tr>
                       <td>{{date("Y-M-d",$history['timestamp'])}}</td>
-                      <td>                                 
-                          @foreach($history['location'] as $location_key => $location)
-                            @if($location_key == "from")
-                              {{ $location['lat'] }} , {{$location['lng'] }}
-                            @endif
-                          @endforeach                                  
-                      </td>
+                      <td>{{$history['from']}}</td>
                       <td>{{$history['destination']}}</td>
-                      <td>
-                       <?php
-                         try {
-                          ?> 
-                        @foreach(App\Http\Controllers\NtuhaDashboardController::single_customer($history['customer']) as $driver)
-                         <a href="/read_single_customer/{{$history['customer']}}">{{$driver['name']}} ({{$driver['phone']}}) </a>
-                        @endforeach
-                        <?php
-                            } catch (\Exception $e) {}
-                         ?>                                   
-                      </td>
-                      <td>{{round($history['distance'],3,PHP_ROUND_HALF_UP)}} KM</td>
-                      <td>{{$history['rating']}}</td>
-                      <td>{{1000 * round($history['distance'],3,PHP_ROUND_HALF_UP)}}</td>
+                      <td>{{$history['customer_name']}}</td>
+                      <td>{{$history['distance']}} KM</td>
+                      <td>{{number_format($history['amount_paid'])}}</td>
+                      <td>{{$history['rating']}}</td>                     
                     </tr>
                   @endforeach                                           
                 </tbody>

@@ -26,8 +26,8 @@ class NtuhaDashboardController extends Controller
         $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
         $database = $firebase->getDatabase();
 
-        $reference = $database->getReference('Users');
-        $customers = $reference->getChild("Customers");
+        $customers = $database->getReference('Users')->getChild("Customers");
+       // $customers = $reference->getChild("Customers");
         if (!empty($customers->getValue())) {
             $customer_data = [];
             foreach ($customers->getValue() as $customer_key => $customer) {
@@ -39,15 +39,23 @@ class NtuhaDashboardController extends Controller
                            $result["customeId"] = $customer_key;
                            $result['name'] = $customer['name'];
                            $result['phone'] = $customer['phone'];
-                           $result['profileImageUrl'] = $customer['profileImageUrl'];
+                           if (!isset($customer['profileImageUrl'])) {
+                             $result['profileImageUrl'] = "default.jpg";
+                           }else{
+                              $result['profileImageUrl'] = $customer['profileImageUrl'];
+                          }
                            $customer_data[] = $result;   
-                        } catch (\Exception $e) {}
+                        } catch (\Exception $e) {
+                          echo $e->getMessage();
+                          exit();
+                        }
                                                   
                        }
                     } 
                 }
             }
         }
+
         $data = array_unique($customer_data, SORT_REGULAR);
         return (array)$data;
         // return response()->json($data);
@@ -77,7 +85,12 @@ class NtuhaDashboardController extends Controller
                             $result['car'] = $driver['car'];
                             $result['service'] = $driver['service'];
                             $result['phone'] = $driver['phone'];
-                            $result['profileImageUrl'] = $driver['profileImageUrl'];
+                            $result['driver_id'] = $driver['driver_id'];
+                            if (!isset($driver['profileImageUrl'])) {
+                             $result['profileImageUrl'] = "default.jpg";
+                            }else{
+                              $result['profileImageUrl'] = $driver['profileImageUrl'];
+                            }
                             $driver_data[] = $result;  
                             
                         } catch (\Exception $e) {}
@@ -153,7 +166,11 @@ class NtuhaDashboardController extends Controller
             try {
                 $result['name'] = $value['name'];
                 $result['phone'] = $value['phone'];         
-                $result['profileImageUrl'] = $value['profileImageUrl'];
+                 if (!isset($value['profileImageUrl'])) {
+                   $result['profileImageUrl'] = "default.jpg";
+                  }else{
+                    $result['profileImageUrl'] = $value['profileImageUrl'];
+                  }
                 $data[] = $result; 
             } catch (\Exception $e) {}
                       
@@ -172,7 +189,13 @@ class NtuhaDashboardController extends Controller
                $result['phone'] = $value['phone'];
                $result['car'] = $value['car'];
                $result['service'] = $value['service'];
-               $result['profileImageUrl'] = $value['profileImageUrl'];
+               $result['driver_id'] = $value['driver_id'];
+               // $result['profileImageUrl'] = $value['profileImageUrl'];
+               if (!isset($value['profileImageUrl'])) {
+                 $result['profileImageUrl'] = "default.jpg";
+                }else{
+                  $result['profileImageUrl'] = $value['profileImageUrl'];
+                }
                $data[] = $result; 
             } catch (\Exception $e) {}
                       
@@ -198,16 +221,21 @@ class NtuhaDashboardController extends Controller
         foreach ($rides as $key_key => $ride_value) {
             $result = [];
             try {
-              if (count(NtuhaDashboardController::single_customer($ride_value['customer'])) != 0) {
-                $result["customer"] = NtuhaDashboardController::single_customer($ride_value['customer']);
+              
+                $result["customer_name"] = $ride_value['customer_name'];
                 $result["distance"] = $ride_value['distance'];
                 $result["driver"] = NtuhaDashboardController::single_driver($ride_value['driver']);
-                $result["location"] = (array)$ride_value['location'];
+                $result["from"] = $ride_value['from'];
+                $result["to"] = $ride_value['destination'];
                 $result["rating"] = $ride_value['rating'];
                 $result["timestamp"] = $ride_value['timestamp'];
+                $result["amount_paid"] = $ride_value['amount_paid'];
                 $rides_data[] = $result;
-              }
-          } catch (\Exception $e) {}
+         
+          } catch (\Exception $e) {
+            echo $e->getMessage();
+            exit();
+          }
         }
         $data = array_unique($rides_data, SORT_REGULAR);
         return (array)$data;
@@ -225,8 +253,10 @@ class NtuhaDashboardController extends Controller
         $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
         $database = $firebase->getDatabase();
 
-        $rides = $database->getReference('driversAvailable')->getValue();
-        foreach ($rides as $key => $driver_value) {
+        $driversAvailable = $database->getReference('driversAvailable')->getValue();
+        if (isset($driversAvailable)) {
+         
+        foreach ($driversAvailable as $key => $driver_value) {
             $driver = NtuhaDashboardController::single_driver($key);
             foreach ($driver as $driver_value) {
                 $data = array();
@@ -234,11 +264,16 @@ class NtuhaDashboardController extends Controller
                 $data['phone'] = $driver_value['phone'];
                 $data['car'] = $driver_value['car'];
                 $data['service'] = $driver_value['service'];
-                $data['profileImageUrl'] = $driver_value['profileImageUrl'];
+                // $data['profileImageUrl'] = $driver_value['profileImageUrl'];
+                if (!isset($driver_value['profileImageUrl'])) {
+                   $result['profileImageUrl'] = "default.jpg";
+                  }else{
+                    $result['profileImageUrl'] = $driver_value['profileImageUrl'];
+                  }
                 array_push($rides_data, $data);
                 
             }
-            
+          }
         }
         return (array)$rides_data;
         // return response()->json($rides_data);
@@ -255,12 +290,13 @@ class NtuhaDashboardController extends Controller
         $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
         $database = $firebase->getDatabase();
 
-        $rides = $database->getReference('workingDrivers');
-        $working_drivers = $rides->getValue();
-        foreach ($rides as $key => $driver_value) {
-            array_push($rides_data, NtuhaDashboardController::single_driver($key));
-        }
+        $working_drivers = $database->getReference('driversWorking')->getValue();
 
+        if (isset($working_drivers)) {
+          foreach ($working_drivers as $key => $driver_value) {
+            array_push($rides_data, NtuhaDashboardController::single_driver($key));
+          }
+      }
         return (array)$rides_data;
         // return response()->json($rides_data);         
     }
@@ -288,17 +324,9 @@ class NtuhaDashboardController extends Controller
 */
     public function index()
     {  
-          $lat= 38.897952; //latitude
-          $lng= -77.036562; //longitude
-          $address= $this->getAddress($lat,$lng);
-          if($address)
-          {
-            echo $address;
-          }
-          else
-          {
-            echo "Not found";
-          }
+     
+          return $this->working_drivers();
+       
     }    
 
     /**

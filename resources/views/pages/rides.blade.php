@@ -12,9 +12,10 @@
                     <th>Date</th>
                     <th>Customer</th>
                     <th>Driver</th>
-                    <th>Distance</th>
                     <th>From</th>
                     <th>To</th>
+                    <th>Distance</th>
+                    <th>Price</th>
                     <th>Rate</th>
                 </thead>
 
@@ -24,9 +25,10 @@
                           <td>{{$ride_value['date']}}</td>
                           <td>{{$ride_value['customer_name']}}</td>
                           <td>{{$ride_value['driver_name']}}</td>
-                          <td>{{$ride_value['distance']}}</td>
                           <td>{{$ride_value['from']}}</td>
                           <td>{{$ride_value['to']}}</td>
+                          <td>{{$ride_value['distance']}}</td>
+                          <td>{{number_format($ride_value['amount_paid'])}}</td>                          
                           <td>{{$ride_value['rate']}}</td>
                       </tr>                          
                    @endforeach

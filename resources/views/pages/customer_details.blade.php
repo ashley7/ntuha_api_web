@@ -25,31 +25,26 @@
                       <th>From</th>
                       <th>To</th>
                       <th>Driver</th>
-                      <th>Distance</th>                              
+                      <th>Distance</th>                             
+                      <th>Price</th>
                       <th>Rate</th>
-                      <th>Price</th>                              
                   </thead>
 
                   <tbody>
                     @foreach($customer_history as $key => $history)
                       <tr>
                         <td>{{date("Y-M-d",$history['timestamp'])}}</td>
-                        <td>                                 
-                            @foreach($history['location'] as $location_key => $location)
-                              @if($location_key == "from")
-                                {{ $location['lat'] }} , {{$location['lng'] }}
-                              @endif
-                            @endforeach                                  
-                        </td>
+                        <td>{{$history['from']}}</td>
                         <td>{{$history['destination']}}</td>
                         <td>
                           @foreach(App\Http\Controllers\NtuhaDashboardController::single_driver($history['driver']) as $driver)
                             <a href="/read_single_driver/{{$history['driver']}}"> {{$driver['name']}} ({{$driver['phone']}}) </a>
                           @endforeach                                   
                         </td>
-                        <td>{{round($history['distance'],3,PHP_ROUND_HALF_UP)}} KM</td>
+                        <td>{{$history['distance']}} KM</td>
+                        <td>{{number_format($history['amount_paid'])}}</td>
                         <td>{{$history['rating']}}</td>
-                        <td>{{1000 * round($history['distance'],3,PHP_ROUND_HALF_UP)}}</td>
+                        
                       </tr>
                     @endforeach                                           
                   </tbody>

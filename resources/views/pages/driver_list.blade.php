@@ -22,7 +22,7 @@
             <tbody>
                @foreach($drivers as $driver)
                   <tr>
-                      <td><a href="/read_single_driver/{{$driver['driverId']}}">{{$driver['driverId']}}</a> </td>
+                      <td><a href="/read_single_driver/{{$driver['driverId']}}">{{$driver['driver_id']}}</a> </td>
                       <td>{{$driver['name']}}</td>
                       <td>{{$driver['phone']}}</td>
                       <td>{{$driver['car']}}</td>

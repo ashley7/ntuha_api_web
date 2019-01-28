@@ -15,39 +15,30 @@ class FrontEndController extends Controller
     	$data = array();
 
     	foreach ($ride as $key => $value) { 
-    	$customer_name =  $driver_name = $from = $to = $date = $distance = $date = $rating = "";
+    	$customer_name =  $driver_name = $from = $to = $date = $distance = $date = $rating = $amount_paid = "";
  	        foreach ($value as $customer_key => $customer_value) {
  	        	$results = array();
-	            if ($customer_key == "customer") {
-	                $customers = $customer_value[0];
-
-	                $customer_name = $customers['name']."(".$customers['phone'].")";
-	                $distance = $value['distance'];
-	                $rating = $value['rating'];
-	                $date = date("Y-m-d",$value['timestamp']);
-	            }
-
 	            if($customer_key == "driver"){
 	                $driver = $customer_value[0]; 
 	                $driver_name = $driver['name']."(".$driver['phone'].")";
-	            }
 
-	            if($customer_key == "location"){
-
-	                $from_location = $customer_value['from'];              
-	                $to_location = $customer_value['to'];           
-	                $from = $from_location['lat']."(".$from_location['lng'].")";
-	                $to = $to_location['lat']."(".$to_location['lng'].")";
-
-	            }	           
+                    $distance = $value['distance'];
+                    $rating = $value['rating'];
+                    $date = date("Y-m-d",$value['timestamp']);
+                    $customer_name = $value['customer_name'];
+                    $from = $value['from'];              
+                    $to = $value['to']; 
+                    $amount_paid = $value['amount_paid'];
+	            }         
   			} 
   			    $results['customer_name'] = $customer_name;
 	            $results['driver_name'] = $driver_name;
-	            $results['from'] = $from;
-	            $results['to'] = $to;
+	            $results['from'] =  $from;
+	            $results['to'] =  $to;
 	            $results['date'] = $date;
 	            $results['distance'] = $distance;	            
-	            $results['rate'] = $rating;	            
+	            $results['rate'] = $rating;
+                $results['amount_paid'] = $amount_paid;
 
 	            $data[] = $results;
 	      }

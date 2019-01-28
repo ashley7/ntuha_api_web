@@ -71,7 +71,7 @@
             <h4>Working Drivers</h4>
             <table class="table" id="working_drivers">
                 <thead>
-                  <th>Photo</th>  <th>Name</th> <th>Phone Number</th> <th>Car type</th> <th>Service</th> <th>Number plate</th>
+                  <th>Photo</th>  <th>Name</th> <th>Phone Number</th> <th>Driver ID</th> <th>Service</th>
                 </thead>
 
                 <tbody>
@@ -79,7 +79,11 @@
                     @foreach ($working as $key => $value)  
                        @foreach ($working[$key] as $driver_key => $driver_value)
                          <tr>
-                             <td><img src="{{$driver_value['profileImageUrl']}}"></td>
+                             <td><img src="{{$driver_value['profileImageUrl']}}" width="50px"></td>
+                             <td>{{$driver_value['name']}}</td>
+                             <td>{{$driver_value['phone']}}</td>
+                             <td>{{$driver_value['driver_id']}}</td>
+                             <td>{{$driver_value['service']}}</td>                            
                          </tr>
                        @endforeach
                     @endforeach                                  
