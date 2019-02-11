@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\RideHistory;
+use App\includes\AfricasTalkingGateway;
+use App\Http\Controllers\DriverController;
 
 class RideHistoryController extends Controller
 {
@@ -23,6 +25,18 @@ class RideHistoryController extends Controller
             $response['message'] = "failed to save history";
             return \Response::json([$response]);            
         }
+    }
+
+
+    public function customer_register(Request $request)
+    {
+    
+        $phone_number = $request->phone;
+        $name = $request->name;
+        $access_code = $request->access_code;
+        $message = "Dear ".$name.", Thank you for joining Ntuha Transport. Your password is ".$access_code;
+        DriverController::sendSMS($phone_number,$message);
+
     }
 
 

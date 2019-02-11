@@ -28,8 +28,9 @@ class NtuhaDashboardController extends Controller
 
         $customers = $database->getReference('Users')->getChild("Customers");
        // $customers = $reference->getChild("Customers");
+        $customer_data = [];
         if (!empty($customers->getValue())) {
-            $customer_data = [];
+            
             foreach ($customers->getValue() as $customer_key => $customer) {
                 if (gettype($customer)=="array") {
                     foreach ($customer as $key => $customerValueDetails) {
@@ -72,8 +73,9 @@ class NtuhaDashboardController extends Controller
 
         $reference = $database->getReference('Users');
         $drivers = $reference->getChild("Drivers");
+        $driver_data = [];
         if (!empty($drivers->getValue())) {
-            $driver_data = [];
+           
             foreach ($drivers->getValue() as $driver_key => $driver) {
                 if (gettype($driver)=="array") {
                     foreach ($driver as $key => $driverValueDetails) {
@@ -188,6 +190,7 @@ class NtuhaDashboardController extends Controller
                $result['name'] = $value['name'];
                $result['phone'] = $value['phone'];
                $result['car'] = $value['car'];
+               $result['car_plate'] = $value['car_plate'];
                $result['service'] = $value['service'];
                $result['driver_id'] = $value['driver_id'];
                // $result['profileImageUrl'] = $value['profileImageUrl'];
@@ -218,28 +221,28 @@ class NtuhaDashboardController extends Controller
         $database = $firebase->getDatabase();
 
         $rides = $database->getReference('history')->getValue();
-        foreach ($rides as $key_key => $ride_value) {
-            $result = [];
-            try {
-              
-                $result["customer_name"] = $ride_value['customer_name'];
-                $result["distance"] = $ride_value['distance'];
-                $result["driver"] = NtuhaDashboardController::single_driver($ride_value['driver']);
-                $result["from"] = $ride_value['from'];
-                $result["to"] = $ride_value['destination'];
-                $result["rating"] = $ride_value['rating'];
-                $result["timestamp"] = $ride_value['timestamp'];
-                $result["amount_paid"] = $ride_value['amount_paid'];
-                $rides_data[] = $result;
-         
-          } catch (\Exception $e) {
-            echo $e->getMessage();
-            exit();
-          }
+        if (!empty($rides)) {
+            
+            foreach ($rides as $key_key => $ride_value) {
+                $result = [];
+                try {
+                  
+                    $result["customer_name"] = $ride_value['customer_name'];
+                    $result["distance"] = $ride_value['distance'];
+                    $result["driver"] = NtuhaDashboardController::single_driver($ride_value['driver']);
+                    $result["from"] = $ride_value['from'];
+                    $result["to"] = $ride_value['destination'];
+                    $result["rating"] = $ride_value['rating'];
+                    $result["timestamp"] = $ride_value['timestamp'];
+                    $result["amount_paid"] = $ride_value['amount_paid'];
+                    $rides_data[] = $result;
+             
+              } catch (\Exception $e) {}
+            }
+            $data = array_unique($rides_data, SORT_REGULAR);
+            return (array)$data;
+            // return response()->json($data);
         }
-        $data = array_unique($rides_data, SORT_REGULAR);
-        return (array)$data;
-        // return response()->json($data);
     }
 
 /*

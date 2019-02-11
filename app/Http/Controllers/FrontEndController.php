@@ -14,36 +14,39 @@ class FrontEndController extends Controller
 
     	$data = array();
 
-    	foreach ($ride as $key => $value) { 
-    	$customer_name =  $driver_name = $from = $to = $date = $distance = $date = $rating = $amount_paid = "";
- 	        foreach ($value as $customer_key => $customer_value) {
- 	        	$results = array();
-	            if($customer_key == "driver"){
-	                $driver = $customer_value[0]; 
-	                $driver_name = $driver['name']."(".$driver['phone'].")";
+        if (!empty($ride)) {        
+        	foreach ($ride as $key => $value) { 
+        	$customer_name =  $driver_name = $from = $to = $date = $distance = $date = $rating = $amount_paid = "";
+     	        foreach ($value as $customer_key => $customer_value) {
+     	        	$results = array();
+    	            if($customer_key == "driver"){
+    	                $driver = $customer_value[0]; 
+    	                $driver_name = $driver['name']."(".$driver['phone'].")";
 
-                    $distance = $value['distance'];
-                    $rating = $value['rating'];
-                    $date = date("Y-m-d",$value['timestamp']);
-                    $customer_name = $value['customer_name'];
-                    $from = $value['from'];              
-                    $to = $value['to']; 
-                    $amount_paid = $value['amount_paid'];
-	            }         
-  			} 
-  			    $results['customer_name'] = $customer_name;
-	            $results['driver_name'] = $driver_name;
-	            $results['from'] =  $from;
-	            $results['to'] =  $to;
-	            $results['date'] = $date;
-	            $results['distance'] = $distance;	            
-	            $results['rate'] = $rating;
-                $results['amount_paid'] = $amount_paid;
+                        $distance = $value['distance'];
+                        $rating = $value['rating'];
+                        $date = date("Y-m-d",$value['timestamp']);
+                        $customer_name = $value['customer_name'];
+                        $from = $value['from'];              
+                        $to = $value['to']; 
+                        $amount_paid = $value['amount_paid'];
+    	            }         
+      			} 
+      			    $results['customer_name'] = $customer_name;
+    	            $results['driver_name'] = $driver_name;
+    	            $results['from'] =  $from;
+    	            $results['to'] =  $to;
+    	            $results['date'] = $date;
+    	            $results['distance'] = $distance;	            
+    	            $results['rate'] = $rating;
+                    $results['amount_paid'] = $amount_paid;
 
-	            $data[] = $results;
-	      }
-    
-        return view('pages.rides')->with(['ride'=>$data]);
+    	            $data[] = $results;
+    	      }
+          }
+        
+            return view('pages.rides')->with(['ride'=>$data]);
+       
     }
 
     public static function get_customers()

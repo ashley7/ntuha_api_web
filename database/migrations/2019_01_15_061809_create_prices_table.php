@@ -17,6 +17,7 @@ class CreatePricesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->double('price',10,2)->default(0);
+            $table->string('rate')->default(0);
             $table->string('type');
         });
     }

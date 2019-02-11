@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Driver;
 use App\Price;
+use App\includes\AfricasTalkingGateway;
 
 class DriverController extends Controller
 {
@@ -37,8 +38,11 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['input_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048','name','email','phone_number','driver_id'=>'required|unique:drivers','identification_number'=>'required','identification_type'=>'required','motor_type'=>'required','number_plate'=>'required','service'=>'required']);
+
+        $this->validate($request, ['input_img' => 'required|image','name'=>'required','phone_number'=>'required','driver_id'=>'required|unique:drivers','identification_number'=>'required','identification_type'=>'required','motor_type'=>'required','number_plate'=>'required','service'=>'required']);
+
         $save_driver = new Driver($request->all());
+        $save_driver->email = $request->phone_number."@gmail.com";
         try {         
             if ($request->hasFile('input_img')) {
                 $image = $request->file('input_img');
@@ -49,6 +53,14 @@ class DriverController extends Controller
             }
             $save_driver->access_key = rand(400000,500000);
             $save_driver->save();
+
+            $message = "Dear ".$request->name.", Thank you for Joining Ntuha, Your Number is ".$save_driver->driver_id." and your access key is ".$save_driver->access_key;
+
+            $this->sendSMS($save_driver->phone_number,$message);
+
+            
+
+
         } catch (\Exception $e) {}
         return redirect()->route('driver.index');
     }
@@ -96,6 +108,14 @@ class DriverController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public static function sendSMS($phone_number,$message)
+    { 
+        $gateway = new AfricasTalkingGateway(env('API_USERNAME'),env('API_KEY'));
+        $gateway->sendMessage("+".$phone_number, $message);
+
     }
 
     public function activate_driver(Request $request)

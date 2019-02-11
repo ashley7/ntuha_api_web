@@ -16,7 +16,7 @@
         <link href="{{asset('back_end/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
         <style type="text/css">
             #topnav .topbar-main {
-                background-color: #3f33ff;
+                background-color: #8B0000;
             }
           
         </style>

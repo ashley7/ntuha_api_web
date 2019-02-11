@@ -12,6 +12,7 @@
           <p>Name: {{$customer_value['name']}}</p>
           <p>Phone number: {{$customer_value['phone']}}</p>                     
           <p>Motor: {{$customer_value['car']}}</p>                     
+          <p>Number Plate: {{$customer_value['car_plate']}}</p>                     
           <p>Service: {{$customer_value['service']}}</p>                    
           <p>Driver number: {{$customer_value['driver_id']}}</p>                    
         </div>

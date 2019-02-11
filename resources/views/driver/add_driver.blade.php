@@ -19,17 +19,20 @@
                           <label>Name</label>
                           <input type="text" name="name" class="form-control">
 
-                          <label>Email</label>
-                          <input type="email" name="email" class="form-control">
+                          <!-- <label>Email</label>
+                          <input type="email" name="email" class="form-control"> -->
 
                           <label>Phone number</label>
-                          <input type="text" name="phone_number" class="form-control">
+                          <input type="text" name="phone_number" placeholder="256772123456" class="form-control">
 
                           <label>Driver number</label>
                           <input type="text" name="driver_id" class="form-control">
 
                           <label>Identification number</label>
                           <input type="text" name="identification_number" class="form-control">
+
+                          <br>
+                           <button id="save_price" class="btn btn-primary">Save</button>
 
                         </div>
                       <div class="col-md-6">
@@ -52,10 +55,10 @@
                           <option value="Ntuha Truck">Ntuha Truck</option>
                         </select>
 
-                        <label>Driver photo</label>
+                        <label>Driver photo</label><br>
                         <input type="file" name="input_img" accept="image/*">
                         <br>
-                        <button id="save_price" class="btn btn-primary">Save</button>
+                       
 
                       </div>
                     </div>
