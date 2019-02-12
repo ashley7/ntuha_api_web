@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\RideHistory;
 use App\includes\AfricasTalkingGateway;
 use App\Http\Controllers\DriverController;
+use App\Customer;
+use App\Driver;
 
 class RideHistoryController extends Controller
 {
@@ -35,8 +37,71 @@ class RideHistoryController extends Controller
         $name = $request->name;
         $access_code = $request->access_code;
         $message = "Dear ".$name.", Thank you for joining Ntuha Transport. Your password is ".$access_code;
+        $save_customer = new Customer();
+        $save_customer->name = $name;
+        $save_customer->password = $access_code;
+        $save_customer->email = $phone_number.'@gmail.com';
+        try {
+            $save_customer->save();
+        } catch (\Exception $e) {}
         DriverController::sendSMS($phone_number,$message);
 
+    }
+
+    public function customerRemeberPassword(Request $request)
+    {
+        $response = array();
+        $phone_number = $request->phone_number;
+        $customer = Customer::all()->where('email',$phone_number.'@gmail.com');
+        if ($customer->count() == 0) {
+            $response['status'] = "NOTFOUND";
+            $response['message'] = "The user was not found.";
+            return \Response::json([$response]);
+        }elseif ($customer->count() == 1) {
+            $single_customer = $customer->last();
+            $message = "Dear ".$single_customer->name." Your password is ".$single_customer->password;
+            try {
+                DriverController::sendSMS($phone_number,$message);
+            } catch (\Exception $e) {}
+            $response['status'] = "SUCCESS";
+            $response['message'] = "Password has been sent to ".$phone_number;
+            return \Response::json([$response]);
+        }
+    }
+
+
+
+    public function driverRemeberPassword(Request $request)
+    {
+        $response = array();
+        $phone_number = $request->phone_number;
+        $driver = Driver::all()->where('email',$phone_number.'@gmail.com');
+        if ($driver->count() == 0) {
+            $response['status'] = "NOTFOUND";
+            $response['message'] = "The user was not found.";
+            return \Response::json([$response]);
+        }elseif ($driver->count() == 1) {
+            $single_driver = $driver->last();
+            $message = "Dear ".$single_driver->name." Your password is ".$single_driver->access_key;
+            try {
+                DriverController::sendSMS($phone_number,$message);
+            } catch (\Exception $e) {}
+            $response['status'] = "SUCCESS";
+            $response['message'] = "Password has been sent to ".$phone_number;
+            return \Response::json([$response]);
+        }
+    }
+
+
+    public static function rendomString()
+    {
+        $characters = '23456789';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+            for ($i = 0; $i < 6; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+        return $randomString;
     }
 
 
