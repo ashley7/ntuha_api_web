@@ -11,6 +11,15 @@ use Kreait\Firebase\Database;
 class NtuhaDashboardController extends Controller
 {
 
+
+    public function databaseObject()
+    {
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
+        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
+
+        return $firebase;
+    }
+
     /*
       returns all customers
     */
@@ -22,9 +31,10 @@ class NtuhaDashboardController extends Controller
          * @return a database instance
 
         */     
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
-        $database = $firebase->getDatabase();
+        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
+        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
+
+        $database = $this->databaseObject()->getDatabase();
 
         $customers = $database->getReference('Users')->getChild("Customers");
        // $customers = $reference->getChild("Customers");
@@ -67,8 +77,9 @@ class NtuhaDashboardController extends Controller
     */
     public static function read_ntuha_drivers()
     {
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
+        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+        $database = $this->databaseObject()->getDatabase();
         $database = $firebase->getDatabase();
 
         $reference = $database->getReference('Users');
@@ -120,8 +131,11 @@ class NtuhaDashboardController extends Controller
     public static function single_user_history($user_type,$user_id)
     {
 
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
+        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+
+        $database = $this->databaseObject()->getDatabase(); 
+
         $database = $firebase->getDatabase();
 
         $driver = NtuhaDashboardController::user_details($user_type,$user_id);
@@ -151,8 +165,10 @@ class NtuhaDashboardController extends Controller
     public static function user_details($user_type,$user_id)
     {
         $data = array();
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
+        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+
+        $database = $this->databaseObject()->getDatabase();
         $database = $firebase->getDatabase();
 
         $reference = $database->getReference('Users');
@@ -216,8 +232,11 @@ class NtuhaDashboardController extends Controller
     {
         $rides_data = array();
 
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
+        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+
+        $database = $this->databaseObject()->getDatabase();
+
         $database = $firebase->getDatabase();
 
         $rides = $database->getReference('history')->getValue();
@@ -252,8 +271,10 @@ class NtuhaDashboardController extends Controller
     {
         $rides_data = array();
 
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
+        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+
+        $database = $this->databaseObject()->getDatabase();
         $database = $firebase->getDatabase();
 
         $driversAvailable = $database->getReference('driversAvailable')->getValue();
@@ -289,8 +310,10 @@ class NtuhaDashboardController extends Controller
    public static function working_drivers()
    {
         $rides_data = array();
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
+        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+
+        $database = $this->databaseObject()->getDatabase();
         $database = $firebase->getDatabase();
 
         $working_drivers = $database->getReference('driversWorking')->getValue();
