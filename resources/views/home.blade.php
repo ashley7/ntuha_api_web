@@ -59,8 +59,7 @@
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow"></p>
-                    <h2 class="text-success"><span data-plugin="counterup"> </span></h2>
-               
+                    <h2 class="text-success"><span data-plugin="counterup"> </span></h2>               
                 </div>
             </div>
         </div><!-- end col -->

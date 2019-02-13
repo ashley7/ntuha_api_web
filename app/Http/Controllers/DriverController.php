@@ -113,8 +113,10 @@ class DriverController extends Controller
 
     public static function sendSMS($phone_number,$message)
     { 
+
+        $phone_number = ltrim($phone_number, '0');
         $gateway = new AfricasTalkingGateway(env('API_USERNAME'),env('API_KEY'));
-        $gateway->sendMessage("+".$phone_number, $message);
+        $gateway->sendMessage("+256".$phone_number, $message);
 
     }
 
