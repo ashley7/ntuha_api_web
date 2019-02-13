@@ -313,7 +313,9 @@ class NtuhaDashboardController extends Controller
         // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
         // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
 
-        $database = $this->databaseObject()->getDatabase();
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
+        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
+
         $database = $firebase->getDatabase();
 
         $working_drivers = $database->getReference('driversWorking')->getValue();
