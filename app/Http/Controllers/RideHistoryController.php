@@ -36,7 +36,7 @@ class RideHistoryController extends Controller
         $phone_number = $request->phone;
         $name = $request->name;
         $access_code = $request->access_code;
-        $message = "Dear ".$name.", Thank you for joining Ntuha Transport. Your password is ".$access_code;
+        $message = "Dear ".$name.", Thank you for joining Ntuha Ride. Your password is ".$access_code;
         $save_customer = new Customer();
         $save_customer->name = $name;
         $save_customer->password = $access_code;

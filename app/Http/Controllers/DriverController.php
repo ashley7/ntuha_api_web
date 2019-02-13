@@ -54,7 +54,7 @@ class DriverController extends Controller
             $save_driver->access_key = rand(400000,500000);
             $save_driver->save();
 
-            $message = "Dear ".$request->name.", Thank you for Joining Ntuha, Your Number is ".$save_driver->driver_id." and your access key is ".$save_driver->access_key;
+            $message = "Dear ".$request->name.", Thank you for Joining Ntuha Ride, Your Number is ".$save_driver->driver_id." and your access key is ".$save_driver->access_key;
 
             $this->sendSMS($save_driver->phone_number,$message);
 
