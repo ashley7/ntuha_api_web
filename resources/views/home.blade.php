@@ -68,7 +68,7 @@
   
     <div class="card-box"> 
         <div class="card-body"> 
-            <h4>Working Drivers</h4>
+            <h4>Active rides</h4>
             <table class="table" id="working_drivers">
                 <thead>
                   <th>Photo</th>  <th>Name</th> <th>Phone Number</th> <th>Driver ID</th> <th>Service</th>
