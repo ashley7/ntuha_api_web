@@ -23,7 +23,7 @@
                           <input type="email" name="email" class="form-control"> -->
 
                           <label>Phone number</label>
-                          <input type="text" name="phone_number" placeholder="256772123456" class="form-control">
+                          <input type="text" name="phone_number" placeholder="0772123456" class="form-control">
 
                           <label>Driver number</label>
                           <input type="text" name="driver_id" class="form-control">

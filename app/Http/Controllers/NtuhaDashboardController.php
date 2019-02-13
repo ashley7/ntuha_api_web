@@ -352,7 +352,8 @@ class NtuhaDashboardController extends Controller
     public function index()
     {  
      
-          return $this->working_drivers();
+        $phone_number = ltrim("0787444081", '0');
+        echo "+256".$phone_number;
        
     }    
 
