@@ -123,7 +123,7 @@ class FrontEndController extends Controller
         } catch (\Exception $e) {
 
             $response['status'] = "FAILED";
-            $response['message'] = "Payment failed";
+            $response['message'] = "Payment failed: ".$e->getMessage();
             return \Response::json([$response]);
             
         }        
