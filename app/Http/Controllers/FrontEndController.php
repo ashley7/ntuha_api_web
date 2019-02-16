@@ -131,6 +131,8 @@ class FrontEndController extends Controller
 
     public  function check_payment_approval(Request $request)
     {
+        $response = array();
+
         \Beyonic::setApiKey(env("BEYONIC_API_KEY"));
 
         $collection_request = \Beyonic_Collection_Request::get((int)$request->transaction_id);
@@ -138,6 +140,14 @@ class FrontEndController extends Controller
             $update_status = Payment::where('transaction_id',$request->transaction_id)->last();
             $update_status->status = $collection_request->status;
             $update_status->save();
+
+            $response['status'] = "SUCCESS";
+            $response['message'] = "Payment approved";
+            return \Response::json([$response]);
+        }elseif ($collection_request->status == "pending") {
+            $response['status'] = "SUCCESS";
+            $response['message'] = "Payment not yet approved";
+            return \Response::json([$response]);
         }
     }
 
