@@ -138,23 +138,23 @@ class FrontEndController extends Controller
         $collection_request = \Beyonic_Collection_Request::get((int)$request->transaction_id);
 
         return json_encode($collection_request);
-        // if ($collection_request->status == "success") {
-        //     $update_status = Payment::where('transaction_id',$request->transaction_id)->last();
-        //     $update_status->status = $collection_request->status;
-        //     $update_status->save();
+        if ($collection_request->status == "success") {
+            $update_status = Payment::where('transaction_id',$request->transaction_id)->last();
+            $update_status->status = $collection_request->status;
+            $update_status->save();
 
-        //     $response['status'] = "SUCCESS";
-        //     $response['message'] = "Payment approved";
-        //     return \Response::json([$response]);
-        // }elseif ($collection_request->status == "pending") {
-        //     $response['status'] = "SUCCESS";
-        //     $response['message'] = "Payment not yet approved";
-        //     return \Response::json([$response]);
-        // }else{
-        //     $response['status'] = "WARNING";
-        //     $response['message'] = "No status";
-        //     return \Response::json([$response]);
-        // }
+            $response['status'] = "SUCCESS";
+            $response['message'] = "Payment approved";
+            return \Response::json([$response]);
+        }elseif ($collection_request->status == "pending") {
+            $response['status'] = "SUCCESS";
+            $response['message'] = "Payment not yet approved";
+            return \Response::json([$response]);
+        }else{
+            $response['status'] = "WARNING";
+            $response['message'] = $collection_request->status;
+            return \Response::json([$response]);
+        }
     }
 
     public function record_account_ride(Request $request)
