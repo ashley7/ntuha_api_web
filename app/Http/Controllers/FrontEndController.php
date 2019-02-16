@@ -148,6 +148,10 @@ class FrontEndController extends Controller
             $response['status'] = "SUCCESS";
             $response['message'] = "Payment not yet approved";
             return \Response::json([$response]);
+        }else{
+            $response['status'] = "WARNING";
+            $response['message'] = "No status";
+            return \Response::json([$response]);
         }
     }
 
