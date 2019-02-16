@@ -104,8 +104,6 @@ class FrontEndController extends Controller
           "expiry_date" => "5 minutes"
         ));
 
-        return json_encode($collection_request);
-
         $save_payment = new Payment();
         $save_payment->email  = $phone_number."@gmail.com";
         $save_payment->amount = $collection_request->amount;
@@ -117,7 +115,7 @@ class FrontEndController extends Controller
 
             $save_payment->save();
             $response['status'] = "SUCCESS";
-            $response['message'] = "Payment made successfully";
+            $response['message'] = "Please approve the transaction. It expires in 5 minutes.";
             $response['transaction_id'] = $collection_request->id;
             return \Response::json([$response]);
 
