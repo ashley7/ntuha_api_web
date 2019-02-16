@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\NtuhaDashboardController;
+use App\Http\Controllers\DriverController;
 use App\Payment;
 use App\Withdraw;
 
@@ -138,21 +139,36 @@ class FrontEndController extends Controller
         $collection_request = \Beyonic_Collection_Request::get((int)$request->transaction_id);
         
         $update_status = Payment::where('transaction_id',$request->transaction_id)->last();
+
+        if (empty($update_status)) {
+            $response['status'] = "Error";
+            $response['message'] = "Transaction id ".$request->transaction_id." does not exist.";
+            return \Response::json([$response]);
+        }
+
         $update_status->status = $collection_request->status;
         $update_status->save();
 
-        if ($collection_request->status == "success") {           
-            $response['status'] = "SUCCESS";
+        if ($collection_request->status == "success") {
+
             $response['message'] = "Payment approved";
+            $response['status'] = $collection_request->status;
+            $message = "Your Ntuha ride account has been updated by ".$collection_request->amount;
+            DriverController::sendSMS($phone_number,$message);
             return \Response::json([$response]);
+
         }elseif ($collection_request->status == "pending") {
-            $response['status'] = "SUCCESS";
+
+            $response['status'] = $collection_request->status;
             $response['message'] = "Payment not yet approved";
             return \Response::json([$response]);
+
         }else{
-            $response['status'] = "SUCCESS";
+
+            $response['status'] = "EXPIRED";
             $response['message'] = $collection_request->status;
             return \Response::json([$response]);
+
         }
     }
 
