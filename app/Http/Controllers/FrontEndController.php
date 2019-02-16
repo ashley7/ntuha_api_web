@@ -137,7 +137,7 @@ class FrontEndController extends Controller
 
         $collection_request = \Beyonic_Collection_Request::get((int)$request->transaction_id);
 
-        return json_encode($collection_request);
+        // return json_encode($collection_request);
         if ($collection_request->status == "success") {
             $update_status = Payment::where('transaction_id',$request->transaction_id)->last();
             $update_status->status = $collection_request->status;
