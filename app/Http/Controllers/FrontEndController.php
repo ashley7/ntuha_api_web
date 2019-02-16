@@ -109,7 +109,7 @@ class FrontEndController extends Controller
         $save_payment->amount = $collection_request->amount;
         $save_payment->status = $collection_request->status;
         $save_payment->transaction_id = $collection_request->id;
-        $save_payment->phone_number = $collection_request->phone_number;
+        $save_payment->phone_number = $request->phone_number;
         $save_payment->customer_name = $collection_request->first_name.' '.$collection_request->last_name;
         try {
 
