@@ -136,13 +136,12 @@ class FrontEndController extends Controller
         \Beyonic::setApiKey(env("BEYONIC_API_KEY"));
 
         $collection_request = \Beyonic_Collection_Request::get((int)$request->transaction_id);
+        
+        $update_status = Payment::where('transaction_id',$request->transaction_id)->last();
+        $update_status->status = $collection_request->status;
+        $update_status->save();
 
-
-        if ($collection_request->status == "success") {
-            $update_status = Payment::where('transaction_id',$request->transaction_id)->last();
-            $update_status->status = $collection_request->status;
-            $update_status->save();
-
+        if ($collection_request->status == "success") {           
             $response['status'] = "SUCCESS";
             $response['message'] = "Payment approved";
             return \Response::json([$response]);
