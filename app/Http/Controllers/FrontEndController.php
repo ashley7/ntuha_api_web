@@ -167,7 +167,7 @@ class FrontEndController extends Controller
 
     public function customer_payments(Request $request)
     {
-        return Payment::where('email',$request->email)->where('status','success')->get();
+        return Payment::where('email',$request->email)->get();
     }
 
     public static function account_balance(Request $request)
