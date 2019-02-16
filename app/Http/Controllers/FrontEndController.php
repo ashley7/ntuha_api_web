@@ -116,7 +116,7 @@ class FrontEndController extends Controller
 
             $save_payment->save();
             $response['status'] = "SUCCESS";
-            $response['message'] = "Please approve the transaction. It expires in 5 minutes.";
+            $response['message'] = "Thank you, Please approve the transaction. It will expires in the next 5 minutes.";
             $response['transaction_id'] = $collection_request->id;
             return \Response::json([$response]);
 
@@ -138,7 +138,7 @@ class FrontEndController extends Controller
 
         $collection_request = \Beyonic_Collection_Request::get((int)$request->transaction_id);
         
-        $update_status = Payment::where('transaction_id',$request->transaction_id)->last();
+        $update_status = Payment::all()->where('transaction_id',$request->transaction_id)->last();
 
         if (empty($update_status)) {
             $response['status'] = "Error";
