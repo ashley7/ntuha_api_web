@@ -4,6 +4,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
@@ -18,6 +20,25 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('read_single_driver/{driver_id}','FrontEndController@read_single_driver');
 	Route::get('get_drivers','FrontEndController@get_drivers');
 	Route::get('available_drivers','FrontEndController@available_drivers');
+	
 	Route::resource('price','PriceController');
 	Route::resource('driver','DriverController');
 });
+
+Route::get('/beyonic', function () {
+    \Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
+
+	$collection_request = \Beyonic_Collection_Request::create(array(
+	  "phonenumber" => "+256787444081",
+	  "amount" => "500",
+	  "currency" => "BXC",
+	  "metadata" => array("email"=>"123ASDAsd123"),
+	  "send_instructions" => True
+	));
+
+	return json_encode($collection_request);
+});
+
+
+
+

@@ -8,6 +8,7 @@ use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount; 
 use Kreait\Firebase\Database;
 
+
 class NtuhaDashboardController extends Controller
 {
 
@@ -327,6 +328,10 @@ class NtuhaDashboardController extends Controller
         return (array)$rides_data;
         // return response()->json($rides_data);         
     }
+
+
+
+
 
 
     public static function getAddress($latitude,$longitude){    

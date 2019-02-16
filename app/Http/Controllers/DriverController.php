@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Driver;
 use App\Price;
 use App\includes\AfricasTalkingGateway;
+use App\Http\Controllers\FrontEndController;
 
 class DriverController extends Controller
 {
@@ -155,8 +156,17 @@ class DriverController extends Controller
         $response = array();
         $read_price = Price::all()->where('type',$request->service)->last();
         if (!empty($read_price)) {
+
+            $balance = 0;
+
+            if ($request->type = 'account') {
+                # paying from account
+                $balance = FrontEndController::account_balance($request);
+            }
+
             $response["status"] = "SUCCESS";
             $response["price"] = $read_price->price;
+            $response["balance"] = $balance;
             return \Response::json([$response]);          
         }else{
             $response["status"] = "FAILED";

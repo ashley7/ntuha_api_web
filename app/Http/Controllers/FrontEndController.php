@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\NtuhaDashboardController;
+use App\Payment;
+use App\Withdraw;
 
 class FrontEndController extends Controller
 {
     public static function rides()
     {
     	$ride = NtuhaDashboardController::rides();
-
 
     	$data = array();
 
@@ -82,5 +83,81 @@ class FrontEndController extends Controller
     {
     	$available_drivers = NtuhaDashboardController::drivers_available();
     	return view('pages.available_driver')->with(['available_drivers'=>$available_drivers]);
+    }
+
+    public function payments(Request $request)
+    {
+
+        $phone_number = $request->phone_number;
+
+        \Beyonic::setApiKey(env("BEYONIC_API_KEY"));
+
+        $collection_request = \Beyonic_Collection_Request::create(array(
+          "phonenumber" => "+256".ltrim($phone_number,"0"),
+          "amount" => (int)$request->amount,
+          "currency" => "UGX",
+          "reason" => "Ntuha Ride transaction.",
+          "success_message" => "Dear {customer}, You have paid {amount} for Ntuha Ride. Thank you ",
+          "error_message" => "Dear {customer}, Your payment of {amount} to Ntuha Ride has failed. ",
+          "metadata" => array("email"=>$phone_number."@gmail.com"),
+          "send_instructions" => True,
+          "expiry_date" => "5 minutes"
+        ));
+
+        $save_payment = new Payment();
+        $save_payment->email  = $phone_number."@gmail.com";
+        $save_payment->amount = $collection_request->amount;
+        $save_payment->status = $collection_request->status;
+        $save_payment->transaction_id = $collection_request->id;
+        $save_payment->phone_number = $collection_request->phone_number;
+        $save_payment->customer_name = $collection_request->first_name.' '.$collection_request->last_name;
+        try {
+
+            $save_payment->save();
+            $response['status'] = "SUCCESS";
+            $response['message'] = "Payment made successfully";
+            $response['transaction_id'] = $collection_request->id;
+            return \Response::json([$response]);
+
+        } catch (\Exception $e) {
+
+            $response['status'] = "FAILED";
+            $response['message'] = "Payment failed";
+            return \Response::json([$response]);
+            
+        }        
+    }
+
+
+    public  function check_payment_approval(Request $request)
+    {
+        \Beyonic::setApiKey(env("BEYONIC_API_KEY"));
+
+        $collection_request = \Beyonic_Collection_Request::get((int)$request->transaction_id);
+        if ($collection_request->status == "success") {
+            $update_status = Payment::where('transaction_id',$request->transaction_id)->last();
+            $update_status->status = $collection_request->status;
+            $update_status->save();
+        }
+    }
+
+    public function record_account_ride(Request $request)
+    {
+        $save_withdraw = new Withdraw();
+        $save_withdraw->email = $request->email;
+        $save_withdraw->amount = $request->amount;
+        $save_withdraw->save();
+    }
+
+    public function customer_payments(Request $request)
+    {
+        return Payment::where('email',$request->email)->where('status','success')->get();
+    }
+
+    public static function account_balance(Request $request)
+    {
+        $payments = Payment::where('email',$request->email)->where('status','success')->sum('amount');
+        $with_draw = Withdraw::where('email',$request->email)->sum('amount');
+        return ($payments - $with_draw);        
     }
 }
