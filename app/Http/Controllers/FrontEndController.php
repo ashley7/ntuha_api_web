@@ -104,13 +104,15 @@ class FrontEndController extends Controller
           "expiry_date" => "5 minutes"
         ));
 
+        return json_encode($collection_request);
+
         $save_payment = new Payment();
         $save_payment->email  = $phone_number."@gmail.com";
         $save_payment->amount = $collection_request->amount;
         $save_payment->status = $collection_request->status;
         $save_payment->transaction_id = $collection_request->id;
         $save_payment->phone_number = $collection_request->phonenumber;
-        $save_payment->customer_name = "Ntuha Client";
+        $save_payment->customer_name = $request->name;
         try {
 
             $save_payment->save();
@@ -137,7 +139,7 @@ class FrontEndController extends Controller
 
         $collection_request = \Beyonic_Collection_Request::get((int)$request->transaction_id);
 
-        // return json_encode($collection_request);
+
         if ($collection_request->status == "success") {
             $update_status = Payment::where('transaction_id',$request->transaction_id)->last();
             $update_status->status = $collection_request->status;
@@ -151,7 +153,7 @@ class FrontEndController extends Controller
             $response['message'] = "Payment not yet approved";
             return \Response::json([$response]);
         }else{
-            $response['status'] = "WARNING";
+            $response['status'] = "SUCCESS";
             $response['message'] = $collection_request->status;
             return \Response::json([$response]);
         }
