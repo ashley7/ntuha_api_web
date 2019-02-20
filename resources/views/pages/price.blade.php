@@ -46,6 +46,7 @@
                     <th>Service</th>
                     <th>Price par KM</th>                          
                     <th>Ntuha rate</th>                          
+                    <th>Type</th>                          
                 </thead>
 
                 <tbody>
