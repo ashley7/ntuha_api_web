@@ -193,7 +193,8 @@ class FrontEndController extends Controller
 
     public static function account_balance(Request $request)
     {
-        $payments = Payment::where('email',$request->email)->where('status','success')->sum('amount');
+        $payments = Payment::where('email',$request->email)->sum('amount');
+        // $payments = Payment::where('email',$request->email)->where('status','success')->sum('amount');
         $with_draw = Withdraw::where('email',$request->email)->sum('amount');
         return ($payments - $with_draw);        
     }
