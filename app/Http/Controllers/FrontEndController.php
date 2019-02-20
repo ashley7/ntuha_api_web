@@ -147,6 +147,7 @@ class FrontEndController extends Controller
         }
 
         $update_status->status = $collection_request->status;
+        $update_status->amount = $collection_request->amount;
         $update_status->save();
 
         if ($collection_request->status == "success") {

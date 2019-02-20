@@ -171,7 +171,9 @@ class DriverController extends Controller
             $response["status"] = "SUCCESS";
             $response["price"] = $read_price->price;
             $response["balance"] = $balance;
-            
+            $response["type"] = $read_price->type;
+            $response["ratetype"] = $read_price->ratetype;
+
             return \Response::json([$response]);          
         }else{
             $response["status"] = "FAILED";
