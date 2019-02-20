@@ -13,3 +13,4 @@ Route::any('customer_payments','FrontEndController@customer_payments');
 Route::any('account_balance','FrontEndController@account_balance');
 Route::any('check_payment_approval','FrontEndController@check_payment_approval');
 Route::any('phone_number','FrontEndController@phone_number');
+Route::any('number_of_rides','FrontEndController@number_of_rides');

@@ -204,5 +204,11 @@ class FrontEndController extends Controller
         return env("PHONE_NUMBER");
     }
 
+    public function number_of_rides(Request $request)
+    {
+        $driver_history = NtuhaDashboardController::single_user_history("Drivers",$request->user_id);
+        return count($driver_history);
+    }
+
 
 }
