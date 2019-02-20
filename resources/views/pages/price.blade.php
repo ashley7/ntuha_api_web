@@ -10,6 +10,7 @@
 
            <label>Service</label>
             <select class="form-control" id="service">
+              <option></option>
               <option value="Ntuha Boda">Ntuha Boda</option>
               <option value="Ntuha Taxi">Ntuha Taxi</option>
               <option value="Ntuha Truck">Ntuha Truck</option>
@@ -18,8 +19,15 @@
             <label>Price par KM</label>
             <input type="number" id="price" class="form-control">
 
-            <label>Rate</label>
+            <label>Ntuha Commission (%ge)</label>
             <input type="number" step="any" id="rate" class="form-control">
+
+            <label>Ride Type</label>
+            <select class="form-control" id="ratetype">
+              <option></option>
+              <option value="Paid">Paid</option>
+              <option value="Free">Free</option>
+            </select>
 
             <br>
             <button id="save_price" class="btn btn-primary">Save</button>
@@ -45,8 +53,9 @@
                       <tr>
                           <td>{{$price->created_at}}</td>
                           <td>{{$price->type}}</td>                                     
-                          <td>{{$price->price}}</td>                                     
+                          <td>{{$price->price}}</td>                                    
                           <td>{{$price->rate}}</td>                                     
+                          <td>{{$price->ratetype}}</td>                                     
                       </tr>                          
                    @endforeach
                 </tbody>
@@ -66,11 +75,11 @@
             data: {
                price: $("#price").val(),                              
                type:  $("#service").val(),                           
-               rate:  $("#rate").val(),                           
+               rate:  $("#rate").val(),                         
+               ratetype:  $("#ratetype").val(),                         
                  _token: "{{Session::token()}}"
             },
                 success: function(result){
-                    $('#name').val(" ")
                     $("#save_price").text(result);
                   }
         })

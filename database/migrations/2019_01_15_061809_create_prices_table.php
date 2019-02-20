@@ -19,6 +19,7 @@ class CreatePricesTable extends Migration
             $table->double('price',10,2)->default(0);
             $table->string('rate')->default(0);
             $table->string('type');
+            $table->string('ratetype');
         });
     }
 
