@@ -199,5 +199,10 @@ class FrontEndController extends Controller
         return ($payments - $with_draw);        
     }
 
+    public function phone_number()
+    {
+        return env("PHONE_NUMBER");
+    }
+
 
 }
