@@ -12,4 +12,3 @@ Route::any('record_account_ride','FrontEndController@record_account_ride');
 Route::any('customer_payments','FrontEndController@customer_payments');
 Route::any('account_balance','FrontEndController@account_balance');
 Route::any('check_payment_approval','FrontEndController@check_payment_approval');
-Route::any('account_balance','FrontEndController@account_balance');
