@@ -177,7 +177,12 @@ class FrontEndController extends Controller
         $save_withdraw = new Withdraw();
         $save_withdraw->email = $request->email;
         $save_withdraw->amount = $request->amount;
-        $save_withdraw->save();
+        try {
+            $save_withdraw->save();
+            echo "Deduction recorded";
+        } catch (\Exception $e) {
+            echo "Deduction Not recorded: ".$e->getMessage();
+        }
     }
 
     public function customer_payments(Request $request)
@@ -191,4 +196,6 @@ class FrontEndController extends Controller
         $with_draw = Withdraw::where('email',$request->email)->sum('amount');
         return ($payments - $with_draw);        
     }
+
+
 }

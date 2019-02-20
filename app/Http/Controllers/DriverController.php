@@ -163,14 +163,15 @@ class DriverController extends Controller
 
             $balance = 0;
 
-            if ($request->type = 'account') {
+            if ($request->payment_method = 'Account') {
                 # paying from account
                 $balance = FrontEndController::account_balance($request);
-            }
-
+            }          
+          
             $response["status"] = "SUCCESS";
             $response["price"] = $read_price->price;
             $response["balance"] = $balance;
+            
             return \Response::json([$response]);          
         }else{
             $response["status"] = "FAILED";

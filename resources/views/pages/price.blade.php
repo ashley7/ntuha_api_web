@@ -19,7 +19,7 @@
             <input type="number" id="price" class="form-control">
 
             <label>Rate</label>
-            <input type="number" step="any" name="rate" class="form-control">
+            <input type="number" step="any" id="rate" class="form-control">
 
             <br>
             <button id="save_price" class="btn btn-primary">Save</button>
@@ -65,7 +65,8 @@
                 url: "{{ route('price.store') }}",
             data: {
                price: $("#price").val(),                              
-               type: $("#service").val(),                              
+               type:  $("#service").val(),                           
+               rate:  $("#rate").val(),                           
                  _token: "{{Session::token()}}"
             },
                 success: function(result){
