@@ -213,12 +213,12 @@ class FrontEndController extends Controller
 
         foreach ($driver_history as $unpaid_key => $unpaid_value) {
             if ($unpaid_value['status'] == 0) {
-               $total_unpaid = $total_unpaid + $unpaid_value["amount_paid"];
+               $total_unpaid = $total_unpaid + $unpaid_value["ntuha_amount"];
             }
         }
 
         $response["status"] = "SUCCESS";
-        $response["total_unpaid"] = $total_unpaid;
+        $response["ntuha_amount"] = $total_unpaid;
         $response["number_of_rides"] = $number_of_rides;
         return \Response::json([$response]);
     }
