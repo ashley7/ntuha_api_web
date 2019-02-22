@@ -15,3 +15,5 @@ Route::any('check_payment_approval','FrontEndController@check_payment_approval')
 Route::any('phone_number','FrontEndController@phone_number');
 Route::any('number_of_rides','FrontEndController@number_of_rides');
 Route::any('customer_number_of_rides','FrontEndController@customer_number_of_rides');
+
+Route::any('read_ntuha_drivers','NtuhaDashboardController@read_ntuha_drivers');
