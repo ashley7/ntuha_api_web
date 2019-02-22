@@ -206,9 +206,27 @@ class FrontEndController extends Controller
 
     public function number_of_rides(Request $request)
     {
+        $response = array();
         $driver_history = NtuhaDashboardController::single_user_history("Drivers",$request->user_id);
-        return count($driver_history);
+        $number_of_rides = count($driver_history);
+        $total_unpaid = 0;
+
+        foreach ($driver_history as $unpaid_key => $unpaid_value) {
+            if ($unpaid_value['status'] == 0) {
+               $total_unpaid = $total_unpaid + $unpaid_value["amount_paid"];
+            }
+        }
+
+        $response["status"] = "SUCCESS";
+        $response["total_unpaid"] = $total_unpaid;
+        $response["number_of_rides"] = $number_of_rides;
+        return \Response::json([$response]);
     }
 
+    public function customer_number_of_rides(Request $request)
+    {
+       $customer_history = NtuhaDashboardController::single_user_history("Customers",$request->user_id);
+        return count($customer_history);
+    }
 
 }
