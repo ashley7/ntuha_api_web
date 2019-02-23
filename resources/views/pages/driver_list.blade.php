@@ -11,24 +11,29 @@
     <div class="table-responsive">
         <table class="table table-hover table-striped" id="working_drivers">
             <thead>
-                <th>Id</th>
+                <th>Number</th>
                 <th>Name</th>
                 <th>Phone Number</th>
                 <th>Motor</th>
                 <th>Service</th>
-                <th>Image</th>                              
+                <th>Image</th> 
+                <th>Action</th>                             
             </thead>
 
             <tbody>
                @foreach($drivers as $driver)
                   <tr>
-                      <td><a href="/read_single_driver/{{$driver['driverId']}}">{{$driver['driver_id']}}</a> </td>
+                      <td>{{$driver['driver_id']}}</td>
                       <td>{{$driver['name']}}</td>
                       <td>{{$driver['phone']}}</td>
                       <td>{{$driver['car']}}</td>
                       <td>{{$driver['service']}}</td>
                       <td>
                         <img src="{{$driver['profileImageUrl']}}" width="40px">
+                      </td>
+
+                      <td>
+                      	<a class="btn btn-success" href="/read_single_driver/{{$driver['driverId']}}">Details</a>
                       </td>
                                                     
                   </tr>                    

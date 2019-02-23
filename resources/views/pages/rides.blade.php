@@ -17,6 +17,12 @@
                     <th>Distance</th>
                     <th>Price</th>
                     <th>Rate</th>
+
+                    <th>Account amount</th>
+                    <th>Driver amount</th>
+                    <th>Ntuha amount</th>
+                    <th>Payment type</th>
+                    <th>Status</th>
                 </thead>
 
                 <tbody>
@@ -30,6 +36,19 @@
                           <td>{{$ride_value['distance']}}</td>
                           <td>{{number_format($ride_value['amount_paid'])}}</td>                          
                           <td>{{$ride_value['rate']}}</td>
+
+                          <td>{{$ride_value['account_amount']}}</td>
+                          <td>{{$ride_value['driver_amount']}}</td>
+                          <td>{{$ride_value['ntuha_amount']}}</td>
+                          <td>{{$ride_value['payment_type']}}</td>
+                          <td>
+                            @if($ride_value['status'] == 0)
+                              <span class="text-danger">Not Paid</span>
+
+                              @elseif($ride_value['status'] == 1)
+                               <span class="text-success">Paid</span>
+                            @endif   
+                          </td>
                       </tr>                          
                    @endforeach
                 </tbody>

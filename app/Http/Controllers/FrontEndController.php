@@ -18,7 +18,10 @@ class FrontEndController extends Controller
 
         if (!empty($ride)) {        
         	foreach ($ride as $key => $value) { 
-        	$customer_name =  $driver_name = $from = $to = $date = $distance = $date = $rating = $amount_paid = "";
+
+        	$customer_name =  $driver_name = $from = $to = $date =
+             $distance = $date = $rating = $amount_paid = $account_amount = $driver_amount = $ntuha_amount = $payment_type = $status = "";
+
      	        foreach ($value as $customer_key => $customer_value) {
      	        	$results = array();
     	            if($customer_key == "driver"){
@@ -32,6 +35,13 @@ class FrontEndController extends Controller
                         $from = $value['from'];              
                         $to = $value['to']; 
                         $amount_paid = $value['amount_paid'];
+
+                        $account_amount = $value['account_amount'];
+                        $driver_amount = $value['driver_amount'];
+                        $ntuha_amount = $value['ntuha_amount'];
+                        $payment_type = $value['payment_type'];
+                        $status = $value['status'];
+
     	            }         
       			} 
       			    $results['customer_name'] = $customer_name;
@@ -42,6 +52,12 @@ class FrontEndController extends Controller
     	            $results['distance'] = $distance;	            
     	            $results['rate'] = $rating;
                     $results['amount_paid'] = $amount_paid;
+
+                    $results['account_amount'] = $account_amount;
+                    $results['driver_amount'] = $driver_amount;
+                    $results['ntuha_amount'] = $ntuha_amount;
+                    $results['payment_type'] = $payment_type;
+                    $results['status'] = $status;
 
     	            $data[] = $results;
     	      }
