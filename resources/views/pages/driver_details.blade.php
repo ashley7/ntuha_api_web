@@ -30,7 +30,13 @@
                     <th>Customer</th>
                     <th>Distance</th>
                     <th>Price</th>                              
-                    <th>Rate</th>                                                 
+                    <th>Rate</th> 
+
+                    <th>Account amount</th>
+                    <th>Driver amount</th>
+                    <th>Ntuha amount</th>
+                    <th>Payment type</th>
+                    <th>Status</th>                                             
                 </thead>
 
                 <tbody>
@@ -42,7 +48,20 @@
                       <td>{{$history['customer_name']}}</td>
                       <td>{{$history['distance']}} KM</td>
                       <td>{{number_format($history['amount_paid'])}}</td>
-                      <td>{{$history['rating']}}</td>                     
+                      <td>{{$history['rating']}}</td>  
+
+                      <td>{{$history['account_amount']}}</td>
+                      <td>{{$history['driver_amount']}}</td>
+                      <td>{{$history['ntuha_amount']}}</td>
+                      <td>{{$history['payment_type']}}</td>
+                      <td>
+                        @if($history['status'] == 0)
+                          <span class="text-danger">Not Paid</span>
+
+                          @elseif($history['status'] == 1)
+                           <span class="text-success">Paid</span>
+                        @endif   
+                      </td>                   
                     </tr>
                   @endforeach                                           
                 </tbody>
