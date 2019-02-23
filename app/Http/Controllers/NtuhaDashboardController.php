@@ -146,9 +146,12 @@ class NtuhaDashboardController extends Controller
                 foreach ($data_value['history'] as $key_data => $key_value) {
                     $history_refrence_reference = $database->getReference('history')->getChild($key_data)->getValue();
 
-                    array_push($history_data,$history_refrence_reference);
-                    array_push($history_data,['record_key'=>$key_data]);
-                    
+                    $data = ['record_key'=>$key_data];
+
+                    $user_history = array_merge($history_refrence_reference,$data);
+
+                    array_push($history_data, $user_history);
+
                 }
             }
         }
