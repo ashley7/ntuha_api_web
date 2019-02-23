@@ -36,7 +36,7 @@
                     <th>Driver amount</th>
                     <th>Ntuha amount</th>
                     <th>Payment type</th>
-                    <th>Status</th>                                             
+                    <th>Status</th>                                           
                 </thead>
 
                 <tbody>
@@ -56,7 +56,8 @@
                       <td>{{$history['payment_type']}}</td>
                       <td>
                         @if($history['status'] == 0)
-                          <span class="text-danger">Not Paid</span>
+                         <a href="/updated_history_status/{{$history['record_key']}}"><span class="text-danger">Not Paid</span></a>
+                          
 
                           @elseif($history['status'] == 1)
                            <span class="text-success">Paid</span>

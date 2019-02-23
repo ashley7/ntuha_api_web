@@ -245,4 +245,6 @@ class FrontEndController extends Controller
         return count($customer_history);
     }
 
+ 
+
 }

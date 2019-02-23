@@ -145,12 +145,35 @@ class NtuhaDashboardController extends Controller
             
                 foreach ($data_value['history'] as $key_data => $key_value) {
                     $history_refrence_reference = $database->getReference('history')->getChild($key_data)->getValue();
+
                     array_push($history_data,$history_refrence_reference);
+                    array_push($history_data,['record_key'=>$key_data]);
+                    
                 }
             }
         }
 
         return $history_data;
+
+    }
+
+    // Update the status of the history
+
+    public function updated_history_status($history_key)
+    {
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
+        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
+
+        $data = [
+
+            'status'=>1
+
+        ];
+
+        $database = $firebase->getDatabase();
+        $database->getReference('history')->getChild($history_key)->update($data);
+
+        return back();
 
     }
 
