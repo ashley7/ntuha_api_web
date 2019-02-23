@@ -92,7 +92,10 @@ class FrontEndController extends Controller
     	$driver = NtuhaDashboardController::single_driver($driver_id);
     	$driver_history = NtuhaDashboardController::single_user_history("Drivers",$driver_id);
     	$data = ['driver'=>$driver,'driver_history'=>$driver_history];  
-    	return view('pages.driver_details')->with($data);   	 
+
+        return $driver_history;
+
+    	// return view('pages.driver_details')->with($data);   	 
     }
 
 
