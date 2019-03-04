@@ -122,6 +122,10 @@
 
                             <li class="has-submenu">
                                 <a href="/rides"><i class="zmdi zmdi-car"></i>  Rides</a>
+                            </li> 
+
+                            <li class="has-submenu">
+                                <a href="/transactions"><i class="zmdi zmdi-car"></i>  Transactions</a>
                             </li>                        
 
                             <li class="has-submenu">
@@ -175,7 +179,7 @@
         <script type="text/javascript">
 
              $(document).ready(function() {
-                $('#working_drivers').DataTable( {
+                $('#working_drivers,#transactions').DataTable( {
                     dom: 'Bfrtip',
                     buttons: [
                         'excelHtml5',

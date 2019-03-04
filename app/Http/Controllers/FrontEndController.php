@@ -248,6 +248,20 @@ class FrontEndController extends Controller
         return count($customer_history);
     }
 
+    public function transactions()
+    {
+
+        $transactions = Payment::all();
+
+        $data = [
+            'transactions'=>$transactions,
+            'title' => 'All Beyonic Transactions',
+        ];
+
+        return view('pages.transactions')->with($data);
+        
+    }
+
  
 
 }

@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('read_single_driver/{driver_id}','FrontEndController@read_single_driver');
 	Route::get('get_drivers','FrontEndController@get_drivers');
 	Route::get('available_drivers','FrontEndController@available_drivers');
+	Route::get('transactions','FrontEndController@transactions');
 	
 	Route::resource('price','PriceController');
 	Route::resource('driver','DriverController');
