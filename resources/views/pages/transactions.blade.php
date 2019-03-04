@@ -10,7 +10,6 @@
             <table class="table table-hover table-striped" id="transactions">
                 <thead>
                     <th>Date</th>
-                    <th>Email</th>
                     <th>Emount</th>
                     <th>Status</th>
                     <th>Phone number</th>
@@ -25,7 +24,6 @@
 
                     <tr>
                       <td>{{$transaction->created_at}}</td>
-                      <td>{{$transaction->email}}</td>
                       <td>{{$transaction->amount}}</td>
                       <td>{{$transaction->status}}</td>
                       <td>{{$transaction->phone_number}}</td>
