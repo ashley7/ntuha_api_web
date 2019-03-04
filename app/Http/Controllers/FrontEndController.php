@@ -258,8 +258,19 @@ class FrontEndController extends Controller
             'title' => 'All Beyonic Transactions',
         ];
 
-        return view('pages.transactions')->with($data);
-        
+        return view('pages.transactions')->with($data);        
+    }
+
+    public function confirm_transaction($payment_id)
+    {
+        $transactions = Payment::find($payment_id);
+        if ($transactions->status == 'pending') {
+            $transactions->status = 'successful';
+        } elseif ($transactions->status = 'successful') {
+            $transactions->status == 'pending'
+        }
+        $transactions->save();
+        return back();        
     }
 
  

@@ -10,11 +10,11 @@
             <table class="table table-hover table-striped" id="transactions">
                 <thead>
                     <th>Date</th>
-                    <th>Emount</th>
-                    <th>Status</th>
                     <th>Phone number</th>
                     <th>Customer name</th>
                     <th>Transaction id</th>
+                    <th>Amount</th>
+                    <th>Status</th>                
                     <th>Action</th>                    
                 </thead>
 
@@ -24,12 +24,14 @@
 
                     <tr>
                       <td>{{$transaction->created_at}}</td>
-                      <td>{{$transaction->amount}}</td>
-                      <td>{{$transaction->status}}</td>
                       <td>{{$transaction->phone_number}}</td>
                       <td>{{$transaction->customer_name}}</td>
                       <td>{{$transaction->transaction_id}}</td>
-                      <td></td>
+                      <td>{{$transaction->amount}}</td>
+                      <td>{{$transaction->status}}</td>                     
+                      <td>
+                        <a href="/confirm_transaction/{{$transaction->id}}">Confirm</a>
+                      </td>
                     </tr>
 
                   @endforeach
