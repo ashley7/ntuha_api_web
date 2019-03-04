@@ -266,7 +266,7 @@ class FrontEndController extends Controller
         $transactions = Payment::find($payment_id);
         if ($transactions->status == 'pending') {
             $transactions->status = 'successful';
-        } elseif ($transactions->status = 'successful') {
+        } elseif ($transactions->status == 'successful') {
             $transactions->status == 'pending';
         }
         $transactions->save();
