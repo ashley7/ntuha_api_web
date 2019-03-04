@@ -267,7 +267,7 @@ class FrontEndController extends Controller
         if ($transactions->status == 'pending') {
             $transactions->status = 'successful';
         } elseif ($transactions->status = 'successful') {
-            $transactions->status == 'pending'
+            $transactions->status == 'pending';
         }
         $transactions->save();
         return back();        
