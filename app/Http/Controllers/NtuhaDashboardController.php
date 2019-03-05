@@ -150,11 +150,7 @@ class NtuhaDashboardController extends Controller
 
                     try {
                       $user_history = array_merge($history_refrence_reference,$data);
-                    } catch (\Exception $e) {
-                      echo gettype($history_refrence_reference);
-
-                      return $history_refrence_reference;
-                    }
+                    } catch (\Exception $e) {}
 
                     
 

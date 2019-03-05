@@ -41,6 +41,9 @@
 
                 <tbody>
                   @foreach($driver_history as $key => $history)
+                  <?php 
+                    try {                     
+                   ?>
                     <tr>
                       <td>{{date("Y-M-d",$history['timestamp'])}}</td>
                       <td>{{$history['from']}}</td>
@@ -56,14 +59,23 @@
                       <td>{{$history['payment_type']}}</td>
                       <td>
                         @if($history['status'] == 0)
-                         <a href="/updated_history_status/{{$history['record_key']}}"><span class="text-danger">Not Paid</span></a>
-                          
+                         <a href="/updated_history_status/{{$history['record_key']}}"><span class="text-danger">Not Paid</span></a>                          
 
                           @elseif($history['status'] == 1)
                            <span class="text-success">Paid</span>
                         @endif   
                       </td>                   
                     </tr>
+
+                    <?php 
+
+                 
+                      
+                    } catch (Exception $e) {
+                      
+                    }
+
+                     ?>
                   @endforeach                                           
                 </tbody>
             </table>
