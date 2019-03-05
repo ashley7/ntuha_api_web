@@ -41,9 +41,7 @@
 
                 <tbody>
                   @foreach($driver_history as $key => $history)
-                  <?php 
-                    try {                     
-                   ?>
+                  
                     <tr>
                       <td>{{date("Y-M-d",$history['timestamp'])}}</td>
                       <td>{{$history['from']}}</td>
@@ -66,16 +64,7 @@
                         @endif   
                       </td>                   
                     </tr>
-
-                    <?php 
-
-                 
-                      
-                    } catch (Exception $e) {
-                      
-                    }
-
-                     ?>
+ 
                   @endforeach                                           
                 </tbody>
             </table>
