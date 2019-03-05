@@ -11,6 +11,7 @@
                 <thead>
                     <th>Date</th>
                     <th>Phone number</th>
+                    <th>Email</th>
                     <th>Customer name</th>
                     <th>Transaction id</th>
                     <th>Amount</th>
@@ -25,6 +26,7 @@
                     <tr>
                       <td>{{$transaction->created_at}}</td>
                       <td>{{$transaction->phone_number}}</td>
+                      <td>{{$transaction->email}}</td>
                       <td>{{$transaction->customer_name}}</td>
                       <td>{{$transaction->transaction_id}}</td>
                       <td>{{$transaction->amount}}</td>
