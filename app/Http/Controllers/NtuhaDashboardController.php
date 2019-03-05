@@ -148,7 +148,15 @@ class NtuhaDashboardController extends Controller
 
                     $data = ['record_key'=>$key_data];
 
-                    $user_history = array_merge((array)$history_refrence_reference,$data);
+                    try {
+                      $user_history = array_merge($history_refrence_reference,$data);
+                    } catch (\Exception $e) {
+                      echo gettype($history_refrence_reference);
+
+                      return $history_refrence_reference;
+                    }
+
+                    
 
                     array_push($history_data, $user_history);
 
