@@ -169,7 +169,7 @@ class FrontEndController extends Controller
         $update_status->amount = $collection_request->amount;
         $update_status->save();
 
-        if ($collection_request->status == "success") {
+        if ($collection_request->status == "successful") {
 
             $response['message'] = "Payment approved";
             $response['status'] = $collection_request->status;
