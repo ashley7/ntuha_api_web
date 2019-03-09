@@ -20,7 +20,7 @@ class FrontEndController extends Controller
         	foreach ($ride as $key => $value) { 
 
         	$customer_name =  $driver_name = $from = $to = $date =
-             $distance = $date = $rating = $amount_paid = $account_amount = $driver_amount = $ntuha_amount = $payment_type = $status = "";
+             $distance = $date = $rating = $amount_paid = $account_amount = $driver_amount = $ntuha_amount = $payment_type = $status = $cash_amount = "";
 
      	        foreach ($value as $customer_key => $customer_value) {
      	        	$results = array();
@@ -41,6 +41,7 @@ class FrontEndController extends Controller
                         $ntuha_amount = $value['ntuha_amount'];
                         $payment_type = $value['payment_type'];
                         $status = $value['status'];
+                        $cash_amount = $value['cash_amount'];
 
     	            }         
       			} 
@@ -52,6 +53,7 @@ class FrontEndController extends Controller
     	            $results['distance'] = $distance;	            
     	            $results['rate'] = $rating;
                     $results['amount_paid'] = $amount_paid;
+                    $results['cash_amount'] = $cash_amount;
 
                     $results['account_amount'] = $account_amount;
                     $results['driver_amount'] = $driver_amount;
