@@ -15,6 +15,7 @@ class AddSubscriptiontypeToDrivers extends Migration
     {
         Schema::table('drivers', function (Blueprint $table) {
             $table->string('subscription_type');   
+            $table->string('mailer');   
         });
 
 
@@ -27,8 +28,11 @@ class AddSubscriptiontypeToDrivers extends Migration
      */
     public function down()
     {
-        Schema::table('drivers', function (Blueprint $table) {
-           $table->dropColumn('subscription_type'); 
-        });
+        if (Schema::hasColumn('mailer')){
+                Schema::table('drivers', function (Blueprint $table) {
+                   $table->dropColumn('subscription_type'); 
+                   $table->dropColumn('mailer'); 
+                });
+        }
     }
 }

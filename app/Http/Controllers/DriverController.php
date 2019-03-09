@@ -44,6 +44,8 @@ class DriverController extends Controller
 
         $save_driver = new Driver($request->all());
         $save_driver->email = $request->phone_number."@gmail.com";
+        $save_driver->input_img = env("DEFAULT_IMAGE");
+        $save_driver->mailer = $request->mailer;
         try {         
             if ($request->hasFile('input_img')) {
                 $image = $request->file('input_img');
@@ -181,6 +183,17 @@ class DriverController extends Controller
             $response["status"] = "FAILED";
             $response["message"] = "No Price found";
             return \Response::json([$response]);
+        }
+    }
+
+
+    public function read_driver_image($driver_nunder)
+    {
+        $driver = Driver::all()->where('driver_id',$driver_nunder)->last();
+        if (!empty($driver)) {
+            return "http://45.63.91.159/images/".$driver->input_img;
+        }else{
+            return env("DEFAULT_IMAGE");
         }
     }
 }

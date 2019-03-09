@@ -19,8 +19,8 @@
                           <label>Name</label>
                           <input type="text" name="name" class="form-control">
 
-                          <!-- <label>Email</label>
-                          <input type="email" name="email" class="form-control"> -->
+                          <label>Email</label>
+                          <input type="email" name="mailer" class="form-control">
 
                           <label>Phone number</label>
                           <input type="text" name="phone_number" placeholder="0772123456" class="form-control">
