@@ -187,7 +187,7 @@ class DriverController extends Controller
     }
 
 
-    public function read_driver_image($driver_nunder)
+    public static function read_driver_image($driver_nunder)
     {
         $driver = Driver::all()->where('driver_id',$driver_nunder)->last();
         if (!empty($driver)) {

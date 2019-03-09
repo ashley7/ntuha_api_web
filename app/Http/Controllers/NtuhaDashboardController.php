@@ -7,6 +7,7 @@ use Kreait\Firebase;
 use Kreait\Firebase\Factory; 
 use Kreait\Firebase\ServiceAccount; 
 use Kreait\Firebase\Database;
+use App\Http\Controllers::DriverController;
 
 
 class NtuhaDashboardController extends Controller
@@ -102,11 +103,13 @@ class NtuhaDashboardController extends Controller
                             $result['driver_id'] = $driver['driver_id'];
                             $result['category'] = $driver['category'];
                             $result['subscription_type'] = $driver['subscription_type'];
-                            if (!isset($driver['profileImageUrl'])) {
-                             $result['profileImageUrl'] = "default.jpg";
-                            }else{
-                              $result['profileImageUrl'] = $driver['profileImageUrl'];
-                            }
+                            $result['profileImageUrl'] = DriverController::read_driver_image($driver['driver_id']);
+
+                            // if (!isset($driver['profileImageUrl'])) {
+                            //  $result['profileImageUrl'] = "default.jpg";
+                            // }else{
+                            //   $result['profileImageUrl'] = $driver['profileImageUrl'];                             
+                            // }
                             $driver_data[] = $result;  
                             
                         } catch (\Exception $e) {}
@@ -299,11 +302,12 @@ class NtuhaDashboardController extends Controller
                $result['car_plate'] = $value['car_plate'];
                $result['service'] = $value['service'];
                $result['driver_id'] = $value['driver_id'];
-               if (!isset($value['profileImageUrl'])) {
-                 $result['profileImageUrl'] = "default.jpg";
-                }else{
-                  $result['profileImageUrl'] = $value['profileImageUrl'];
-                }
+               $result['profileImageUrl'] = DriverController::read_driver_image($value['driver_id']);
+               // if (!isset($value['profileImageUrl'])) {
+               //   $result['profileImageUrl'] = "default.jpg";
+               //  }else{
+               //    $result['profileImageUrl'] = $value['profileImageUrl'];
+               //  }
                $data[] = $result; 
             } catch (\Exception $e) {}
                       

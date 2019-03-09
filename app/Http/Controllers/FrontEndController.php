@@ -200,7 +200,7 @@ class FrontEndController extends Controller
     {
         $save_withdraw = new Withdraw();
         $save_withdraw->email = $request->email;
-        $save_withdraw->amount = $request->amount;
+        $save_withdraw->amount = $request->account_payment;
         try {
             $save_withdraw->save();
             echo "Deduction recorded";
