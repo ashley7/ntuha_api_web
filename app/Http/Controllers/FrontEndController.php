@@ -91,7 +91,11 @@ class FrontEndController extends Controller
     {
     	$driver = NtuhaDashboardController::single_driver($driver_id);
     	$driver_history = NtuhaDashboardController::single_user_history("Drivers",$driver_id);
-    	$data = ['driver'=>$driver,'driver_history'=>$driver_history];  
+    	$data = [
+            'driver'=>$driver,
+            'driver_history'=>$driver_history,
+            'driver_key'=>$driver_id
+        ];  
 
         //return gettype($driver_history);
 

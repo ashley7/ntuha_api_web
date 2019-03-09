@@ -100,6 +100,8 @@ class NtuhaDashboardController extends Controller
                             $result['service'] = $driver['service'];
                             $result['phone'] = $driver['phone'];
                             $result['driver_id'] = $driver['driver_id'];
+                            $result['category'] = $driver['category'];
+                            $result['subscription_type'] = $driver['subscription_type'];
                             if (!isset($driver['profileImageUrl'])) {
                              $result['profileImageUrl'] = "default.jpg";
                             }else{
@@ -180,6 +182,68 @@ class NtuhaDashboardController extends Controller
 
     }
 
+
+    public function updated_driver_category($data)
+    {
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
+        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
+
+        $result = explode("*", $data);
+        
+        $driver_key = $result[0];
+        $category = $result[1];
+
+        $new_category = "No category";
+
+        if ($category == "Active") {
+            $new_category = "Inactive";
+        }elseif ($category == "Inactive" ) {
+          $new_category = "Active";
+        }
+
+        $firebase_data = [
+
+            'category'=>$new_category
+
+        ];
+
+        $database = $firebase->getDatabase();
+        $database->getReference('Users')->getChild('Drivers')->getChild($driver_key)->update($firebase_data);
+
+        return back();
+
+    }
+
+    public function updated_driver_subscription($data)
+    {
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
+        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
+
+        $result = explode("*", $data);
+        
+        $driver_key = $result[0];
+        $subscription = $result[1];
+
+        $subscription_type = "No subscription type";
+
+        if ($subscription == "per_ride") {
+            $subscription_type = "monthly";
+        }elseif ($subscription == "monthly" ) {
+          $subscription_type = "per_ride";
+        }
+
+        $firebase_data = [
+
+            'subscription_type'=>$subscription_type
+
+        ];
+
+        $database = $firebase->getDatabase();
+        $database->getReference('Users')->getChild('Drivers')->getChild($driver_key)->update($firebase_data);
+
+        return back();
+    }
+
     /*
 
     1. Takes in Driver or Customer as $user_type and the ket of that entity
@@ -230,10 +294,11 @@ class NtuhaDashboardController extends Controller
                $result['name'] = $value['name'];
                $result['phone'] = $value['phone'];
                $result['car'] = $value['car'];
+               $result['category'] = $value['category'];
+               $result['subscription_type'] = $value['subscription_type'];
                $result['car_plate'] = $value['car_plate'];
                $result['service'] = $value['service'];
                $result['driver_id'] = $value['driver_id'];
-               // $result['profileImageUrl'] = $value['profileImageUrl'];
                if (!isset($value['profileImageUrl'])) {
                  $result['profileImageUrl'] = "default.jpg";
                 }else{

@@ -31,6 +31,12 @@
                           <label>Identification number</label>
                           <input type="text" name="identification_number" class="form-control">
 
+                          <label>Description type</label>
+                          <select class="form-control" name="subscription_type">
+                            <option value="per_ride">Par ride</option>
+                            <option value="monthly">monthly</option>
+                          </select>
+
                           <br>
                            <button id="save_price" class="btn btn-primary">Save</button>
 

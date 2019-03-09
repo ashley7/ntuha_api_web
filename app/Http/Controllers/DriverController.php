@@ -40,7 +40,7 @@ class DriverController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, ['input_img' => 'required|image','name'=>'required','phone_number'=>'required','driver_id'=>'required|unique:drivers','identification_number'=>'required','identification_type'=>'required','motor_type'=>'required','number_plate'=>'required','service'=>'required']);
+        $this->validate($request, ['input_img' => 'required|image','name'=>'required','phone_number'=>'required','driver_id'=>'required|unique:drivers','identification_number'=>'required','identification_type'=>'required','motor_type'=>'required','number_plate'=>'required','service'=>'required','subscription_type'=>'required']);
 
         $save_driver = new Driver($request->all());
         $save_driver->email = $request->phone_number."@gmail.com";
@@ -151,6 +151,7 @@ class DriverController extends Controller
             $response['motor_plate'] = $driver_data->number_plate;
             $response['service'] = $driver_data->service;
             $response['password'] = $access_key;
+            $response['subscription_type'] = $driver_data->subscription_type;
             return \Response::json([$response]);
         }
     }

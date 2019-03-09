@@ -14,6 +14,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('read_ntuha_drivers','NtuhaDashboardController@read_ntuha_drivers');
 	Route::get('driver_history/{driver_id}','NtuhaDashboardController@driver_history');
 	Route::get('updated_history_status/{history_key}','NtuhaDashboardController@updated_history_status');
+	Route::get('updated_driver_category/{driver_key}','NtuhaDashboardController@updated_driver_category');
+	Route::get('updated_driver_subscription/{driver_key}','NtuhaDashboardController@updated_driver_subscription');
 
 	Route::get('rides','FrontEndController@rides');
 	Route::get('get_customers','FrontEndController@get_customers');

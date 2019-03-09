@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
+
+
   <div class="card-box"> 
     <div class="card-body">
       <div class="row">
@@ -8,14 +10,29 @@
         <div class="col-md-4">
             <img src="{{$customer_value['profileImageUrl']}}" width="50%">                      
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4">
           <p>Name: {{$customer_value['name']}}</p>
           <p>Phone number: {{$customer_value['phone']}}</p>                     
           <p>Motor: {{$customer_value['car']}}</p>                     
           <p>Number Plate: {{$customer_value['car_plate']}}</p>                     
           <p>Service: {{$customer_value['service']}}</p>                    
-          <p>Driver number: {{$customer_value['driver_id']}}</p>                    
+          <p>Driver number: {{$customer_value['driver_id']}}</p>
+          @if($customer_value['category'] == 'Active')                  
+          <p>Status: <span class="btn btn-success">{{$customer_value['category']}}</span></p>
+          @else 
+          <p>Status: <span class="btn btn-danger">{{$customer_value['category']}}</span></p>
+          @endif                   
+          <p>Subscription type: {{$customer_value['subscription_type']}}</p>                    
         </div>
+
+        <div class="col-md-4">
+
+          <a class="btn btn-success" href="/updated_driver_category/{{$driver_key.'*'.$customer_value['category']}}">Change Status</a>
+
+          <a class="btn btn-danger" href="/updated_driver_subscription/{{$driver_key.'*'.$customer_value['subscription_type']}}">Change Subscription type</a>
+
+        </div>
+        
         @endforeach
       </div>
 
