@@ -15,10 +15,10 @@
                     <th>From</th>
                     <th>To</th>
                     <th>Distance</th>
-                    <th>Price</th>
+                    <th>Total Price</th>
                     <th>Rate</th>
-
-                    <th>Account amount</th>
+                    <th>Cash</th> 
+                    <th>Account</th>
                     <th>Driver amount</th>
                     <th>Ntuha amount</th>
                     <th>Payment type</th>
@@ -36,7 +36,7 @@
                           <td>{{$ride_value['distance']}}</td>
                           <td>{{number_format($ride_value['amount_paid'])}}</td>                          
                           <td>{{$ride_value['rate']}}</td>
-
+                          <td>{{$ride_value['cash_amount']}}</td>
                           <td>{{$ride_value['account_amount']}}</td>
                           <td>{{$ride_value['driver_amount']}}</td>
                           <td>{{$ride_value['ntuha_amount']}}</td>

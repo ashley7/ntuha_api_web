@@ -344,7 +344,7 @@ class NtuhaDashboardController extends Controller
                     $result["rating"] = $ride_value['rating'];
                     $result["timestamp"] = $ride_value['timestamp'];
                     $result["amount_paid"] = $ride_value['amount_paid'];
-
+                    $result["cash_amount"] = $ride_value['cash_amount'];
                     $result["account_amount"] = $ride_value['account_amount'];
                     $result["driver_amount"] = $ride_value['driver_amount'];
                     $result["ntuha_amount"] = $ride_value['ntuha_amount'];
