@@ -16,6 +16,8 @@
                 <th>Phone Number</th>
                 <th>Motor</th>
                 <th>Service</th>
+                <th>Status</th>
+                <th>Subscription Type</th>
                 <th>Image</th> 
                 <th>Action</th>                             
             </thead>
@@ -28,6 +30,8 @@
                       <td>{{$driver['phone']}}</td>
                       <td>{{$driver['car']}}</td>
                       <td>{{$driver['service']}}</td>
+                      <td>{{$driver['category']}}</td>
+                      <td>{{$driver['subscription_type']}}</td>
                       <td>
                         <img src="{{$driver['profileImageUrl']}}" width="40px">
                       </td>
