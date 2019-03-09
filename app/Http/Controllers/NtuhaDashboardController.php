@@ -7,7 +7,7 @@ use Kreait\Firebase;
 use Kreait\Firebase\Factory; 
 use Kreait\Firebase\ServiceAccount; 
 use Kreait\Firebase\Database;
-use App\Http\Controllers::DriverController;
+use App\Http\Controllers\DriverController;
 
 
 class NtuhaDashboardController extends Controller
