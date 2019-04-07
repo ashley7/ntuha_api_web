@@ -40,7 +40,7 @@
                           <td>{{$ride_value['account_amount']}}</td>
                           <td>{{$ride_value['driver_amount']}}</td>
                           <td>{{$ride_value['ntuha_amount']}}</td>
-                          <td>{{$ride_value['payment_type']}}</td>
+                          <td>{{$ride_value['payment_type']}} ({{$ride_value['ride_type']}})</td>
                           <td>
                             @if($ride_value['status'] == 0)
                               <span class="text-danger">Not Paid</span>

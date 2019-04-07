@@ -354,6 +354,7 @@ class NtuhaDashboardController extends Controller
                     $result["ntuha_amount"] = $ride_value['ntuha_amount'];
                     $result["payment_type"] = $ride_value['payment_type'];
                     $result["status"] = $ride_value['status'];
+                    $result["rate_type"] = $ride_value['rate_type'];
                     $rides_data[] = $result;
              
               } catch (\Exception $e) {}
