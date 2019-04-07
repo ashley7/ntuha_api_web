@@ -71,7 +71,7 @@
                       <td>{{$history['account_amount']}}</td>
                       <td>{{$history['driver_amount']}}</td>
                       <td>{{$history['ntuha_amount']}}</td>
-                      <td>{{$history['payment_type']}}</td>
+                      <td>{{$history['payment_type']}} ({{$history['rate_type']}})</td>
                       <td>
                         @if($history['status'] == 0)
                          <a href="/updated_history_status/{{$history['record_key']}}"><span class="text-danger">Not Paid</span></a>                          
