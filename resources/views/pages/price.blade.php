@@ -81,6 +81,7 @@
                  _token: "{{Session::token()}}"
             },
                 success: function(result){
+                    window.load();
                     $("#save_price").text(result);
                   }
         })

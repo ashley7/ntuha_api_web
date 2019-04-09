@@ -62,7 +62,8 @@ class PriceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $read_price = Price($id);
+        return view('pages.edit_price')->with(['read_price'=>$read_price]);
     }
 
     /**
@@ -74,7 +75,29 @@ class PriceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $save_price = Price($id);
+
+        if (isset($request->price)) {
+           $save_price->price = $request->price;
+        }
+
+        if (isset($request->type)) {
+           $save_price->type = $request->type;
+        }
+
+        if (isset($request->rate)) {
+           $save_price->rate = $request->rate;
+        }
+
+        if (isset($request->ratetype)) {
+           $save_price->ratetype = $request->ratetype;
+        }
+
+        $save_price->save();
+
+        return redirect()->route('price.create');
+        
     }
 
     /**
