@@ -13,7 +13,7 @@
           {{csrf_field()}}
           {{method_field("PATCH")}}
 
-           <label>Service</label>
+           <label>Service ({{$read_price->service}})</label>
             <select class="form-control" name="service">
               <option></option>
               <option value="Ntuha Boda">Ntuha Boda</option>
@@ -22,12 +22,12 @@
             </select>
 
             <label>Price par KM</label>
-            <input type="number" name="price" class="form-control">
+            <input type="number" name="price" value="{{$read_price->price}}" class="form-control">
 
             <label>Ntuha Commission (%ge)</label>
-            <input type="number" step="any" name="rate" class="form-control">
+            <input type="number" step="any" name="rate" value="{{$read_price->rate}}" class="form-control">
 
-            <label>Ride Type</label>
+            <label>Ride Type ({{$read_price->ratetype}})</label>
             <select class="form-control" name="ratetype">
               <option></option>
               <option value="Paid">Paid</option>
@@ -36,7 +36,7 @@
 
             <br>
             <button id="save_price" type="submit" class="btn btn-primary">Save</button>
-            <a href="">Refresh</a>
+         
 
           </form>
           
