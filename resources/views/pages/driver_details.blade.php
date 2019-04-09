@@ -33,7 +33,7 @@
 
           <br><br>
 
-          <table class="table">
+          <table class="table table-hover">
             <tr>
               <td>Ntuha amount paid: </td> <td><span id="paid"></span></td>
             </tr>
