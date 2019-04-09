@@ -82,9 +82,9 @@
                ratetype:  $("#ratetype").val(),                         
                  _token: "{{Session::token()}}"
             },
-                success: function(result){
-                     location.reload(true);
+                success: function(result){                    
                     $("#save_price").text(result);
+                    location.reload();
                   }
         })
     });
