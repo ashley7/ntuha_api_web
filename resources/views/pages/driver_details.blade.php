@@ -31,6 +31,22 @@
 
           <a class="btn btn-danger" href="/updated_driver_subscription/{{$driver_key.'*'.$customer_value['subscription_type']}}">Change Subscription type</a>
 
+          <br><br>
+
+          <table class="table">
+            <tr>
+              <td>Ntuha amount paid: </td> <td><span id="paid"></span></td>
+            </tr>
+
+            <tr>
+              <td>Ntuha amount NOT paid: </td> <td><span id="not_paid"></span></td>
+            </tr>
+
+            <tr>
+              <td>Total driver amount: </td> <td><span id="driver"></span></td>
+            </tr>
+          </table>
+
         </div>
         
         @endforeach
@@ -57,7 +73,13 @@
                 </thead>
 
                 <tbody>
+
+                  <?php $sum_paid = $sum_not_paid = $driver_amount = 0; ?>
                   @foreach($driver_history as $key => $history)
+
+                  @php 
+                      $driver_amount = $driver_amount + $history['driver_amount'];
+                  @endphp
                   
                     <tr>
                       <td>{{date("Y-M-d",$history['timestamp'])}}</td>
@@ -74,10 +96,22 @@
                       <td>{{$history['payment_type']}} ({{$history['rate_type']}})</td>
                       <td>
                         @if($history['status'] == 0)
-                         <a href="/updated_history_status/{{$history['record_key']}}"><span class="text-danger">Not Paid</span></a>                          
+                         <a href="/updated_history_status/{{$history['record_key']}}"><span class="text-danger">Not Paid</span></a> 
+
+                         @php 
+
+                           $sum_not_paid = $sum_not_paid + $history['ntuha_amount'];
+
+
+                          @endphp                         
 
                           @elseif($history['status'] == 1)
                            <span class="text-success">Paid</span>
+                           @php 
+
+                              $sum_paid = $sum_paid + $history['ntuha_amount'];
+
+                            @endphp
                         @endif   
                       </td>                   
                     </tr>
@@ -89,3 +123,16 @@
         </div>
       </div>                 
 @endsection
+
+@push('scripts')
+
+  <script>
+    $("#paid").text( {{$sum_paid}} );
+    $("#not_paid").text( {{$sum_not_paid}} );
+    $("#driver").text( {{$driver_amount}} );
+  </script>
+
+
+
+
+@endpush
