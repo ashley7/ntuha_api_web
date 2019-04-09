@@ -55,7 +55,7 @@ class CustomerController extends Controller
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
 
-        $sms = "Dear ".$user->name." Your new Ntuha ride password is ".$randomString;
+        $sms = $user->name." Your new Ntuha ride password is ".$randomString;
 
         $this->send_Email($user->email,"Ntuha ride ~ new password",$sms,'ntuha.deliveries@gmail.com');
 
