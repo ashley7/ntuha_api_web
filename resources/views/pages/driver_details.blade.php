@@ -18,11 +18,11 @@
           <p>Service: {{$customer_value['service']}}</p>                    
           <p>Driver number: {{$customer_value['driver_id']}}</p>
           @if($customer_value['category'] == 'Active')                  
-          <p>Status: <span class="btn btn-success">{{$customer_value['category']}}</span></p>
+          <p>Status: <span class="text-success">{{$customer_value['category']}}</span></p>
           @else 
-          <p>Status: <span class="btn btn-danger">{{$customer_value['category']}}</span></p>
+          <p>Status: <span class="text-danger">{{$customer_value['category']}}</span></p>
           @endif                   
-          <p>Subscription type: {{$customer_value['subscription_type']}}</p>                    
+          <p>Subscription type: <span class="text-info">{{$customer_value['subscription_type']}}</span> </p>                    
         </div>
 
         <div class="col-md-4">
