@@ -98,19 +98,16 @@
                         @if($history['status'] == 0)
                          <a href="/updated_history_status/{{$history['record_key']}}"><span class="text-danger">Not Paid</span></a> 
 
-                         @php 
-
-                           $sum_not_paid = $sum_not_paid + $history['ntuha_amount'];
-
-
-                          @endphp                         
+                          @if($history['rate_type'] != "Free")
+                           @php
+                             $sum_not_paid = $sum_not_paid + $history['ntuha_amount'];
+                           @endphp
+                          @endif                     
 
                           @elseif($history['status'] == 1)
                            <span class="text-success">Paid</span>
-                           @php 
-
+                            @php
                               $sum_paid = $sum_paid + $history['ntuha_amount'];
-
                             @endphp
                         @endif   
                       </td>                   
