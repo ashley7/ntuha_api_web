@@ -31,7 +31,7 @@
 
             <br>
             <button id="save_price" class="btn btn-primary">Save</button>
-            <a href="">Refresh</a>
+   
           
         </div>
       </div>
