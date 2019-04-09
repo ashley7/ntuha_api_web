@@ -83,7 +83,7 @@
                  _token: "{{Session::token()}}"
             },
                 success: function(result){
-                    location.reload(true);
+                     location.reload(true);
                     $("#save_price").text(result);
                   }
         })
