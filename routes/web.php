@@ -7,6 +7,9 @@ Route::get('/', function () {
 
 
 Auth::routes();
+
+Route::resource('user_psw_reset','CustomerController');
+
 Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/home', 'HomeController@index')->name('home');
