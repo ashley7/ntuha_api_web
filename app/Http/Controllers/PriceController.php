@@ -62,7 +62,7 @@ class PriceController extends Controller
      */
     public function edit($id)
     {
-        $read_price = Price($id);
+        $read_price = Price::find($id);
         return view('pages.edit_price')->with(['read_price'=>$read_price]);
     }
 
@@ -76,7 +76,7 @@ class PriceController extends Controller
     public function update(Request $request, $id)
     {
 
-        $save_price = Price($id);
+        $save_price = Price::find($id);
 
         if (isset($request->price)) {
            $save_price->price = $request->price;
