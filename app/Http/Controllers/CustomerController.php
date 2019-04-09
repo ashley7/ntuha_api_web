@@ -54,7 +54,6 @@ class CustomerController extends Controller
             for ($i = 0; $i < 10; $i++) {
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
-              
 
         $sms = "Dear ".$user->name." Your new Ntuha ride password is ".$randomString;
 
