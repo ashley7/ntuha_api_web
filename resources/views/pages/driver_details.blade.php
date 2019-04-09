@@ -127,9 +127,9 @@
 @push('scripts')
 
   <script>
-    $("#paid").text( {{$sum_paid}} );
-    $("#not_paid").text( {{$sum_not_paid}} );
-    $("#driver").text( {{$driver_amount}} );
+    $("#paid").text( {{number_format($sum_paid)}} );
+    $("#not_paid").text( {{number_format($sum_not_paid)}} );
+    $("#driver").text( {{number_format($driver_amount)}} );
   </script>
 
 
