@@ -13,8 +13,8 @@
           {{csrf_field()}}
           {{method_field("PATCH")}}
 
-           <label>Service ({{$read_price->service}})</label>
-            <select class="form-control" name="service">
+           <label>Service ({{$read_price->type}})</label>
+            <select class="form-control" name="type">
               <option></option>
               <option value="Ntuha Boda">Ntuha Boda</option>
               <option value="Ntuha Taxi">Ntuha Taxi</option>
