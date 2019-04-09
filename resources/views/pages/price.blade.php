@@ -6,7 +6,7 @@
 
     <div class="card-body">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
 
            <label>Service</label>
             <select class="form-control" id="service">
@@ -46,7 +46,8 @@
                     <th>Service</th>
                     <th>Price par KM</th>                          
                     <th>Ntuha rate</th>                          
-                    <th>Type</th>                          
+                    <th>Type</th> 
+                    <th>Action</th>                         
                 </thead>
 
                 <tbody>
@@ -56,7 +57,8 @@
                           <td>{{$price->type}}</td>                                     
                           <td>{{$price->price}}</td>                                    
                           <td>{{$price->rate}}</td>                                     
-                          <td>{{$price->ratetype}}</td>                                     
+                          <td>{{$price->ratetype}}</td>
+                          <td><a href="{{route('price.edit',$price->id)}}">Edit</a></td>                                    
                       </tr>                          
                    @endforeach
                 </tbody>
