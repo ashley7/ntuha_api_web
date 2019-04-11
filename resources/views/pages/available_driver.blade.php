@@ -3,9 +3,9 @@
 @section('content')
  
 <div class="card-box">
-<div class="h4">Drivers Available</div>
+   <h4>Drivers Available</h4>
 
-<div class="card-body">
+  <div class="card-body">
 
     <div class="table-responsive">
         <table class="table table-hover table-striped" id="working_drivers">
@@ -28,7 +28,8 @@
                       <td>{{$driver['service']}}</td>
                       <td>
                         <?php 
-                          try {?>
+                          try {
+                        ?>
                             <img src="{{$driver['profileImageUrl']}}" width="40px">
                           <?php
                           
