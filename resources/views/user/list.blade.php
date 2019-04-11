@@ -23,11 +23,13 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>
+                          @if($user->email != "ashley7520charles@gmail.com")
                           <form method="POST" action="{{route('user.destroy',$user->id)}}">
                             @csrf
                             {{method_field("DELETE")}}
                             <button type="submit" class="btn btn-danger">Remove</button>
                           </form>
+                          @endif 
                         </td>   
                     </tr>                    
                  @endforeach
