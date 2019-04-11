@@ -152,7 +152,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
-                              © <?php echo date("Y") ?> Ntuha. All rights reserved
+                              © {{ date("Y") }} {{ config('app.name') }}. All rights reserved
                             </div>
                         </div>
                     </div>
