@@ -24,7 +24,7 @@
 
                 <br><br>
 
-                <button type="submit" >Save</button>
+                <button type="submit" class="btn btn-danger" >Save</button>
 
               </div>
             </div>

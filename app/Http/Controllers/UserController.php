@@ -62,7 +62,7 @@ class UserController extends Controller
         $save_user->remember_token = str_random(32);
         $save_user->save();
 
-        $sms = "Dear ".$save_user->name." your Ntuha ride password is ".$pin." Visit ".$_SERVER['REQUEST_URI']." to Login";
+        $sms = "Dear ".$save_user->name." your Ntuha ride password is ".$pin." Visit ".$_SERVER['HTTP_HOST']." to Login";
 
         NtuhaDashboardController::send_Email($save_user->email,"Ntuha ride password",$sms,"ntuha.deliveries@gmail.com");
 
@@ -116,7 +116,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            User::destroy($id);
+        } catch (\Exception $e) {}
+
+        return back();
     }
 
 

@@ -14,14 +14,21 @@
               <thead>         
                   <th>Name</th>
                   <th>Email</th>
-                                              
+                  <th>Action</th>                                              
               </thead>
 
               <tbody>
                  @foreach($users as $user)
                     <tr>
                         <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>     
+                        <td>{{$user->email}}</td>
+                        <td>
+                          <form method="POST" action="{{route('user.destroy',$user->id)}}">
+                            @csrf
+                            {{method_field("DELETE")}}
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                          </form>
+                        </td>   
                     </tr>                    
                  @endforeach
                </tbody>
