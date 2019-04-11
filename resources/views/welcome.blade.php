@@ -91,9 +91,8 @@
                     <img src="{{asset('logo/logo.png')}}" width="40%">
                 </div>
 
-                <div class="links">
-                    <!-- <a href="/ntuha_dashboard">Dashboard</a> -->
-                
+                <div class="links">                    
+                    This webpage is under maintenance                
                 </div>
             </div>
         </div>

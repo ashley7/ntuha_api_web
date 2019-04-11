@@ -50,7 +50,7 @@ class DriverController extends Controller
             if ($request->hasFile('input_img')) {
                 $image = $request->file('input_img');
                 $name = time().'.'.$image->getClientOriginalExtension();
-                $destinationPath = public_path('/images');
+                $destinationPath = public_path('images');
                 $image->move($destinationPath, $name);
                 $save_driver->input_img = $name;                
             }
