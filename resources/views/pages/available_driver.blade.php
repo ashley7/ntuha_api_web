@@ -30,7 +30,8 @@
                         <?php 
                           try {
                         ?>
-                            <img src="{{ $driver['profileImageUrl'] }}" alt="{{ $driver['profileImageUrl'] }}" width="40px">
+                           {{ $driver['profileImageUrl'] }}
+                            <!-- <img src="{{ $driver['profileImageUrl'] }}" alt="" width="40px"> -->
                           <?php
                           
                         } catch (\Exception $e) {}
