@@ -23,7 +23,7 @@ class UserController extends Controller
             'title' => 'List of users',
         ];
 
-        return view()->with($data);
+        return view('user.list')->with($data);
     }
 
     /**
@@ -33,7 +33,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Create user',
+        ];
+        return view('user.create')->with($data);
     }
 
     /**
