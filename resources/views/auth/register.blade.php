@@ -12,7 +12,7 @@
                     <center>
                         <img src="{{asset('logo/logo.png')}}" width="30%">
                         <br>
-                        <p>This page is disables</p>
+                        <p>This page is disabled</p>
                     </center>                   
                     
                 </div>
