@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured transport system.">
-        <meta name="author" content="Thembo Charles Lwanga ()">
+        <meta name="author" content="Thembo Charles Lwanga">
         <meta name="author_email" content="ashley7520charles@gmail.com">
 
-         <!-- <link rel="icon" href="{{asset('documents/favicon.PNG')}}"> -->
+         <link rel="icon" href="{{asset('logo/splash.jpg')}}">
 
          <title>{{ config('app.name', '') }}</title>
 

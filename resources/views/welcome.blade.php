@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Ntuha
+                    <img src="{{asset('logo/logo.png')}}">
                 </div>
 
                 <div class="links">

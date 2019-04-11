@@ -6,6 +6,11 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="A fully featured transport system.">
+    <meta name="author" content="Thembo Charles Lwanga">
+    <meta name="author_email" content="ashley7520charles@gmail.com">
+
+    <link rel="icon" href="{{asset('logo/splash.jpg')}}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
