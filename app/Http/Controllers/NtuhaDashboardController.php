@@ -8,6 +8,7 @@ use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount; 
 use Kreait\Firebase\Database;
 use App\Http\Controllers\DriverController;
+use App\User;
 
 
 class NtuhaDashboardController extends Controller
@@ -446,6 +447,27 @@ class NtuhaDashboardController extends Controller
 
       echo  $address; 
     }
+
+
+
+
+    public static function send_Email($to,$subject,$sms,$from) {
+
+      $user = User::all()->where('email',$to)->last();
+
+      $data = [
+        'name'=>$user->name,
+        'email'=>$sms
+      ];
+   
+      \Mail::send(['text'=>'layouts.mail'], $data, function($message) use ($to,$subject,$from) {
+
+        $message->to($to, env("APP_NAME"))->subject($subject);
+        $message->from('ntuha.deliveries@gmail.com','Ntuha ride');
+
+      });
+         
+   }
 
 
 /*

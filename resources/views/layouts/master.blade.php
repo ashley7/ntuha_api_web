@@ -133,6 +133,7 @@
                                 <ul class="submenu">
                                     <li><a href="/driver">Drivers</a></li>
                                     <li><a href="/price/create">Prices</a></li>
+                                    <li><a href="/user">User</a></li>
                                 </ul>
                             </li>                        
                         </ul>
