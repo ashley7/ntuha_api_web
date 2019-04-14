@@ -110,7 +110,11 @@ class DriverController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+        	Driver::destroy($id);
+        } catch (\Exception $e) {}
+
+        return back();
     }
 
 

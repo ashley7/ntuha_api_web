@@ -18,7 +18,8 @@
                     <th>Motor</th>
                     <th>Service</th>
                     <th>ID number</th>
-                    <th>Image</th>                              
+                    <th>Image</th>
+                    <th>Action</th>                           
                 </thead>
 
                 <tbody>
@@ -32,6 +33,19 @@
                           <td>{{$driver['identification_number']}} ({{$driver['identification_type']}})</td>
                           <td>
                             <img src="{{asset('/images')}}/{{$driver['input_img']}}" width="40px">
+                          </td>
+
+                          <td>
+                            <form method="POST" action="{{route('driver.destroy',$driver->id)}}">
+
+                              {{csrf_field()}}
+
+                              {{method_field("DELETE")}}
+
+                              <button class="btn btn-danger" type="submit">Remove</button>
+                              
+
+                            </form>
                           </td>
                                                         
                       </tr>                    
