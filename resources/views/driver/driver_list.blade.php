@@ -18,6 +18,8 @@
                     <th>Motor</th>
                     <th>Service</th>
                     <th>ID number</th>
+                    <th>Secret key</th>
+                    <th>Status</th>
                     <th>Image</th>
                     <th>Action</th>                           
                 </thead>
@@ -30,6 +32,21 @@
                           <td>{{$driver['phone_number']}}</td>
                           <td>{{$driver['motor_type']}} ({{$driver['number_plate']}})</td>
                           <td>{{$driver['service']}}</td>
+                          <td>
+
+                            @if($driver['status'] == 0)
+
+                              <span class="text-danger">No active</span>
+
+                              @else
+
+                              <span class="text-success">Active</span>
+
+                          @endif
+                            
+
+                          </td>
+                          <td>{{$driver['access_key']}}</td>
                           <td>{{$driver['identification_number']}} ({{$driver['identification_type']}})</td>
                           <td>
                             <img src="{{asset('/images')}}/{{$driver['input_img']}}" width="40px">
