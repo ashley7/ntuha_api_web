@@ -17,7 +17,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $read_local_drivers = Driver::all()->where('status',0);
+        $read_local_drivers = Driver::all();
         return view('driver.driver_list')->with(['read_local_drivers'=>$read_local_drivers]);
     }
 
