@@ -29,9 +29,9 @@
                       <td>
                         <?php 
                           try {
+                            $driver_data = App\Driver::select('input_img')->where('phone_number',$driver['phone'])->get()->last();
                         ?>
-                           {{ $driver['profileImageUrl'] }}
-                            <!-- <img src="{{ $driver['profileImageUrl'] }}" alt="" width="40px"> -->
+                            <img src="{{asset('/images')}}/{{$driver_data->input_img}}" width="40px">
                           <?php
                           
                         } catch (\Exception $e) {}
