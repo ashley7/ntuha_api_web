@@ -70,7 +70,7 @@
             <h4>Active rides</h4>
             <table class="table" id="working_drivers">
                 <thead>
-                  <th>Photo</th>  <th>Name</th> <th>Phone Number</th> <th>Driver ID</th> <th>Service</th>
+                   <th>Name</th> <th>Phone Number</th> <th>Driver ID</th> <th>Service</th>
                 </thead>
 
                 <tbody>
@@ -78,18 +78,7 @@
                     @foreach ($working as $key => $value)  
                        @foreach ($working[$key] as $driver_key => $driver_value)
                          <tr>
-                             <td>
-                                 <?php 
-                                      try {
-                                        $driver_data = App\Driver::select('input_img')->where('phone_number',
-                                    $driver_value['phone'])->get()->last();
-                                    ?>
-                                        <img src="{{asset('/images')}}/{{$driver_data->input_img}}" alt="{{$driver['name']}}" width="40px">
-                                      <?php                              
-                                    } catch (\Exception $e) {}
-                                  ?>
-
-                            </td>
+                             
                              <td>{{$driver_value['name']}}</td>
                              <td>{{$driver_value['phone']}}</td>
                              <td>{{$driver_value['driver_id']}}</td>
