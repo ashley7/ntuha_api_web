@@ -33,7 +33,6 @@
                       <td>{{$driver['category']}}</td>
                       <td>{{$driver['subscription_type']}}</td>
                       <td>
-                        <img src="{{$driver['profileImageUrl']}}" width="40px">
 
                           <?php 
                               try {
