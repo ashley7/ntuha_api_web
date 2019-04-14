@@ -64,10 +64,7 @@ class DriverController extends Controller
             
 
 
-        } catch (\Exception $e) {
-        	echo $e->getMessage();
-        	exit();
-        }
+        } catch (\Exception $e) {}
         return redirect()->route('driver.index');
     }
 

@@ -382,28 +382,33 @@ class NtuhaDashboardController extends Controller
         $database = $firebase->getDatabase();
 
         $driversAvailable = $database->getReference('driversAvailable')->getValue();
+
         if (isset($driversAvailable)) {
+
+           try {    
          
-        foreach ($driversAvailable as $key => $driver_value) {
-            $driver = NtuhaDashboardController::single_driver($key);
-            foreach ($driver as $driver_value) {
-                $data = array();
-                $data['name'] = $driver_value['name'];
-                $data['phone'] = $driver_value['phone'];
-                $data['car'] = $driver_value['car'];
-                $data['service'] = $driver_value['service'];
-                // $data['profileImageUrl'] = $driver_value['profileImageUrl'];
-                if (!isset($driver_value['profileImageUrl'])) {
-                   $result['profileImageUrl'] = "default.jpg";
-                  }else{
-                    $result['profileImageUrl'] = $driver_value['profileImageUrl'];
+              foreach ($driversAvailable as $key => $driver_value) {
+                  $driver = NtuhaDashboardController::single_driver($key);
+                  foreach ($driver as $driver_value) {
+                      $data = array();
+                      $data['name'] = $driver_value['name'];
+                      $data['phone'] = $driver_value['phone'];
+                      $data['car'] = $driver_value['car'];
+                      $data['service'] = $driver_value['service'];
+                      // $data['profileImageUrl'] = $driver_value['profileImageUrl'];
+                      if (!isset($driver_value['profileImageUrl'])) {
+                         $result['profileImageUrl'] = "default.jpg";
+                        }else{
+                          $result['profileImageUrl'] = $driver_value['profileImageUrl'];
+                        }
+                      array_push($rides_data, $data);
+                      
                   }
-                array_push($rides_data, $data);
-                
+                }
+              } catch (\Exception $e) {}
             }
-          }
-        }
-        return (array)$rides_data;
+
+      return (array)$rides_data;
         // return response()->json($rides_data);
     }
 
