@@ -100,7 +100,7 @@
                         <?php
 
                           try {
-                              {{$history['destination']}}
+                              echo $history['destination'];
                            } catch (\Exception $e) {
                              echo "Undefined";
                            } 
