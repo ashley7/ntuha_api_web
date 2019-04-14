@@ -39,7 +39,7 @@
                               try {
                                 $driver_data = App\Driver::select('input_img')->where('phone_number',$driver['phone'])->get()->last();
                             ?>
-                                <img src="{{asset('/images')}}/{{$driver_data->input_img}}" width="40%">
+                                <img src="{{asset('/images')}}/{{$driver_data->input_img}}" width="40px">
                               <?php                              
                             } catch (\Exception $e) {}
                           ?>
