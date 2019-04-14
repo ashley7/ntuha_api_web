@@ -2,7 +2,7 @@
 
 @section('content')
  <div class="card-box">
-    <h4>Inactive Drivers</h4>
+    <h4>All Drivers</h4>
 
     <div class="card-body">
 
