@@ -25,6 +25,9 @@ class FrontEndController extends Controller
      	        foreach ($value as $customer_key => $customer_value) {
      	        	$results = array();
     	            if($customer_key == "driver"){
+                        try {
+                            
+                        
     	                $driver = $customer_value[0]; 
     	                $driver_name = $driver['name']."(".$driver['phone'].")";
 
@@ -43,6 +46,8 @@ class FrontEndController extends Controller
                         $status = $value['status'];
                         $cash_amount = $value['cash_amount'];
                         $ride_type = $value['rate_type'];
+
+                    } catch (\Exception $e) {}
 
     	            }         
       			} 
