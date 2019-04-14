@@ -96,7 +96,18 @@
                     <tr>
                       <td>{{date("Y-M-d",$history['timestamp'])}}</td>
                       <td>{{$history['from']}}</td>
-                      <td>{{$history['destination']}}</td>
+                      <td>
+                        <?php
+
+                          try {
+                              {{$history['destination']}}
+                           } catch (\Exception $e) {
+                             echo "Undefined";
+                           } 
+
+
+                         ?>
+                      </td>
                       <td>{{$history['customer_name']}}</td>
                       <td>{{$history['distance']}} KM</td>
                       <td>{{number_format($history['amount_paid'])}}</td>

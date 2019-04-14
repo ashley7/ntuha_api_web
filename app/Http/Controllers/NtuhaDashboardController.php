@@ -557,5 +557,5 @@ class NtuhaDashboardController extends Controller
     public function destroy($id)
     {
         //
-    }
+    } 
 }
