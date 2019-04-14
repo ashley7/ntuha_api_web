@@ -32,6 +32,9 @@
                           <td>{{$driver['phone_number']}}</td>
                           <td>{{$driver['motor_type']}} ({{$driver['number_plate']}})</td>
                           <td>{{$driver['service']}}</td>
+
+                          <td>{{$driver['identification_number']}} ({{$driver['identification_type']}})</td>
+
                           <td>
 
                             @if($driver['status'] == 0)
@@ -47,7 +50,8 @@
 
                           </td>
                           <td>{{$driver['access_key']}}</td>
-                          <td>{{$driver['identification_number']}} ({{$driver['identification_type']}})</td>
+
+
                           <td>
                             <img src="{{asset('/images')}}/{{$driver['input_img']}}" width="40px">
                           </td>
