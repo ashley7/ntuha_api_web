@@ -18,8 +18,9 @@
                     <th>Motor</th>
                     <th>Service</th>
                     <th>ID number</th>
-                    <th>Secret key</th>
                     <th>Status</th>
+                    <th>Secret key</th>
+                    
                     <th>Image</th>
                     <th>Action</th>                           
                 </thead>
@@ -37,6 +38,8 @@
 
                           <td>
 
+                            <a href="{{route('driver.edit',$driver->id)}}">
+
                             @if($driver['status'] == 0)
 
                               <span class="text-danger">No active</span>
@@ -46,6 +49,7 @@
                               <span class="text-success">Active</span>
 
                           @endif
+                        </a>
                             
 
                           </td>

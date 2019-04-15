@@ -87,7 +87,17 @@ class DriverController extends Controller
      */
     public function edit($id)
     {
-        //
+        $read_driver = Driver::find($id);
+        if ($read_driver->status == 1) {
+            $read_driver->status = 0;
+        }
+
+        if ($read_driver->status == 0) {
+            $read_driver->status = 1;
+        }
+        
+        $read_driver->save();
+        return back();
     }
 
     /**
