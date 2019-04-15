@@ -90,13 +90,15 @@ class DriverController extends Controller
         $read_driver = Driver::find($id);
         if ($read_driver->status == 1) {
             $read_driver->status = 0;
+            $read_driver->save();
         }
 
         if ($read_driver->status == 0) {
             $read_driver->status = 1;
+            $read_driver->save();
         }
         
-        $read_driver->save();
+        
         return back();
     }
 
