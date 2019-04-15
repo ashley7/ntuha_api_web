@@ -91,9 +91,7 @@ class DriverController extends Controller
         if ($read_driver->status == 1) {
             $read_driver->status = 0;
             $read_driver->save();
-        }
-
-        if ($read_driver->status == 0) {
+        }elseif ($read_driver->status == 0) {
             $read_driver->status = 1;
             $read_driver->save();
         }
