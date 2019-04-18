@@ -374,7 +374,7 @@ class FrontEndController extends Controller
                      
                 } catch (\Exception $e) {}
 
-            } else if($payment_method == "Cash")){
+            } elseif($payment_method == "Cash"){
                 $account_payment = 0;
                 $payment_type = "Cash";
                 $cash_amount = $estimated_price;
