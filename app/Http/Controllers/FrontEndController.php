@@ -318,7 +318,7 @@ class FrontEndController extends Controller
 
             $cash_amount = $account_payment = $payment_type = "";
 
-            if ($request->payment_method = 'Account') {
+            if ($request->payment_method == 'Account') {
                 # paying from account
                 $balance = $this->account_balance($request);
             }       
@@ -394,6 +394,8 @@ class FrontEndController extends Controller
             $response["account_amount"] = $account_payment;
             $response["payment_type"] = $payment_type;
             $response["rate_type"] = $read_price->ratetype;
+
+            return \Response::json([$response]);
                     
         }else{
             $response["status"] = "FAILED";
