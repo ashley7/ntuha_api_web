@@ -306,6 +306,8 @@ class FrontEndController extends Controller
 
         $ride_distance = $request->ride_distance;
 
+        $payment_method = $request->payment_method;
+
         foreach ($driver as $driver_details) {
             $subscription_type = $driver_details["subscription_type"];
 
@@ -320,7 +322,7 @@ class FrontEndController extends Controller
 
             $cash_amount = $account_payment = $payment_type = "";
 
-            if ($request->payment_method == 'Account') {
+            if ($payment_method == 'Account') {
                 # paying from account
                 $balance = $this->account_balance($request);
             }       
