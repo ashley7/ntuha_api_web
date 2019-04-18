@@ -304,6 +304,8 @@ class FrontEndController extends Controller
 
         $driver = $this->read_single_driver($request->driver_id);
 
+        $ride_distance = $request->ride_distance;
+
         foreach ($driver as $driver_details) {
             $subscription_type = $driver_details["subscription_type"];
 
