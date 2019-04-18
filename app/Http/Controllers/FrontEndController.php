@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\NtuhaDashboardController;
 use App\Http\Controllers\DriverController;
+use App\Price;
 use App\Payment;
 use App\Withdraw;
 
@@ -246,14 +247,17 @@ class FrontEndController extends Controller
         $total_unpaid = 0;
 
         foreach ($driver_history as $unpaid_key => $unpaid_value) {
-            if ($unpaid_value['status'] == 0) {
+            if ( ($unpaid_value['status'] == 0)  && ($unpaid_value['rate_type'] == "paid") ) {
+
                $total_unpaid = $total_unpaid + $unpaid_value["ntuha_amount"];
+
             }
         }
 
         $response["status"] = "SUCCESS";
         $response["ntuha_amount"] = $total_unpaid;
         $response["number_of_rides"] = $number_of_rides;
+        
         return \Response::json([$response]);
     }
 
@@ -286,6 +290,117 @@ class FrontEndController extends Controller
         }
         $transactions->save();
         return back();        
+    }
+
+
+    public function getRidePrice(Request $request)
+    {
+
+        $response = array();
+
+        $subscription_type = $driver_email = "";
+
+        $read_price = Price::all()->where('type',$request->service)->last();
+
+        $driver = $this->read_single_driver($request->driver_id);
+
+        foreach ($driver as $driver_details) {
+            $subscription_type = $driver_details["subscription_type"];
+
+            $driver_email = $driver_details["email"];
+        }
+
+        if (!empty($read_price)) {
+
+            $balance = 0;
+
+            $ntuha_amount = 0;
+
+            $cash_amount = $account_payment = $payment_type = "";
+
+            if ($request->payment_method = 'Account') {
+                # paying from account
+                $balance = $this->account_balance($request);
+            }       
+          
+            $unit_price = $read_price->price;            
+
+            // $estimated_price = ($unit_price * round($distanceInKiloMeters)); 
+
+            $estimated_price = ($unit_price * round($ride_distance));
+
+            if( ($request->service == "Ntuha Boda") && $estimated_price < env("BODA_PRICE")){
+                $estimated_price = env("BODA_PRICE");
+            }
+
+            if( ($request->service == "Ntuha Taxi") && $estimated_price < env("TAXI_PRICE")){
+                $estimated_price = env("TAXI_PRICE");
+            }
+
+            if( ($request->service == "Ntuha Truck") && $estimated_price < env("TRUCK_PRICE")){
+                $estimated_price = env("TRUCK_PRICE");
+            }
+
+            if ($subscription_type == "monthly") {
+                $ntuha_amount = 0;
+            }
+
+            if ($subscription_type == "per_ride") {
+               $ntuha_amount =  round(($read_price->rate/100) * $estimated_price);
+            }           
+
+
+            if ($payment_method == "Account"){
+              
+                $remaining_balance = $balance - $estimated_price;
+
+                if ($remaining_balance <  0){
+                    $cash_amount = (-1 * $remaining_balance);
+                    //making positive of the balance, cash payment
+                    $account_payment = $balance;//all your balance was paid
+                    $payment_type = "Cash|Account";
+                } else{//had enough money on account
+                    $account_payment = $estimated_price;
+                    $payment_type = "Account";
+                    $cash_amount = 0;
+                }
+
+                $save_withdraw = new Withdraw();
+                $save_withdraw->email = $driver_email;
+                $save_withdraw->amount = $account_payment;
+                try {
+
+                    $save_withdraw->save();
+                     
+                } catch (\Exception $e) {}
+
+            } else if($payment_method == "Cash")){
+                $account_payment = 0;
+                $payment_type = "Cash";
+                $cash_amount = $estimated_price;
+            }
+
+            $driver_amount = $estimated_price - $ntuha_amount;
+
+            $response["status"] = "SUCCESS";
+            $response["balance"] = $balance;
+            $response["type"] = $read_price->type;
+            $response["ratetype"] = $read_price->ratetype;
+            $response["rate"] = $read_price->rate;
+            $response["driver_amount"] = $driver_amount;
+            $response["ntuha_amount"] = $ntuha_amount;
+            $response["amount_paid"] = $estimated_price;
+            $response["cash_amount"] = $cash_amount;
+            $response["account_amount"] = $account_payment;
+            $response["payment_type"] = $payment_type;
+            $response["rate_type"] = $read_price->ratetype;
+                    
+        }else{
+            $response["status"] = "FAILED";
+            $response["message"] = "No Price found";
+            return \Response::json([$response]);
+        }
+        
     }
 
  
