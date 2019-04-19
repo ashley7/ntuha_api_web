@@ -384,9 +384,11 @@ class NtuhaDashboardController extends Controller
 
         $driversAvailable = $database->getReference('driversAvailable')->getValue();
 
-        if (isset($driversAvailable)) {
 
-           // try {    
+
+        if (!empty($driversAvailable)) {
+
+           try {    
          
               foreach ($driversAvailable as $key => $driver_value) {
                   $driver = NtuhaDashboardController::single_driver($key);
@@ -406,7 +408,9 @@ class NtuhaDashboardController extends Controller
                       
                   }
                 }
-              // } catch (\Exception $e) {}
+              } catch (\Exception $e) {}
+            }else{
+              return $driversAvailable;
             }
 
       return (array)$rides_data;
