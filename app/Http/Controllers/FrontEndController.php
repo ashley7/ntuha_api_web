@@ -14,10 +14,8 @@ class FrontEndController extends Controller
     public static function rides()
     {
     	$ride = NtuhaDashboardController::rides();
-
-        return $ride;
-
-    	$data = array();
+        
+        $data = array();
 
         if (!empty($ride)) {        
         	foreach ($ride as $key => $value) { 
@@ -50,7 +48,10 @@ class FrontEndController extends Controller
                         $cash_amount = $value['cash_amount'];
                         $ride_type = $value['rate_type'];
 
-                    } catch (\Exception $e) {}
+                    } catch (\Exception $e) {
+                        echo $e->getMessage();
+                        exit();
+                    }
 
     	            }         
       			} 
