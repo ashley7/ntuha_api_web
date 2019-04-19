@@ -304,7 +304,8 @@ class FrontEndController extends Controller
 
         $driver = $this->read_single_driver($request->driver_id);
 
-        $ride_distance = $request->ride_distance;
+        // $ride_distance = $request->ride_distance;
+        $ride_distance = $request->distanceInKiloMeters;
 
         $payment_method = $request->payment_method;
 
