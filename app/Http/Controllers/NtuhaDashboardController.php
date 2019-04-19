@@ -299,7 +299,7 @@ class NtuhaDashboardController extends Controller
                $result['name'] = $value['name'];
                $result['phone'] = $value['phone'];
                $result['car'] = $value['car'];
-               $result['email'] = $value['email'];
+               // $result['email'] = $value['email'];
                $result['category'] = $value['category'];
                $result['subscription_type'] = $value['subscription_type'];
                $result['car_plate'] = $value['car_plate'];
