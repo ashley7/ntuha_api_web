@@ -29,8 +29,8 @@ class FrontEndController extends Controller
                         try {
                             
                         
-    	                // $driver = $customer_value[0]; 
-    	                // $driver_name = $driver['name']."(".$driver['phone'].")";
+    	                $driver = $customer_value[0]; 
+    	                $driver_name = $driver['name']."(".$driver['phone'].")";
 
                         $distance = $value['distance'];
                         $rating = $value['rating'];
