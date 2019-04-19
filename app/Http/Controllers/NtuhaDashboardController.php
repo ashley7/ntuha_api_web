@@ -308,9 +308,7 @@ class NtuhaDashboardController extends Controller
                $result['profileImageUrl'] = DriverController::read_driver_image($value['driver_id']);
              
                $data[] = $result; 
-            } catch (\Exception $e) {
-              echo $e->getMessage;
-            }
+            } catch (\Exception $e) {}
                       
         }
         return $data;
