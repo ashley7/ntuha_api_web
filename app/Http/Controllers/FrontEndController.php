@@ -338,6 +338,7 @@ class FrontEndController extends Controller
 
             if( ($request->service == "Ntuha Boda") && $estimated_price < env("BODA_PRICE")){
                 $estimated_price = env("BODA_PRICE");
+
             }
 
             if( ($request->service == "Ntuha Taxi") && $estimated_price < env("TAXI_PRICE")){
@@ -356,10 +357,12 @@ class FrontEndController extends Controller
 
                // $ntuha_amount =  round(($read_price->rate/100) * $estimated_price);
 
-               $ntuha_amount =  round($estimated_price - $read_price->rate); 
+               // $ntuha_amount =  round($estimated_price - $read_price->rate); 
             }
 
-             $ntuha_amount =  round($estimated_price - $read_price->rate);
+             $ntuha_amount =  $read_price->rate;
+
+
 
                   
             if ($payment_method == "Account"){
