@@ -306,13 +306,12 @@ class NtuhaDashboardController extends Controller
                $result['service'] = $value['service'];
                $result['driver_id'] = $value['driver_id'];
                $result['profileImageUrl'] = DriverController::read_driver_image($value['driver_id']);
-               // if (!isset($value['profileImageUrl'])) {
-               //   $result['profileImageUrl'] = "default.jpg";
-               //  }else{
-               //    $result['profileImageUrl'] = $value['profileImageUrl'];
-               //  }
+             
                $data[] = $result; 
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+              echo $e->getMessage;
+              exit();
+            }
                       
         }
         return $data;
@@ -384,7 +383,7 @@ class NtuhaDashboardController extends Controller
 
         $driversAvailable = $database->getReference('driversAvailable')->getValue();
 
-       
+
 
         if (isset($driversAvailable)) {
 
@@ -392,6 +391,10 @@ class NtuhaDashboardController extends Controller
          
               foreach ($driversAvailable as $key => $driver_value) {
                   $driver = NtuhaDashboardController::single_driver($key);
+
+
+
+
                   foreach ($driver as $driver_value) {
                       $data = array();
                       $data['name'] = $driver_value['name'];
@@ -404,6 +407,7 @@ class NtuhaDashboardController extends Controller
                         }else{
                           $result['profileImageUrl'] = $driver_value['profileImageUrl'];
                         }
+
                       array_push($rides_data, $data);
                       
                   }
