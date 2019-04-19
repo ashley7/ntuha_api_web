@@ -24,7 +24,7 @@
             <label>Price par KM</label>
             <input type="number" name="price" value="{{$read_price->price}}" class="form-control">
 
-            <label>Ntuha Commission (%ge)</label>
+            <label>Ntuha Commission (UGX)</label>
             <input type="number" step="any" name="rate" value="{{$read_price->rate}}" class="form-control">
 
             <label>Ride Type ({{$read_price->ratetype}})</label>
