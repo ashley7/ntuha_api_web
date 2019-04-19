@@ -310,7 +310,6 @@ class NtuhaDashboardController extends Controller
                $data[] = $result; 
             } catch (\Exception $e) {
               echo $e->getMessage;
-              exit();
             }
                       
         }
@@ -493,8 +492,7 @@ class NtuhaDashboardController extends Controller
     public function index()
     {  
      
-        $phone_number = ltrim("0787444081", '0');
-        echo "+256".$phone_number;
+        return $this->single_driver("IOZndg6zo8cHqORjxrJV5tpzlds1");
        
     }    
 

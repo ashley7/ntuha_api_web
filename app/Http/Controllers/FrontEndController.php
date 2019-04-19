@@ -116,9 +116,7 @@ class FrontEndController extends Controller
     public static function available_drivers()
     {
     	$available_drivers = NtuhaDashboardController::drivers_available();
-
-        return $available_drivers;
-    	// return view('pages.available_driver')->with(['available_drivers'=>$available_drivers]);
+     	return view('pages.available_driver')->with(['available_drivers'=>$available_drivers]);
     }
 
     public function payments(Request $request)
