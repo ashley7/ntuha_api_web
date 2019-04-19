@@ -19,7 +19,7 @@
             <label>Price par KM</label>
             <input type="number" id="price" class="form-control">
 
-            <label>Ntuha Commission (%ge)</label>
+            <label>Ntuha Commission (UGX)</label>
             <input type="number" step="any" id="rate" class="form-control">
 
             <label>Ride Type</label>
