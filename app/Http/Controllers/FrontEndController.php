@@ -73,8 +73,10 @@ class FrontEndController extends Controller
     	      }
           }
 
+          return $data;
+
          
-            return view('pages.rides')->with(['ride'=>$data]);
+            // return view('pages.rides')->with(['ride'=>$data]);
        
     }
 

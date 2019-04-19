@@ -360,10 +360,7 @@ class NtuhaDashboardController extends Controller
                     $result["rate_type"] = $ride_value['rate_type'];
                     $rides_data[] = $result;
              
-              } catch (\Exception $e) {
-                echo $e->getMessage();
-                exit();
-              }
+              } catch (\Exception $e) {}
             }
             $data = array_unique($rides_data, SORT_REGULAR);
             return (array)$data;
