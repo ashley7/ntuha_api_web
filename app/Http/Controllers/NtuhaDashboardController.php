@@ -384,6 +384,9 @@ class NtuhaDashboardController extends Controller
 
         $driversAvailable = $database->getReference('driversAvailable')->getValue();
 
+        return $driversAvailable;
+
+        exit();
 
 
         if (isset($driversAvailable)) {
