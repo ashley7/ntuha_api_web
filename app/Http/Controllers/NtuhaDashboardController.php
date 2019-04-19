@@ -295,7 +295,7 @@ class NtuhaDashboardController extends Controller
         $data = array();
          foreach (NtuhaDashboardController::user_details("Drivers",$driver_id) as $key => $value) {
             $result = [];
-            try {
+            // try {
                $result['name'] = $value['name'];
                $result['phone'] = $value['phone'];
                $result['car'] = $value['car'];
@@ -308,7 +308,7 @@ class NtuhaDashboardController extends Controller
                $result['profileImageUrl'] = DriverController::read_driver_image($value['driver_id']);
              
                $data[] = $result; 
-            } catch (\Exception $e) {}
+            // } catch (\Exception $e) {}
                       
         }
         return $data;
@@ -490,7 +490,7 @@ class NtuhaDashboardController extends Controller
     public function index()
     {  
      
-        return $this->user_details("Drivers","IOZndg6zo8cHqORjxrJV5tpzlds1");
+        return $this->single_driver("IOZndg6zo8cHqORjxrJV5tpzlds1");
        
     }    
 
