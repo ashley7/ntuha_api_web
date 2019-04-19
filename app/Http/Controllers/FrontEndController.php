@@ -302,7 +302,9 @@ class FrontEndController extends Controller
 
         $read_price = Price::all()->where('type',$request->service)->last();
 
-        $driver = $this->read_single_driver($request->driver_id);
+        // $driver = $this->read_single_driver($request->driver_id);
+
+        $driver = NtuhaDashboardController::single_driver($request->driver_id);
 
         // $ride_distance = $request->ride_distance;
         $ride_distance = $request->distanceInKiloMeters;
