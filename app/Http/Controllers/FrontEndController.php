@@ -15,6 +15,8 @@ class FrontEndController extends Controller
     {
     	$ride = NtuhaDashboardController::rides();
 
+        return $ride;
+
     	$data = array();
 
         if (!empty($ride)) {        
@@ -73,10 +75,7 @@ class FrontEndController extends Controller
     	      }
           }
 
-          return $data;
-
-         
-            // return view('pages.rides')->with(['ride'=>$data]);
+        // return view('pages.rides')->with(['ride'=>$data]);
        
     }
 
