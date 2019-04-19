@@ -490,7 +490,7 @@ class NtuhaDashboardController extends Controller
     public function index()
     {  
      
-        return $this->single_driver("IOZndg6zo8cHqORjxrJV5tpzlds1");
+        return $this->user_details("Drivers","IOZndg6zo8cHqORjxrJV5tpzlds1");
        
     }    
 
