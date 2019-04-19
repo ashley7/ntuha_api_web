@@ -359,6 +359,8 @@ class FrontEndController extends Controller
                $ntuha_amount =  round($estimated_price - $read_price->rate); 
             }
 
+             $ntuha_amount =  round($estimated_price - $read_price->rate);
+
                   
             if ($payment_method == "Account"){
               
