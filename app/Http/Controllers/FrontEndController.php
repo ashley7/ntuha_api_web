@@ -29,8 +29,8 @@ class FrontEndController extends Controller
                         try {
                             
                         
-    	                $driver = $customer_value[0]; 
-    	                $driver_name = $driver['name']."(".$driver['phone'].")";
+    	                // $driver = $customer_value[0]; 
+    	                // $driver_name = $driver['name']."(".$driver['phone'].")";
 
                         $distance = $value['distance'];
                         $rating = $value['rating'];
@@ -48,10 +48,7 @@ class FrontEndController extends Controller
                         $cash_amount = $value['cash_amount'];
                         $ride_type = $value['rate_type'];
 
-                    } catch (\Exception $e) {
-                        echo $e->getMessage();
-                        exit();
-                    }
+                    } catch (\Exception $e) {}
 
     	            }         
       			} 
@@ -76,7 +73,7 @@ class FrontEndController extends Controller
     	      }
           }
 
-        // return view('pages.rides')->with(['ride'=>$data]);
+        return view('pages.rides')->with(['ride'=>$data]);
        
     }
 
