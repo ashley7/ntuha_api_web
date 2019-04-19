@@ -360,7 +360,10 @@ class NtuhaDashboardController extends Controller
                     $result["rate_type"] = $ride_value['rate_type'];
                     $rides_data[] = $result;
              
-              } catch (\Exception $e) {}
+              } catch (\Exception $e) {
+                echo $e->getMessage();
+                exit();
+              }
             }
             $data = array_unique($rides_data, SORT_REGULAR);
             return (array)$data;
@@ -386,7 +389,7 @@ class NtuhaDashboardController extends Controller
 
 
 
-        if (!empty($driversAvailable)) {
+        if (isset($driversAvailable)) {
 
            try {    
          
@@ -409,12 +412,9 @@ class NtuhaDashboardController extends Controller
                   }
                 }
               } catch (\Exception $e) {}
-            }else{
-              return $driversAvailable;
             }
 
       return (array)$rides_data;
-        // return response()->json($rides_data);
     }
 
     /*
