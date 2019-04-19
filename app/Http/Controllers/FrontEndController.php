@@ -349,22 +349,12 @@ class FrontEndController extends Controller
                 $estimated_price = env("TRUCK_PRICE");
             }
 
+             $ntuha_amount =  $read_price->rate;
+
             if ($subscription_type == "monthly") {
                 $ntuha_amount = 0;
             }
-
-            if ($subscription_type == "per_ride") {
-
-               // $ntuha_amount =  round(($read_price->rate/100) * $estimated_price);
-
-               // $ntuha_amount =  round($estimated_price - $read_price->rate); 
-            }
-
-             $ntuha_amount =  $read_price->rate;
-
-
-
-                  
+            
             if ($payment_method == "Account"){
               
                 $remaining_balance = $balance - $estimated_price;
