@@ -247,7 +247,7 @@ class FrontEndController extends Controller
         $total_unpaid = 0;
 
         foreach ($driver_history as $unpaid_key => $unpaid_value) {
-            if ( ($unpaid_value['status'] == 0)  && ($unpaid_value['rate_type'] == "paid") ) {
+            if($unpaid_value['status'] == 0){
 
                $total_unpaid = $total_unpaid + $unpaid_value["ntuha_amount"];
 
