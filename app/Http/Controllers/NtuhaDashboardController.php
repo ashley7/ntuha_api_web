@@ -374,9 +374,7 @@ class NtuhaDashboardController extends Controller
     public static function drivers_available()
     {
         $rides_data = array();
-
-        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
-        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
+        
 
         $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
         $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
@@ -396,7 +394,6 @@ class NtuhaDashboardController extends Controller
                       $data['phone'] = $driver_value['phone'];
                       $data['car'] = $driver_value['car'];
                       $data['service'] = $driver_value['service'];
-                      // $data['profileImageUrl'] = $driver_value['profileImageUrl'];
                       if (!isset($driver_value['profileImageUrl'])) {
                          $result['profileImageUrl'] = "default.jpg";
                         }else{
@@ -406,7 +403,10 @@ class NtuhaDashboardController extends Controller
                       
                   }
                 }
-              } catch (\Exception $e) {}
+              } catch (\Exception $e) {
+                echo $e->getMessage();
+                exit();
+              }
             }
 
       return (array)$rides_data;
