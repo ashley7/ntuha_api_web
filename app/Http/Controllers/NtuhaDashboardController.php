@@ -386,7 +386,7 @@ class NtuhaDashboardController extends Controller
 
         if (isset($driversAvailable)) {
 
-           try {    
+           // try {    
          
               foreach ($driversAvailable as $key => $driver_value) {
                   $driver = NtuhaDashboardController::single_driver($key);
@@ -406,7 +406,7 @@ class NtuhaDashboardController extends Controller
                       
                   }
                 }
-              } catch (\Exception $e) {}
+              // } catch (\Exception $e) {}
             }
 
       return (array)$rides_data;
