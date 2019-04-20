@@ -516,6 +516,11 @@ class NtuhaDashboardController extends Controller
      */
     public function store(Request $request)
     {
+    }
+
+
+    public function update_driver(Request $request)
+    {
         $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
         $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();      
                     
@@ -526,6 +531,7 @@ class NtuhaDashboardController extends Controller
 
         $database = $firebase->getDatabase();
         $database->getReference('Users')->getChild('Drivers')->getChild($request->driver_id)->update($firebase_data);
+    
     }
 
     /**

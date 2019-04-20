@@ -32,4 +32,4 @@ Route::any('read_ntuha_drivers','NtuhaDashboardController@read_ntuha_drivers');
 
 Route::any('get_rider_price','FrontEndController@getRidePrice');
 
-Route::any('ntuha_dashboard','NtuhaDashboardController');
+Route::any('update_driver','NtuhaDashboardController@update_driver');
