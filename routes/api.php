@@ -31,3 +31,5 @@ Route::any('customer_number_of_rides','FrontEndController@customer_number_of_rid
 Route::any('read_ntuha_drivers','NtuhaDashboardController@read_ntuha_drivers');
 
 Route::any('get_rider_price','FrontEndController@getRidePrice');
+
+Route::resource('ntuha_dashboard','NtuhaDashboardController');
