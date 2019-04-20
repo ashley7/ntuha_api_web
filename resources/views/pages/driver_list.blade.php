@@ -26,7 +26,14 @@
                @foreach($drivers as $driver)
                   <tr>
                       <td>{{$driver['driver_id']}}</td>
-                      <td>{{$driver['name']}}</td>
+                      <td>
+                        <a class="btn btn-success" href="/read_single_driver/{{$driver['driverId']}}">
+
+                          {{$driver['name']}}
+
+                        </a>
+
+                    </td>
                       <td>{{$driver['phone']}}</td>
                       <td>{{$driver['car']}}</td>
                       <td>{{$driver['service']}}</td>
