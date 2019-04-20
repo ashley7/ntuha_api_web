@@ -313,7 +313,7 @@ class FrontEndController extends Controller
         foreach ($driver as $driver_details) {
             $subscription_type = $driver_details["subscription_type"];
 
-            $driver_email = $driver_details["email"];
+            // $driver_email = $driver_details["email"];
         }
 
         if (!empty($read_price)) {
