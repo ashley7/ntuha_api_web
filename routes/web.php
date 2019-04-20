@@ -44,8 +44,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('confirm_transaction/{id}','FrontEndController@confirm_transaction');
 
-	Route::post('updated_driver','NtuhaDashboardController@updated_driver');
-
 	
 	Route::resource('price','PriceController');
 
