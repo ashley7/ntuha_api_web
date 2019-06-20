@@ -181,6 +181,7 @@
 
              $(document).ready(function() {
                 $('#working_drivers,#transactions').DataTable( {
+                    pageLength: 1000,
                     dom: 'Bfrtip',
                     buttons: [
                         'excelHtml5',

@@ -105,21 +105,12 @@ class NtuhaDashboardController extends Controller
                             $result['category'] = $driver['category'];
                             $result['subscription_type'] = $driver['subscription_type'];
                             $result['profileImageUrl'] = DriverController::read_driver_image($driver['driver_id']);
-
-                            // if (!isset($driver['profileImageUrl'])) {
-                            //  $result['profileImageUrl'] = "default.jpg";
-                            // }else{
-                            //   $result['profileImageUrl'] = $driver['profileImageUrl'];                             
-                            // }
+ 
                             $driver_data[] = $result;  
                             
                         } catch (\Exception $e) {}
                                                  
-                       }else{
-                          // $result = [];
-                          // $result['history'] = (array)$driverValueDetails;
-                          // $driver_data[] = $result;
-                       }
+                       }else{}
                     } 
                 }
             }

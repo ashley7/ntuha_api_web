@@ -19,8 +19,7 @@
                     <th>Service</th>
                     <th>ID number</th>
                     <th>Status</th>
-                    <th>Secret key</th>
-                    
+                    <th>Secret key</th>                    
                     <th>Image</th>
                     <th>Action</th>                           
                 </thead>
