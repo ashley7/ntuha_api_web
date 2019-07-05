@@ -12,7 +12,6 @@
                     <th>Date</th>
                     <th>Phone number</th>
                     <th>Paying Phone number</th>
-                    <th>Email</th>
                     <th>Customer name</th>
                     <th>Transaction id</th>
                     <th>Amount</th>
@@ -28,13 +27,12 @@
                       <td>{{$transaction->created_at}}</td>
                       <td>{{$transaction->phone_number}}</td>
                       <td>{{$transaction->paying_phone_number}}</td>
-                      <td>{{$transaction->email}}</td>
                       <td>{{$transaction->customer_name}}</td>
                       <td>{{$transaction->transaction_id}}</td>
                       <td>{{$transaction->amount}}</td>
                       <td>{{$transaction->status}}</td>                     
                       <td>
-                        <a href="/confirm_transaction/{{$transaction->id}}">Confirm</a>
+                        <!-- <a href="/confirm_transaction/{{$transaction->id}}">Confirm</a> -->
                       </td>
                     </tr>
 
