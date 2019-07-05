@@ -141,7 +141,7 @@ class FrontEndController extends Controller
         $save_payment->status = $collection_request->status;
         $save_payment->transaction_id = $data->txid;
         $save_payment->paying_phone_number = $data->custphone;
-        $save_payment->phone_number = $data->custphone;
+        $save_payment->phone_number = $phone_number;
         $save_payment->customer_name = $request->name;
 
           var_dump($collection_request);   
