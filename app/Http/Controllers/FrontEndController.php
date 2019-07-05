@@ -128,9 +128,10 @@ class FrontEndController extends Controller
 
         $response =  $request->response;
 
-        $collection_request = json_decode($response->toJSON());
+       $persons = '{"John":35,"Peter":40,"Mac":28,"Lisa":20}';
+       var_dump(json_decode($persons));
 
-        return $collection_request;
+        
 
          
       
