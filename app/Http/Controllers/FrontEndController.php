@@ -122,6 +122,10 @@ class FrontEndController extends Controller
     public function payments(Request $request)
     {      
 
+
+        {"status":"Transaction successfully fetched","message":"Tx Fetched","data":{"id":64421451,"txRef":"Ntuha-RideQW6JCYECA0LX05MXXSN42PE8EVQK6UZ7","orderRef":"URF_MMGH_1562339809476_1076835","flwRef":"923482415623398117680","redirectUrl":"http:\/\/127.0.0","device_fingerprint":"357903083086862","settlement_token":null,"cycle":"one-time","amount":500,"charged_amount":513.25,"appfee":13.25,"merchantfee":0,"merchantbearsfee":0,"chargeResponseCode":"00","raveRef":null,"chargeResponseMessage":"Transaction is being processed","authModelUsed":"MOBILEMONEY","currency":"UGX","IP":"105.21.72.46:61513","narration":"Thembo Charles Lwanga","status":"successful","modalauditid":"66375383d8c2fae6e899e485b80233a8","vbvrespmessage":"N\/A","authurl":"NO-URL","vbvrespcode":"N\/A","acctvalrespmsg":"Approved Or Completed Successfully","acctvalrespcode":"00","paymentType":"mobilemoneyug","paymentPlan":null,"paymentPage":null,"paymentId":"N\/A","fraud_status":"ok","charge_type":"normal","is_live":0,"createdAt":"2019-07-05T15:16:49.000Z","updatedAt":"2019-07-05T15:17:22.000Z","deletedAt":null,"customerId":38829329,"AccountId":27735,"customer.id":38829329,"customer.phone":"0787444081","customer.fullName":"Lwanga Customer","customer.customertoken":null,"customer.email":"ashley7520charles@gmail.com","customer.createdAt":"2019-07-05T12:29:59.000Z","customer.updatedAt":"2019-07-05T12:29:59.000Z","customer.deletedAt":null,"customer.AccountId":27735,"meta":[],"flwMeta":{}}}
+
+
         $phone_number = $request->phone_number;
 
         $collection_request = json_decode($request->response);
@@ -134,7 +138,7 @@ class FrontEndController extends Controller
         $save_payment->amount = $data->amount;
         $save_payment->status = $data->status;
         $save_payment->transaction_id = $data->txRef;
-        $save_payment->paying_phone_number = $data->custphone;
+        $save_payment->paying_phone_number = $data->customer['phone'];
         $save_payment->phone_number = $phone_number;
         $save_payment->customer_name = $request->name."(".$data->narration.")";
   
