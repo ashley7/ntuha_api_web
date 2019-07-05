@@ -126,91 +126,9 @@ class FrontEndController extends Controller
 
         $phone_number = $request->phone_number;
 
-        $response = {
-            "status": "success",
-            "message": "Tx Fetched",
-            "data": {
-                "txid": 124161,
-                "txref": "MC-1522914089167",
-                "flwref": "ACHG-1522914115739",
-                "devicefingerprint": "69e6b7f0b72037aa8428b70fbe03986c",
-                "cycle": "one-time",
-                "amount": 10,
-                "currency": "NGN",
-                "chargedamount": 10,
-                "appfee": 0,
-                "merchantfee": 0,
-                "merchantbearsfee": 1,
-                "chargecode": "00",
-                "chargemessage": "Pending OTP validation",
-                "authmodel": "AUTH",
-                "ip": "::ffff:127.0.0.1",
-                "narration": "Synergy Group",
-                "status": "successful",
-                "vbvcode": "N/A",
-                "vbvmessage": "N/A",
-                "authurl": "NO-URL",
-                "acctcode": "00",
-                "acctmessage": "Approved Or Completed Successfully",
-                "paymenttype": "account",
-                "paymentid": "2",
-                "fraudstatus": "ok",
-                "chargetype": "normal",
-                "createdday": 4,
-                "createddayname": "THURSDAY",
-                "createdweek": 14,
-                "createdmonth": 3,
-                "createdmonthname": "APRIL",
-                "createdquarter": 2,
-                "createdyear": 2018,
-                "createdyearisleap": false,
-                "createddayispublicholiday": 0,
-                "createdhour": 7,
-                "createdminute": 41,
-                "createdpmam": "am",
-                "created": "2018-04-05T07:41:53.000Z",
-                "customerid": 22536,
-                "custphone": "09026420185",
-                "custnetworkprovider": "AIRTEL",
-                "custname": "temi desola",
-                "custemail": "user@example.com",
-                "custemailprovider": "COMPANY EMAIL",
-                "custcreated": "2018-04-05T07:38:39.000Z",
-                "accountid": 134,
-                "acctbusinessname": "Synergy Group",
-                "acctcontactperson": "Desola Ade",
-                "acctcountry": "NG",
-                "acctbearsfeeattransactiontime": 1,
-                "acctparent": 1,
-                "acctvpcmerchant": "N/A",
-                "acctalias": "temi",
-                "acctisliveapproved": 0,
-                "orderref": "URF_1522914113761_6077035",
-                "paymentplan": null,
-                "paymentpage": null,
-                "raveref": "RV31522914113478DA28603ABF",
-                "amountsettledforthistransaction": 10,
-                "account": {
-                    "id": 2,
-                    "account_number": "0690000031",
-                    "account_bank": "044",
-                    "first_name": "NO-NAME",
-                    "last_name": "NO-LNAME",
-                    "account_is_blacklisted": 0,
-                    "createdAt": "2016-12-31T04:09:24.000Z",
-                    "updatedAt": "2018-04-05T07:42:28.000Z",
-                    "deletedAt": null,
-                    "account_token": {
-                        "token": "flw-t0e1bb79f967612fc1-k3n-mock"
-                    }
-                },
-                "meta": []
-            }
-        };
+        $response = $request->response;
 
-        return $response;
-
-         
+        return $response;        
 
        
 
