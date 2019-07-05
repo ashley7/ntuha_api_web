@@ -16,7 +16,7 @@
                     <th>Transaction id</th>
                     <th>Amount</th>
                     <th>Status</th>                
-                    <th>Action</th>                    
+                    <th></th>                    
                 </thead>
 
                 <tbody>
