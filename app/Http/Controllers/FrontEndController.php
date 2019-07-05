@@ -139,7 +139,7 @@ class FrontEndController extends Controller
         $save_payment->amount = $data->amount;
         $save_payment->status = $data->status;
         $save_payment->transaction_id = $data->txRef;
-        $save_payment->paying_phone_number = $customer->phone;
+        $save_payment->paying_phone_number = $phone_number;
         $save_payment->phone_number = $phone_number;
         $save_payment->customer_name = $request->name."(".$data->narration.")";
   
