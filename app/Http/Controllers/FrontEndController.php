@@ -128,7 +128,7 @@ class FrontEndController extends Controller
 
         $response = json_decode($request->response);
 
-        echo $response["status"];
+        echo $response->status;
 
         
 
