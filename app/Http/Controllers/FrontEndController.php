@@ -132,7 +132,6 @@ class FrontEndController extends Controller
       
 
         $data = $collection_request->data;
-        $customer = $collection_request->customer;
 
         $save_payment = new Payment();
         $save_payment->email  = $phone_number."@gmail.com";
