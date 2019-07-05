@@ -126,9 +126,17 @@ class FrontEndController extends Controller
 
         $phone_number = $request->phone_number;
 
-        $response = $request->response;
+        $response = [$request->response];
 
-        return $response;        
+        foreach ($response as $key => $responseValue) {
+         
+
+           echo $responseValue->status;
+
+           
+        }
+
+
 
        
 
