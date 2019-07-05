@@ -41,11 +41,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html"><img src="img/ntuha.png" alt="Logo"></a>
+          <a class="navbar-brand" href="/"><img src="images/ntuha.png" alt="Logo"></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/login">Login</a></li>
             <!-- <li><a href="#about">About</a></li>
             <li><a href="#Ride">Ntuha Ride</a></li>
@@ -70,7 +70,7 @@
         
         <div class="row">
           <div class="col-sm-4 text-center wow fadeInUp">
-            <img class="header-img" src="img/ntuha-promo.jpg" alt="Header Image">
+            <img class="header-img" src="images/ntuha-promo.jpg" alt="Header Image">
           </div>
         </div>
         
@@ -107,7 +107,7 @@
           </div>
           
           <div class="col-sm-6 wow fadeInUpBig">
-            <img class="main1-img img-responsive pull-right" src="img/checkout.jpg" alt="Main1 Image">
+            <img class="main1-img img-responsive pull-right" src="images/checkout.jpg" alt="Main1 Image">
           </div>
         </div>
       </div>
@@ -119,7 +119,7 @@
         <div class="row">
           
           <div class="col-sm-6 wow fadeInUpBig">
-            <img class="main2-img pull-left" src="img/move.jpg" alt="Main2 Image">
+            <img class="main2-img pull-left" src="images/move.jpg" alt="Main2 Image">
           </div>
         
           <div class="col-sm-6 margin-30">
