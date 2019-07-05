@@ -126,13 +126,11 @@ class FrontEndController extends Controller
 
         $phone_number = $request->phone_number;
 
-        $response = json_decode($request->response);
+        $collection_request = json_decode($request->response,true);
 
         echo $response->status;
 
-        
-
-         
+        var_dump($response);          
       
 
         // $save_payment = new Payment();
