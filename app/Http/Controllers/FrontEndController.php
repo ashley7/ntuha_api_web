@@ -126,7 +126,7 @@ class FrontEndController extends Controller
 
         $phone_number = $request->phone_number;
 
-        $collection_request = json_decode($request->response,true);
+        $collection_request = json_decode($request->response);
 
         echo $collection_request->status;
 
