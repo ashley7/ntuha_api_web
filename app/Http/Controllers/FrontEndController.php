@@ -128,7 +128,7 @@ class FrontEndController extends Controller
 
         $response =  $request->response;
 
-        echo $response->status;
+        echo $response['status'];
 
         
 
