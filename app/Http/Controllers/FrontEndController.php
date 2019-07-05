@@ -126,10 +126,9 @@ class FrontEndController extends Controller
 
         $phone_number = $request->phone_number;
 
-        $response =  $request->response;
+        $response = json_decode($request->response);
 
-     
-       var_dump(json_decode($response));
+        echo count($response);
 
         
 
