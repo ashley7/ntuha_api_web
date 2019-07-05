@@ -131,7 +131,7 @@ class FrontEndController extends Controller
         foreach ($response as $key => $responseValue) {
          
 
-           echo $responseValue["status"];
+           return $responseValue;
 
            
         }
