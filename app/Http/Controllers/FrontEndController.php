@@ -122,7 +122,7 @@ class FrontEndController extends Controller
     public function payments(Request $request)
     {
 
-        $collection_request = array();
+       
 
         $phone_number = $request->phone_number;
 
