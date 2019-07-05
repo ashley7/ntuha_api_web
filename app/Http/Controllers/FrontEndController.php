@@ -128,12 +128,8 @@ class FrontEndController extends Controller
 
         $response =  $request->response;
 
-       $persons = '{
-
-        "John":35,"Peter":40,"Mac":28,"Lisa":20
-
-    }';
-       var_dump(json_decode($persons));
+     
+       var_dump(json_decode($response));
 
         
 
