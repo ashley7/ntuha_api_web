@@ -128,19 +128,23 @@ class FrontEndController extends Controller
 
         $collection_request = json_decode($request->response);
 
-        echo $collection_request->status;
+        $data = $collection_request->data;
 
-        var_dump($collection_request);          
+     
+
+             
       
 
-        // $save_payment = new Payment();
-        // $save_payment->email  = $phone_number."@gmail.com";
-        // $save_payment->amount = $collection_request->amount;
-        // $save_payment->status = $collection_request->status;
-        // $save_payment->transaction_id = $collection_request->id;
-        // $save_payment->paying_phone_number = $request->paying_phone_number;
-        // $save_payment->phone_number = $collection_request->phonenumber;
-        // $save_payment->customer_name = $request->name;
+        $save_payment = new Payment();
+        $save_payment->email  = $phone_number."@gmail.com";
+        $save_payment->amount = $collection_request->amount;
+        $save_payment->status = $collection_request->status;
+        $save_payment->transaction_id = $data->txid;
+        $save_payment->paying_phone_number = $data->custphone;
+        $save_payment->phone_number = $data->custphone;
+        $save_payment->customer_name = $request->name;
+
+          var_dump($collection_request);   
         // try {
 
         //     $save_payment->save();
