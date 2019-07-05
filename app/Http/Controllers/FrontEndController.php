@@ -128,17 +128,10 @@ class FrontEndController extends Controller
 
         $response =  [$request->response];
 
-        echo $response['status'];
+        echo count($response);
 
-        return $response;
-
-        
-
-
-
-
-
-       
+        echo gettype($response);
+      
 
         // $save_payment = new Payment();
         // $save_payment->email  = $phone_number."@gmail.com";
