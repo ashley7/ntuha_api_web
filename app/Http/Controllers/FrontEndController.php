@@ -128,15 +128,15 @@ class FrontEndController extends Controller
       
 
         $data = $collection_request->data;
-         
+
         $save_payment = new Payment();
         $save_payment->email  = $phone_number."@gmail.com";
         $save_payment->amount = $data->amount;
         $save_payment->status = $data->status;
-        $save_payment->transaction_id = $data->txref;
+        $save_payment->transaction_id = $data->txRef;
         $save_payment->paying_phone_number = $data->custphone;
         $save_payment->phone_number = $phone_number;
-        $save_payment->customer_name = $request->name;
+        $save_payment->customer_name = $request->name."(".$data->narration.")";
   
         try {
 
