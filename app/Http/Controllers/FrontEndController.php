@@ -128,9 +128,9 @@ class FrontEndController extends Controller
 
         $collection_request = json_decode($request->response,true);
 
-        echo $response->status;
+        echo $collection_request->status;
 
-        var_dump($response);          
+        var_dump($collection_request);          
       
 
         // $save_payment = new Payment();
