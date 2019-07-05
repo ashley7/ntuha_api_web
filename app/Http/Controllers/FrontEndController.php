@@ -125,18 +125,14 @@ class FrontEndController extends Controller
         $phone_number = $request->phone_number;
 
         $collection_request = json_decode($request->response);
+      
 
-        $status = "Failed";
-
-        if ($collection_request->status == "success") {
-            $status = "successful";
-        }
-
-        $data = $collection_request->data; 
+        $data = $collection_request->data;
+         
         $save_payment = new Payment();
         $save_payment->email  = $phone_number."@gmail.com";
         $save_payment->amount = $data->amount;
-        $save_payment->status = $status;
+        $save_payment->status = $data->status;
         $save_payment->transaction_id = $data->txref;
         $save_payment->paying_phone_number = $data->custphone;
         $save_payment->phone_number = $phone_number;
