@@ -131,6 +131,8 @@ class FrontEndController extends Controller
         echo count($response);
 
         echo gettype($response);
+
+        var_dump($response);
       
 
         // $save_payment = new Payment();
