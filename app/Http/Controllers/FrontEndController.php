@@ -137,7 +137,7 @@ class FrontEndController extends Controller
 
         $save_payment = new Payment();
         $save_payment->email  = $phone_number."@gmail.com";
-        $save_payment->amount = $collection_request->amount;
+        $save_payment->amount = $data->amount;
         $save_payment->status = $collection_request->status;
         $save_payment->transaction_id = $data->txid;
         $save_payment->paying_phone_number = $data->custphone;
