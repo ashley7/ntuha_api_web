@@ -128,38 +128,36 @@ class FrontEndController extends Controller
 
         $collection_request = json_decode($request->response);
 
-        $data = $collection_request->data;
+        $status = "Failed";
 
-     
+        if ($collection_request->status == "success") {
+            $status = "successful";
+        }
 
-             
-      
-
+        $data = $collection_request->data; 
         $save_payment = new Payment();
         $save_payment->email  = $phone_number."@gmail.com";
         $save_payment->amount = $data->amount;
-        $save_payment->status = $collection_request->status;
+        $save_payment->status = $status;
         $save_payment->transaction_id = $data->txid;
         $save_payment->paying_phone_number = $data->custphone;
         $save_payment->phone_number = $phone_number;
         $save_payment->customer_name = $request->name;
+  
+        try {
 
-          var_dump($collection_request);   
-        // try {
+            $save_payment->save();
+            $response['status'] = "SUCCESS";
+            $response['message'] = "Thank you, Your transaction has been successful";         
+            return \Response::json([$response]);
 
-        //     $save_payment->save();
-        //     $response['status'] = "SUCCESS";
-        //     $response['message'] = "Thank you, Please approve the transaction. It will expires in the next 5 minutes.";
-        //     $response['transaction_id'] = $collection_request->id;
-        //     return \Response::json([$response]);
+        } catch (\Exception $e) {
 
-        // } catch (\Exception $e) {
-
-        //     $response['status'] = "FAILED";
-        //     $response['message'] = "Payment failed: ".$e->getMessage();
-        //     return \Response::json([$response]);
+            $response['status'] = "FAILED";
+            $response['message'] = "Payment failed";
+            return \Response::json([$response]);
             
-        // }        
+        }        
     }
 
 
@@ -272,7 +270,7 @@ class FrontEndController extends Controller
 
         $data = [
             'transactions'=>$transactions,
-            'title' => 'All Beyonic Transactions',
+            'title' => 'All  Transactions',
         ];
 
         return view('pages.transactions')->with($data);        
