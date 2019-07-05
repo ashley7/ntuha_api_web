@@ -128,11 +128,11 @@ class FrontEndController extends Controller
 
         $response =  [$request->response];
 
-        echo count($response);
+        $collection_request = json_decode($response->toJSON());
 
-        echo gettype($response);
+        return $collection_request;
 
-        var_dump($response);
+         
       
 
         // $save_payment = new Payment();
