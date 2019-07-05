@@ -128,7 +128,7 @@ class FrontEndController extends Controller
 
         $response = json_decode($request->response);
 
-        echo count($response);
+        echo getType($response);
 
         
 
