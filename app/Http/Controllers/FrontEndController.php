@@ -126,11 +126,13 @@ class FrontEndController extends Controller
 
         $phone_number = $request->phone_number;
 
-        $response = json_decode($request->response);
+        $response =  $request->response;
 
-        echo gettype($response);
+        echo $response->status;
 
-        return $response;
+        
+
+
 
 
 
