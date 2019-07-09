@@ -204,15 +204,21 @@ class FrontEndController extends Controller
 
     public function record_account_ride(Request $request)
     {
-        $save_withdraw = new Withdraw();
-        $save_withdraw->email = $request->email;
-        $save_withdraw->amount = $request->account_payment;
+
+        $phone_number = str_replace("@gmail.com", "", $request->email);
+
+        $save_payment = new Payment();
+        $save_payment->email  = $request->email;
+        $save_payment->amount = (0 - $request->account_payment);
+        $save_payment->status = "successful";
+        $save_payment->transaction_id = "Withdraw - ".time();
+        $save_payment->paying_phone_number = $phone_number;
+        $save_payment->phone_number = $phone_number;
+        $save_payment->customer_name = ".";
+
         try {
-            $save_withdraw->save();
-            echo "Deduction recorded";
-        } catch (\Exception $e) {
-            echo "Deduction Not recorded: ".$e->getMessage();
-        }
+            $save_payment->save();           
+        } catch (\Exception $e) {}
     }
 
     public function customer_payments(Request $request)
@@ -222,10 +228,9 @@ class FrontEndController extends Controller
 
     public static function account_balance(Request $request)
     {
-        // $payments = Payment::where('email',$request->email)->sum('amount');
-        $payments = Payment::where('email',$request->email)->where('status','successful')->sum('amount');
-        $with_draw = Withdraw::where('email',$request->email)->sum('amount');
-        return ($payments - $with_draw);        
+           
+       return Payment::where('email',$request->email)->where('status','successful')->sum('amount');      
+
     }
 
     public function phone_number()
