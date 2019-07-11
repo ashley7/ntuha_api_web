@@ -18,7 +18,18 @@ class DriverTopupController extends Controller
      */
     public function index()
     {
-        //
+        $driverTopup = DriverTopup::all();
+
+        $data = [
+
+            'title'=>'Driver top up',
+
+            'driverTopup'=>$driverTopup,
+
+        ];
+
+        return view('topups')->with($data);
+
     }
 
     /**
@@ -61,7 +72,23 @@ class DriverTopupController extends Controller
      */
     public function edit(DriverTopup $driverTopup)
     {
-        //
+        $topup = DriverTopup::find($driverTopup);
+
+        if ($topup->status == "Not paid") {
+            
+            $topup->status = "Paid";
+            
+        }
+
+        if ($topup->status == "Paid") {
+            
+            $topup->status = "Not paid";
+            
+        }
+
+        $topup->save();
+
+        return back();
     }
 
     /**
@@ -144,8 +171,8 @@ class DriverTopupController extends Controller
         $save_payment->email  = $phone_number."@gmail.com";
         $save_payment->amount = $request->amount;
         $save_payment->status = "successful";
-        $save_payment->transaction_id = time();
-        $save_payment->paying_phone_number = "Driver";
+        $save_payment->transaction_id = "Driver-".time();
+        $save_payment->paying_phone_number = $request->driver_id;
         $save_payment->phone_number = $phone_number;
         $save_payment->customer_name = DriverTopupController::check_user($phone_number);
         $save_payment->save();

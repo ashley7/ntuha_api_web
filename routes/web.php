@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('driver','DriverController');
 
 	Route::resource('user','UserController');
+
+	Route::resource('driver_top_up','DriverTopupController');
 });
 
 Route::get('/beyonic', function () {

@@ -125,8 +125,13 @@
                             </li> 
 
                             <li class="has-submenu">
-                                <a href="/transactions"><i class="zmdi zmdi-car"></i>  Transactions</a>
-                            </li>                        
+                                <a href="/transactions"><i class="zmdi zmdi-car"></i>A/C Top-up</a>
+                            </li>  
+
+                            <li class="has-submenu">
+                                <a href="/driver_top_up"><i class="zmdi zmdi-car"></i>Driver Top-up</a>
+                            </li> 
+
 
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-settings"></i>Settings</a>
