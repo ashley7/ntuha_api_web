@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DriverTopup;
+use App\Payment;
 use Illuminate\Http\Request;
 use App\Driver;
 use App\Customer;
