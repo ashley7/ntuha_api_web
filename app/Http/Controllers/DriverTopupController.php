@@ -70,11 +70,11 @@ class DriverTopupController extends Controller
      * @param  \App\DriverTopup  $driverTopup
      * @return \Illuminate\Http\Response
      */
-    public function edit(DriverTopup $driverTopup)
+    public function edit($driverTopup)
     {
         $topup = DriverTopup::find($driverTopup);
 
-        return $topup;
+
 
         if ($topup->status == "Not paid") {
             
@@ -90,7 +90,7 @@ class DriverTopupController extends Controller
 
         $topup->save();
 
-        // return back();
+        return back();
     }
 
     /**
