@@ -74,6 +74,8 @@ class DriverTopupController extends Controller
     {
         $topup = DriverTopup::find($driverTopup);
 
+        return $topup;
+
         if ($topup->status == "Not paid") {
             
             $topup->status = "Paid";
@@ -88,7 +90,7 @@ class DriverTopupController extends Controller
 
         $topup->save();
 
-        return back();
+        // return back();
     }
 
     /**
