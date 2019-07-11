@@ -6,6 +6,7 @@ use App\DriverTopup;
 use Illuminate\Http\Request;
 use App\Driver;
 use App\Customer;
+use App\Http\Controllers\DriverTopupController;
 
 class DriverTopupController extends Controller
 {
