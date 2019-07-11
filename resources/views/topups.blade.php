@@ -25,7 +25,7 @@
 
                       <tr>
                         <td>{{$topup->created_at}}</td>
-                        <td>{{$topup->customer_name}}</td>
+                        <td>{{$topup->customer_name}} ({{str_replace("@gmail.com","",$topup->customer_email)}})</td>
                         <td>{{$topup->driver_id}}</td>
                         <td>{{$topup->amount}}</td>
                         <td>{{$topup->status}}</td>
