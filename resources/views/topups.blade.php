@@ -29,7 +29,7 @@
                         <td>{{$topup->driver_id}}</td>
                         <td>{{$topup->amount}}</td>
                         <td>{{$topup->status}}</td>
-                        <td><a href="/driver_top_up/edit/{{$topup->id}}">Change status</a></td>
+                        <td><a href="{{route('driver_top_up.edit',$topup->id)}}">Change status</a></td>
                       </tr>
 
                     @endforeach
