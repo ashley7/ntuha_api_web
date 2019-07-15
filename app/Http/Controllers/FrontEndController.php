@@ -409,6 +409,16 @@ class FrontEndController extends Controller
         
     }
 
- 
+    public function rave_public_Keys()
+    {
+        
+        $response = array();
+        $response["RAVE_PUBLIC_KEY"] = env("RAVE_PUBLIC_KEY");
+        $response["RAVE_SECRET_KEY"] = env("RAVE_SECRET_KEY");
+        $response["RAVE_ENCRYPTION_KEY"] = env("RAVE_ENCRYPTION_KEY");
+        $response["status"] = "SUCCESS";
 
+        return \Response::json([$response]);  
+        
+    }
 }

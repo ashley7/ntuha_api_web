@@ -36,6 +36,7 @@ class RideHistoryController extends Controller
         $phone_number = $request->phone;
         $name = $request->name;
         $access_code = $request->access_code;
+        
         $message = "Dear ".$name.", Thank you for joining Ntuha Ride. Your password is ".$access_code;
         
         $save_customer = new Customer();
@@ -44,8 +45,12 @@ class RideHistoryController extends Controller
         $save_customer->email = $phone_number.'@gmail.com';
         try {
             $save_customer->save();
-        } catch (\Exception $e) {}
-        DriverController::sendSMS($phone_number,$message);
+            DriverController::sendSMS($phone_number,$message);
+            echo $message;
+        } catch (\Exception $e) {
+            echo "Registration failed, please try again";
+        }
+        
 
     }
 

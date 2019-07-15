@@ -37,3 +37,5 @@ Route::any('update_driver','NtuhaDashboardController@update_driver');
 Route::any('check_user','DriverTopupController@checkUser');
 
 Route::any('driver_top_up','DriverTopupController@driverTopUp');
+
+Route::any('rave_public_Keys','FrontEndController@rave_public_Keys');

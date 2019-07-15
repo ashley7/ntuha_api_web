@@ -178,21 +178,44 @@ class DriverController extends Controller
         $read_price = Price::all()->where('type',$request->service)->last();
         if (!empty($read_price)) {
 
-            $balance = 0;
+            $balance = $price = $estimated_price = 0;
 
-            if ($request->payment_method = 'Account') {
-                # paying from account
-                $balance = FrontEndController::account_balance($request);
-            }          
+            $unit_price = $read_price->price;
+
+            if (isset($read_price->estimatedDistance)) {
+
+                $ride_distance = $read_price->estimatedDistance;              
+
+                $estimated_price = ($unit_price * round($ride_distance));
+
+                if( ($request->service == "Ntuha Boda") && $estimated_price < env("BODA_PRICE")){
+                    $estimated_price = env("BODA_PRICE");
+
+                }
+
+                if( ($request->service == "Ntuha Taxi") && $estimated_price < env("TAXI_PRICE")){
+                    $estimated_price = env("TAXI_PRICE");
+                }
+
+                if( ($request->service == "Ntuha Truck") && $estimated_price < env("TRUCK_PRICE")){
+                    $estimated_price = env("TRUCK_PRICE");
+                }
+
+            }else{
+
+                $estimated_price = $unit_price;
+
+            }              
           
             $response["status"] = "SUCCESS";
-            $response["price"] = $read_price->price;
+            $response["price"] = $estimated_price;
             $response["balance"] = $balance;
             $response["type"] = $read_price->type;
             $response["ratetype"] = $read_price->ratetype;
             $response["rate"] = $read_price->rate;
 
-            return \Response::json([$response]);          
+            return \Response::json([$response]);  
+                    
         }else{
             $response["status"] = "FAILED";
             $response["message"] = "No Price found";
