@@ -1,5 +1,6 @@
 <?php
 ini_set('max_execution_time', '1200');
+use App\DriverController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -66,6 +67,10 @@ Route::get('/beyonic', function () {
 	));
 
 	return json_encode($collection_request);
+});
+
+Route::get('/test_route', function () {
+    DriverController::sendSMS("0787444081","Hello Ntuha ride");
 });
 
 

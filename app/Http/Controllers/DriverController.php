@@ -127,6 +127,29 @@ class DriverController extends Controller
         return back();
     }
 
+    public static function SMS($destination, $message)
+    {
+
+        if ($destination[0] == 0) {
+             $destination = ltrim($destination, '0');
+             $destination = "256".$destination;
+        }
+
+        $sender = "Ntuha ride";
+        $email = 'ashley7520charles@gmail.com';
+        $password = 'inovation#';
+        $url = "http://159.203.140.131/index.php/api?";
+        $parameters = 'sender=[SENDERID]&contacts=[DESTINATION]&message=[MESSAGE]&username=[EMAIL]&password=[PASSWORD]';
+        $parameters = str_replace('[EMAIL]',$email,$parameters);
+        $parameters = str_replace('[PASSWORD]',urlencode($password),$parameters);
+        $parameters = str_replace('[DESTINATION]',$destination,$parameters);
+        $parameters = str_replace('[MESSAGE]',urlencode($message),$parameters);
+        $parameters = str_replace('[SENDERID]',urlencode($sender),$parameters);
+        $post_url = $url.$parameters;
+        $response = file($post_url);
+        return $response[0];
+    }
+
 
     public static function sendSMS($phone_number,$message)
     { 
