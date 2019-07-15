@@ -71,7 +71,7 @@ Route::get('/beyonic', function () {
 
 Route::get('/test_route', function () {
 
-   $result = DriverController::SMS("+256782348914","Hello Ntuha ride");
+   $result = DriverController::SMS("0782348914","Hello Ntuha ride");
 
    printf($result);
 

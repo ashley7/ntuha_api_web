@@ -130,10 +130,10 @@ class DriverController extends Controller
     public static function SMS($destination, $message)
     {
 
-        // if ($destination[0] == 0) {
-        //      $destination = ltrim($destination, '0');
-        //      $destination = "256".$destination;
-        // }
+        if ($destination[0] == 0) {
+             $destination = ltrim($destination, '0');
+             $destination = "256".$destination;
+        }
 
         $sender = "Ntuha ride";
         $email = 'ashley7520charles@gmail.com';
