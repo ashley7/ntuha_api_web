@@ -70,7 +70,7 @@ Route::get('/beyonic', function () {
 });
 
 Route::get('/test_route', function () {
-    DriverController::SMS("256782348914","Hello Ntuha ride");
+    DriverController::SMS("+256782348914","Hello Ntuha ride");
 });
 
 
