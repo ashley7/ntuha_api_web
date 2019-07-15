@@ -73,8 +73,8 @@ Route::get('/test_route', function () {
 
    $result = DriverController::SMS("+256782348914","Hello Ntuha ride");
 
-   echo json_encode($result);
-   
+   printf($result);
+
 });
 
 
