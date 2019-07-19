@@ -259,6 +259,11 @@ class DriverController extends Controller
 
     public function google_api_key()
     {
-         return env("GAPI_KEY");
+        return env("GAPI_KEY");
+    }
+
+    public function autocomplete_api_key()
+    {
+        return env("AUTOCOMPLETE_API");
     }
 }

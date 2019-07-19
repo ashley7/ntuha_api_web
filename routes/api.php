@@ -41,3 +41,5 @@ Route::any('driver_top_up','DriverTopupController@driverTopUp');
 Route::any('rave_public_Keys','FrontEndController@rave_public_Keys');
 
 Route::any('google_api_key','DriverController@google_api_key');
+
+Route::any('autocomplete_api_key','DriverController@autocomplete_api_key');
