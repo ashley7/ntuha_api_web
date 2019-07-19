@@ -197,13 +197,13 @@
           <p>Ntuha Ride located at Plot 11a KAR drive, Kampala Uganda, is the controller of personal data of customers collected from all its online platforms.
         The term "us" or "we" refers to the owner of the Ntuha Ride app, Ntuha Ride, is a private limited company, founded in the Republic of Uganda.<br>
         1. Personal data we process<br>
-        • Name, phone number, e-mail address.<br>
-        • Geolocation of the passenger, the time and the destination of a journey.<br>
-        • Payment information.<br>
-        • Identification data of the device on which the Ntuha Ride app has been installed.<br>
-        2. Purpose of the process<br>
-        • We collect and process personal data for the purpose of connecting passengers with drivers to help them move around cities more efficiently.<br>
-        • We display geolocation data and the phone number of passengers to drivers to enable efficient pick-up. Geolocation data is collected only when the Ntuha Ride app is activated. The collection of geolocation data stops after closing the Ntuha Ride app. <br>
+        • Name, phone number, e-mail address.
+        • Geolocation of the passenger, the time and the destination of a journey.
+        • Payment information.
+        • Identification data of the device on which the Ntuha Ride app has been installed.
+        2. Purpose of the process
+        • We collect and process personal data for the purpose of connecting passengers with drivers to help them move around cities more efficiently.
+        • We display geolocation data and the phone number of passengers to drivers to enable efficient pick-up. Geolocation data is collected only when the Ntuha Ride app is activated. The collection of geolocation data stops after closing the Ntuha Ride app. 
         • We may use geolocation data to resolve quality issues related to transportation services.
         • We use contact details to notify passengers of updates to the Ntuha Ride app.
         • We collect data of the routes taken by drivers and passengers to analyse the geographic coverage in order to provide recommendations to the drivers about most efficient routes.

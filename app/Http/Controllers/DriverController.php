@@ -256,4 +256,9 @@ class DriverController extends Controller
             return env("DEFAULT_IMAGE");
         }
     }
+
+    public function google_api_key()
+    {
+         return env("GAPI_KEY");
+    }
 }
