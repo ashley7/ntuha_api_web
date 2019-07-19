@@ -205,9 +205,9 @@ class DriverController extends Controller
 
             $unit_price = $read_price->price;
 
-            if (isset($read_price->estimatedDistance)) {
+            if (isset($request->estimatedDistance)) {
 
-                $ride_distance = $read_price->estimatedDistance;              
+                $ride_distance = $request->estimatedDistance;              
 
                 $estimated_price = ($unit_price * round($ride_distance));
 
