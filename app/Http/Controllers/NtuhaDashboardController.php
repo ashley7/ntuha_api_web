@@ -327,8 +327,9 @@ class NtuhaDashboardController extends Controller
         if (!empty($rides)) {
             
             foreach ($rides as $key_key => $ride_value) {
-                $result = [];
+                
                 try {
+                    $result = [];
                   
                     $result["customer_name"] = $ride_value['customer_name'];
                     $result["distance"] = $ride_value['distance'];
