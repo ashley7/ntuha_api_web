@@ -60,8 +60,8 @@ class NtuhaDashboardController extends Controller
                           }
                            $customer_data[] = $result;   
                         } catch (\Exception $e) {
-                          echo $e->getMessage();
-                          exit();
+                          // echo $e->getMessage();
+                          // exit();
                         }
                                                   
                        }
