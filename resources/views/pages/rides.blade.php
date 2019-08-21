@@ -27,6 +27,7 @@
 
                 <tbody>
                    @foreach($ride as $key => $ride_value)
+                    @if(!empty($ride_value))
                       <tr>
                           <td>{{$ride_value['date']}}</td>
                           <td>{{$ride_value['customer_name']}}</td>
@@ -49,7 +50,8 @@
                                <span class="text-success">Paid</span>
                             @endif   
                           </td>
-                      </tr>                          
+                      </tr>
+                    @endif                         
                    @endforeach
                 </tbody>
             </table>
