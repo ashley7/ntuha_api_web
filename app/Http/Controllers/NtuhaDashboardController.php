@@ -9,6 +9,7 @@ use Kreait\Firebase\ServiceAccount;
 use Kreait\Firebase\Database;
 use App\Http\Controllers\DriverController;
 use App\User;
+use App\Customer;
 
 
 class NtuhaDashboardController extends Controller
@@ -49,10 +50,12 @@ class NtuhaDashboardController extends Controller
                     foreach ($customer as $key => $customerValueDetails) {
                        if (gettype($customerValueDetails) != "array") {
                         $result = [];
+                        $customer_local_data = Customer::where('email',$customer['phone'].'@gmail.com')->get()->last();
                         try {
                            $result["customeId"] = $customer_key;
                            $result['name'] = $customer['name'];
                            $result['phone'] = $customer['phone'];
+                           $result['pin'] = $customer_local_data->password;
                            if (!isset($customer['profileImageUrl'])) {
                              $result['profileImageUrl'] = "default.jpg";
                            }else{

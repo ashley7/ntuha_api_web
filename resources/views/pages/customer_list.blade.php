@@ -13,6 +13,7 @@
                   
                     <th>Name</th>
                     <th>Phone Number</th>
+                    <th>Pin</th>
                     <th>Image</th>
                     <th>Action</th>                              
                 </thead>
@@ -23,6 +24,7 @@
                           
                           <td>{{$customer['name']}}</td>
                           <td>{{$customer['phone']}}</td>
+                          <td>{{$customer['pin']}}</td>
                           <td>
                             <img src="{{$customer['profileImageUrl']}}" width="40px">
                           </td>
