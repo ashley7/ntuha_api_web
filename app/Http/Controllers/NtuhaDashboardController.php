@@ -50,8 +50,9 @@ class NtuhaDashboardController extends Controller
                     foreach ($customer as $key => $customerValueDetails) {
                        if (gettype($customerValueDetails) != "array") {
                         $result = [];
-                        $customer_local_data = Customer::where('email',$customer['phone'].'@gmail.com')->get()->last();
+                        
                         try {
+                          $customer_local_data = Customer::where('email',$customer['phone'].'@gmail.com')->get()->last();
                            $result["customeId"] = $customer_key;
                            $result['name'] = $customer['name'];
                            $result['phone'] = $customer['phone'];
