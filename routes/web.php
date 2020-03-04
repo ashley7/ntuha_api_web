@@ -2,7 +2,7 @@
 ini_set('max_execution_time', '1200');
 use App\Http\Controllers\DriverController;
 Route::get('/', function () {
-    return view('welcome');
+    return view('front');
 });
 
 
