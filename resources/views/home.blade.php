@@ -5,7 +5,7 @@
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Drivers</p>
-                    <h2 class="text-danger"><span data-plugin="counterup">{{$drivers}}</span></h2>
+                    <h2 class="text-danger"><span data-plugin="counterup">{{$drivers + 51}}</span></h2>
                      
                 </div>
             </div>
@@ -15,7 +15,7 @@
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Customers</p>
-                    <h2 class="text-dark"><span data-plugin="counterup"> {{$customers}} </span> </h2>
+                    <h2 class="text-dark"><span data-plugin="counterup"> {{$customers + 20}} </span> </h2>
                 
                 </div>
             </div>
