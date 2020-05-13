@@ -168,10 +168,10 @@
                      <div class="col-md-4">
                         <h4>Our customers</h4>
                         <ul>
-                           <li>100 transporters </li>
-                           <li>1200 farmers onboarded</li>
+                           <li>109 transporters </li>
+                           <li>1,226 farmers onboarded</li>
                            <li>3 Farm input companies </li>
-                           <li>300 buyers available</li>                            
+                           <li>Over 30,000 buyers available</li>                            
                         </ul>
                     </div>
                 </div>
