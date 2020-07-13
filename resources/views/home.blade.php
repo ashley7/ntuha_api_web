@@ -5,7 +5,7 @@
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Drivers</p>
-                    <h2 class="text-danger"><span data-plugin="counterup">{{$drivers + 61}}</span></h2>
+                    <h2 class="text-danger"><span data-plugin="counterup">{{$drivers}}</span></h2>
                      
                 </div>
             </div>
@@ -15,7 +15,7 @@
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Customers</p>
-                    <h2 class="text-dark"><span data-plugin="counterup"> {{$customers + 330}} </span> </h2>
+                    <h2 class="text-dark"><span data-plugin="counterup"> {{$customers}} </span> </h2>
                 
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Available drivers</p>
-                    <h2 class="text-success"><span data-plugin="counterup">{{$available_drivers + 5}}</span></h2>
+                    <h2 class="text-success"><span data-plugin="counterup">{{$available_drivers}}</span></h2>
                
                 </div>
             </div>
@@ -49,7 +49,7 @@
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Rides</p>
-                    <h2 class="text-dark"><span data-plugin="counterup">{{$rides + 500}}</span> </h2>
+                    <h2 class="text-dark"><span data-plugin="counterup">{{$rides}}</span> </h2>
                 
                 </div>
             </div>
