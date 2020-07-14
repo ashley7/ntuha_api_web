@@ -7,7 +7,7 @@
         <meta name="author" content="Thembo Charles Lwanga">
         <meta name="author_email" content="ashley7520charles@gmail.com">
 
-         <!-- <link rel="icon" href="{{asset('logo/splash.jpg')}}"> -->
+         <link rel="icon" href="{{asset('logo/splash.jpg')}}">
 
          <title>{{ config('app.name', '') }}</title>
 
@@ -16,7 +16,7 @@
         <link href="{{asset('back_end/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
         <style type="text/css">
             #topnav .topbar-main {
-                background-color: #f1b53d;
+                background-color: #8b0000;
             }
           
         </style>
