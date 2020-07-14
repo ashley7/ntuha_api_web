@@ -148,17 +148,17 @@
                 <font color="#fff">Tel: +256 (0) 704 444 481 or +256 (0) 703 03 7087</font>
                 <br>
 
-                <i><b color="#fff"><hr>Offices Opening up soon!<hr/></b></i>
+                <i><b style="color: #fff"><hr>Offices Opening up soon!<hr/></b></i>
                 <br>
 
-                <b color="#fff">Kabale Office</b><br>
-                <p color="#fff">
+                <b style="color: #fff">Kabale Office</b><br>
+                <p style="color: #fff">
                     In an effort to extend the service to other parts of the country, ntuha is opening a new office in Kabale District at the end of July along Kabale - Kisoro road. We believe that the extension to Kabale district will enable extend our services to the people (farmers) that most need it and help Ntuha serve south western region better. 
                 </p>
 
                 <br>
-                <b color="#fff">Karamoja and Northern Uganda office</b><br>
-                <p color="#fff">
+                <b style="color: #fff">Karamoja and Northern Uganda office</b><br>
+                <p style="color: #fff">
                    Ntuha plans to extend to Karamoja and Northern Uganda region. This is after the success of business in Mbarara. Karamoja office will be opened up in Moroto at the beginning of December and the northern Uganda office will be opened up in Gulu. The two regions pose a great need for Ntuha services.
                 </p>
 
