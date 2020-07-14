@@ -6,8 +6,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Ntuha deliveries</title>
-	
-	<!-- core CSS -->
+    
+    <!-- core CSS --> 
     <link href="/front/css/bootstrap.min.css" rel="stylesheet">
     <link href="/front/css/font-awesome.min.css" rel="stylesheet">
     <link href="/front/css/animate.min.css" rel="stylesheet">
@@ -53,10 +53,10 @@
                     </button>
                     <a class="navbar-brand" href="index.php"><img src="/front/images/ntuha.png" width="40%" alt="logo"></a>
                 </div>
-				              
+                              
             </div><!--/.container-->
         </nav><!--/nav-->
-		
+        
     </header><!--/header-->
 
     <section id="main-slider" class="no-margin">
@@ -73,7 +73,7 @@
                         <div class="row slide-margin">
                             <div class="col-sm-6">
                                 <div class="carousel-content">
-                                    <h1 class="animation animated-item-1">Farmer uses the platform to search for available buyers for the produce</h1>
+                                    <h1 class="animation animated-item-1">Farmer uses the platform to search for available means of transport for the inputs and produce</h1>
                                 </div>
                             </div>
 
@@ -117,10 +117,10 @@
 
 
     <section id="services" class="service-item">
-	   <div class="container">
+       <div class="container">
             <div class="center wow fadeInDown">
-                <h2>Who we are</h2>
-                <p class="lead">We are a digital platform that connects farmers with ready farm produce buyers, agricultural farm inputs companies, and transporters in order to increase farmers’ income. We have pioneered an alternative system that replaces the use of middlemen in the agricultural ecosystem.  The platform combines a logistics and market facilitation mechanism to enable the farmers to maximize return on their investment. On top of that, farmers also receive climate/seasons information which enables them to plan on when to start planting and what to plant to maximize their agricultural productivity. We have adopted partnerships approach in achieving this goal, such as the partnership with EBBO Sacco, Mbarara to help create awareness of our solution, and also integrate the financial solution.</p>
+                <h2><font color="#150000">Who we are</font></h2>
+                <p class="lead"><font color="#150000">We are a digital platform that connects farmers with a reliable means of transport for their either farm produce or inputs, agricultural farm inputs companies, and transporters in order to increase farmers’ income. We have pioneered an alternative system that replaces the use of middlemen in the agricultural ecosystem.  The platform combines a logistics and market facilitation mechanism to enable the farmers to maximize return on their investment. On top of that, farmers also receive climate/seasons information which enables them to plan on when to start planting and what to plant to maximize their agricultural productivity. We have adopted partnerships approach in achieving this goal, such as the partnership with EBBO Sacco, Mbarara to help create awareness of our solution, and also integrate the financial solution.</p></font>
             </div>
  
         </div>
@@ -131,9 +131,34 @@
             <div class="center wow fadeInDown">
                 <h2>Our solution to farmers</h2>               
                 <p class="lead" style="font-size: 20px;"> Farmer    Platform   Market </p>
-                <p class="lead">Farmer uses the platform to search for available buyers for the produce, requests for reliable means of transport to transport goods to the market and gains high income from selling his produce directly to the buyer</p>
+                <p class="lead">Farmer uses the platform to search for available means of transport for their farm inputs and produce, requests for reliable means of transport to transport goods to the market and gains high income from selling his produce directly to the buyer</p>
             </div>
 
+        </div>
+    </section>
+    
+     <section id="services" class="service-item">
+       <div class="container">
+            <div class="center wow fadeInDown">
+                <h2><font color="#020202">Areas of Operation</font></h2>
+                <p class="lead"><b><font color="#85878b">Mbarara</font></b><br>
+<font color="#4e4b4e">Ntuha currently runs its operations in Mbarara town with offices at Bam complex Building. The Mbarara office is the headquarters of Ntuha and offers online logistics and package delivery services to both drivers and commuters in Mbarara and surrounding areas.
+Physical Address: Bam Complex Building, High street.</font> <br>
+<font color="#4e4b4e">Email:</font> <a href="mailto">ntuha.deliveries@gmail.com</a><br>
+<font color="#4e4b4e">Tel: +256 (0) 704 444 481 or +256 (0) 703 03 7087</font>
+<br>
+
+<i><b><hr>Offices Opening up soon!<hr/></b></i>
+<br>
+
+<b>Kabale Office</b><br>
+In an effort to extend the service to other parts of the country, ntuha is opening a new office in Kabale District at the end of July along Kabale - Kisoro road. We believe that the extension to Kabale district will enable extend our services to the people (farmers) that most need it and help Ntuha serve south western region better. 
+<br>
+<b>Karamoja and Northern Uganda office</b><br>
+Ntuha plans to extend to Karamoja and Northern Uganda region. This is after the success of business in Mbarara. Karamoja office will be opened up in Moroto at the beginning of December and the northern Uganda office will be opened up in Gulu. The two regions pose a great need for Ntuha services.
+</p>
+            </div>
+ 
         </div>
     </section>
 
@@ -149,10 +174,10 @@
                         <h4>Farmer’s profile</h4>
                          <ul>
                              <li>Access to Buyers</li>
-                             <li>Access to transportation</li>
-                             <li>Sell farm produce</li>
-                             <li>Access to farm inputs</li>
-                             <li>Access to seasons’ info</li>
+                             <li>Access to Transportation</li>
+                             <li>Sell farm Produce</li>
+                             <li>Access to Farm inputs</li>
+                             <li>Access to Seasons’ info</li>
                          </ul>                          
                          </p>
                     </div>
@@ -180,16 +205,11 @@
         </div>
     </section>
 
-    
- 
-
- 
-
     <footer id="footer" class="midnight-blue">
         <div class="container">
             
             <center>
-                <?php echo date("Y") ?> <a href="">Ntuha Deliveries (U) LTD</a>. All Rights Reserved. 
+                <?php echo date("Y") ?> <a href="">©2018-2020 Ntuha Servies (U) Ltd</a>. All Rights Reserved. 
             </center>
                  
         </div>
