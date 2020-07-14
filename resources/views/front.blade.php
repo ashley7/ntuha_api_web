@@ -119,8 +119,8 @@
     <section id="services" class="service-item">
        <div class="container">
             <div class="center wow fadeInDown">
-                <h2><font color="#150000">Who we are</font></h2>
-                <p class="lead"><font color="#150000">We are a digital platform that connects farmers with a reliable means of transport for their either farm produce or inputs, agricultural farm inputs companies, and transporters in order to increase farmers’ income. We have pioneered an alternative system that replaces the use of middlemen in the agricultural ecosystem.  The platform combines a logistics and market facilitation mechanism to enable the farmers to maximize return on their investment. On top of that, farmers also receive climate/seasons information which enables them to plan on when to start planting and what to plant to maximize their agricultural productivity. We have adopted partnerships approach in achieving this goal, such as the partnership with EBBO Sacco, Mbarara to help create awareness of our solution, and also integrate the financial solution.</p></font>
+                <h2><font color="#fff">Who we are</font></h2>
+                <p class="lead"><font color="#fff">We are a digital platform that connects farmers with a reliable means of transport for their either farm produce or inputs, agricultural farm inputs companies, and transporters in order to increase farmers’ income. We have pioneered an alternative system that replaces the use of middlemen in the agricultural ecosystem.  The platform combines a logistics and market facilitation mechanism to enable the farmers to maximize return on their investment. On top of that, farmers also receive climate/seasons information which enables them to plan on when to start planting and what to plant to maximize their agricultural productivity. We have adopted partnerships approach in achieving this goal, such as the partnership with EBBO Sacco, Mbarara to help create awareness of our solution, and also integrate the financial solution.</p></font>
             </div>
  
         </div>
