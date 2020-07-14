@@ -140,23 +140,29 @@
      <section id="services" class="service-item">
        <div class="container">
             <div class="center wow fadeInDown">
-                <h2><font color="#020202">Areas of Operation</font></h2>
-                <p class="lead"><b><font color="#85878b">Mbarara</font></b><br>
-<font color="#4e4b4e">Ntuha currently runs its operations in Mbarara town with offices at Bam complex Building. The Mbarara office is the headquarters of Ntuha and offers online logistics and package delivery services to both drivers and commuters in Mbarara and surrounding areas.
-Physical Address: Bam Complex Building, High street.</font> <br>
-<font color="#4e4b4e">Email:</font> <a href="mailto">ntuha.deliveries@gmail.com</a><br>
-<font color="#4e4b4e">Tel: +256 (0) 704 444 481 or +256 (0) 703 03 7087</font>
-<br>
+                <h2><font color="#fff">Areas of Operation</font></h2>
+                <p class="lead"><b><font color="#fff">Mbarara</font></b><br>
+                <font color="#fff">Ntuha currently runs its operations in Mbarara town with offices at Bam complex Building. The Mbarara office is the headquarters of Ntuha and offers online logistics and package delivery services to both drivers and commuters in Mbarara and surrounding areas.
+                Physical Address: Bam Complex Building, High street.</font> <br>
+                <font color="#fff">Email:</font> <a href="mailto">ntuha.deliveries@gmail.com</a><br>
+                <font color="#fff">Tel: +256 (0) 704 444 481 or +256 (0) 703 03 7087</font>
+                <br>
 
-<i><b><hr>Offices Opening up soon!<hr/></b></i>
-<br>
+                <i><b color="#fff"><hr>Offices Opening up soon!<hr/></b></i>
+                <br>
 
-<b>Kabale Office</b><br>
-In an effort to extend the service to other parts of the country, ntuha is opening a new office in Kabale District at the end of July along Kabale - Kisoro road. We believe that the extension to Kabale district will enable extend our services to the people (farmers) that most need it and help Ntuha serve south western region better. 
-<br>
-<b>Karamoja and Northern Uganda office</b><br>
-Ntuha plans to extend to Karamoja and Northern Uganda region. This is after the success of business in Mbarara. Karamoja office will be opened up in Moroto at the beginning of December and the northern Uganda office will be opened up in Gulu. The two regions pose a great need for Ntuha services.
-</p>
+                <b color="#fff">Kabale Office</b><br>
+                <p color="#fff">
+                    In an effort to extend the service to other parts of the country, ntuha is opening a new office in Kabale District at the end of July along Kabale - Kisoro road. We believe that the extension to Kabale district will enable extend our services to the people (farmers) that most need it and help Ntuha serve south western region better. 
+                </p>
+
+                <br>
+                <b color="#fff">Karamoja and Northern Uganda office</b><br>
+                <p color="#fff">
+                   Ntuha plans to extend to Karamoja and Northern Uganda region. This is after the success of business in Mbarara. Karamoja office will be opened up in Moroto at the beginning of December and the northern Uganda office will be opened up in Gulu. The two regions pose a great need for Ntuha services.
+                </p>
+
+ 
             </div>
  
         </div>
