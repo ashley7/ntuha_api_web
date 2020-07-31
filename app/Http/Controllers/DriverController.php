@@ -207,10 +207,16 @@ class DriverController extends Controller
 
             if (isset($request->estimatedDistance)) {
 
-                $ride_distance = $request->estimatedDistance;              
+                $ride_distance = $request->estimatedDistance; 
 
-                $estimated_price = ($unit_price * round($ride_distance));
+                $estimated_price = 0; 
 
+                if (empty($request->ride_price)) {
+                    $estimated_price    =  $request->ride_price;        
+                }else{
+                    $estimated_price = ($unit_price * round($ride_distance));
+                }           
+               
                 if( ($request->service == "Ntuha Boda") && $estimated_price < env("BODA_PRICE")){
                     $estimated_price = env("BODA_PRICE");
 
