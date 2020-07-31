@@ -332,24 +332,24 @@ class FrontEndController extends Controller
 
             $estimated_price = 0;
 
-            if (empty($request->ride_price)) {
+            if (!empty($request->ride_price)) {
                 $estimated_price = $request->ride_price;
             }else{
                 $estimated_price = ($unit_price * round($ride_distance));
             }
             
-            if( ($request->service == "Ntuha Boda") && $estimated_price < env("BODA_PRICE")){
-                $estimated_price = env("BODA_PRICE");
+            // if( ($request->service == "Ntuha Boda") && $estimated_price < env("BODA_PRICE")){
+            //     $estimated_price = env("BODA_PRICE");
 
-            }
+            // }
 
-            if( ($request->service == "Ntuha Taxi") && $estimated_price < env("TAXI_PRICE")){
-                $estimated_price = env("TAXI_PRICE");
-            }
+            // if( ($request->service == "Ntuha Taxi") && $estimated_price < env("TAXI_PRICE")){
+            //     $estimated_price = env("TAXI_PRICE");
+            // }
 
-            if( ($request->service == "Ntuha Truck") && $estimated_price < env("TRUCK_PRICE")){
-                $estimated_price = env("TRUCK_PRICE");
-            }
+            // if( ($request->service == "Ntuha Truck") && $estimated_price < env("TRUCK_PRICE")){
+            //     $estimated_price = env("TRUCK_PRICE");
+            // }
 
              $ntuha_amount =  $read_price->rate;
 

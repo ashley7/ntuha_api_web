@@ -211,7 +211,7 @@ class DriverController extends Controller
 
                 $estimated_price = 0; 
 
-                if (empty($request->ride_price)) {
+                if (!empty($request->ride_price)) {
                     $estimated_price    =  $request->ride_price;        
                 }else{
                     $estimated_price = ($unit_price * round($ride_distance));
