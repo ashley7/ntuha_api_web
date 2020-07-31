@@ -301,11 +301,8 @@ class FrontEndController extends Controller
 
         $read_price = Price::all()->where('type',$request->service)->last();
 
-        // $driver = $this->read_single_driver($request->driver_id);
-
         $driver = NtuhaDashboardController::single_driver($request->driver_id);
 
-        // $ride_distance = $request->ride_distance;
         $ride_distance = $request->distanceInKiloMeters;
 
         $payment_method = $request->payment_method;
@@ -333,8 +330,14 @@ class FrontEndController extends Controller
 
             // $estimated_price = ($unit_price * round($distanceInKiloMeters)); 
 
-            $estimated_price = ($unit_price * round($ride_distance));
+            $estimated_price = 0;
 
+            if (empty($request->ride_price)) {
+                $estimated_price = $request->ride_price;
+            }else{
+                $estimated_price = ($unit_price * round($ride_distance));
+            }
+            
             if( ($request->service == "Ntuha Boda") && $estimated_price < env("BODA_PRICE")){
                 $estimated_price = env("BODA_PRICE");
 
