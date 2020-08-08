@@ -65,6 +65,7 @@
                               {{csrf_field()}}
 
                               {{method_field("DELETE")}}
+                              <a href="{{route('driver.show',$driver->id)}}">Edit</a>
 
                               <button class="btn btn-danger" type="submit">Remove</button>
                               

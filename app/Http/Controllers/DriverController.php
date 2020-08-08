@@ -76,7 +76,14 @@ class DriverController extends Controller
      */
     public function show($id)
     {
-        //
+        $read_driver = Driver::find($id);
+
+        $data = [
+            'read_driver' => $read_driver,
+            'title' => 'Drivers'
+        ];
+
+        return view('driver.edit_driver')->with($data);
     }
 
     /**
@@ -109,7 +116,18 @@ class DriverController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateDriver = new Driver();
+        $updateDriver->name = $request->name;
+        $updateDriver->email = $request->mailer;
+        $updateDriver->phone_number = $request->phone_number;
+        $updateDriver->driver_id = $request->driver_id;
+        $updateDriver->identification_number = $request->identification_number;
+        $updateDriver->identification_type = $request->identification_type;
+        $updateDriver->motor_type = $request->motor_type;
+        $updateDriver->number_plate = $request->number_plate;
+        $updateDriver->service = $request->service;
+        $updateDriver->save();
+        return redirect()->route('driver.index');
     }
 
     /**

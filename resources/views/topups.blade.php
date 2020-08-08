@@ -2,12 +2,11 @@
 
 @section('content')
  <div class="card-box">
-    <h4>All Drivers</h4>
+    <h4>All Ntuha drivers topups</h4>
 
     <div class="card-body">
 
-      <a style="float: right;" href="/driver/create" class="btn btn-success">Add new Driver</a>
-      <br><br>
+       <br><br>
 
         <div class="table-responsive">
             <table class="table table-hover table-striped" id="working_drivers">
