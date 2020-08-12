@@ -15,6 +15,12 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/home', 'HomeController@index')->name('home');
 
+	Route::post('customer','CustomerController@saveCustomer');
+	
+	Route::get('customer','CustomerController@create');
+
+	Route::get('read_customers','CustomerController@readCustomers');
+
 	Route::resource('ntuha_dashboard','NtuhaDashboardController');
 
 	Route::get('read_ntuha_customers','NtuhaDashboardController@read_ntuha_customers');

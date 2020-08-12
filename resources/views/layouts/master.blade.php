@@ -117,6 +117,14 @@
                             </li>
 
                             <li class="has-submenu">
+                                <a href="#"><i class="zmdi zmdi-settings"></i>Customers</a>
+                                <ul class="submenu">
+                                    <li><a href="/get_customers">App customers</a></li>
+                                    <li><a href="/read_customers">USSD Customers</a></li>
+                                </ul>
+                            </li> 
+
+                            <li class="has-submenu">
                                 <a href="/get_drivers"><i class="zmdi zmdi-bike"></i>  Drivers</a>
                             </li>
 

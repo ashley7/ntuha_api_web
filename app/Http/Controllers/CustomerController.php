@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Customer;
 
 class CustomerController extends Controller
 {
@@ -24,7 +25,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        $data = ['title'=>'Create new farmer'];
+        return view('customer.create')->with($data);
     }
 
     /**
@@ -125,5 +127,36 @@ class CustomerController extends Controller
 
           });
          
+   }
+
+   public function saveCustomer()
+   {
+        $saveCustomer = new Customer();
+        $saveCustomer->first_name = $request->first_name;
+        $saveCustomer->last_name = $request->last_name;
+        $saveCustomer->name = $request->last_name." ".$request->first_name;
+        $saveCustomer->sex = $request->sex;
+        $saveCustomer->email = $request->sex;
+        $saveCustomer->year_of_birth = $request->year_of_birth;
+        $saveCustomer->disability_status = $request->disability_status;
+        $saveCustomer->location = $request->location;
+        $saveCustomer->occupation = $request->occupation;
+        $saveCustomer->sign_up_date = $request->sign_up_date;
+        $saveCustomer->description = $request->description;
+        $saveCustomer->phone_number = $request->phone_number;
+        $saveCustomer->password = rand(400000,500000);
+        try {
+            $saveCustomer->save();
+            return "Saved successfully";
+        } catch (\Exception $e) {
+            return "Failed to save customer. ".$e->getMessage();
+        }
+   }
+
+   public function readCustomers()
+   {
+        $customers = Customer::paginate(50);
+        $data = ['title'=>'List of customers','customers'=>$customers];       
+        return view('customer.list')->with($data);
    }
 }
