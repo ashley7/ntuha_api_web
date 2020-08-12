@@ -112,9 +112,9 @@
                                 <a href="/available_drivers"><i class="zmdi zmdi-car-taxi"></i>  Available drivers</a>
                             </li>
 
-                            <li class="has-submenu">
+                            <!-- <li class="has-submenu">
                                 <a href="/get_customers"><i class="zmdi zmdi-account-box-mail"></i>  Customers</a>
-                            </li>
+                            </li> -->
 
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-settings"></i>Customers</a>
@@ -193,8 +193,8 @@
         <script type="text/javascript">
 
              $(document).ready(function() {
-                $('#working_drivers,#transactions').DataTable( {
-                    pageLength: 1000,
+                $('#working_drivers,#transactions,#ussd_customers').DataTable( {
+                    pageLength: 50,
                     dom: 'Bfrtip',
                     buttons: [
                         'excelHtml5',

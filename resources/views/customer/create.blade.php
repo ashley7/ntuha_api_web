@@ -16,12 +16,16 @@
               <input type="text" id="phone_number" class="form-control">
 
               <label>Year of Birth</label>
-              <input type="text" id="year_of_birth" class="form-control">                        
+              <input type="year" id="year_of_birth" class="form-control">  
+
               <label>Sex</label>
               <select class="form-control" id="sex">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
-              </select>                          
+              </select>   
+
+              <br>
+              <button id="save_customer" class="btn btn-primary">Save customer</button>                       
             </div>
           <div class="col-md-6">
               <label>Disability status</label>
@@ -44,8 +48,7 @@
 
               <p id="display"></p>
 
-              <br>
-              <button id="save_customer" class="btn btn-primary">Save customer</button>
+              
             
               </div>
         </div>   
