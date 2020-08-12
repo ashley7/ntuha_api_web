@@ -129,7 +129,7 @@ class CustomerController extends Controller
          
    }
 
-   public function saveCustomer()
+   public function saveCustomer(Request $request)
    {
         $saveCustomer = new Customer();
         $saveCustomer->first_name = $request->first_name;
