@@ -16,7 +16,7 @@
               <input type="text" id="phone_number" class="form-control">
 
               <label>Year of Birth</label>
-              <input type="year" id="year_of_birth" class="form-control">  
+              <input type="month" id="year_of_birth" class="form-control">  
 
               <label>Sex</label>
               <select class="form-control" id="sex">
@@ -38,7 +38,7 @@
               <input type="text" id="occupation" class="form-control">
 
               <label>Customer sign up date</label>
-              <input type="text" id="sign_up_date" class="form-control">
+              <input type="date" id="sign_up_date" class="form-control">
 
               <label>Agent name</label>
               <input type="text" id="agent_name" class="form-control">
