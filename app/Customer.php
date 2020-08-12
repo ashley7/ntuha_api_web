@@ -9,10 +9,10 @@ class Customer extends Model
     public static function saveCustomer($first_name,$last_name,$sex,$year_of_birth,$disability_status,$location,$occupation,$sign_up_date,$description,$phone_number,$agent_name)
     {
     	$saveCustomer = new Customer();
-        $saveCustomer->first_name = $request->first_name;
-        $saveCustomer->last_name = $request->last_name;
+        $saveCustomer->first_name = $first_name;
+        $saveCustomer->last_name = $last_name;
         $saveCustomer->name = $last_name." ".$first_name;
-        $saveCustomer->sex = $request->sex;
+        $saveCustomer->sex = $sex;
         $saveCustomer->year_of_birth = $year_of_birth;
         $saveCustomer->disability_status = $disability_status;
         $saveCustomer->location = $location;
