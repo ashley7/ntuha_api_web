@@ -22,7 +22,10 @@ class Customer extends Model
         $saveCustomer->email = $phone_number."@gmail.com";
         $saveCustomer->password = rand(400000,500000);
         $saveCustomer->agent_name = $agent_name;
-        $saveCustomer->save();
+        try {
+        	 $saveCustomer->save();
+        } catch (\Exception $e) {}
+       
         return $saveCustomer;
     }
 }
