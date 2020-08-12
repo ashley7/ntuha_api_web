@@ -196,6 +196,8 @@
                 $('#working_drivers,#transactions,#ussd_customers').DataTable( {
                     pageLength: 50,
                     dom: 'Bfrtip',
+                    aaSorting: [],
+                    ordering: false,
                     buttons: [
                         'excelHtml5',
                         'csvHtml5',
