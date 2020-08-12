@@ -21,8 +21,7 @@
                     <th>Disability status</th>
                     <th>Location</th>
                     <th>Occupation</th>                    
-                    <th>Sign up date</th>
-                    <th>Description</th>
+                    <th>Sign up date</th>                   
                     <th>Agent</th>                           
                 </thead>
 
@@ -39,8 +38,7 @@
                       <td>{{$customer->year_of_birth}}</td>
                       <td>{{$customer->disability_status}}</td>
                       <td>{{$customer->location}}</td>
-                      <td>{{$customer->occupation}}</td>
-                      <td>{{$customer->description}}</td>
+                      <td>{{$customer->occupation}}</td>                     
                       <td>{{$customer->sign_up_date}}</td>
                       <td>{{$customer->agent_name}}</td>
                     </tr>
