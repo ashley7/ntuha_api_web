@@ -31,7 +31,7 @@
                     <tr>
                       <td>{{$customer->created_at}}</td>
                       <td>{{$customer->name}}</td>
-                      <td>{{str_replace("@gmail","",$customer->email)}}</td>
+                      <td>{{str_replace("@gmail.com","",$customer->email)}}</td>
                       <td>{{$customer->sex}}</td>
                       <td>{{$customer->year_of_birth}}</td>
                       <td>{{$customer->disability_status}}</td>
