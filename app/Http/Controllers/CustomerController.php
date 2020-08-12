@@ -130,24 +130,9 @@ class CustomerController extends Controller
    }
 
    public function saveCustomer(Request $request)
-   {
-        $saveCustomer = new Customer();
-        $saveCustomer->first_name = $request->first_name;
-        $saveCustomer->last_name = $request->last_name;
-        $saveCustomer->name = $request->last_name." ".$request->first_name;
-        $saveCustomer->sex = $request->sex;
-        $saveCustomer->email = $request->sex;
-        $saveCustomer->year_of_birth = $request->year_of_birth;
-        $saveCustomer->disability_status = $request->disability_status;
-        $saveCustomer->location = $request->location;
-        $saveCustomer->occupation = $request->occupation;
-        $saveCustomer->sign_up_date = $request->sign_up_date;
-        $saveCustomer->description = $request->description;
-        $saveCustomer->email = $request->phone_number;
-        $saveCustomer->password = rand(400000,500000);
-        $saveCustomer->agent_name = $request->agent_name;
-        try {
-            $saveCustomer->save();
+   {        
+        try {             
+            Customer::saveCustomer($request->first_name,$request->last_name,$request->sex,$request->year_of_birth,$request->disability_status,$request->location,$request->occupation,$request->sign_up_date,$request->description,$request->phone_number,$request->agent_name);
             return "Saved successfully";
         } catch (\Exception $e) {
             return "Failed to save customer. ".$e->getMessage();
@@ -160,4 +145,29 @@ class CustomerController extends Controller
         $data = ['title'=>'List of customers','customers'=>$customers];       
         return view('customer.list')->with($data);
    }
+
+   public function importCustomers(Request $data)
+   {
+        \Excel::load($data->file('excel_file'), function($reader) {    
+
+            $dataresults = $reader->all();   
+
+            // global $request;            
+
+            foreach ($dataresults as $request) { 
+              
+                Customer::saveCustomer($request->first_name,$request->last_name,$request->sex,$request->year_of_birth,$request->disability_status,$request->location,$request->occupation,$request->sign_up_date,$request->description,$request->phone_number,$request->agent_name);
+            }
+        });
+
+        return redirect('/read_customers');
+   }
+
+   public function importUser()
+   {
+        $data = ['title'=>'Import customers'];
+        return view('customer.import_customers')->with($data);  
+   }
+
+
 }

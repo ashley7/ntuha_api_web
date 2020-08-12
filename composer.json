@@ -13,7 +13,8 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "kreait/firebase-php": "^4.0",
-        "beyonic/beyonic-php": "*"
+        "beyonic/beyonic-php": "*",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

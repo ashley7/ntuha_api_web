@@ -19,7 +19,11 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('customer','CustomerController@create');
 
-	Route::get('read_customers','CustomerController@readCustomers');
+	Route::post('import_customer','CustomerController@importCustomers');
+
+	Route::get('import_user','CustomerController@importUser');
+
+	Route::get('read_customers','CustomerController@readCustomers')->name('read_customers');
 
 	Route::resource('ntuha_dashboard','NtuhaDashboardController');
 
@@ -50,7 +54,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('transactions','FrontEndController@transactions');
 
 	Route::get('confirm_transaction/{id}','FrontEndController@confirm_transaction');
-
 	
 	Route::resource('price','PriceController');
 

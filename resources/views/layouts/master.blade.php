@@ -121,6 +121,7 @@
                                 <ul class="submenu">
                                     <li><a href="/get_customers">App customers</a></li>
                                     <li><a href="/read_customers">USSD Customers</a></li>
+                                    <li><a href="/import_user">Import Customers</a></li>
                                 </ul>
                             </li> 
 
