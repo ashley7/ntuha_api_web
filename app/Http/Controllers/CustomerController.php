@@ -143,7 +143,7 @@ class CustomerController extends Controller
         $saveCustomer->occupation = $request->occupation;
         $saveCustomer->sign_up_date = $request->sign_up_date;
         $saveCustomer->description = $request->description;
-        $saveCustomer->phone_number = $request->phone_number;
+        $saveCustomer->email = $request->phone_number;
         $saveCustomer->password = rand(400000,500000);
         try {
             $saveCustomer->save();

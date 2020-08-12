@@ -6,7 +6,7 @@
 
     <div class="card-body">
 
-      <a style="float: right;" href="/customer" class="btn btn-success">Add new Customer</a>
+      <a href="/customer" class="btn btn-success">Add new Customer</a>
       <br><br>
 
         <div class="table-responsive">
@@ -31,7 +31,7 @@
                     <tr>
                       <td>{{$customer->created_at}}</td>
                       <td>{{$customer->name}}</td>
-                      <td>{{$customer->phone_number}}</td>
+                      <td>{{str_replace("@gmail","",$customer->email)}}</td>
                       <td>{{$customer->sex}}</td>
                       <td>{{$customer->year_of_birth}}</td>
                       <td>{{$customer->disability_status}}</td>
