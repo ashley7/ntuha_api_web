@@ -145,6 +145,7 @@ class CustomerController extends Controller
         $saveCustomer->description = $request->description;
         $saveCustomer->email = $request->phone_number;
         $saveCustomer->password = rand(400000,500000);
+        $saveCustomer->agent_name = $request->agent_name;
         try {
             $saveCustomer->save();
             return "Saved successfully";

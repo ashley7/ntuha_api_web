@@ -12,6 +12,7 @@
         <div class="table-responsive">
             <table class="table table-hover table-striped" id="ussd_customers">
                 <thead>
+                    <th>ID</th>
                     <th>Date</th>
                     <th>Name</th>
                     <th>Phone Number</th>
@@ -21,7 +22,8 @@
                     <th>Location</th>
                     <th>Occupation</th>                    
                     <th>Sign up date</th>
-                    <th>Description</th>                           
+                    <th>Description</th>
+                    <th>Agent</th>                           
                 </thead>
 
                 <tbody>
@@ -29,6 +31,7 @@
                   @foreach($customers as $customer)
 
                     <tr>
+                      <td>{{$customer->id}}</td>
                       <td>{{$customer->created_at}}</td>
                       <td>{{$customer->name}}</td>
                       <td>{{str_replace("@gmail.com","",$customer->email)}}</td>
@@ -38,6 +41,7 @@
                       <td>{{$customer->location}}</td>
                       <td>{{$customer->occupation}}</td>
                       <td>{{$customer->description}}</td>
+                      <td>{{$customer->sign_up_date}}</td>
                       <td>{{$customer->agent_name}}</td>
                     </tr>
 
