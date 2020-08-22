@@ -107,14 +107,18 @@
                             <li class="has-submenu">
                                 <a href="/home"><i class="zmdi zmdi-view-dashboard"></i>  Dashboard</a>
                             </li>                        
-                             
-                            <li class="has-submenu">
-                                <a href="/available_drivers"><i class="zmdi zmdi-car-taxi"></i>  Available drivers</a>
-                            </li>
+                         
 
-                            <!-- <li class="has-submenu">
-                                <a href="/get_customers"><i class="zmdi zmdi-account-box-mail"></i>  Customers</a>
-                            </li> -->
+                            <li class="has-submenu">
+                                <a href="#"><i class="zmdi zmdi-account-box-mail"></i>Drivers</a>
+                                <ul class="submenu">
+                                    <li><a href="/available_drivers">Available drivers</a></li>
+                                    <li><a href="/get_drivers">Active Drivers</a></li>
+                                    <li><a href="/driver">All Drivers</a></li>
+                                    <li><a href="/driver/create">Add new Driver</a></li>
+                                </ul>
+                            </li> 
+ 
 
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-account-box-mail"></i>Customers</a>
@@ -125,27 +129,25 @@
                                 </ul>
                             </li> 
 
-                            <li class="has-submenu">
-                                <a href="/get_drivers"><i class="zmdi zmdi-bike"></i>  Drivers</a>
-                            </li>
+                          
 
                             <li class="has-submenu">
                                 <a href="/rides"><i class="zmdi zmdi-car"></i>  Rides</a>
                             </li> 
 
-                            <li class="has-submenu">
-                                <a href="/transactions"><i class="zmdi zmdi-car"></i>A/C Top-up</a>
-                            </li>  
-
-                            <li class="has-submenu">
-                                <a href="/driver_top_up"><i class="zmdi zmdi-car"></i>Driver Top-up</a>
-                            </li> 
+                             <li class="has-submenu">
+                                <a href="#"><i class="zmdi zmdi-settings"></i>Ntuha wallet</a>
+                                <ul class="submenu">                                   
+                                    <li><a href="/transactions">A/C Top-up</a></li>
+                                    <li><a href="/driver_top_up">Driver Top-up</a></li>
+                                </ul>
+                            </li>                          
+                          
 
 
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-settings"></i>Settings</a>
-                                <ul class="submenu">
-                                    <li><a href="/driver">Drivers</a></li>
+                                <ul class="submenu">                                   
                                     <li><a href="/price/create">Prices</a></li>
                                     <li><a href="/user">User</a></li>
                                 </ul>

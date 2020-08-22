@@ -15,7 +15,6 @@ use App\Customer;
 class NtuhaDashboardController extends Controller
 {
 
-
     public function databaseObject()
     {
         $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
