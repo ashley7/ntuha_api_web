@@ -110,7 +110,7 @@
                          
 
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-account-box-mail"></i>Drivers</a>
+                                <a href="#"><i class="zmdi zmdi-bike"></i>Drivers</a>
                                 <ul class="submenu">
                                     <li><a href="/available_drivers">Available drivers</a></li>
                                     <li><a href="/get_drivers">Active Drivers</a></li>
@@ -121,7 +121,7 @@
  
 
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-account-box-mail"></i>Customers</a>
+                                <a href="#"><i class="zmdi zmdi-accounts"></i>Customers</a>
                                 <ul class="submenu">
                                     <li><a href="/get_customers">App customers</a></li>
                                     <li><a href="/read_customers">USSD Customers</a></li>
@@ -132,19 +132,17 @@
                           
 
                             <li class="has-submenu">
-                                <a href="/rides"><i class="zmdi zmdi-car"></i>  Rides</a>
+                                <a href="/rides"><i class="zmdi zmdi-folder-person"></i>Customer Rides</a>
                             </li> 
 
                              <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-settings"></i>Ntuha wallet</a>
+                                <a href="#"><i class="zmdi zmdi-balance-wallet"></i>Ntuha wallet</a>
                                 <ul class="submenu">                                   
                                     <li><a href="/transactions">A/C Top-up</a></li>
                                     <li><a href="/driver_top_up">Driver Top-up</a></li>
                                 </ul>
-                            </li>                          
+                            </li>                        
                           
-
-
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-settings"></i>Settings</a>
                                 <ul class="submenu">                                   
