@@ -167,6 +167,26 @@ class NtuhaRideUssdController extends Controller
                          break;
                  }
                 break;
+
+            case 8:
+                 $option = $data[1];
+
+                switch ($option) {
+                    case 1:# He chose to register
+                         NtuhaRideUssd::saveCustomer($data,$phoneNumber);
+                         break;
+
+                    case 2:# he chose to place a request
+                        
+                        break;
+                     
+                     default:
+                         NtuhaRideUssd::killSeesion("The option selected was not recognised");
+                         break;
+                 }
+                break;
+
+                break;
              
             
             default:

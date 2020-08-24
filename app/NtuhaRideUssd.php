@@ -32,7 +32,7 @@ class NtuhaRideUssd extends Model
 
     public static function promptDistrict()
     {
-    	$response  = "CON What id your District name?";
+    	$response  = "CON What is your District name?";
         $response .= "\ne.g Mbarara";       
         NtuhaRideUssd::loadMenu($response);
     }
@@ -56,8 +56,7 @@ class NtuhaRideUssd extends Model
     public static function occupation($data,$phoneNumber)
     {
     	$response  = "CON What is your occupation?";     
-        NtuhaRideUssd::loadMenu($response);	 
-        NtuhaRideUssd::saveCustomer($data,$phoneNumber);	 
+        NtuhaRideUssd::loadMenu($response);
     }
 
     public static function saveCustomer($data,$phoneNumber)
@@ -80,7 +79,9 @@ class NtuhaRideUssd extends Model
     	}
 
     	$customer = Customer::saveCustomer($data[2],"",$sex,$year_of_birth,$disability_status,$data[4],$data[7],now(),"USSD customer",$phoneNumber,"SELF");
+    	
     	$message = "Hello ".$customer->name." thank you for registering with Ntuha Ride";
+
     	NtuhaRideUssd::killSeesion($message);
 
      }
