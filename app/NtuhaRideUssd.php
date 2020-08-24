@@ -80,9 +80,7 @@ class NtuhaRideUssd extends Model
     	}
 
     	$customer = Customer::saveCustomer($data[2],"",$sex,$year_of_birth,$disability_status,$data[4],$data[7],now(),"USSD customer",$phoneNumber,"SELF");
-
     	$message = "Hello ".$customer->name." thank you for registering with Ntuha Ride";
-
     	NtuhaRideUssd::killSeesion($message);
 
      }
