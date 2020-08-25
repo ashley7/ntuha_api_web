@@ -30,7 +30,7 @@
                   ?>
                     <tr>
                        <td>{{$order->created_at}}</td>
-                       <td>{{$$customer->name}}<br>
+                       <td>{{$customer->name}}<br>
                         {{str_replace("@gmail.com","",$customer->email)}}
                        </td>
                        <td>{{$order->service}}</td>
