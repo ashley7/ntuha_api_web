@@ -130,9 +130,7 @@
                             </li> 
 
                           
- 
-
-                             <li class="has-submenu">
+                            <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-balance-wallet"></i>Ntuha Rides</a>
                                 <ul class="submenu">                                   
                                    <li> <a href="/rides"><i class="zmdi zmdi-folder-person"></i>Customer Rides</a></li>

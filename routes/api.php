@@ -44,4 +44,4 @@ Route::any('google_api_key','DriverController@google_api_key');
 
 Route::any('autocomplete_api_key','DriverController@autocomplete_api_key');
 
-Route::any('ntuha_ride_ussd','NtuhaRideUssdController@store');
+Route::post('ntuha_ride_ussd','NtuhaRideUssdController@store');
