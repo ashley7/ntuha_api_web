@@ -158,7 +158,7 @@ class NtuhaRideUssd extends Model
 
         $admin_message = "Hello Ntuha ride, ".$customer->name." has requested for ".$saveNtuhaRideUssd->service." to transport ".$saveNtuhaRideUssd->product."  from ".$saveNtuhaRideUssd->pick_up_location." To ".$saveNtuhaRideUssd->destination_location.", contact him on ".str_replace("@gmail.com", "", $customer->email);
 
-        DriverController::sendSMS($phone_number,$admin_message);
+        DriverController::sendSMS(env('PHONE_NUMBER'),$admin_message);
 
      }
 
