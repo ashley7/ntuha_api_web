@@ -62,6 +62,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user','UserController');
 
 	Route::resource('driver_top_up','DriverTopupController');
+
+	Route::resource('ussd_requests','NtuhaRideUssdController');
 });
 
 Route::get('/beyonic', function () {

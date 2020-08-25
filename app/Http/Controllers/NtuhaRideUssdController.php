@@ -14,7 +14,13 @@ class NtuhaRideUssdController extends Controller
      */
     public function index()
     {
-        //
+       $ussdRequest = NtuhaRideUssd::orderBy('id','DESC')->get();
+
+       $data = [
+        'ussd_request' => $ussdRequest
+       ];
+
+       return view('ussd.ussd_request')->with($data);
     }
 
     /**

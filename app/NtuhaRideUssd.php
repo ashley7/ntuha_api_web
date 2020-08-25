@@ -152,7 +152,7 @@ class NtuhaRideUssd extends Model
         $saveNtuhaRideUssd->destination_location = $data[5];
         $saveNtuhaRideUssd->save();
 
-        $message = "We have recieved your order, we shall call you shortly to confirm it. Thank you";
+        $message = "We have recieved your Ntuha ride order No. ".$saveNtuhaRideUssd->id." , we shall call you shortly to confirm it. Thank you";
 
         NtuhaRideUssd::killSeesion($message);
 
