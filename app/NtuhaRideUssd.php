@@ -136,10 +136,10 @@ class NtuhaRideUssd extends Model
         if ($data[2] == 1) {
             $service = "Boda-boda";
         }elseif ($data[2] == 2) {
-            $service = "Truck"
+            $service = "Truck";
         }
         elseif ($data[2] == 3) {
-            $service = "Taxi"
+            $service = "Taxi";
         }
 
         $customer = Customer::checkCustomer($phone_number);
