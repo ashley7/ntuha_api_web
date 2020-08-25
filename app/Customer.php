@@ -28,4 +28,11 @@ class Customer extends Model
        
         return $saveCustomer;
     }
+
+    public static function checkCustomer($phone_number)
+    {
+
+        return Customer::where('email',$phone_number."@gmail.com")->get();
+         
+    }
 }

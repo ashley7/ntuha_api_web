@@ -66,6 +66,8 @@ class NtuhaRideUssdController extends Controller
                          break;
 
                     case 2:# he chose to place a request
+
+                        NtuhaRideUssd::selectService($phoneNumber);
                         
                         break;
                      
@@ -85,6 +87,8 @@ class NtuhaRideUssdController extends Controller
                          break;
 
                     case 2:# he chose to place a request
+
+                        NtuhaRideUssd::cargoType();
                         
                         break;
                      
@@ -105,6 +109,8 @@ class NtuhaRideUssdController extends Controller
                          break;
 
                     case 2:# he chose to place a request
+
+                         NtuhaRideUssd::pickUpLocation();
                         
                         break;
                      
@@ -123,6 +129,8 @@ class NtuhaRideUssdController extends Controller
                          break;
 
                     case 2:# he chose to place a request
+
+                        NtuhaRideUssd::destinationLocation();
                         
                         break;
                      
@@ -141,6 +149,10 @@ class NtuhaRideUssdController extends Controller
                          break;
 
                     case 2:# he chose to place a request
+
+                        return $data;
+
+                        // NtuhaRideUssd::placeRequest($data);
                         
                         break;
                      

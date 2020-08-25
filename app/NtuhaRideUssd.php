@@ -70,7 +70,7 @@ class NtuhaRideUssd extends Model
     		$sex = "Male"; 
     	}
 
-    	$year_of_birth = $data[5] - date("Y");
+    	$year_of_birth = date("Y") - $data[5];
 
     	if ($data[6] == 1) {
     		$disability_status = "Not disabled"; 
@@ -79,11 +79,67 @@ class NtuhaRideUssd extends Model
     	}
 
     	$customer = Customer::saveCustomer($data[2],"",$sex,$year_of_birth,$disability_status,$data[4],$data[7],now(),"USSD customer",$phoneNumber,"SELF");
-    	
+
     	$message = "Hello ".$customer->name." thank you for registering with Ntuha Ride";
 
     	NtuhaRideUssd::killSeesion($message);
 
+     }
+
+     /*====================================
+        THE FUCNTIONS FOR MAKING A REQUEST
+     ======================================*/ 
+
+
+     public static function selectService($phoneNumber)
+     {
+
+        $customer = Customer::checkCustomer($phoneNumber);
+
+        if (count($customer) == 0) {
+
+            NtuhaRideUssd::killSeesion("Ntuha Ride does not recognise ".$phoneNumber."\n Please register first");
+            return;
+             
+         } 
+
+        $thiscustomer = $customer->last();
+        $response  = "CON ".$thiscustomer->name.", Please select a service";
+        $response .= "\n1. Boda-boda";
+        $response .= "\n2. Truck";
+        $response .= "\n3. Taxi";    
+        NtuhaRideUssd::loadMenu($response);
+     }
+
+     public static function cargoType()
+     {
+        $response  = "CON What do you want to transport?";         
+        NtuhaRideUssd::loadMenu($response);
+     }
+
+     public static function pickUpLocation()
+     {
+        $response  = "CON What is your pick up location?";         
+        NtuhaRideUssd::loadMenu($response);
+     }
+
+     public static function destinationLocation()
+     {
+        $response  = "CON What is your destination location?";         
+        NtuhaRideUssd::loadMenu($response);
+     }
+
+     public static function placeRequest($data,$phone_number)
+     {
+        $customer = Customer::checkCustomer($phone_number);
+        $customer = $customer->last();
+        $saveNtuhaRideUssd = new NtuhaRideUssd();
+        // $saveNtuhaRideUssd->customer_id = $customer->id;
+        // $saveNtuhaRideUssd->product = 
+        // $saveNtuhaRideUssd->pick_up_location = 
+        // $saveNtuhaRideUssd->destination_location = 
+        // $saveNtuhaRideUssd->save();
+         
      }
 
     public static function loadMenu($response)
