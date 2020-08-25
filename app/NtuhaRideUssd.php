@@ -147,9 +147,9 @@ class NtuhaRideUssd extends Model
         $saveNtuhaRideUssd = new NtuhaRideUssd();
         $saveNtuhaRideUssd->customer_id = $customer->id;
         $saveNtuhaRideUssd->service = $service;
-        $saveNtuhaRideUssd->product = $data[4];
-        $saveNtuhaRideUssd->pick_up_location = $data[5];
-        $saveNtuhaRideUssd->destination_location = $data[6];
+        $saveNtuhaRideUssd->product = $data[3];
+        $saveNtuhaRideUssd->pick_up_location = $data[4];
+        $saveNtuhaRideUssd->destination_location = $data[5];
         $saveNtuhaRideUssd->save();
 
         $message = "We have recieved your order, we shall call you shortly to confirm it. Thank you";
