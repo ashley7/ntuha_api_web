@@ -150,9 +150,7 @@ class NtuhaRideUssdController extends Controller
 
                     case 2:# he chose to place a request
 
-                        return $data;
-
-                        // NtuhaRideUssd::placeRequest($data);
+                        NtuhaRideUssd::placeRequest($data,$phoneNumber);
                         
                         break;
                      

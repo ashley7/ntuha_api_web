@@ -18,6 +18,7 @@ class CreateNtuhaRideUssdsTable extends Migration
             $table->timestamps();
             $table->string('customer_id'); 
             $table->string('product');
+            $table->string('service');
             $table->string('pick_up_location');
             $table->string('destination_location');
             $table->string('status')->default('pending');//accepted, completed,pending,declined

@@ -35,4 +35,6 @@ class Customer extends Model
         return Customer::where('email',$phone_number."@gmail.com")->get();
          
     }
+
+   
 }

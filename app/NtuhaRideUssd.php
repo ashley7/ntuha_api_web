@@ -105,9 +105,9 @@ class NtuhaRideUssd extends Model
 
         $thiscustomer = $customer->last();
         $response  = "CON ".$thiscustomer->name.", Please select a service";
-        $response .= "\n1. Boda-boda";
-        $response .= "\n2. Truck";
-        $response .= "\n3. Taxi";    
+        $response .= "\n1. Ntuha Boda";
+        $response .= "\n2. Ntuha Truck";
+        $response .= "\n3. Ntuha Taxi";    
         NtuhaRideUssd::loadMenu($response);
      }
 
@@ -131,15 +131,35 @@ class NtuhaRideUssd extends Model
 
      public static function placeRequest($data,$phone_number)
      {
+        $service = "Not specified";
+
+        if ($data[2] == 1) {
+            $service = "Boda-boda";
+        }elseif ($data[2] == 2) {
+            $service = "Truck"
+        }
+        elseif ($data[2] == 3) {
+            $service = "Taxi"
+        }
+
         $customer = Customer::checkCustomer($phone_number);
         $customer = $customer->last();
         $saveNtuhaRideUssd = new NtuhaRideUssd();
-        // $saveNtuhaRideUssd->customer_id = $customer->id;
-        // $saveNtuhaRideUssd->product = 
-        // $saveNtuhaRideUssd->pick_up_location = 
-        // $saveNtuhaRideUssd->destination_location = 
-        // $saveNtuhaRideUssd->save();
-         
+        $saveNtuhaRideUssd->customer_id = $customer->id;
+        $saveNtuhaRideUssd->service = $service;
+        $saveNtuhaRideUssd->product = $data[4];
+        $saveNtuhaRideUssd->pick_up_location = $data[5];
+        $saveNtuhaRideUssd->destination_location = $data[6];
+        $saveNtuhaRideUssd->save();
+
+        $message = "We have recieved your order, we shall call you shortly to confirm it. Thank you";
+
+        NtuhaRideUssd::killSeesion($message);
+
+        $admin_message = "Hello Ntuha ride, ".$customer->name." has requested for ".$saveNtuhaRideUssd->service." to transport ".$saveNtuhaRideUssd->product."  from ".$saveNtuhaRideUssd->pick_up_location." To ".$saveNtuhaRideUssd->destination_location.", contact him on ".str_replace("@gmail.com", "", $customer->email);
+
+        DriverController::sendSMS($phone_number,$admin_message);
+
      }
 
     public static function loadMenu($response)
