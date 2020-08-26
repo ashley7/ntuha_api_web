@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\NtuhaRideUssd;
+use App\Customer;
 use Illuminate\Http\Request;
 
 class NtuhaRideUssdController extends Controller
@@ -61,7 +62,18 @@ class NtuhaRideUssdController extends Controller
 
         switch ($level) {
             case 1:
+                $customer = Customer::checkCustomer($phoneNumber);
+
+                if (count($customer) > 0) {
+
+                    $customer = $customer->last();
+                    NtuhaRideUssd::killSeesion("Hello ".$customer->name.", you already have an account with Ntuha ride, Simply place your request");
+                    return;
+                     
+                } 
+
                 NtuhaRideUssd::welcomeMessage();
+
                 break;
 
             case 2:
