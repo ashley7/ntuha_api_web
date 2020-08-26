@@ -61,16 +61,7 @@ class NtuhaRideUssdController extends Controller
         $level = count($data);
 
         switch ($level) {
-            case 1:
-                $customer = Customer::checkCustomer($phoneNumber);
-
-                if (count($customer) > 0) {
-
-                    $customer = $customer->last();
-                    NtuhaRideUssd::killSeesion("Hello ".$customer->name.", you already have an account with Ntuha ride, Simply place your request");
-                    return;
-                     
-                } 
+            case 1:                
 
                 NtuhaRideUssd::welcomeMessage();
 
@@ -80,6 +71,16 @@ class NtuhaRideUssdController extends Controller
                 $option = $data[1];
                 switch ($option) {
                     case 1:# He chose to register
+
+                        $customer = Customer::checkCustomer($phoneNumber);
+
+                        if (count($customer) > 0) {
+
+                            $customer = $customer->last();
+                            NtuhaRideUssd::killSeesion("Hello ".$customer->name.", you already have an account with Ntuha ride, Simply place your request");
+                            return;
+                             
+                        } 
                          NtuhaRideUssd::promptName();
                          break;
 
