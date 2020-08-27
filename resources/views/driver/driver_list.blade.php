@@ -12,6 +12,7 @@
         <div class="table-responsive">
             <table class="table table-hover table-striped" id="working_drivers">
                 <thead>
+                    <th>Created at</th>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Phone Number</th>
@@ -27,6 +28,7 @@
                 <tbody>
                    @foreach($read_local_drivers as $driver)
                       <tr>
+                          <td>{{$driver['created_at']}}</td>
                           <td>{{$driver['driver_id']}}</td>
                           <td>{{$driver['name']}}</td>
                           <td>{{$driver['phone_number']}}</td>
