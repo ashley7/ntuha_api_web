@@ -116,7 +116,7 @@ class DriverController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateDriver = new Driver();
+        $updateDriver = Driver::find($id);
         $updateDriver->name = $request->name;
         $updateDriver->email = $request->mailer;
         $updateDriver->phone_number = $request->phone_number;
