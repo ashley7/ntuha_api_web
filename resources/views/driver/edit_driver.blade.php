@@ -7,7 +7,7 @@
                 <div class="card-body">
                   <form method="POST" action="{{route('driver.update',$read_driver->id)}}" enctype="multipart/form-data">
                     @csrf
-                    {{method('PATCH')}}
+                    {{method_field('PATCH')}}
 
                       <div class="row">
                         <div class="col-md-6">

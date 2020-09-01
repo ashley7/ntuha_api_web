@@ -46,6 +46,10 @@ class NtuhaRideUssdController extends Controller
 
         $phoneNumber = $request["phoneNumber"];//this is phone number sending the request
 
+        $phoneNumber = ltrim($phoneNumber, '+256');
+
+        $phoneNumber = "0".$phoneNumber;
+
         $userInPut = $request["text"];//this is the input from the user
 
         if (empty($userInPut)) {
