@@ -26,8 +26,7 @@ class FrontEndController extends Controller
      	        foreach ($value as $customer_key => $customer_value) {
      	        	$results = array();
     	            if($customer_key == "driver"){
-                        try {
-                            
+                        try {                           
                         
     	                $driver = $customer_value[0]; 
     	                $driver_name = $driver['name']."(".$driver['phone'].")";

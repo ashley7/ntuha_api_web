@@ -10,6 +10,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('user_psw_reset','CustomerController');
+Route::get('test_connection','NtuhaDashboardController@testConnection');
 
 Route::group(['middleware' => 'auth'], function () {
 	
@@ -64,6 +65,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('driver_top_up','DriverTopupController');
 
 	Route::resource('ussd_requests','NtuhaRideUssdController');
+
+	Route::get('assign_them_age','RideHistoryController@assignThemAge');
 });
 
 Route::get('/beyonic', function () {

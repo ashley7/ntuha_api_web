@@ -17,7 +17,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $read_local_drivers = Driver::all();
+        $read_local_drivers = Driver::get();
         return view('driver.driver_list')->with(['read_local_drivers'=>$read_local_drivers]);
     }
 
@@ -188,7 +188,7 @@ class DriverController extends Controller
         $driver_id = $request->driver_id;
         $access_key = $request->access_key;
 
-        $driver = Driver::all()->where('driver_id',$driver_id)->where('access_key',$access_key)->where('status',0);
+        $driver = Driver::where('driver_id',$driver_id)->where('access_key',$access_key)->where('status',0)->get();
 
         if ($driver->count() == 0) {
              $response['status'] = "FAILED";
@@ -216,7 +216,7 @@ class DriverController extends Controller
     public function service_price(Request $request)
     {
         $response = array();
-        $read_price = Price::all()->where('type',$request->service)->last();
+        $read_price = Price::where('type',$request->service)->get()->last();
         if (!empty($read_price)) {
 
             $balance = $price = $estimated_price = 0;
@@ -273,9 +273,9 @@ class DriverController extends Controller
 
     public static function read_driver_image($driver_nunder)
     {
-        $driver = Driver::all()->where('driver_id',$driver_nunder)->last();
+        $driver = Driver::where('driver_id',$driver_nunder)->get()->last();
         if (!empty($driver)) {
-            return "http://45.63.91.159/images/".$driver->input_img;
+            return "https://ntuhaug.com/images/".$driver->input_img;
         }else{
             return env("DEFAULT_IMAGE");
         }

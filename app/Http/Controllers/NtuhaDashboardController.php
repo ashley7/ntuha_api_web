@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Kreait\Firebase;
-use Kreait\Firebase\Factory; 
-use Kreait\Firebase\ServiceAccount; 
-use Kreait\Firebase\Database;
+// use Kreait\Firebase;
+// use Kreait\Firebase\Factory; 
+// use Kreait\Firebase\ServiceAccount; 
+// use Kreait\Firebase\Database;
 use App\Http\Controllers\DriverController;
 use App\User;
 use App\Customer;
@@ -15,14 +15,15 @@ use App\Customer;
 class NtuhaDashboardController extends Controller
 {
 
-    public function databaseObject()
-    {
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
+  public function testConnection()
+  { 
 
-        return $firebase;
-    }
+    $ride = NtuhaDashboardController::rides();
+    return $ride;
+ 
+  }
 
+ 
     /*
       returns all customers
     */
@@ -33,49 +34,43 @@ class NtuhaDashboardController extends Controller
          * @connections Connection to the database
          * @return a database instance
 
-        */     
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
+        */   
+    
+        $database = User::databaseObject();
 
-        $database = $firebase->getDatabase();
+        $customers = $database->getReference('Users')->getChild("Customers")->getValue();
 
-        $customers = $database->getReference('Users')->getChild("Customers");
-       // $customers = $reference->getChild("Customers");
         $customer_data = [];
-        if (!empty($customers->getValue())) {
-            
-            foreach ($customers->getValue() as $customer_key => $customer) {
-                if (gettype($customer)=="array") {
-                    foreach ($customer as $key => $customerValueDetails) {
-                       if (gettype($customerValueDetails) != "array") {
-                        $result = [];
-                        
-                        try {
-                          $customer_local_data = Customer::where('email',$customer['phone'].'@gmail.com')->get()->last();
-                           $result["customeId"] = $customer_key;
-                           $result['name'] = $customer['name'];
-                           $result['phone'] = $customer['phone'];
-                           $result['pin'] = $customer_local_data->password;
-                           if (!isset($customer['profileImageUrl'])) {
-                             $result['profileImageUrl'] = "default.jpg";
-                           }else{
-                              $result['profileImageUrl'] = $customer['profileImageUrl'];
-                          }
-                           $customer_data[] = $result;   
-                        } catch (\Exception $e) {
-                          // echo $e->getMessage();
-                          // exit();
-                        }
-                                                  
-                       }
-                    } 
-                }
-            }
-        }
 
-        $data = array_unique($customer_data, SORT_REGULAR);
-        return (array)$data;
-        // return response()->json($data);
+        if (!empty($customers)) {
+
+          foreach ($customers as $key => $customer) {
+            try {             
+              $result = [];                        
+             
+              $customer_local_data = Customer::where('email',$customer['phone'].'@gmail.com')->get()->last();
+               $result["customeId"] = $key;
+               $result['name'] =  $customer['name'];
+               $result['phone'] = $customer['phone'];
+               try {
+                 $result['pin'] = $customer_local_data->password;
+               } catch (\Exception $e) {
+                $result['pin'] = "None";
+               }
+               
+               if (!isset($customer['profileImageUrl'])) {
+                 $result['profileImageUrl'] = "default.jpg";
+               }else{
+                  $result['profileImageUrl'] = $customer['profileImageUrl'];
+              }
+              $customer_data[] = $result;  
+
+          } catch (\Exception $e) {}            
+        }
+      }
+      $data = array_unique($customer_data, SORT_REGULAR);
+      return (array)$data;
+      
     }
 
     /*
@@ -83,44 +78,33 @@ class NtuhaDashboardController extends Controller
     */
     public static function read_ntuha_drivers()
     {
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
+        $database = User::databaseObject();
 
-        $database = $firebase->getDatabase();
+        $drivers = $database->getReference('Users')->getChild("Drivers")->getValue();
 
-        $reference = $database->getReference('Users');
-        $drivers = $reference->getChild("Drivers");
         $driver_data = [];
-        if (!empty($drivers->getValue())) {
-           
-            foreach ($drivers->getValue() as $driver_key => $driver) {
-                if (gettype($driver)=="array") {
-                    foreach ($driver as $key => $driverValueDetails) {
-                       if (gettype($driverValueDetails) != "array") {
-                        $result = [];
-                        try {
-                            $result["driverId"] = $driver_key;
-                            $result['name'] = $driver['name'];
-                            $result['car'] = $driver['car'];
-                            $result['service'] = $driver['service'];
-                            $result['phone'] = $driver['phone'];
-                            $result['driver_id'] = $driver['driver_id'];
-                            $result['category'] = $driver['category'];
-                            $result['subscription_type'] = $driver['subscription_type'];
-                            $result['profileImageUrl'] = DriverController::read_driver_image($driver['driver_id']);
- 
-                            $driver_data[] = $result;  
-                            
-                        } catch (\Exception $e) {}
-                                                 
-                       }else{}
-                    } 
-                }
-            }
+
+        foreach ($drivers as $key => $driver) {
+
+            $result = [];
+            try {
+                $result["driverId"] = $key;
+                $result['name'] = $driver['name'];
+                $result['car'] = $driver['car'];
+                $result['service'] = $driver['service'];
+                $result['phone'] = $driver['phone'];
+                $result['driver_id'] = $driver['driver_id'];
+                $result['category'] = $driver['category'];
+                $result['subscription_type'] = $driver['subscription_type'];
+                $result['profileImageUrl'] = DriverController::read_driver_image($driver['driver_id']);
+
+                $driver_data[] = $result;  
+                
+            } catch (\Exception $e) {}
+          
         }
         $data = array_unique($driver_data, SORT_REGULAR);
         return (array)$data;
-        // return response()->json($data);   
     }
 
     /*
@@ -131,27 +115,32 @@ class NtuhaDashboardController extends Controller
     */
     public static function single_user_history($user_type,$user_id)
     {
-
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
-
-        $database = $firebase->getDatabase();
+        
+        $database = User::databaseObject();
 
         $driver = NtuhaDashboardController::user_details($user_type,$user_id);
-        $history_data = array();
+
+        $history_data = [];
+
         foreach ($driver as $data_key => $data_value) {
             // for each history, read details
-            if (!empty($data_value['history'])) {
+          $history = $data_value['history'];
+
+            if (!empty($history)) {
             
-                foreach ($data_value['history'] as $key_data => $key_value) {
+                foreach ($history as $key_data => $key_value) {
+
                     $history_refrence_reference = $database->getReference('history')->getChild($key_data)->getValue();
 
                     $data = ['record_key'=>$key_data];
 
                     try {
+
                       $user_history = array_merge($history_refrence_reference,$data);
+
                       array_push($history_data, $user_history);
-                    } catch (\Exception $e) {}                    
+
+                    } catch (\Exception $e) {}                  
                     
                 }
             }
@@ -165,49 +154,36 @@ class NtuhaDashboardController extends Controller
 
     public function updated_history_status($history_key)
     {
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
-
-        $data = [
-
-            'status'=>1
-
-        ];
-
-        $database = $firebase->getDatabase();
-        $database->getReference('history')->getChild($history_key)->update($data);
-
-        return back();
-
+      $database = User::databaseObject();
+      $database->getReference('history')->getChild($history_key)->update(['status'=>1]);
+      return back();
     }
 
 
     public function updated_driver_category($data)
     {
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
 
         $result = explode("*", $data);
-        
+
         $driver_key = $result[0];
+
         $category = $result[1];
 
         $new_category = "No category";
 
         if ($category == "Active") {
-            $new_category = "Inactive";
+
+          $new_category = "Inactive";
+
         }elseif ($category == "Inactive" ) {
+
           $new_category = "Active";
+
         }
 
-        $firebase_data = [
+        $database = User::databaseObject();
 
-            'category'=>$new_category
-
-        ];
-
-        $database = $firebase->getDatabase();
-        $database->getReference('Users')->getChild('Drivers')->getChild($driver_key)->update($firebase_data);
+        $database->getReference('Users')->getChild('Drivers')->getChild($driver_key)->update(['category'=>$new_category]);
 
         return back();
 
@@ -215,9 +191,6 @@ class NtuhaDashboardController extends Controller
 
     public function updated_driver_subscription($data)
     {
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
-
         $result = explode("*", $data);
         
         $driver_key = $result[0];
@@ -230,15 +203,9 @@ class NtuhaDashboardController extends Controller
         }elseif ($subscription == "monthly" ) {
           $subscription_type = "per_ride";
         }
-
-        $firebase_data = [
-
-            'subscription_type'=>$subscription_type
-
-        ];
-
-        $database = $firebase->getDatabase();
-        $database->getReference('Users')->getChild('Drivers')->getChild($driver_key)->update($firebase_data);
+        
+        $database = User::databaseObject();
+        $database->getReference('Users')->getChild('Drivers')->getChild($driver_key)->update(['subscription_type'=>$subscription_type]);
 
         return back();
     }
@@ -251,16 +218,9 @@ class NtuhaDashboardController extends Controller
     */ 
 
     public static function user_details($user_type,$user_id)
-    {
-        $data = array();
-       $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
-
-        $database = $firebase->getDatabase();
-
-        $reference = $database->getReference('Users');
-        $user = $reference->getChild($user_type)->orderByKey()->equalTo($user_id)->getValue();
-        return $user;//this is a single object for one user
+    {      
+        $database = User::databaseObject();      
+        return $database->getReference('Users')->getChild($user_type)->orderByKey()->equalTo($user_id)->getValue();//this is a single object for one user
     }
 
     public static function single_customer($customer_id)
@@ -287,7 +247,8 @@ class NtuhaDashboardController extends Controller
     public static function single_driver($driver_id)
     {
         $data = array();
-         foreach (NtuhaDashboardController::user_details("Drivers",$driver_id) as $key => $value) {
+        $user_details = NtuhaDashboardController::user_details("Drivers",$driver_id);
+         foreach ($user_details as $key => $value) {
             $result = [];
             try {
                $result['name'] = $value['name'];
@@ -300,7 +261,6 @@ class NtuhaDashboardController extends Controller
                $result['service'] = $value['service'];
                $result['driver_id'] = $value['driver_id'];
                $result['profileImageUrl'] = DriverController::read_driver_image($value['driver_id']);
-             
                $data[] = $result; 
             } catch (\Exception $e) {}
                       
@@ -316,15 +276,9 @@ class NtuhaDashboardController extends Controller
     */
     public static function rides()
     {
-        $rides_data = array();
-
-        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
-        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
-
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
-
-        $database = $firebase->getDatabase();
+        $rides_data = array();    
+      
+        $database = User::databaseObject(); 
 
         $rides = $database->getReference('history')->getValue();
         if (!empty($rides)) {
@@ -364,18 +318,11 @@ class NtuhaDashboardController extends Controller
 */ 
     public static function drivers_available()
     {
-        $rides_data = array();
+        $rides_data = array();        
 
-        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
-        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
-
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
-        $database = $firebase->getDatabase();
+        $database = User::databaseObject(); 
 
         $driversAvailable = $database->getReference('driversAvailable')->getValue();
-
-
 
         if (isset($driversAvailable)) {
 
@@ -384,16 +331,12 @@ class NtuhaDashboardController extends Controller
               foreach ($driversAvailable as $key => $driver_value) {
                   $driver = NtuhaDashboardController::single_driver($key);
 
-
-
-
                   foreach ($driver as $driver_value) {
                       $data = array();
                       $data['name'] = $driver_value['name'];
                       $data['phone'] = $driver_value['phone'];
                       $data['car'] = $driver_value['car'];
                       $data['service'] = $driver_value['service'];
-                      // $data['profileImageUrl'] = $driver_value['profileImageUrl'];
                       if (!isset($driver_value['profileImageUrl'])) {
                          $result['profileImageUrl'] = "default.jpg";
                         }else{
@@ -401,7 +344,7 @@ class NtuhaDashboardController extends Controller
                         }
 
                       array_push($rides_data, $data);
-                      
+                       
                   }
                 }
               } catch (\Exception $e) {}
@@ -417,13 +360,8 @@ class NtuhaDashboardController extends Controller
    public static function working_drivers()
    {
         $rides_data = array();
-        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ntuhatransport-firebase-adminsdk-9e7cu-56ffdea3cf.json');
-        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ntuhatransport.firebaseio.com/')->create();
 
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
-
-        $database = $firebase->getDatabase();
+        $database = User::databaseObject();
 
         $working_drivers = $database->getReference('driversWorking')->getValue();
 
@@ -431,9 +369,8 @@ class NtuhaDashboardController extends Controller
           foreach ($working_drivers as $key => $driver_value) {
             array_push($rides_data, NtuhaDashboardController::single_driver($key));
           }
-      }
+        }
         return (array)$rides_data;
-        // return response()->json($rides_data);         
     }
 
 
@@ -456,7 +393,7 @@ class NtuhaDashboardController extends Controller
 
     public static function send_Email($to,$subject,$sms,$from) {
 
-      $user = User::all()->where('email',$to)->last();
+      $user = User::where('email',$to)->get()->last();
 
       $data = [
         'name'=>$user->name,
@@ -515,16 +452,14 @@ class NtuhaDashboardController extends Controller
 
 
     public function update_driver(Request $request)
-    {
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();      
+    {          
                     
         $firebase_data = [
             'name'=>$request->name,
             'phone'=>$request->phone_numner,
         ];
-
-        $database = $firebase->getDatabase();
+ 
+        $database = User::databaseObject();
         $database->getReference('Users')->getChild('Drivers')->getChild($request->driver_id)->update($firebase_data);
     
     }

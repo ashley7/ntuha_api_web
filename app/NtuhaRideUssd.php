@@ -56,6 +56,8 @@ class NtuhaRideUssd extends Model
     public static function occupation($data,$phoneNumber)
     {
     	$response  = "CON What is your occupation?";     
+        $response  .= "\n1. Farmer";     
+        $response  .= "\n2. Comutor";    
         NtuhaRideUssd::loadMenu($response);
     }
 
@@ -99,6 +101,7 @@ class NtuhaRideUssd extends Model
         if (count($customer) == 0) {
 
             NtuhaRideUssd::killSeesion("Ntuha Ride does not recognise ".$phoneNumber."\n Please register first");
+
             return;
              
          } 
@@ -134,12 +137,12 @@ class NtuhaRideUssd extends Model
         $service = "Not specified";
 
         if ($data[2] == 1) {
-            $service = "Boda-boda";
+            $service = "Ntuha Boda";
         }elseif ($data[2] == 2) {
-            $service = "Truck";
+            $service = "Ntuha Truck";
         }
         elseif ($data[2] == 3) {
-            $service = "Taxi";
+            $service = "Ntuha Taxi";
         }
 
         $customer = Customer::checkCustomer($phone_number);

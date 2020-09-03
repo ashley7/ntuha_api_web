@@ -37,12 +37,17 @@ class RideHistoryController extends Controller
         $name = $request->name;
         $access_code = $request->access_code;
         
-        $message = "Dear ".$name.", Thank you for joining Ntuha Ride. Your password is ".$access_code;
+        $message = "Dear ".$name.", Thank you for joining Ntuha Ride. Your password is ".$access_code;    
         
         $save_customer = new Customer();
         $save_customer->name = $name;
         $save_customer->password = $access_code;
         $save_customer->email = $phone_number.'@gmail.com';
+        $save_customer->year_of_birth = rand(18,30);
+        $save_customer->occupation = "Farmer";
+        $save_customer->sign_up_date = now();
+        $save_customer->agent_name = "Android";
+        $save_customer->location = Driver::randomSelector(Driver::locations());
         try {
             $save_customer->save();
             DriverController::sendSMS($phone_number,$message);
@@ -58,7 +63,7 @@ class RideHistoryController extends Controller
     {
         $response = array();
         $phone_number = $request->phone_number;
-        $customer = Customer::all()->where('email',$phone_number.'@gmail.com');
+        $customer = Customer::where('email',$phone_number.'@gmail.com')->get();
         if ($customer->count() == 0) {
             $response['status'] = "NOTFOUND";
             $response['message'] = "The user was not found.";
@@ -108,6 +113,42 @@ class RideHistoryController extends Controller
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
         return $randomString;
+    }
+
+
+    public function assignThemAge()
+    {
+
+        Customer::chunk(1, function ($users) {
+
+            foreach ($users as $user) {
+
+                $customer = Customer::find($user->id);                
+
+                if (empty($customer->year_of_birth)) {
+                    $customer->location = Driver::randomSelector(Driver::locations());
+                    $customer->occupation = Driver::randomSelector(Driver::occupn());
+                    $customer->year_of_birth = rand(18,30);
+                    $customer->sign_up_date = $customer->created_at;
+                    $customer->agent_name = "Android";
+                    $customer->save();                         
+                } else{
+                    try {
+                        $current_age = $customer->year_of_birth;
+                        if (strlen($current_age) == 4) {
+                            $new_age = date("Y") - (int)$customer->year_of_birth;
+                            $customer->year_of_birth = $new_age;
+                            $customer->save();
+                        }
+                                             
+                        
+                    } catch (\Exception $e) {}
+                   
+                    // return $customer;
+                    // exit();
+                }               
+            }
+        }); 
     }
 
 

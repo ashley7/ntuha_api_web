@@ -123,8 +123,8 @@
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-accounts"></i>Customers</a>
                                 <ul class="submenu">
-                                    <li><a href="/get_customers">App customers</a></li>
-                                    <li><a href="/read_customers">USSD Customers</a></li>
+                                    <!-- <li><a href="/get_customers">App customers</a></li> -->
+                                    <li><a href="/read_customers">Customers</a></li>
                                     <li><a href="/import_user">Import Customers</a></li>
                                 </ul>
                             </li> 
@@ -199,7 +199,7 @@
 
              $(document).ready(function() {
                 $('#working_drivers,#transactions,#ussd_customers').DataTable( {
-                    pageLength: 50,
+                    pageLength: 5000,
                     dom: 'Bfrtip',
                     aaSorting: [],
                     ordering: false,
