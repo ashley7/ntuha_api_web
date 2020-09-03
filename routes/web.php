@@ -20,6 +20,8 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('customer','CustomerController@create');
 
+	Route::resource('customers','CustomerController');
+
 	Route::post('import_customer','CustomerController@importCustomers');
 
 	Route::get('import_user','CustomerController@importUser');

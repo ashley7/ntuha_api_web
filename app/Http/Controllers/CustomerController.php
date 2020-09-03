@@ -83,7 +83,15 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $read_customer = Customer::find($id);
+
+        $data = [
+            'read_customer' => $read_customer,
+            'title' => 'Edit '.$read_customer->name
+
+        ];
+
+        return view('customer.edit_customer')->with($data);
     }
 
     /**
@@ -95,7 +103,19 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+    
+        $saveCustomer = Customer::find($id);
+        $saveCustomer->first_name = $request->first_name;
+        $saveCustomer->last_name = $request->last_name;
+        $saveCustomer->name = $request->last_name." ".$request->first_name;
+        $saveCustomer->sex = $request->sex;
+        $saveCustomer->year_of_birth = $request->year_of_birth;
+        $saveCustomer->disability_status = $request->disability_status;
+        $saveCustomer->occupation = $request->occupation;
+        $saveCustomer->save();
+
+        return redirect('/read_customers');
     }
 
     /**
@@ -141,7 +161,7 @@ class CustomerController extends Controller
 
    public function readCustomers()
    {
-        $customers = Customer::paginate(50);
+        $customers = Customer::paginate(200);
         $data = ['title'=>'List of customers','customers'=>$customers];       
         return view('customer.list')->with($data);
    }

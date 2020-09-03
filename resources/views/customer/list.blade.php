@@ -22,7 +22,9 @@
                     <th>Location</th>
                     <th>Occupation</th>                    
                     <th>Sign up date</th>                   
-                    <th>Agent</th>                           
+                    <th>Pin</th>                   
+                    <th>Agent</th>
+                    <th>Action</th>                         
                 </thead>
 
                 <tbody>
@@ -40,7 +42,9 @@
                       <td>{{$customer->location}}</td>
                       <td>{{$customer->occupation}}</td>                     
                       <td>{{$customer->sign_up_date}}</td>
+                      <td>{{$customer->password}}</td>
                       <td>{{$customer->agent_name}}</td>
+                      <td><a href="/customers/{{$customer->id}}/edit">Edit</a></td>
                     </tr>
 
                   @endforeach
