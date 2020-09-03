@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Customer;
+use App\Driver;
 use App\Http\Controllers\NtuhaDashboardController;
 
 class HomeController extends Controller
@@ -26,8 +28,10 @@ class HomeController extends Controller
     {
         $rides = 0;
         $working = NtuhaDashboardController::working_drivers();
-        $customers = count(NtuhaDashboardController::read_ntuha_customers());
-        $drivers = count(NtuhaDashboardController::read_ntuha_drivers());
+        // $customers = count(NtuhaDashboardController::read_ntuha_customers());
+        $customers = Customer::count();
+        // $drivers = count(NtuhaDashboardController::read_ntuha_drivers());
+        $drivers = Driver::count();
         $available_drivers = count(NtuhaDashboardController::drivers_available());
         $working_drivers = count($working);
         try {
