@@ -39,7 +39,7 @@
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Working driver</p>
-                    <h2 class="text-danger"><span data-plugin="counterup">  {{$working_drivers}} </span></h2>
+                    <h2 class="text-danger"><span data-plugin="counterup"> Not computed yet </span></h2>
                      
                 </div>
             </div>
