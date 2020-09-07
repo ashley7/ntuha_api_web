@@ -30,7 +30,7 @@
                 <tbody>
 
               <?php 
-                App\Customer::chunk(1, function ($customer) {
+                App\Customer::chunk(1, function ($customers) {
                ?>              
                   @foreach($customers as $customer)
 
