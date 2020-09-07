@@ -76,7 +76,7 @@ class RideHistoryController extends Controller
             DriverController::sendSMS($phone_number,$message);
             return $message;
         } catch (\Exception $e) {
-            return "Registration failed, please try again";
+            return "Registration failed, please try again. ".$e->getMessage();
         }       
 
     }
