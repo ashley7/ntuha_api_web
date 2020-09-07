@@ -49,10 +49,10 @@ class RideHistoryController extends Controller
            $occupation = $request->occupation;
         }
 
-        $destination_location = 'not disabled';
+        $disability = 'not disabled';
 
-        if (isset($request->destination_location)) {
-           $destination_location = $request->destination_location;
+        if (isset($request->disability)) {
+           $disability = $request->disability;
         }
 
         $gender = "female";
@@ -68,7 +68,7 @@ class RideHistoryController extends Controller
         $save_customer->sex = strtolower($gender);
         $save_customer->occupation = strtolower($occupation);
         $save_customer->sign_up_date = now();
-        $save_customer->destination_location = strtolower($destination_location);
+        $save_customer->disability_status = strtolower($disability);
         $save_customer->agent_name = "Android";
         $save_customer->location = Driver::randomSelector(Driver::locations());
         try {
