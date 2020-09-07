@@ -54,15 +54,21 @@ class RideHistoryController extends Controller
         if (isset($request->destination_location)) {
            $destination_location = $request->destination_location;
         }
+
+        $gender = "female";
+        if (isset($request->gender)) {
+            $gender = $request->gender;
+        }
         
         $save_customer = new Customer();
         $save_customer->name = $name;
         $save_customer->password = $access_code;
         $save_customer->email = $phone_number.'@gmail.com';
         $save_customer->year_of_birth = $age;
-        $save_customer->occupation = $occupation;
+        $save_customer->gender = strtolower($gender);
+        $save_customer->occupation = strtolower($occupation);
         $save_customer->sign_up_date = now();
-        $save_customer->destination_location = $destination_location;
+        $save_customer->destination_location = strtolower($destination_location);
         $save_customer->agent_name = "Android";
         $save_customer->location = Driver::randomSelector(Driver::locations());
         try {

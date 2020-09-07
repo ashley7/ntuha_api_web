@@ -31,9 +31,8 @@
 
               <?php 
                 App\Customer::chunk(1, function ($customers) {
-               ?>              
-                  @foreach($customers as $customer)
-
+                  foreach($customers as $customer){
+               ?>        
                     <tr>
                       <td>{{$customer->id}}</td>
                       <td>{{$customer->created_at}}</td>
@@ -48,10 +47,9 @@
                       <td>{{$customer->password}}</td>
                       <td>{{$customer->agent_name}}</td>
                       <td><a href="/customers/{{$customer->id}}/edit">Edit</a></td>
-                    </tr>
-
-                  @endforeach
+                    </tr>                
                <?php
+                 }
                 });  
               ?>
                   
