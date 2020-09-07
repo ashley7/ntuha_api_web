@@ -8,6 +8,9 @@ use App\Http\Controllers\DriverController;
 use App\Price;
 use App\Payment;
 use App\Withdraw;
+use App\NtuhaRide;
+use App\Customer;
+use App\Driver;
 
 class FrontEndController extends Controller
 {
@@ -203,6 +206,11 @@ class FrontEndController extends Controller
 
     public function record_account_ride(Request $request)
     {
+        $driver = Driver::select('id')->where('phone_number',$request->driver_phone_number)->get()->last();
+     
+        $customer = Customer::select('id')->where('email',$request->customer_phone_number."@gmail.com")->get()->last();
+
+        NtuhaRide::saveRide($driver->id,$customer->id,$request->amount_paid,$request->from,$request->to);
 
         $phone_number = str_replace("@gmail.com", "", $request->email);
 
