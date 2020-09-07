@@ -18,9 +18,9 @@ class CreateNtuhaRidesTable extends Migration
             $table->timestamps();
             $table->integer('driver_id');
             $table->integer('customer_id');
-            $table->integer('from');
-            $table->integer('to');
-            $table->integer('amount');         
+            $table->string('from');
+            $table->string('to');
+            $table->double('amount');         
         });
     }
 
