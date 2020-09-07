@@ -161,8 +161,7 @@ class CustomerController extends Controller
 
    public function readCustomers()
    {
-        $customers = Customer::paginate(200);
-        $data = ['title'=>'List of customers','customers'=>$customers];       
+        $data = ['title'=>'List of customers'];       
         return view('customer.list')->with($data);
    }
 

@@ -29,6 +29,9 @@
 
                 <tbody>
 
+              <?php 
+                App\Customer::chunk(1, function ($customer) {
+               ?>              
                   @foreach($customers as $customer)
 
                     <tr>
@@ -48,11 +51,14 @@
                     </tr>
 
                   @endforeach
+               <?php
+                });  
+              ?>
                   
                 </tbody>
             </table>
 
-            {{$customers->links()}}
+          
           </div>
         </div>
       </div>        

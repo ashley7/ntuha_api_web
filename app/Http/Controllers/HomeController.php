@@ -35,9 +35,8 @@ class HomeController extends Controller
         $available_drivers = count(NtuhaDashboardController::drivers_available());
         $working_drivers = count($working);
         try {
-            $rides = count(NtuhaDashboardController::rides());
-        } catch (\Exception $e) {}
-        
+            // $rides = count(NtuhaDashboardController::rides());
+        } catch (\Exception $e) {}        
         
         $data = ['customers'=>$customers,'drivers'=>$drivers,'available_drivers'=>$available_drivers,'working_drivers'=>$working_drivers,'rides'=>$rides,'working'=>$working];
         return view('home')->with($data);

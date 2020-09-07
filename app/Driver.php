@@ -24,7 +24,7 @@ class Driver extends Model
 
     public static function occupn()
     {
-    	$occupation = ['Comutor','Farmer','Farmer','Comutor','Farmer','Farmer'];
+    	$occupation = ['Commuter','Farmer','Farmer','Commuter','Farmer','Farmer'];
     	return $occupation;
     }
 }

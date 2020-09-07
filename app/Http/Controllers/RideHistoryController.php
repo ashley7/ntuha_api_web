@@ -37,25 +37,41 @@ class RideHistoryController extends Controller
         $name = $request->name;
         $access_code = $request->access_code;
         
-        $message = "Dear ".$name.", Thank you for joining Ntuha Ride. Your password is ".$access_code;    
+        $message = "Dear ".$name.", Thank you for joining Ntuha Ride. Your password is ".$access_code; 
+        $age = rand(18,30);
+        if (isset($request->year_of_birth)) {
+            $age = $request->year_of_birth;
+        }
+
+        $occupation = Driver::randomSelector(Driver::occupn());
+
+        if (isset($request->occupation)) {
+           $occupation = $request->occupation;
+        }
+
+        $destination_location = 'not disabled';
+
+        if (isset($request->destination_location)) {
+           $destination_location = $request->destination_location;
+        }
         
         $save_customer = new Customer();
         $save_customer->name = $name;
         $save_customer->password = $access_code;
         $save_customer->email = $phone_number.'@gmail.com';
-        $save_customer->year_of_birth = rand(18,30);
-        $save_customer->occupation = "Farmer";
+        $save_customer->year_of_birth = $age;
+        $save_customer->occupation = $occupation;
         $save_customer->sign_up_date = now();
+        $save_customer->destination_location = $destination_location;
         $save_customer->agent_name = "Android";
         $save_customer->location = Driver::randomSelector(Driver::locations());
         try {
             $save_customer->save();
             DriverController::sendSMS($phone_number,$message);
-            echo $message;
+            return $message;
         } catch (\Exception $e) {
-            echo "Registration failed, please try again";
-        }
-        
+            return "Registration failed, please try again";
+        }       
 
     }
 
