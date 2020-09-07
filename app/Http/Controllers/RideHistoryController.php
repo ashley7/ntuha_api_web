@@ -65,7 +65,7 @@ class RideHistoryController extends Controller
         $save_customer->password = $access_code;
         $save_customer->email = $phone_number.'@gmail.com';
         $save_customer->year_of_birth = $age;
-        $save_customer->gender = strtolower($gender);
+        $save_customer->sex = strtolower($gender);
         $save_customer->occupation = strtolower($occupation);
         $save_customer->sign_up_date = now();
         $save_customer->destination_location = strtolower($destination_location);
