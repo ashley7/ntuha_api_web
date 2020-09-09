@@ -11,6 +11,16 @@
             </div>
         </div><!-- end col -->
 
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <div class="card-box widget-box-one">
+                <div class="wigdet-one-content">
+                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Available drivers</p>
+                    <h2 class="text-success"><span data-plugin="counterup">{{$available_drivers}}</span></h2>
+               
+                </div>
+            </div>
+        </div><!-- end col -->
+
         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
@@ -46,15 +56,7 @@
             </div>
         </div><!-- end col -->
 
-        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-            <div class="card-box widget-box-one">
-                <div class="wigdet-one-content">
-                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Available drivers</p>
-                    <h2 class="text-success"><span data-plugin="counterup">{{$available_drivers}}</span></h2>
-               
-                </div>
-            </div>
-        </div><!-- end col -->
+        
     </div>
 
 
