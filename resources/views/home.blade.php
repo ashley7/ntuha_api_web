@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <div class="row text-center">
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Drivers</p>
@@ -11,17 +11,38 @@
             </div>
         </div><!-- end col -->
 
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
-                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Customers</p>
-                    <h2 class="text-dark"><span data-plugin="counterup"> {{$customers}} </span> </h2>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Customers</p>
+                            <h2 class="text-dark"><span data-plugin="counterup"> {{$customers}} </span> </h2>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Famers</p>
+                            <h2 class="text-dark"><span data-plugin="counterup"> {{$famers}} </span> </h2>
+                        </div>                       
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Commuters</p>
+                            <h2 class="text-dark"><span data-plugin="counterup"> {{$commuters}} </span> </h2>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Both</p>
+                            <h2 class="text-dark"><span data-plugin="counterup"> {{$both}} </span> </h2>
+                        </div>
+                        
+                    </div>
+                    
                 
                 </div>
             </div>
         </div><!-- end col -->
 
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Available drivers</p>

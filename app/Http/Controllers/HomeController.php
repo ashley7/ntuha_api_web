@@ -26,11 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        ini_set('memory_limit', '500M');
-
-        
-
-    
+        ini_set('memory_limit', '500M');   
         $rides = $male = $female = 0;
         $ageArray = $maleAgeArray = $femaleAgeArray = $gender = array();
         $working = NtuhaDashboardController::working_drivers();
@@ -40,6 +36,10 @@ class HomeController extends Controller
         $drivers = Driver::count();
         $available_drivers = count(NtuhaDashboardController::drivers_available());
         $working_drivers = count($working);
+
+        $famers = Customer::where('occupation','Farmer')->count();
+        $commuters = Customer::where('occupation','Commuter')->count();
+        $both = Customer::where('occupation','Farmer and Commuter')->count();
 
         $user_info_by_age = \DB::table('customers')
                  ->select('year_of_birth as age','sex', \DB::raw('count(*) as total'))
@@ -104,7 +104,10 @@ class HomeController extends Controller
             'maleAgeArray' => $maleAgeArray,
             'gender' => $gender,
             'maleOccupation' => $maleOccupation,
-            'femaleOccupation' => $femaleOccupation
+            'femaleOccupation' => $femaleOccupation,
+            'famers' => $famers,
+            'commuters' => $commuters,
+            'both' => $both,
         ];
 
         return view('home')->with($data);
