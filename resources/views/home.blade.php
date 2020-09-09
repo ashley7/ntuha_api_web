@@ -98,6 +98,22 @@
             </div>
         </div>
 
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                   <div id="male_customers" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                   <div id="female_customers" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
+        </div>
+
          
      </div> 
  
@@ -114,6 +130,8 @@
         renderGraph('male_age','pie','Male farmer age count',{!! json_encode($maleAgeArray) !!})
         renderGraph('female_age','pie','Female farmer age count',{!! json_encode($femaleAgeArray) !!})
         renderGraph('gender','pie','Farmer Gender',{!! json_encode($gender) !!})
+        renderGraph('male_customers','pie','Male Occupation',{!! json_encode($maleOccupation) !!})
+        renderGraph('female_customers','pie','Female Occupation',{!! json_encode($femaleOccupation) !!})
 
         function renderGraph(chart_id,chart_type,chart_title,chart_data) {            
       

@@ -44,7 +44,7 @@ class HomeController extends Controller
         $user_info_by_age = \DB::table('customers')
                  ->select('year_of_birth as age','sex', \DB::raw('count(*) as total'))
                  ->groupBy('age','sex')
-                 ->get();
+                 ->get();        
 
         foreach ($user_info_by_age as $totalValue) {
 
@@ -68,6 +68,25 @@ class HomeController extends Controller
 
         $gender[] = ['Male',$male];
         $gender[] = ['Female',$female];
+
+
+        $user_info_by_occupation = \DB::table('customers')
+                 ->select('occupation','sex', \DB::raw('count(*) as total'))
+                 ->groupBy('occupation','sex')
+                 ->get();
+
+        $maleOccupation = $femaleOccupation = array();
+
+        foreach ($user_info_by_occupation as $occupation_value) {
+            if ($occupation_value->sex == 'male') {
+               $maleOccupation[] = [$occupation_value->occupation,$occupation_value->total];
+            }
+
+            if ($occupation_value->sex == 'female') {
+               $femaleOccupation[] = [$occupation_value->occupation,$occupation_value->total];
+            }
+             
+        }
  
         try {
             // $rides = count(NtuhaDashboardController::rides());
@@ -83,7 +102,9 @@ class HomeController extends Controller
             'ageArray' => $ageArray,
             'femaleAgeArray' => $femaleAgeArray,
             'maleAgeArray' => $maleAgeArray,
-            'gender' => $gender
+            'gender' => $gender,
+            'maleOccupation' => $maleOccupation,
+            'femaleOccupation' => $femaleOccupation
         ];
 
         return view('home')->with($data);
