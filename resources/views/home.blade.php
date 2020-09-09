@@ -11,13 +11,17 @@
             </div>
         </div><!-- end col -->
 
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                             <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Customers</p>
                             <h2 class="text-dark"><span data-plugin="counterup"> {{$customers}} </span> </h2>
+                        </div>
+
+                        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                            <div class="vl"></div>
                         </div>
 
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -42,7 +46,7 @@
             </div>
         </div><!-- end col -->
 
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Available drivers</p>
@@ -138,6 +142,17 @@
          
      </div> 
  
+@endsection
+
+@section('styles')
+
+<style>
+    .vl {
+      border-left: 3px solid #8b0000;
+      height: 50px;
+    }
+</style>
+
 @endsection
 
 @push('scripts')
