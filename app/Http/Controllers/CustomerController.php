@@ -162,7 +162,7 @@ class CustomerController extends Controller
    public function readCustomers()
    {
 
-        $customers = Customer::paginate(100);
+        $customers = Customer::paginate(10000);
         $data = ['title'=>'List of customers','customers'=>$customers];       
         return view('customer.list')->with($data);
    }
@@ -177,7 +177,7 @@ class CustomerController extends Controller
 
             foreach ($dataresults as $request) { 
               
-                Customer::saveCustomer($request->first_name,$request->last_name,$request->sex,$request->year_of_birth,$request->disability_status,$request->location,$request->occupation,$request->sign_up_date,$request->description,$request->phone_number,$request->agent_name);
+                Customer::saveCustomer($request->first_name,$request->last_name,$request->sex,$request->age,$request->disability_status,$request->location,$request->occupation,$request->sign_up_date,$request->description,$request->phone_number,$request->agent_name);
             }
         });
 
