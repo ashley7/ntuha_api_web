@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Famers</p>
+                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Farmers</p>
                             <h2 class="text-dark"><span data-plugin="counterup"> {{$famers}} </span> </h2>
                         </div>                       
 
