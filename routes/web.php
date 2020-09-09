@@ -72,6 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('working_drivers','HomeController@workingDrivers');
 
+
 });
 
 Route::get('/beyonic', function () {

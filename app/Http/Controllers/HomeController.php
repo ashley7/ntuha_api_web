@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\Driver;
+use App\NtuhaRideUssd;
 use App\Http\Controllers\NtuhaDashboardController;
 
 class HomeController extends Controller
@@ -39,6 +40,9 @@ class HomeController extends Controller
         $available_drivers = count(NtuhaDashboardController::drivers_available());
         $working_drivers = count($working);
 
+        $completed_ussd = NtuhaRideUssd::where('status','completed')->count();
+        $pending_ussd = NtuhaRideUssd::where('status','pending')->count();
+
         $famers = Customer::where('occupation','Farmer')->count();
         $commuters = Customer::where('occupation','Commuter')->count();
         $both = Customer::where('occupation','Farmer and Commuter')->count();
@@ -72,9 +76,7 @@ class HomeController extends Controller
                     $none_female_youth = $none_female_youth + $totalValue->total;
                 }
             }
-
             // ===================================
-
             if ($totalValue->sex == "male") {
                $male = $male + $totalValue->total;
             }elseif($totalValue->sex == "female"){
@@ -134,6 +136,8 @@ class HomeController extends Controller
             'famers' => $famers,
             'commuters' => $commuters,
             'both' => $both,
+            'completed_ussd' => $completed_ussd,
+            'pending_ussd' => $pending_ussd
         ];
 
         return view('home')->with($data);

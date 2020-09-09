@@ -3,11 +3,8 @@
 @section('content')
  <div class="card-box">
     <h4>List of USSD Service requests</h4>
-
-    <div class="card-body">
- 
+    <div class="card-body"> 
     <br><br>
-
       <div class="table-responsive">
           <table class="table table-hover table-striped" id="working_drivers">
               <thead>         
@@ -22,24 +19,31 @@
               </thead>
 
               <tbody>
-                 @foreach($ussd_request as $order)
-
-                 <?php
-                   $customer = App\Customer::find($order->customer_id); 
-
-                  ?>
+                 @foreach($ussd_request as $order) 
                     <tr>
                        <td>{{$order->created_at}}</td>
-                       <td>{{$customer->name}}<br>
-                        {{str_replace("@gmail.com","",$customer->email)}}
+                       <td>{{$order->customer->name}}<br>
+                        {{str_replace("@gmail.com","",$order->customer->email)}}
                        </td>
                        <td>{{$order->service}}</td>
                        <td>{{$order->product}}</td>
                        <td>{{$order->pick_up_location}}</td>
                        <td>{{$order->destination_location}}</td>
-                       <td>{{$order->status}}</td>
-                       <td></td>
-                          
+                       <td>
+                        @if($order->status == "pending")
+                          <span class="text-warning">{{$order->status}}</span>
+                        @elseif($order->status == "completed")
+                          <span class="text-success">{{$order->status}}</span>
+                        @elseif($order->status == "declined")
+                          <span class="text-danger">{{$order->status}}</span>
+                        @elseif($order->status == "accepted")
+                          <span class="text-info">{{$order->status}}</span>
+                        @endif
+
+                        </td>
+                       <td>
+                         <a href="{{route('ussd_requests.edit',$order->id)}}">Edit</a>
+                       </td>                          
                     </tr>                    
                  @endforeach
                </tbody>

@@ -8,9 +8,7 @@ use App\Driver;
 class Customer extends Model
 {
     public static function saveCustomer($first_name,$last_name,$sex,$year_of_birth,$disability_status,$location,$occupation,$sign_up_date,$description,$phone_number,$agent_name)
-    {
-
-       
+    {      
 
     	$saveCustomer = new Customer();
         $saveCustomer->first_name = $first_name;

@@ -55,9 +55,9 @@ class NtuhaRideController extends Controller
      * @param  \App\NtuhaRide  $ntuhaRide
      * @return \Illuminate\Http\Response
      */
-    public function edit(NtuhaRide $ntuhaRide)
+    public function edit( $ntuhaRide)
     {
-        //
+          
     }
 
     /**

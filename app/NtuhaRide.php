@@ -16,4 +16,6 @@ class NtuhaRide extends Model
     	$save_ride->amount = $amount;
     	$save_ride->save();
     }
+
+  
 }

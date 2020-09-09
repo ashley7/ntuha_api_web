@@ -238,9 +238,10 @@ class NtuhaRideUssdController extends Controller
      * @param  \App\NtuhaRideUssd  $ntuhaRideUssd
      * @return \Illuminate\Http\Response
      */
-    public function show(NtuhaRideUssd $ntuhaRideUssd)
-    {
-        //
+    public function show($ntuhaRideUssd)
+    {       
+
+
     }
 
     /**
@@ -249,9 +250,16 @@ class NtuhaRideUssdController extends Controller
      * @param  \App\NtuhaRideUssd  $ntuhaRideUssd
      * @return \Illuminate\Http\Response
      */
-    public function edit(NtuhaRideUssd $ntuhaRideUssd)
+    public function edit( $ntuhaRideUssd)
     {
-        //
+        $readNtuhaRideUssd = NtuhaRideUssd::find($ntuhaRideUssd);
+
+        $data = [
+            'readNtuhaRideUssd' => $readNtuhaRideUssd
+        ];
+
+        return view('ussd.edit_request')->with($data);       
+
     }
 
     /**
@@ -261,9 +269,17 @@ class NtuhaRideUssdController extends Controller
      * @param  \App\NtuhaRideUssd  $ntuhaRideUssd
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NtuhaRideUssd $ntuhaRideUssd)
+    public function update(Request $request, $ntuhaRideUssd)
     {
-        //
+        $update = NtuhaRideUssd::find($ntuhaRideUssd);
+        $update->service = $request->service;
+        $update->product = $request->product;
+        $update->pick_up_location = $request->pick_up_location;
+        $update->destination_location = $request->destination_location;
+        $update->status = $request->status;
+        $update->save();
+
+        return redirect('ussd_requests');
     }
 
     /**

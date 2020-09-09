@@ -70,7 +70,7 @@
             </div>
         </div><!-- end col -->
 
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">App Rides</p>
@@ -80,11 +80,22 @@
             </div>
         </div><!-- end col -->
 
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
-                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">USSD Rides</p>
-                    <h2 class="text-success"><span data-plugin="counterup">... </span></h2>               
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow">USSD Rides completed</p>
+                            <h2 class="text-success"><span data-plugin="counterup">{{$completed_ussd}}</span></h2>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow">USSD Rides pending</p>
+                            <h2 class="text-warning"><span data-plugin="counterup">{{$pending_ussd}}</span></h2>
+                        </div>
+                        
+                    </div>
+                                  
                 </div>
             </div>
         </div><!-- end col -->
