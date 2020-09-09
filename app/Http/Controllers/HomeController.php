@@ -26,8 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        ini_set('memory_limit', '500M');   
-        $rides = $male = $female = 0;
+        ini_set('memory_limit', '512M');
+
+        $rides = $male = $female = $all_youth = $non_youth = $male_youth = $none_male_youth =  $female_youth = $none_female_youth = 0;
+
         $ageArray = $maleAgeArray = $femaleAgeArray = $gender = array();
         $working = NtuhaDashboardController::working_drivers();
         // $customers = count(NtuhaDashboardController::read_ntuha_customers());
@@ -44,16 +46,31 @@ class HomeController extends Controller
         $user_info_by_age = \DB::table('customers')
                  ->select('year_of_birth as age','sex', \DB::raw('count(*) as total'))
                  ->groupBy('age','sex')
-                 ->get();        
+                 ->get();           
 
         foreach ($user_info_by_age as $totalValue) {
 
-            $ageArray[] = [$totalValue->age.' Years',$totalValue->total];
+            if ($totalValue->age < 31) {
+              $all_youth = $all_youth + $totalValue->total;  
+            }else{
+              $non_youth = $non_youth + $totalValue->total;
+            }                  
 
             if ($totalValue->sex == "male") {
-                $maleAgeArray[] = [ucfirst($totalValue->sex).' aged '.$totalValue->age.' Years',$totalValue->total];
+
+                if ($totalValue->age < 31) {
+                   $male_youth = $male_youth + $totalValue->total;
+                }else{
+                   $none_male_youth = $none_male_youth +  $totalValue->total;
+                }
+
             }elseif ($totalValue->sex == "female") {
-                $femaleAgeArray[] = [ucfirst($totalValue->sex).' aged '.$totalValue->age.' Years',$totalValue->total];
+
+                if ($totalValue->age < 31) {
+                    $female_youth = $female_youth + $totalValue->total;
+                }else{
+                    $none_female_youth = $none_female_youth + $totalValue->total;
+                }
             }
 
             // ===================================
@@ -65,6 +82,15 @@ class HomeController extends Controller
             }
 
         }
+
+        $ageArray[] = ['16 to 30 (Youth)',$all_youth];
+        $ageArray[] = ['Above 30',$non_youth];
+
+        $maleAgeArray[] = ['16 to 30 (Male Youth)',$male_youth];
+        $maleAgeArray[] = ['Men Above 30)',$none_male_youth];
+
+        $femaleAgeArray[] = ['16 to 30 (Female Youth)',$female_youth];
+        $femaleAgeArray[] = ['Women above 30)',$none_female_youth];
 
         $gender[] = ['Male',$male];
         $gender[] = ['Female',$female];
