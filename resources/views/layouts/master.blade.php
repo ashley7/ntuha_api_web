@@ -67,12 +67,7 @@
                                     <!-- <img src="back_end/assets/images/users/avatar-1.jpg" alt="{{Auth::user()->name}}" class="img-circle"> -->
                                     <span style="color: #FFF;">{{Auth::user()->name}}</span>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-arrow profile-dropdown " aria-labelledby="Preview">                                
-                                  
-
-                                 
-
-                                   
+                                <div class="dropdown-menu dropdown-menu-right dropdown-arrow profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->                                 
                                       
                                     <a href="{{ route('logout') }}" class="dropdown-item notify-item"
@@ -125,7 +120,7 @@
                                 <ul class="submenu">
                                     <!-- <li><a href="/get_customers">App customers</a></li> -->
                                     <li><a href="/read_customers">Customers</a></li>
-                                    <li><a href="/import_user">Import Customers</a></li>
+                                    <li><a href="/import_user">Create Customers</a></li>
                                 </ul>
                             </li> 
 
@@ -135,7 +130,11 @@
                                 <ul class="submenu">                                   
                                    <li> <a href="/rides">Customer Rides</a></li>
 
-                                   <li> <a href="/ussd_requests">USSD Rides</a></li>
+                                   <li> <a href="/ussd_requests">Rides Requests</a></li>
+
+                                   <hr>
+
+                                   <li> <a href="/working_drivers">Active Ntuha Rides</a></li>
                                 </ul>
                             </li> 
 

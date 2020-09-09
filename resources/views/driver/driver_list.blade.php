@@ -79,6 +79,7 @@
                    @endforeach
                 </tbody>
             </table>
+            {{$read_local_drivers->links()}}
           </div>
         </div>
       </div>        

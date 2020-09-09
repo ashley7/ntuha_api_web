@@ -69,6 +69,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('ussd_requests','NtuhaRideUssdController');
 
 	Route::get('assign_them_age','RideHistoryController@assignThemAge');
+
+	Route::get('working_drivers','HomeController@workingDrivers');
+
 });
 
 Route::get('/beyonic', function () {

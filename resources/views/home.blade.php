@@ -48,7 +48,7 @@
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
-                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Rides</p>
+                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">App Rides</p>
                     <h2 class="text-dark"><span data-plugin="counterup"> ... </span> </h2>
                 
                 </div>
@@ -58,36 +58,96 @@
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
-                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow"></p>
-                    <h2 class="text-success"><span data-plugin="counterup"> </span></h2>               
+                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">USSD Rides</p>
+                    <h2 class="text-success"><span data-plugin="counterup">... </span></h2>               
                 </div>
             </div>
         </div><!-- end col -->
-    </div>
-  
-    <div class="card-box"> 
-        <div class="card-body"> 
-            <h4>Active rides</h4>
-            <table class="table" id="working_drivers">
-                <thead>
-                   <th>Name</th> <th>Phone Number</th> <th>Driver ID</th> <th>Service</th>
-                </thead>
+    </div> 
 
-                <tbody>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                   <div id="age" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
+        </div> 
 
-                    @foreach ($working as $key => $value)  
-                       @foreach ($working[$key] as $driver_key => $driver_value)
-                         <tr>
-                             
-                             <td>{{$driver_value['name']}}</td>
-                             <td>{{$driver_value['phone']}}</td>
-                             <td>{{$driver_value['driver_id']}}</td>
-                             <td>{{$driver_value['service']}}</td>                            
-                         </tr>
-                       @endforeach
-                    @endforeach                                  
-                </tbody>
-            </table>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                   <div id="female_age" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                   <div id="male_age" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
+        </div> 
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                   <div id="gender" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
+        </div>
+
+         
+     </div> 
+ 
 @endsection
+
+@push('scripts')
+    <script src="{{asset('js/charts/highcharts.js')}}"></script>
+    <script src="{{asset('js/charts/highcharts-3d.js')}}"></script>
+    <script src="{{asset('js/charts/exporting.js')}}"></script>
+    <script src="{{asset('js/charts/export-data.js')}}"></script>  
+
+    <script>
+        renderGraph('age','pie','Farmer age count',{!! json_encode($ageArray) !!})
+        renderGraph('male_age','pie','Male farmer age count',{!! json_encode($maleAgeArray) !!})
+        renderGraph('female_age','pie','Female farmer age count',{!! json_encode($femaleAgeArray) !!})
+        renderGraph('gender','pie','Farmer Gender',{!! json_encode($gender) !!})
+
+        function renderGraph(chart_id,chart_type,chart_title,chart_data) {            
+      
+            Highcharts.chart(chart_id, {
+                chart: {
+                    type: chart_type,
+                    options3d: {
+                        enabled: false,
+                        alpha: 45,
+                        beta: 0
+                    }
+                },
+                title: {
+                    text: chart_title
+                },
+               
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        depth: 35,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}: <b>{point.percentage:.1f}%</b>'
+                        }
+                    }
+                },
+                colors:['#8B0000','#FF0000','#B22222','#DC143C','#F08080','#FF4500'],
+                series: [{
+                    type: 'pie',
+                    name: 'Number of Farmer',
+                    data:  chart_data
+                }]
+            });
+        }
+    </script>
+@endpush
