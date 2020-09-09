@@ -159,7 +159,7 @@
       </div>
     </section>
     <!--Main 3-->
-<section id="main2">
+    <section id="main2" style="color: #000;">
       <div class="container">
             <h2>Who are we?</h2><br />
             <p>Ntuha services is a high-tech transport company situated in the heart of Mbarara town in western Uganda. Ntuha is here to bring a drastic reliable and fabulous change to the transport system in western Uganda like never seen before. Ntuha started with a food delivery service known as Ntuha food in May 2017 which took Mbarara by a storm. Ntuha food partners with all the best restaurants and grocery stores in the region. 
