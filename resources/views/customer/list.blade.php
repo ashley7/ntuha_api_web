@@ -49,8 +49,8 @@
                       <td><a href="/customers/{{$customer->id}}/edit">Edit</a></td>
                     </tr>                
                <?php
-                 // }
-                });  
+                 }
+                // });  
               ?>
                   
                 </tbody>
