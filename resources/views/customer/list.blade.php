@@ -30,7 +30,7 @@
                 <tbody>
 
               <?php 
-                App\Customer::chunk(1, function ($customers) {
+                // App\Customer::chunk(1, function ($customers) {
                   foreach($customers as $customer){
                ?>        
                     <tr>
@@ -49,17 +49,14 @@
                       <td><a href="/customers/{{$customer->id}}/edit">Edit</a></td>
                     </tr>                
                <?php
-                 }
+                 // }
                 });  
               ?>
                   
                 </tbody>
             </table>
-
-             
-
-          
-          </div>
+            {{$customers->links()}}
+            </div>
         </div>
       </div>        
 @endsection
