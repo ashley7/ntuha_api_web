@@ -50,13 +50,23 @@ class NtuhaRide extends Model
 
         $keys = array_rand($dates, $sizeOfData);//select random N days from them
 
-        foreach ($keys as $k => $value) {
-            $dataValues[] = $dates[$value];
+        if (count($keys) > 0) {
+            foreach ($keys as $k => $value) {
+                $dataValues[] = $dates[$value];
+            }
+
+            sort($dataValues);//sort those days
+
+            return $dataValues;
+
+        }else{
+
+            return [];
+            
         }
 
-        sort($dataValues);//sort those days
 
-        return $dataValues;
+        
     }
 
     public static function randomItemSeletor($arrayObject)
