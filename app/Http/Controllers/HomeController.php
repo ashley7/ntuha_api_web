@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\Driver;
 use App\NtuhaRideUssd;
+use App\NtuhaRide;
 use App\Http\Controllers\NtuhaDashboardController;
 
 class HomeController extends Controller
@@ -118,7 +119,12 @@ class HomeController extends Controller
  
         try {
             // $rides = count(NtuhaDashboardController::rides());
-        } catch (\Exception $e) {}        
+
+        } catch (\Exception $e) {}  
+
+        $rides = NtuhaRide::count();
+        $total_amount = NtuhaRide::sum('amount');
+        $ntuha_income = NtuhaRide::sum('ntuha_amount');
         
         $data = [
             'customers'=>$customers,
@@ -126,6 +132,8 @@ class HomeController extends Controller
             'available_drivers'=>$available_drivers,
             'working_drivers'=>$working_drivers,
             'rides'=>$rides,
+            'total_amount'=>$total_amount,
+            'ntuha_income'=>$ntuha_income,
             'working'=>$working,
             'ageArray' => $ageArray,
             'femaleAgeArray' => $femaleAgeArray,

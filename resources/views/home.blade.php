@@ -62,7 +62,7 @@
 
 
     <div class="row text-center">
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Working driver</p>
@@ -72,17 +72,38 @@
             </div>
         </div><!-- end col -->
 
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
-                    <p class="m-0 text-uppercase font-600 font-secondary text-overflow">App Rides</p>
-                    <h2 class="text-dark"><span data-plugin="counterup"> ... </span> </h2>
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                           <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Rides</p>
+                           <h2 class="text-dark"><span data-plugin="counterup"> {{$rides}} </span> </h2>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+                           <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Rides Amount</p>
+                           <h4 class="text-dark"><span data-plugin="counterup"> UGX {{number_format($total_amount)}} </span> </h4>
+
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+                           <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Ntuha Revenue</p>
+                           <h4 class="text-dark"><span data-plugin="counterup"> UGX {{number_format($ntuha_income)}} </span> </h4>
+
+                        </div>
+                        
+                    </div>
+                    
                 
                 </div>
             </div>
         </div><!-- end col -->
 
-        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <div class="card-box widget-box-one">
                 <div class="wigdet-one-content">
                     <div class="row">

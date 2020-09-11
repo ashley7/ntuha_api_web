@@ -128,7 +128,8 @@
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-balance-wallet"></i>Ntuha Rides</a>
                                 <ul class="submenu">                                   
-                                   <li> <a href="/rides">Customer Rides</a></li>
+                                   <!-- <li> <a href="/rides">Customer Rides</a></li> -->
+                                   <li> <a href="/ntuha_rides">Customer Rides</a></li>
 
                                    <li> <a href="/ussd_requests">Rides Requests</a></li>
 
