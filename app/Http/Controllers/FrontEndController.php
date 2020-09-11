@@ -206,11 +206,19 @@ class FrontEndController extends Controller
 
     public function record_account_ride(Request $request)
     {
-        $driver = Driver::select('id')->where('phone_number',$request->driver_phone_number)->get()->last();
+        $driver = Driver::select('id','service')->where('phone_number',$request->driver_phone_number)->get()->last();
      
         $customer = Customer::select('id')->where('email',$request->customer_phone_number."@gmail.com")->get()->last();
 
-        NtuhaRide::saveRide($driver->id,$customer->id,$request->amount_paid,$request->from,$request->to);
+        $ntuha_amount = 1000;
+
+        if ($driver->service == "Ntuha Boda") {
+            $ntuha_amount = 200;
+        }elseif($driver->service == "Ntuha Taxi"){
+            $ntuha_amount = 500;
+        }
+
+        NtuhaRide::saveRide($driver->id,$customer->id,$request->amount_paid,$request->from,$request->to,date('Y-m-d'),date('Y-m'),$ntuha_amount);
 
         $phone_number = str_replace("@gmail.com", "", $request->email);
 

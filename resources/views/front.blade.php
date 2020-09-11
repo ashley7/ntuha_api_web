@@ -18,7 +18,15 @@
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
-    <![endif]-->       
+    <![endif]-->  
+
+    <style>
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+    </style>     
    
 </head>
 
@@ -32,8 +40,9 @@
                         <div class="top-number">
                             <p>
                                 <i class="fa fa-map-marker"></i>&nbsp; &nbsp;Bam Complex Building, Room 12C, High street, Mbarara  &nbsp;&nbsp; 
-                                <i class="fa fa-phone-square"></i>&nbsp;&nbsp; +256704 44 44 81 &nbsp;&nbsp; +256703 03 70 87   &nbsp;&nbsp;
+                                <i class="fa fa-phone-square"></i>&nbsp;&nbsp; +256704444481 &nbsp;&nbsp; +256703037087   &nbsp;&nbsp;
                                 <i class="fa fa-envelope-o"></i> &nbsp;&nbsp; ntuha.deliveries@gmail.com
+
                             </p>
                         </div>
                     </div>
@@ -51,9 +60,20 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php"><img src="/front/images/ntuha.png" width="40%" alt="logo"></a>
-                </div>
-                              
+                    
+
+                   <ul>
+                    <li>
+                        <a class="navbar-brand" href="/">
+                            <img src="/front/images/ntuha.png" width="30%" alt="logo">
+                        </a>
+                    </li>
+                     
+                       <li>
+                           <a href="/login">Admin</a>
+                       </li>
+                   </ul>                    
+                </div>                              
             </div><!--/.container-->
         </nav><!--/nav-->
         

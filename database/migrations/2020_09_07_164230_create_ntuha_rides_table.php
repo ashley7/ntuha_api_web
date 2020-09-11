@@ -20,7 +20,10 @@ class CreateNtuhaRidesTable extends Migration
             $table->integer('customer_id');
             $table->string('from');
             $table->string('to');
-            $table->double('amount');         
+            $table->double('amount');
+            $table->date('date');        
+            $table->string('month_year');      
+            $table->double('ntuha_amount')->default(200);      
         });
     }
 

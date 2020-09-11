@@ -72,6 +72,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('working_drivers','HomeController@workingDrivers');
 
+	Route::resource('ntuha_rides','NtuhaRideController');
+
 
 });
 
