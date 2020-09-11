@@ -88,6 +88,8 @@ class NtuhaRideController extends Controller
             }
 
         });
+
+        return redirect('ntuha_rides');
     }
 
     /**
