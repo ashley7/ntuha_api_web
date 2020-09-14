@@ -110,6 +110,7 @@ class CustomerController extends Controller
         $saveCustomer->last_name = $request->last_name;
         $saveCustomer->name = $request->last_name." ".$request->first_name;
         $saveCustomer->sex = $request->sex;
+        $saveCustomer->email = $request->phone_number."@gmail.com";
         $saveCustomer->year_of_birth = $request->year_of_birth;
         $saveCustomer->disability_status = $request->disability_status;
         $saveCustomer->occupation = $request->occupation;

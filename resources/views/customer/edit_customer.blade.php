@@ -17,8 +17,10 @@
               <input type="text" name="last_name" value="{{$read_customer->last_name}}" class="form-control"> 
 
               <label>Age</label>
-              <input type="number" name="year_of_birth" value="{{$read_customer->year_of_birth}}" class="form-control">            
+              <input type="number" name="year_of_birth" value="{{$read_customer->year_of_birth}}" class="form-control"> 
 
+              <label>Phone number</label>
+              <input type="number" name="phone_number" value="{{str_replace('@gmail.com','',$read_customer->email)}}" class="form-control">          
               <br>
               <button id="save_customer" class="btn btn-primary">Save customer</button>                       
             </div>
