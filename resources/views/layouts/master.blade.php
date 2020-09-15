@@ -108,7 +108,7 @@
                                 <a href="#"><i class="zmdi zmdi-bike"></i>Drivers</a>
                                 <ul class="submenu">
                                     <li><a href="/available_drivers">Available drivers</a></li>
-                                    <li><a href="/get_drivers">Active Drivers</a></li>
+                                    <!-- <li><a href="/get_drivers">Active Drivers</a></li> -->
                                     <li><a href="/driver">All Drivers</a></li>
                                     <li><a href="/driver/create">Add new Driver</a></li>
                                 </ul>
@@ -120,7 +120,7 @@
                                 <ul class="submenu">
                                     <!-- <li><a href="/get_customers">App customers</a></li> -->
                                     <li><a href="/read_customers">Customers</a></li>
-                                    <li><a href="/import_user">Create Customers</a></li>
+                                    <!-- <li><a href="/import_user">Create Customers</a></li> -->
                                 </ul>
                             </li> 
 
