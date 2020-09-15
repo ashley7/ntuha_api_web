@@ -19,7 +19,7 @@
           <tbody>
             @foreach($read_ntuha_rides as $rides)
               <tr>
-                 <td>{{$rides->date}}</td>
+                 <td>{{$rides->date}} {{date("H:i:s",strtotime($rides->created_at))}}</td>
                  <td>{{$rides->driver->name}}<br>{{$rides->driver->phone_number}}<br>{{$rides->driver->service}}<br>{{$rides->driver->driver_id}}</td>
                  <td>{{$rides->customer->name}}<br>{{str_replace("@gmail.com","",$rides->customer->email)}}</td>
                  <td>{{$rides->from}}</td>
