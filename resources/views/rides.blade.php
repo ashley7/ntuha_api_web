@@ -21,9 +21,9 @@
               <tr>
                  <td>{{$rides->date}}
                     @if($rides->id > 21065)
-                     {{date("H:i:s",strtotime($rides->driver->created_at))}}
+                     {{date("H:i:s",strtotime($rides->created_at))}}                     
                      @else
-                     {{date("H:i:s",strtotime($rides->created_at))}}
+                     {{date("H:i:s",strtotime($rides->driver->created_at))}}
                     @endif
                   </td>
                  <td>{{$rides->driver->name}}<br>{{$rides->driver->phone_number}}<br>{{$rides->driver->service}}<br>{{$rides->driver->driver_id}}</td>
