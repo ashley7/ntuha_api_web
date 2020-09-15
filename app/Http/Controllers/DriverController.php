@@ -17,7 +17,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $read_local_drivers = Driver::paginate(100);
+        $read_local_drivers = Driver::orderBy('created_at')->paginate(100);
         return view('driver.driver_list')->with(['read_local_drivers'=>$read_local_drivers]);
     }
 
