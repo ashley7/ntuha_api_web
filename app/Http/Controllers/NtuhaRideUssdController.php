@@ -294,11 +294,22 @@ class NtuhaRideUssdController extends Controller
             $update->save();
 
              if ($request->status == "completed") {
-                $check_driver = Driver::readDriver($request->driver_number);
+                $driver = Driver::readDriver($request->driver_number);
 
-                NtuhaRide::saveRide($check_driver->id,$update->customer_id,$update->amount,$update->pick_up_location,$update->destination_location,date('Y-m-d'),date('Y-m'),$update->amount);
+                $ntuha_amount = 200;
 
-                
+                 if ($driver->service == "Ntuha Boda") {
+                    $ntuha_amount = 200;                    
+                }elseif ($driver->service == "Ntuha Taxi") {
+                    $ntuha_amount = 500;                   
+                }elseif($driver->service == "Ntuha Truck"){
+                    $ntuha_amount = 1000;                   
+                }else{
+                    $ntuha_amount = 200;                  
+                }
+
+                NtuhaRide::saveRide($driver->id,$update->customer_id,$update->amount,$update->pick_up_location,$update->destination_location,date('Y-m-d'),date('Y-m'),$ntuha_amount);
+
             }
 
 
