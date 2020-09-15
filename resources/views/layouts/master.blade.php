@@ -165,6 +165,11 @@
  
         <div class="wrapper">
             <div class="container">
+                @if (session('status'))
+                    <div class="text-info" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 @yield('content')    
                 <footer class="footer text-right">
                     <div class="container">
