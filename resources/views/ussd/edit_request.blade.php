@@ -22,6 +22,14 @@
               <label>Pick up location</label>
               <input type="text" name="pick_up_location" value="{{$readNtuhaRideUssd->pick_up_location}}" class="form-control">
 
+              <label>Driver</label>
+              <input type="text" name="driver_number" class="form-control">
+              
+
+            </div>
+
+            <div class="col-md-6">
+
               <label>Destination location</label>
               <input type="text" name="destination_location" value="{{$readNtuhaRideUssd->destination_location}}" class="form-control">
 
@@ -34,12 +42,13 @@
                 <option value="completed">Completed</option>
                 <option value="declined">Declined</option>                          
               </select>
-              <br>
-               <button id="save_save_changes" type="submit" class="btn btn-primary">Save changes</button>
 
-            </div>
-          
+              <label>Ride amount</label>
+              <input type="number" step="500" min="500" name="amount" value="{{$readNtuhaRideUssd->amount}}" class="form-control">             
+            </div>          
         </div>
+        <br>
+        <button id="save_save_changes" type="submit" class="btn btn-primary">Save changes</button>
     </form>
   </div>
 </div>

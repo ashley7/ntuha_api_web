@@ -13,7 +13,8 @@
                   <th>Service</th>
                   <th>Product</th>                                              
                   <th>From</th>                                              
-                  <th>To</th>                                              
+                  <th>To</th> 
+                  <th>Ride Amount</th>                                             
                   <th>Status</th>                                              
                   <th>Action</th>                                              
               </thead>
@@ -29,6 +30,7 @@
                        <td>{{$order->product}}</td>
                        <td>{{$order->pick_up_location}}</td>
                        <td>{{$order->destination_location}}</td>
+                       <td>{{$order->amount}}</td>
                        <td>
                         @if($order->status == "pending")
                           <span class="text-warning">{{$order->status}}</span>

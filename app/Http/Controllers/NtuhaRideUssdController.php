@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\NtuhaRideUssd;
 use App\Customer;
+use App\NtuhaRide;
+use App\Driver;
 use Illuminate\Http\Request;
 
 class NtuhaRideUssdController extends Controller
@@ -271,13 +273,37 @@ class NtuhaRideUssdController extends Controller
      */
     public function update(Request $request, $ntuhaRideUssd)
     {
+
+        if ($request->status == "completed") {
+           $check_driver = Driver::readDriver($request->driver_number);
+
+           if (empty($check_driver)) {
+               return back()->with(['status'=>'Driver not found in the system']);
+           }
+        }
+
+
         $update = NtuhaRideUssd::find($ntuhaRideUssd);
         $update->service = $request->service;
         $update->product = $request->product;
         $update->pick_up_location = $request->pick_up_location;
         $update->destination_location = $request->destination_location;
         $update->status = $request->status;
-        $update->save();
+        $update->amount = $request->amount;
+        try {
+            $update->save();
+
+             if ($request->status == "completed") {
+                $check_driver = Driver::readDriver($request->driver_number);
+
+                NtuhaRide::saveRide($check_driver->id,$update->customer_id,$update->amount,$update->pick_up_location,$update->destination_location,date('Y-m-d'),date('Y-m'),$update->amount);
+
+                
+            }
+
+
+           
+        } catch (\Exception $e) {}
 
         return redirect('ussd_requests');
     }

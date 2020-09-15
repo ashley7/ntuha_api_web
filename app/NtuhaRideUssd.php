@@ -39,7 +39,12 @@ class NtuhaRideUssd extends Model
     public static function promptDistrict()
     {
     	$response  = "CON What is your District name?";
-        $response .= "\ne.g Mbarara";       
+        $response .= "\n1. Mbarara";       
+        $response .= "\n2. Ibanda";       
+        $response .= "\n3. Bushenyi";       
+        $response .= "\n4. Fortpotal";       
+        $response .= "\n5. Kamwenge";       
+        $response .= "\n6. Isingiro";       
         NtuhaRideUssd::loadMenu($response);
     }
 

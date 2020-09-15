@@ -27,4 +27,15 @@ class Driver extends Model
     	$occupation = ['Commuter','Farmer','Farmer','Commuter','Farmer','Farmer'];
     	return $occupation;
     }
+
+    public static function readDriver($driver_number)
+    {
+        $readDriver = Driver::where('driver_id',$driver_number)->get();
+
+        if (count($readDriver) == 1) {
+            return $readDriver->last();
+        }else{
+            return [];
+        }
+    }
 }
