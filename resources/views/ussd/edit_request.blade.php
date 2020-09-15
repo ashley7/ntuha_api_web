@@ -22,7 +22,7 @@
               <label>Pick up location</label>
               <input type="text" name="pick_up_location" value="{{$readNtuhaRideUssd->pick_up_location}}" class="form-control">
 
-              <label>Driver</label>
+              <label>Driver Number</label>
               <input type="text" name="driver_number" class="form-control">
               
 
