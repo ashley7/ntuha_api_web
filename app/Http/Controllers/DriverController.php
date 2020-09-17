@@ -45,7 +45,7 @@ class DriverController extends Controller
         $save_driver = new Driver($request->all());
         $save_driver->email = $request->phone_number."@gmail.com";
         $save_driver->input_img = env("DEFAULT_IMAGE");
-        $save_driver->mailer = $request->mailer;
+        // $save_driver->mailer = $request->mailer;
         try {         
             if ($request->hasFile('input_img')) {
                 $image = $request->file('input_img');
@@ -59,9 +59,7 @@ class DriverController extends Controller
 
             $message = "Dear ".$request->name.", Thank you for Joining Ntuha Ride, Your Number is ".$save_driver->driver_id." and your access key is ".$save_driver->access_key;
 
-            $this->sendSMS($save_driver->phone_number,$message);
-
-            
+            $this->sendSMS($save_driver->phone_number,$message);           
 
 
         } catch (\Exception $e) {}

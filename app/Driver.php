@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Driver extends Model
 {
-    protected $fillable = ['name','email','phone_number','driver_id','identification_number','identification_type','motor_type','number_plate','service','subscription_type'];
+    protected $fillable = ['name','phone_number','driver_id','identification_number','identification_type','motor_type','number_plate','service','subscription_type'];
 
     public static function randomSelector($array)
     {      
