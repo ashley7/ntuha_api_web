@@ -114,10 +114,9 @@ class CustomerController extends Controller
         $saveCustomer->year_of_birth = $request->year_of_birth;
         $saveCustomer->disability_status = $request->disability_status;
         $saveCustomer->occupation = $request->occupation;
-        try {
-            $saveCustomer->save();
-        } catch (\Exception $e) {}
-
+ 
+        $saveCustomer->save();
+        
         return redirect('/read_customers');
     }
 
