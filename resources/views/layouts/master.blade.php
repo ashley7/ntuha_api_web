@@ -36,11 +36,7 @@
                             <span>{{ config('app.name', '') }}</span>                     
                         </a>
                     </div>
-                    <!-- End Logo container-->
-
-
-
-               
+                    <!-- End Logo container-->               
 
 
                     <div class="menu-extras">
@@ -144,6 +140,14 @@
                                 <ul class="submenu">                                   
                                     <li><a href="/transactions">A/C Top-up</a></li>
                                     <li><a href="/driver_top_up">Driver Top-up</a></li>
+                                </ul>
+                            </li>  
+
+                            <li class="has-submenu">
+                                <a href="#"><i class="zmdi zmdi-balance-wallet"></i>Reports</a>
+                                <ul class="submenu">                                   
+                                    <li><a href="/get_revenue_reports">Revenue</a></li>
+                                    
                                 </ul>
                             </li>                        
                           

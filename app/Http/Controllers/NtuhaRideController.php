@@ -100,7 +100,32 @@ class NtuhaRideController extends Controller
      */
     public function store(Request $request)
     {
+
+        $reportname = $request->report_name;
+
+        if ($reportname == "revenue") {
+
+            $readNtuhaRide = NtuhaRide::whereBetween('date',[$request->from."-1 day",$request->to."+1 day"])->get();
+
+            $title = "";
+
+            $data = [
+                'rides' => $readNtuhaRide,
+                'title' => $title
+            ];
+
+ 
+            return view('reports.revenue_report')->with($data);
+
+        }
+
+
         
+    }
+
+    public function getRevenueReports()
+    {
+        return view('reports.get_revenue_reports')->with(['title'=>'Generate revenue report']);
     }
 
     /**
@@ -147,4 +172,7 @@ class NtuhaRideController extends Controller
     {
         //
     }
+
+
+
 }

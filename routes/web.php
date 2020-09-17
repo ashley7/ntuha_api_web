@@ -74,6 +74,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::resource('ntuha_rides','NtuhaRideController');
 
+	Route::get('get_revenue_reports','NtuhaRideController@getRevenueReports');
+
 
 });
 
