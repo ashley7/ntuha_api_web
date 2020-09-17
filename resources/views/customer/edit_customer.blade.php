@@ -20,7 +20,7 @@
               <input type="number" name="year_of_birth" value="{{$read_customer->year_of_birth}}" class="form-control"> 
 
               <label>Phone number</label>
-              <input type="number" name="phone_number" value="{{str_replace('@gmail.com','',$read_customer->email)}}" class="form-control">          
+              <input type="text" name="phone_number" value="{{str_replace('@gmail.com','',$read_customer->email)}}" class="form-control">          
               <br>
               <button id="save_customer" class="btn btn-primary">Save customer</button>                       
             </div>
