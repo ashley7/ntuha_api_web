@@ -76,6 +76,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('get_revenue_reports','NtuhaRideController@getRevenueReports');
 
+	Route::get('load_customer','CustomerController@loadCustomer');
+	Route::post('customer_report','CustomerController@customerReport');
+
 
 });
 

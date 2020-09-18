@@ -192,5 +192,27 @@ class CustomerController extends Controller
         return view('customer.import_customers')->with($data);  
    }
 
+   public function loadCustomer()
+   {
+       $data = ['title'=>'Generate customer reports'];
+       return view('reports.get_customer_report')->with($data); 
+   }
+
+   public function customerReport(Request $request)
+   {
+
+         $customerReport = Customer::whereBetween('sign_up_date',[$request->from."-1 day",$request->to."+1 day"])->get();
+
+            $title = "Customers that registred between ".$request->from." and ".$request->to;
+
+            $data = [
+                'customers' => $customerReport,
+                'title' => $title
+            ];
+ 
+            return view('reports.customer_report')->with($data);
+       
+   }
+
 
 }
