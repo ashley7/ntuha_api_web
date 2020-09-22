@@ -6,8 +6,7 @@
     <div class="card-body">      
         <div class="table-responsive">
             <table class="table table-hover table-striped" id="ussd_customers">
-              <thead>
-                <th>ID</th>                
+              <thead>                              
                 <th>Date created</th>
                 <th>Name</th>
                 <th>Phone Number</th>
@@ -19,8 +18,7 @@
               </thead>
               <tbody>
                 @foreach($customers as $customer)                  
-                  <tr>
-                    <td>{{$customer->id}}</td>
+                  <tr>                   
                     <td>{{date("d-m-Y",strtotime($customer->sign_up_date))}}</td> 
                     <td>{{$customer->name}}</td>
                     <td>{{str_replace("@gmail.com","",$customer->email)}}</td>

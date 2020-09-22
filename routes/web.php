@@ -77,8 +77,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('get_revenue_reports','NtuhaRideController@getRevenueReports');
 
 	Route::get('load_customer','CustomerController@loadCustomer');
+
 	Route::post('customer_report','CustomerController@customerReport');
+
 	Route::get('get_driver_report','DriverController@getDriverReport');
+	
 	Route::post('driver_report','DriverController@driverReport');
 
 
