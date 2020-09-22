@@ -201,7 +201,7 @@ class CustomerController extends Controller
    public function customerReport(Request $request)
    {
 
-         $customerReport = Customer::whereBetween('sign_up_date',[$request->from."-1 day",$request->to."+1 day"])->get();
+         $customerReport = Customer::whereBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->get();
 
             $title = "Customers that registred between ".$request->from." and ".$request->to;
 

@@ -148,6 +148,7 @@
                                 <ul class="submenu">                                   
                                     <li><a href="/get_revenue_reports">Revenue</a></li>
                                     <li><a href="/load_customer">Customers</a></li>
+                                    <li><a href="/get_driver_report">Drivers</a></li>
                                     
                                 </ul>
                             </li>                        

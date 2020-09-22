@@ -288,4 +288,25 @@ class DriverController extends Controller
     {
         return env("AUTOCOMPLETE_API");
     }
+
+    public function getDriverReport()
+    {
+        return view('reports.get_driver_report')->with(['title'=>'Generate Driver report']);
+    }
+
+    public function driverReport(Request $request)
+    {
+
+        $driver_report = Driver::whereBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->get();
+
+        $title = "Drivers that registred between ".$request->from." and ".$request->to;
+
+            $data = [
+                'read_local_drivers' => $driver_report,
+                'title' => $title
+            ];
+ 
+            return view('reports.driver_report')->with($data);
+        
+    }
 }
