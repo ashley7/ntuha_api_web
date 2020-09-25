@@ -27,7 +27,7 @@ class Customer extends Model
         if (empty($occupation)) {
             $saveCustomer->occupation = Driver::randomSelector(Driver::occupn());
         }else{
-            $saveCustomer->occupation = $location;
+            $saveCustomer->occupation = $occupation;
         }        
         
         $saveCustomer->sign_up_date = $sign_up_date;
