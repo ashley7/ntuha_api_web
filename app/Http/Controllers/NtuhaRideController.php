@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\NtuhaRide;
 use App\Driver;
 use App\Customer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NtuhaRideController extends Controller
@@ -33,13 +34,18 @@ class NtuhaRideController extends Controller
      */
     public function create()
     {
-        Driver::where('status',1)->orderBy('id','DESC')->take(5)->chunk(1, function ($drivers) {          
+
+        Driver::where('status',1)->orderBy('id','DESC')->limit(5)->chunk(1, function ($drivers) {
 
             $ntuha_amount = $amount = 1000;
 
             foreach ($drivers as $driver) {
 
-                $customers = Customer::whereDate('sign_up_date','>',$driver->created_at)->inRandomOrder()->limit(5)->get();
+                $customers = Customer::whereDate('sign_up_date','>',$driver->created_at)->where('id','>',11197)->inRandomOrder()->limit(5)->get();
+
+                $counter = 0;
+
+                $numRides = NtuhaRide::randomItemSeletor([12,43,21,8,7,5,10,60,65]);
 
                 foreach ($customers as $customer) {
 
@@ -47,7 +53,7 @@ class NtuhaRideController extends Controller
 
                     if (empty($customer->sign_up_date)) continue;                   
 
-                    $days_riden = NtuhaRide::getDays($customer->sign_up_date,now(),$number_of_rides);//array of dates
+                    $days_riden = NtuhaRide::getDays($customer->sign_up_date,Carbon::yesterday()->toDateString(),$number_of_rides);//array of dates
 
                     foreach ($days_riden as $dates) {
 
@@ -82,7 +88,15 @@ class NtuhaRideController extends Controller
                             $amount = 1500;
                         }
 
-                        NtuhaRide::saveRide($driver->id,$customer->id,$amount,$locations[0],$locations[1],$dates["date"],$dates["month"],$ntuha_amount);
+                        
+
+                        if ($counter < $numRides) {
+                            NtuhaRide::saveRide($driver->id,$customer->id,$amount,$locations[0],$locations[1],$dates["date"],$dates["month"],$ntuha_amount);
+                        }
+
+                        $counter ++;
+
+                        
                     }                  
                 }            
             }
