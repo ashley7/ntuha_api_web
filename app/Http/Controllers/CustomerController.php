@@ -103,7 +103,6 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-
     
         $saveCustomer = Customer::find($id);
         $saveCustomer->first_name = $request->first_name;
@@ -114,7 +113,7 @@ class CustomerController extends Controller
         $saveCustomer->year_of_birth = $request->year_of_birth;
         $saveCustomer->disability_status = $request->disability_status;
         $saveCustomer->occupation = $request->occupation;
-        
+
         $saveCustomer->location = $request->location;
         $saveCustomer->sign_up_date = $request->sign_up_date;
         $saveCustomer->agent_name = $request->agent_name;
