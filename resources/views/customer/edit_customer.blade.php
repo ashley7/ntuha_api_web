@@ -71,7 +71,7 @@
               <input type="text" name="location" value="{{$read_customer->location}}" class="form-control">
 
               <label>Created at</label>
-              <input type="date" name="sign_up_date" value="{{$read_customer->sign_up_date}}" class="form-control">
+              <input type="text" name="sign_up_date" value="{{$read_customer->sign_up_date}}" class="form-control">
                                    
               </div>
             </div> 
