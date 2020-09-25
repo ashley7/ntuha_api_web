@@ -20,9 +20,11 @@
               <input type="number" name="year_of_birth" value="{{$read_customer->year_of_birth}}" class="form-control"> 
 
               <label>Phone number</label>
-              <input type="text" name="phone_number" value="{{str_replace('@gmail.com','',$read_customer->email)}}" class="form-control">          
-              <br>
-              <button id="save_customer" class="btn btn-primary">Save customer</button>                       
+              <input type="text" name="phone_number" value="{{str_replace('@gmail.com','',$read_customer->email)}}" class="form-control">    
+
+              <label>Agent</label>
+              <input type="text" name="agent_name" value="{{$read_customer->agent_name}}" class="form-control">         
+                                    
             </div>
           <div class="col-md-6">
 
@@ -64,11 +66,18 @@
                 <option value="Farmer and Commuter" selected>Farmer and Commuter</option>
                 @endif
               </select>
- 
-                       
-            
+
+              <label>Location</label>
+              <input type="text" name="date" value="{{$read_customer->location}}" class="form-control">
+
+              <label>Created at</label>
+              <input type="text" name="date" value="{{$read_customer->sign_up_date}}" class="form-control">
+                                   
               </div>
             </div> 
+
+            <br>
+            <button id="save_customer" class="btn btn-primary">Save customer</button>
         </form>  
       </div>
     </div>  
