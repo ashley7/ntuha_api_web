@@ -17,7 +17,7 @@ class NtuhaRideController extends Controller
      */
     public function index()
     {
-      $read_ntuha_rides = NtuhaRide::paginate(100);
+      $read_ntuha_rides = NtuhaRide::orderBy('date')->paginate(100);
 
       $data = [
         'read_ntuha_rides' => $read_ntuha_rides,
