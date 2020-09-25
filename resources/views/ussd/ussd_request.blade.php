@@ -23,8 +23,19 @@
                  @foreach($ussd_request as $order) 
                     <tr>
                        <td>{{$order->created_at}}</td>
-                       <td>{{$order->customer->name}}<br>
-                        {{str_replace("@gmail.com","",$order->customer->email)}}
+                       <td>
+                        <?php
+                          try {
+
+                            ?>
+                            {{$order->customer->name}}<br>
+                            {{str_replace("@gmail.com","",$order->customer->email)}}
+                            <?php
+                             
+                           } catch (\Exception $e) {} 
+
+                         ?>
+                        
                        </td>
                        <td>{{$order->service}}</td>
                        <td>{{$order->product}}</td>
