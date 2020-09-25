@@ -11,7 +11,7 @@
                 <th>Name</th>
                 <th>Phone Number</th>
                 <th>Sex</th>
-                <th>Year of birth</th>
+                <th>Age</th>
                 <th>Disability status</th>
                 <th>Location</th>
                 <th>Occupation</th>                
