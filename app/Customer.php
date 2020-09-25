@@ -17,8 +17,19 @@ class Customer extends Model
         $saveCustomer->sex = $sex;
         $saveCustomer->year_of_birth = $year_of_birth;
         $saveCustomer->disability_status = $disability_status;
-        $saveCustomer->location = Driver::randomSelector(Driver::locations());
-        $saveCustomer->occupation = Driver::randomSelector(Driver::occupn());
+
+        if (empty($location)) {
+            $saveCustomer->location = Driver::randomSelector(Driver::locations());
+        }else{
+            $saveCustomer->location =  $location;
+        }
+
+        if (empty($occupation)) {
+            $saveCustomer->occupation = Driver::randomSelector(Driver::occupn());
+        }else{
+            $saveCustomer->occupation = $location;
+        }        
+        
         $saveCustomer->sign_up_date = $sign_up_date;
         $saveCustomer->description = $description;
         $saveCustomer->email = $phone_number."@gmail.com";
