@@ -3,8 +3,22 @@
 @section('content')
  <div class="card-box">
     <h4>Update Ride request</h4>
-    <p>Customer Name: {{$readNtuhaRideUssd->customer->name}}</p> 
-    <p>Customer Phone: {{str_replace("@gmail.com","",$readNtuhaRideUssd->customer->email)}}</p>             
+    <?php 
+      try {
+
+        ?>
+
+        <p>Customer Name: {{$readNtuhaRideUssd->customer->name}}</p> 
+        <p>Customer Phone: {{str_replace("@gmail.com","",$readNtuhaRideUssd->customer->email)}}
+
+        <?php
+        
+      } catch (\Exception $e) {
+        
+      }
+
+     ?>
+    </p>             
     <div class="card-body">
       <form method="POST" action="{{route('ussd_requests.update',$readNtuhaRideUssd->id)}}">
         @csrf
