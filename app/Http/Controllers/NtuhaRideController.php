@@ -39,13 +39,13 @@ class NtuhaRideController extends Controller
 
             $ntuha_amount = $amount = 1000;
 
+            $counter = 0;
+
+            $numRides = NtuhaRide::randomItemSeletor([12,43,21,8,7,5,10,60,65]);
+
             foreach ($drivers as $driver) {
 
-                $customers = Customer::whereDate('sign_up_date','>',$driver->created_at)->where('id','>',11197)->inRandomOrder()->limit(5)->get();
-
-                $counter = 0;
-
-                $numRides = NtuhaRide::randomItemSeletor([12,43,21,8,7,5,10,60,65]);
+                $customers = Customer::whereDate('sign_up_date','>',$driver->created_at)->where('id','>',11197)->inRandomOrder()->limit(5)->get();                
 
                 foreach ($customers as $customer) {
 
