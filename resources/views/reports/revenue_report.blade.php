@@ -18,7 +18,11 @@
           </thead>
           <tbody>
             @foreach($rides as $rides)
-              <tr>
+            <?php 
+              try {
+                ?>
+
+                 <tr>
                  <td>{{$rides->date}}
                     @if($rides->id > 21065)
                      {{date("H:i:s",strtotime($rides->created_at))}}                     
@@ -34,7 +38,16 @@
                  <td>{{$rides->amount - $rides->ntuha_amount}}</td>
                  <td>{{$rides->ntuha_amount}}</td>
                      
-              </tr>                    
+              </tr>     
+
+
+                <?php
+                
+              } catch (\Exception $e) {}
+
+
+             ?>
+                            
             @endforeach
            </tbody>
          </table>
