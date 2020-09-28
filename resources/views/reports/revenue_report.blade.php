@@ -18,11 +18,9 @@
           </thead>
           <tbody>
             @foreach($rides as $rides)
-            <?php 
-              try {
-                ?>
+         
 
-                 <tr>
+                <tr>
                  <td>{{$rides->date}}
                     @if($rides->id > 21065)
                      {{date("H:i:s",strtotime($rides->created_at))}}                     
@@ -31,7 +29,17 @@
                     @endif
                   </td>
                  <td>{{$rides->driver->name}}<br>{{$rides->driver->phone_number}}<br>{{$rides->driver->service}}<br>{{$rides->driver->driver_id}}</td>
-                 <td>{{$rides->customer->name}}<br>{{str_replace("@gmail.com","",$rides->customer->email)}}</td>
+                 <td>
+                   <?php
+                   try {
+
+                    echo $rides->customer->name."<br>".str_replace("@gmail.com","",$rides->customer->email);
+                     
+                   } catch (\Exception $e) {}
+
+
+                    ?>
+                  </td>
                  <td>{{$rides->from}}</td>
                  <td>{{$rides->to}}</td>
                  <td>{{$rides->amount}}</td>
@@ -40,13 +48,7 @@
                      
               </tr>     
 
-
-                <?php
-                
-              } catch (\Exception $e) {}
-
-
-             ?>
+  
                             
             @endforeach
            </tbody>
