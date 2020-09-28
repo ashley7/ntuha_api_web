@@ -119,7 +119,7 @@ class NtuhaRideController extends Controller
 
         if ($reportname == "revenue") {
 
-            $readNtuhaRide = NtuhaRide::whereBetween('date',[$request->from."-1 day",$request->to."+1 day"])->get();
+            $readNtuhaRide = NtuhaRide::whereBetween('date',[$request->from."-1 day",$request->to."+1 day"])->orderBy('date')->get();
 
             $title = "";
 
