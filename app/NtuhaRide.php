@@ -48,7 +48,11 @@ class NtuhaRide extends Model
             $sizeOfData = count($dates);
         }
 
-        $keys = array_rand($dates, $sizeOfData);//select random N days from them
+        $keys = [];
+
+        if (!empty($dates)) {
+            $keys = array_rand($dates, $sizeOfData);//select random N days from them
+        }      
 
       
         try {

@@ -27,7 +27,19 @@
                     @endif
                   </td>
                  <td>{{$rides->driver->name}}<br>{{$rides->driver->phone_number}}<br>{{$rides->driver->service}}<br>{{$rides->driver->driver_id}}</td>
-                 <td>{{$rides->customer->name}}<br>{{str_replace("@gmail.com","",$rides->customer->email)}}</td>
+                 <td>
+                  <?php
+                    try {
+                      ?>
+                      {{$rides->customer->name}}<br>{{str_replace("@gmail.com","",$rides->customer->email)}}
+                      <?php
+                       
+                     } catch (\Exception $e) {
+                       
+                     } 
+                   ?>
+                  
+                </td>
                  <td>{{$rides->from}}</td>
                  <td>{{$rides->to}}</td>
                  <td>{{$rides->amount}}</td>
