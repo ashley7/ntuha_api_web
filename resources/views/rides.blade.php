@@ -20,7 +20,7 @@
             @foreach($read_ntuha_rides as $rides)
               <tr>
                  <td>{{$rides->date}}
-                    @if($rides->id > 21065)
+                    @if($rides->id > 27695)
                      {{date("H:i:s",strtotime($rides->created_at))}}                     
                      @else
                      {{date("H:i:s",strtotime($rides->driver->created_at))}}
