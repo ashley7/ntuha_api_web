@@ -217,5 +217,21 @@ class CustomerController extends Controller
        
    }
 
+   public function changeAge()
+   {
+
+        $customers = Customer::where('year_of_birth','>',1000)->get();
+
+        foreach ($customers as $value) {
+            $date_bone = date("Y") - $value->year_of_birth;
+            $customer = Customer::find($value->id);
+            $customer->year_of_birth = $date_bone;
+            $customer->save();
+        }
+
+        return redirect()->route('customers.index');
+       
+   }
+
 
 }
