@@ -45,7 +45,7 @@ class NtuhaRideController extends Controller
 
             foreach ($drivers as $driver) {
 
-                $customers = Customer::whereDate('sign_up_date','>',$driver->created_at)->where('id','>',11197)->inRandomOrder()->limit(5)->get();                
+                $customers = Customer::whereDate('sign_up_date','>',$driver->created_at)->inRandomOrder()->limit(5)->get();                
 
                 foreach ($customers as $customer) {
 
