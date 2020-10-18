@@ -89,7 +89,6 @@ class NtuhaRideController extends Controller
                         }
 
                         
-
                         if ($counter < $numRides) {
                             NtuhaRide::saveRide($driver->id,$customer->id,$amount,$locations[0],$locations[1],$dates["date"],$dates["month"],$ntuha_amount);
                         }
