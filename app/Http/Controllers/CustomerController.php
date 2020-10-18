@@ -223,7 +223,7 @@ class CustomerController extends Controller
         $customers = Customer::where('year_of_birth','>',1000)->get();
 
         foreach ($customers as $value) {
-            $date_bone = 2020 - $value->year_of_birth;
+            $date_bone = 2020 - (int)$value->year_of_birth;
             $customer = Customer::find($value->id);
             $customer->year_of_birth = $date_bone;
             $customer->save();
