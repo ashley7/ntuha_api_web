@@ -26,12 +26,7 @@
               <label>Identification number</label>
               <input type="text" name="identification_number" value="{{$read_driver->identification_number}}" class="form-control">
 
-              <label>Location</label>
-              <select class="form-control" name="location">
-                @foreach($locations as $loc)
-                  <option value="{{$loc}}">{{$loc}}</option>
-                @endforeach
-              </select>
+              
             </div>
           <div class="col-md-6">
               <label>Identification type</label>
@@ -54,6 +49,17 @@
             <label>Service</label>
             <select class="form-control" name="service">
               <option value="Boda">Boda</option>
+            </select>
+
+            <label>Location</label>
+            <select class="form-control" name="location">
+              @foreach($locations as $loc)
+                @if($read_driver->location == $loc)
+                    <option selected value="{{$loc}}">{{$loc}}</option>
+                  @else
+                    <option value="{{$loc}}">{{$loc}}</option>
+                @endif
+              @endforeach
             </select>
           </div>
         </div>
