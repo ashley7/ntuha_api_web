@@ -239,16 +239,16 @@ class FrontEndController extends Controller
         $save_payment->customer_name = $customer->name;
 
         try {
-
-            $save_payment->save();
-            
+            $save_payment->save();            
         } catch (\Exception $e) {}
 
-        $message = "Hello ".$customer->name.", your Ntuha ride with ".$driver->name." (No.".$driver->driver_id."), to ".$request->to." has ended, thank you.";        
+        try {
 
-        DriverController::sendSMS($phone_number,$message);
-
-        echo $message;
+            $message = "Hello ".$customer->name.", your Ntuha ride with ".$driver->name." (No.".$driver->driver_id."), to ".$request->to." has ended, thank you.";        
+            DriverController::sendSMS($phone_number,$message);
+            
+        } catch (\Exception $e) {}     
+        
     }
 
     public function customer_payments(Request $request)

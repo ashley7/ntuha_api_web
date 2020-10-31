@@ -148,18 +148,7 @@ class UserController extends Controller
                 $message = "Hello ".$customer->name.", your Ntuha ride with ".$driver->name." (No.".$driver->driver_id."), to ".$request->to." has started.";
 
                 DriverController::sendSMS($customer_phone,$message);
-
-                echo $message;
-
-            }else{
-                echo "No Driver with Phone Number ".$driver_phone_number;
             }
-
-        }
-        else{
-            echo "No User with ".$customer_phone;
-        }
-         
+        }                
     }      
-
 }
