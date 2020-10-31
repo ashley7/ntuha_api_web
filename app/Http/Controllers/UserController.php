@@ -160,7 +160,6 @@ class UserController extends Controller
             echo "No User with ".$customer_phone;
         }
          
-    }
-        }
+    }      
 
 }
