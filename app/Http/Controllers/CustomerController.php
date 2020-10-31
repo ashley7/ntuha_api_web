@@ -42,7 +42,7 @@ class CustomerController extends Controller
 
         $this->validate($request,$rules);
 
-        $check_user = User::all()->where('email',$request->email);
+        $check_user = User::get()->where('email',$request->email);
 
         if ($check_user->count() == 0) {
             return back()->with(['email'=>'Email not found in the system']);

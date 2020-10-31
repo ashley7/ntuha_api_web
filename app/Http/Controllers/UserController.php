@@ -133,7 +133,7 @@ class UserController extends Controller
 
         $driver_phone_number = $request->driver_phone."@gmail.com";
 
-        $customer = Customer::checkCustomer($customer_phone);
+        $customer = Customer::where('email',$customer_phone."@gmail.com")->get(); 
 
         if (count($customer) > 0) {
             
