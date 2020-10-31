@@ -145,7 +145,7 @@ class UserController extends Controller
 
                 $driver = $readDriver->last();
 
-                $message = "Hello, ".$customer->name." your Ntuha ride with ".$driver->name." (No.".$driver->driver_id."), to ".$request->to." has started.";
+                $message = "Hello ".$customer->name.", your Ntuha ride with ".$driver->name." (No.".$driver->driver_id."), to ".$request->to." has started.";
 
                 DriverController::sendSMS($customer_phone,$message);
 
