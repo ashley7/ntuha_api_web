@@ -28,7 +28,10 @@ class DriverController extends Controller
      */
     public function create()
     {
-        return view('driver.add_driver');
+        $data = [
+            'locations' => Driver::locations();
+        ];
+        return view('driver.add_driver')->with($data);
     }
 
     /**
@@ -75,10 +78,10 @@ class DriverController extends Controller
     public function show($id)
     {
         $read_driver = Driver::find($id);
-
         $data = [
             'read_driver' => $read_driver,
-            'title' => 'Drivers'
+            'title' => 'Drivers',
+            'locations' => Driver::locations()
         ];
 
         return view('driver.edit_driver')->with($data);
@@ -124,8 +127,11 @@ class DriverController extends Controller
         $updateDriver->motor_type = $request->motor_type;
         $updateDriver->number_plate = $request->number_plate;
         $updateDriver->service = $request->service;
+        $updateDriver->location = $request->location;
         $updateDriver->save();
         return redirect()->route('driver.index');
+
+
     }
 
     /**

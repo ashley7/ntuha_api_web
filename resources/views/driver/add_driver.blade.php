@@ -37,10 +37,13 @@
                             <option value="monthly">monthly</option>
                           </select>
 
-                          <br>
-                           <button id="save_price" class="btn btn-primary">Save</button>
-
-                        </div>
+                          <label>Location</label>
+                          <select class="form-control" name="location">
+                            @foreach($locations as $loc)
+                              <option value="{{$loc}}">{{$loc}}</option>
+                            @endforeach
+                          </select>
+                         </div>
                       <div class="col-md-6">
                           <label>Identification type</label>
                           <select class="form-control" name="identification_type">
@@ -63,11 +66,13 @@
 
                         <label>Driver photo</label><br>
                         <input type="file" name="input_img" accept="image/*">
-                        <br>
-                       
+                                            
 
                       </div>
                     </div>
+
+                    <hr>
+                    <button id="save_price" class="btn btn-primary">Save</button>
                 </form>
               </div>
             </div>

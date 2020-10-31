@@ -223,27 +223,32 @@ class FrontEndController extends Controller
         $phone_number = str_replace("@gmail.com", "", $request->email);
 
         $save_payment = new Payment();
+
         $save_payment->email  = $request->email;
+
         $save_payment->amount = (0 - $request->account_payment);
+
         $save_payment->status = "successful";
+
         $save_payment->transaction_id = "Withdraw - ".time();
+
         $save_payment->paying_phone_number = $phone_number;
+
         $save_payment->phone_number = $phone_number;
+
         $save_payment->customer_name = $customer->name;
 
         try {
-            $save_payment->save();           
+
+            $save_payment->save();
+            
         } catch (\Exception $e) {}
 
-        $message = "Hello, ".$customer->name." your Ntuha ride with ".$driver->name." (No.".$driver->driver_id."), from ".$request->from." to ".$request->to." has started.";
+        $message = "Hello, ".$customer->name." your Ntuha ride with ".$driver->name." (No.".$driver->driver_id."), from ".$request->from." to ".$request->to." has started.";        
 
-        $customer_phone = str_replace("@gmail.com", "", $customer->email);
-
-        DriverController::sendSMS($customer_phone,$message);
+        DriverController::sendSMS($phone_number,$message);
 
         echo $message;
-
-
     }
 
     public function customer_payments(Request $request)

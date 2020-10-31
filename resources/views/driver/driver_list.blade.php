@@ -18,6 +18,7 @@
                     <th>Phone Number</th>
                     <th>Motor</th>
                     <th>Service</th>
+                    <th>Location</th>
                     <th>ID number</th>
                     <th>Status</th>
                     <th>Secret key</th>                    
@@ -32,8 +33,9 @@
                           <td>{{$driver['driver_id']}}</td>
                           <td>{{$driver['name']}}</td>
                           <td>{{$driver['phone_number']}}</td>
-                          <td>{{$driver['motor_type']}} ({{$driver['number_plate']}})</td>
+                          <td>{{$driver['motor_type']}} <br>{{$driver['number_plate']}}</td>
                           <td>{{$driver['service']}}</td>
+                          <td>{{$driver['location']}}</td>
 
                           <td>{{$driver['identification_number']}} ({{$driver['identification_type']}})</td>
 
@@ -43,7 +45,7 @@
 
                             @if($driver['status'] == 0)
 
-                              <span class="text-danger">No active</span>
+                              <span class="text-danger">Not Active</span>
 
                               @else
 
