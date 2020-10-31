@@ -29,7 +29,7 @@ class DriverController extends Controller
     public function create()
     {
         $data = [
-            'locations' => Driver::locations();
+            'locations' => Driver::locations()
         ];
         return view('driver.add_driver')->with($data);
     }
