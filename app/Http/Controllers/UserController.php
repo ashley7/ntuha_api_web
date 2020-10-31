@@ -151,10 +151,16 @@ class UserController extends Controller
 
                 echo $message;
 
+            }else{
+                echo "No Driver with Phone Number ".$driver_phone_number;
             }
 
         }
+        else{
+            echo "No User with ".$customer_phone;
+        }
          
     }
+        }
 
 }
