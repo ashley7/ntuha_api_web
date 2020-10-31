@@ -206,9 +206,9 @@ class FrontEndController extends Controller
 
     public function record_account_ride(Request $request)
     {
-        $driver = Driver::select('id','service')->where('phone_number',$request->driver_phone_number)->get()->last();
+        $driver = Driver::select('id','service','name','driver_id')->where('phone_number',$request->driver_phone_number)->get()->last();
      
-        $customer = Customer::select('id')->where('email',$request->customer_phone_number."@gmail.com")->get()->last();
+        $customer = Customer::select('id','name','email')->where('email',$request->customer_phone_number."@gmail.com")->get()->last();
 
         $ntuha_amount = 1000;
 
@@ -229,11 +229,21 @@ class FrontEndController extends Controller
         $save_payment->transaction_id = "Withdraw - ".time();
         $save_payment->paying_phone_number = $phone_number;
         $save_payment->phone_number = $phone_number;
-        $save_payment->customer_name = ".";
+        $save_payment->customer_name = $customer->name;
 
         try {
             $save_payment->save();           
         } catch (\Exception $e) {}
+
+        $message = "Hello, ".$customer->name." your Ntuha ride with ".$driver->name." (No.".$driver->driver_id."), from ".$request->from." to ".$request->to." has started.";
+
+        $customer_phone = str_replace("@gmail.com", "", $customer->email);
+
+        DriverController::sendSMS($customer_phone,$message);
+
+        echo $message;
+
+
     }
 
     public function customer_payments(Request $request)

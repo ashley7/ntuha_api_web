@@ -171,10 +171,9 @@ class DriverController extends Controller
     { 
 
         if ($phone_number[0] == 0) {
-             $phone_number = ltrim($phone_number, '0');
+            $phone_number = ltrim($phone_number, '0');
         }
 
-       
         $gateway = new AfricasTalkingGateway(env('API_USERNAME'),env('API_KEY'));
         $gateway->sendMessage("+256".$phone_number, $message);
 

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\NtuhaDashboardController;
 use App\User;
+use App\Customer;
+use App\Driver;
+use App\Http\Controllers\DriverController;
 
 class UserController extends Controller
 {
@@ -15,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::get();
 
         $data = [
 
@@ -124,5 +127,34 @@ class UserController extends Controller
     }
 
 
+    public function sendNotification(Request $request)
+    {
+        $customer_phone = $request->customer_phone;
+
+        $driver_phone_number = $request->driver_phone."@gmail.com";
+
+        $customer = Customer::checkCustomer($customer_phone);
+
+        if (count($customer) > 0) {
+            
+            $customer = $customer->last();
+
+            $readDriver = Driver::where('email',$driver_phone_number)->get();
+
+            if (count($readDriver) > 0) {
+
+                $driver = $readDriver->last();
+
+                $message = "Hello, ".$customer->name." your Ntuha ride with ".$driver->name." (No.".$driver->driver_id."), from ".$request->from." to ".$request->to." has started.";
+
+                DriverController::sendSMS($customer_phone,$message);
+
+                echo $message;
+
+            }
+
+        }
+         
+    }
 
 }
