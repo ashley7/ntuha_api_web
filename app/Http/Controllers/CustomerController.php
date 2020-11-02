@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\NtuhaDashboardController;
 use App\User;
 use App\Customer;
 
@@ -230,6 +231,17 @@ class CustomerController extends Controller
         }
 
         return redirect()->route('customers.index');
+       
+   }
+
+   public function contact(Request $request)
+   {
+
+        $sms = $request->name. "is saying ". $request->message;
+
+        NtuhaDashboardController::send_Email("ntuha.deliveries@gmail.com","Ntuha ride Contact us",$sms,"ntuha.deliveries@gmail.com");
+
+        return back();
        
    }
 

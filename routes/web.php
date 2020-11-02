@@ -11,6 +11,7 @@ Auth::routes();
 
 Route::resource('user_psw_reset','CustomerController');
 Route::get('test_connection','NtuhaDashboardController@testConnection');
+Route::post('contact','CustomerController@contact');
 
 Route::group(['middleware' => 'auth'], function () {
 	
