@@ -236,13 +236,11 @@ class CustomerController extends Controller
 
    public function contact(Request $request)
    {
-
-        $sms = $request->name. "is saying ". $request->message;
-
-        NtuhaDashboardController::send_Email("ntuha.deliveries@gmail.com","Ntuha ride Contact us",$sms,"ntuha.deliveries@gmail.com");
-
-        return back();
-       
+        $sms = $request->name. "is saying ". $request->message." You can get back to him on ".$request->email;
+        try {
+            mail("ntuha.deliveries@gmail.com", "Ntuha ride Contact us", $sms);
+        } catch (\Exception $e) {}       
+        return back();       
    }
 
 
