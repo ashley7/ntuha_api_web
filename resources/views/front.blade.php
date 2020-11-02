@@ -70,6 +70,8 @@ https://templatemo.com/tm-540-lava-landing-page
                                 <a href="https://www.health.go.ug/covid/" target="_blank">
                                 COVID-19</a></li>
                             <li class="scroll-to-section"><a href="#contact-us" class="menu-item">Contact Us</a></li>
+
+                            <li class="scroll-to-section"><a href="/login">Login</a></li>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
