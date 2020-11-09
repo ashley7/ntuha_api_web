@@ -17,7 +17,7 @@ class Driver extends Model
 
     public static function locations()
     {
-    	$locs = ['Mbarara','Ntungamo','Bushenyi','Isingiro','Mbarara','Bushenyi','Ntungamo','Kabale','Ibanda','Kamwenge','Fortpotal','Kasese','Bushenyi','Kazo','Rubirizi','Kitagwenda','Rwampara','Rukiga','Rukungiri','Kisoro','Kiruhura','Mbarara','Mbarara','Ntungamo'];
+    	$locs = ['Mbarara','Ntungamo','Bushenyi','Isingiro','Mbarara','Bushenyi','Ntungamo','Kabale','Ibanda','Kamwenge','Fortpotal','Kasese','Bushenyi','Kazo','Rubirizi','Kitagwenda','Rwampara','Rukiga','Rukungiri','Kisoro','Kiruhura','Mbarara','Mbarara','Ntungamo','Mbale'];
 
     	return $locs;
     }
