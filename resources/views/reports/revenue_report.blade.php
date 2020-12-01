@@ -19,7 +19,7 @@
           <tbody>
             <?php 
 
-              NtuhaRide::whereBetween('date',[$request->from."-1 day",$request->to."+1 day"])->orderBy('date')->chunk(1,function($ntuha_rides){
+              App\NtuhaRide::whereBetween('date',[$request->from."-1 day",$request->to."+1 day"])->orderBy('date')->chunk(1,function($ntuha_rides){
               
             ?>
               @foreach($ntuha_rides as $rides)
