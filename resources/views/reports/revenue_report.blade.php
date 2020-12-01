@@ -19,10 +19,9 @@
           <tbody>
             <?php 
 
-              App\NtuhaRide::whereBetween('date',[$from."-1 day",$to."+1 day"])->orderBy('date')->chunk(1,function($ntuha_rides){
-              
-            ?>
-              @foreach($ntuha_rides as $rides)
+              App\NtuhaRide::whereBetween('date',[$from."-1 day",$to."+1 day"])->orderBy('date')->chunk(1,function($ntuha_rides){             
+                foreach($ntuha_rides as $rides){
+                ?>           
                 <tr>
                  <td>{{$rides->date}}
                     @if($rides->id > 21065)
@@ -35,12 +34,8 @@
                  <td>
                    <?php
                    try {
-
-                    echo $rides->customer->name."<br>".str_replace("@gmail.com","",$rides->customer->email);
-                     
+                    echo $rides->customer->name."<br>".str_replace("@gmail.com","",$rides->customer->email);                     
                    } catch (\Exception $e) {}
-
-
                     ?>
                   </td>
                  <td>{{$rides->from}}</td>
@@ -49,10 +44,11 @@
                  <td>{{$rides->amount - $rides->ntuha_amount}}</td>
                  <td>{{$rides->ntuha_amount}}</td>
                      
-              </tr>  
-                           
-            @endforeach
-            <?php  }); ?>
+              </tr>
+                          
+            
+            <?php
+          }  }); ?>
            </tbody>
          </table>
 
