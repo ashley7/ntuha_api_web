@@ -17,9 +17,12 @@
             <th>Ntuha ride amount</th>                                            
           </thead>
           <tbody>
-            @foreach($rides as $rides)
-         
+            <?php 
 
+              NtuhaRide::whereBetween('date',[$request->from."-1 day",$request->to."+1 day"])->orderBy('date')->chunk(1,function($ntuha_rides){
+              
+            ?>
+              @foreach($ntuha_rides as $rides)
                 <tr>
                  <td>{{$rides->date}}
                     @if($rides->id > 21065)
@@ -46,11 +49,10 @@
                  <td>{{$rides->amount - $rides->ntuha_amount}}</td>
                  <td>{{$rides->ntuha_amount}}</td>
                      
-              </tr>     
-
-  
-                            
+              </tr>  
+                           
             @endforeach
+            <?php  }); ?>
            </tbody>
          </table>
 
