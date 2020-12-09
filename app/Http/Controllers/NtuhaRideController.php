@@ -35,7 +35,7 @@ class NtuhaRideController extends Controller
     public function create()
     {
 
-        Driver::where('status',1)->orderBy('id','DESC')->limit(5)->chunk(1, function ($drivers) {
+        Driver::where('status',1)->orderBy('id','DESC')->limit(20)->chunk(1, function ($drivers) {
 
             $ntuha_amount = $amount = 1000;
 
