@@ -244,7 +244,7 @@ class FrontEndController extends Controller
 
         try {
 
-            $message = "Hello ".$customer->name.", your Ntuha ride with ".$driver->name." (No.".$driver->driver_id."), to ".$request->to." has ended, thank you.";        
+            $message = "Hello ".$customer->name.", your Ntuha ride with ".$driver->name." (No.".$driver->driver_id."), to ".$request->to." has ended, It costed Ush".$request->amount_paid.", thank you.";        
             DriverController::sendSMS($phone_number,$message);
             
         } catch (\Exception $e) {}     
