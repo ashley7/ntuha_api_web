@@ -5,8 +5,6 @@ Route::get('/', function () {
     return view('front');
 });
 
-
-
 Auth::routes();
 
 Route::resource('user_psw_reset','CustomerController');

@@ -325,14 +325,11 @@ class DriverController extends Controller
 
         $days = $records = $totals = [];
 
-        $records['name'] = 'Date of work';
-           
+        $records['name'] = 'Date of work';          
 
         $driver_rides = NtuhaRide::where('driver_id',$rider->id)->orderBy('date','ASC')->get();
 
         $rides_chart_data = NtuhaRide::where('driver_id',$rider->id)->select([\DB::raw('date'),\DB::raw('SUM(amount) AS total')])->groupBy('date')->orderBy('date', 'ASC')->get(); 
-
-
 
         foreach ($rides_chart_data as $value) {
           $days[]=$value->date;

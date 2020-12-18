@@ -33,7 +33,6 @@
           </div>
       </div>
   </div>
-
 </div>
 
 <?php 
@@ -123,10 +122,10 @@
   $("#total_amount").html("Ush "+{!! $total_amount !!})
 </script>
 
-    <script src="{{asset('js/charts/highcharts.js')}}"></script>
-    <script src="{{asset('js/charts/highcharts-3d.js')}}"></script>
-    <script src="{{asset('js/charts/exporting.js')}}"></script>
-    <script src="{{asset('js/charts/export-data.js')}}"></script>  
+  <script src="{{asset('js/charts/highcharts.js')}}"></script>
+  <script src="{{asset('js/charts/highcharts-3d.js')}}"></script>
+  <script src="{{asset('js/charts/exporting.js')}}"></script>
+  <script src="{{asset('js/charts/export-data.js')}}"></script>  
 
   <script type="text/javascript">
 
@@ -135,7 +134,7 @@
         type: 'line'
     },
     title: {
-        text: 'Daily Rider Revenue'
+        text: 'Daily Revenue'
     },
     subtitle: {
         text: 'Source: https://ntuhaug.com'

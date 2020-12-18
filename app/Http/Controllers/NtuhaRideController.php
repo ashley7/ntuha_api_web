@@ -116,19 +116,44 @@ class NtuhaRideController extends Controller
 
         $reportname = $request->report_name;
 
+        $days = $records = $totals = $ntuha_totals = $ntuha_records = $ntuhatotals = [];
+
         if ($reportname == "revenue") {
 
-            // $readNtuhaRide = NtuhaRide::whereBetween('date',[$request->from."-1 day",$request->to."+1 day"])->orderBy('date')->get();
+            $read_ntuha_ride = NtuhaRide::whereBetween('date',[$request->from."-1 day",$request->to."+1 day"])->select([\DB::raw('date'),\DB::raw('SUM(amount) AS total'),\DB::raw('SUM(ntuha_amount) as ntuha_amount')])->groupBy('date')->orderBy('date')->get();
 
-            $title = "";
+            $title = "Transactions from ".$request->from." to ".$request->to;
 
-            $data = [
-                // 'rides' => $readNtuhaRide,
+            $records['name'] = 'Overall revenue';
+            $ntuha_records['name'] = 'Ntuha revenue';
+
+            foreach ($read_ntuha_ride as $value) {
+
+              $days[] = $value->date;
+
+              $totals[] =  $value->total;
+
+              $ntuhatotals[] = $value->ntuha_amount;
+
+            } 
+
+            $records['data'] = $totals;  
+
+            $ntuha_records['data'] = $ntuhatotals;
+
+            $all_data  = array();
+
+            array_push($all_data,$records);
+            array_push($all_data,$ntuha_records);
+
+ 
+            $data = [               
                 'title' => $title,
                 'from' => $request->from,
-                'to' => $request->to
+                'to' => $request->to,
+                'records' => json_encode($all_data),
+                'days' => json_encode($days),
             ];
-
  
             return view('reports.revenue_report')->with($data);
 
