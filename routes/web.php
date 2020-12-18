@@ -87,6 +87,8 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::post('driver_report','DriverController@driverReport');
 
+	Route::get('rider_details/{rider_id}','DriverController@riderDetails');
+
 
 });
 

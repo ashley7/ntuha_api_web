@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Driver;
 use App\Price;
+use App\NtuhaRide;
 use App\includes\AfricasTalkingGateway;
 use App\Http\Controllers\FrontEndController;
 
@@ -313,5 +314,43 @@ class DriverController extends Controller
  
             return view('reports.driver_report')->with($data);
         
+    }
+
+
+
+    public function riderDetails($rider_id)
+    {
+
+        $rider = Driver::find($rider_id);
+
+        $days = $records = $totals = [];
+
+        $records['name'] = 'Date of work';
+           
+
+        $driver_rides = NtuhaRide::where('driver_id',$rider->id)->orderBy('date','ASC')->get();
+
+        $rides_chart_data = NtuhaRide::where('driver_id',$rider->id)->select([\DB::raw('date'),\DB::raw('SUM(amount) AS total')])->groupBy('date')->orderBy('date', 'ASC')->get(); 
+
+
+
+        foreach ($rides_chart_data as $value) {
+          $days[]=$value->date;
+          $totals[] =  $value->total;   
+        }  
+
+        $records['data'] = $totals;     
+
+        $data = [
+            'driver_rides' => $driver_rides,
+            'rider' => $rider,
+            'records' => json_encode([$records]),
+            'days' => json_encode($days),
+            'total_amount' => $driver_rides->sum('amount'),
+            'title' => strtolower($rider->name)."'s rides"
+        ];
+
+        return view('driver.rider_details')->with($data);
+         
     }
 }
