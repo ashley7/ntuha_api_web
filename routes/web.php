@@ -11,6 +11,8 @@ Route::resource('user_psw_reset','CustomerController');
 Route::get('test_connection','NtuhaDashboardController@testConnection');
 Route::post('contact','CustomerController@contact');
 
+Route::get('provide_driver','NtuhaRideUssdController@provideDriver');
+
 Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/home', 'HomeController@index')->name('home');

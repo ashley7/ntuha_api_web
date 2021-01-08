@@ -275,13 +275,14 @@ class NtuhaRideUssdController extends Controller
     {
 
         if ($request->status == "completed") {
-           $check_driver = Driver::readDriver($request->driver_number);
 
-           if (empty($check_driver)) {
+            $check_driver = Driver::readDriver($request->driver_number);
+
+            if (empty($check_driver)) 
+
                return back()->with(['status'=>'Driver not found in the system']);
-           }
+            
         }
-
 
         $update = NtuhaRideUssd::find($ntuhaRideUssd);
         $update->service = $request->service;
@@ -290,7 +291,10 @@ class NtuhaRideUssdController extends Controller
         $update->destination_location = $request->destination_location;
         $update->status = $request->status;
         $update->amount = $request->amount;
+        $update->driver_id = $check_driver->id;
+
         try {
+
             $update->save();
 
              if ($request->status == "completed") {
@@ -328,5 +332,26 @@ class NtuhaRideUssdController extends Controller
     public function destroy(NtuhaRideUssd $ntuhaRideUssd)
     {
         //
+    }
+
+    public function provideDriver()
+    {
+
+        $rideRequests = NtuhaRideUssd::select('customer_id','service','id')->where('status','completed')->get();
+
+        foreach ($rideRequests as $value) {
+
+            $read_driver = NtuhaRide::select('driver_id')->where('customer_id',$value->customer_id)->get()->last();
+
+            if (empty($read_driver)) continue;
+
+            $updateNtuhaRideUssd = NtuhaRideUssd::find($value->id);
+
+            $updateNtuhaRideUssd->driver_id = $read_driver->driver_id;
+            
+            $updateNtuhaRideUssd->save();           
+            
+        }
+        
     }
 }

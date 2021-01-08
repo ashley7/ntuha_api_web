@@ -131,7 +131,7 @@
 
 @push('scripts')
 
-<script src="{{asset('js/charts/highcharts.js')}}"></script>
+  <script src="{{asset('js/charts/highcharts.js')}}"></script>
   <script src="{{asset('js/charts/highcharts-3d.js')}}"></script>
   <script src="{{asset('js/charts/exporting.js')}}"></script>
   <script src="{{asset('js/charts/export-data.js')}}"></script>  
