@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Customer;
+use App\Driver;
 use App\Http\Controllers\DriverController;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +13,11 @@ class NtuhaRideUssd extends Model
     public function customer()
     {
         return $this->belongsTo(Customer::class,'customer_id');
+    }
+
+    public function driver()
+    {
+        return $this->belongsTo(Driver::class,'driver_id');
     }
 
     public static function welcomeMessage()

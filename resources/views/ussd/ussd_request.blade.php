@@ -9,7 +9,8 @@
           <table class="table table-hover table-striped" id="working_drivers">
               <thead>         
                   <th>Created at</th>
-                  <th>Name</th>
+                  <th>Customer</th>
+                  <th>Driver</th>
                   <th>Service</th>
                   <th>Product</th>                                              
                   <th>From</th>                                              
@@ -36,6 +37,22 @@
 
                          ?>
                         
+                       </td>
+                       <td>
+                        <?php 
+                        try {
+                          ?>
+
+                          {{$order->driver->name}}<br>
+                          {{$order->driver->phone_number}}<br>
+                          {{$order->driver->service}}<br>
+                          {{$order->driver->driver_id}}
+
+                       
+                        <?php 
+                        } catch (\Exception $e) {}
+
+                         ?>
                        </td>
                        <td>{{$order->service}}</td>
                        <td>{{$order->product}}</td>
