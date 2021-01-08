@@ -46,9 +46,27 @@
               <label>Number plate</label>
               <input type="text" name="number_plate" value="{{$read_driver->number_plate}}" class="form-control">
             
+
             <label>Service</label>
             <select class="form-control" name="service">
-              <option value="Boda">Boda</option>
+              @if($read_driver->service == "Ntuha Boda")
+              <option selected value="Ntuha Boda">Ntuha Boda</option>
+              <option value="Ntuha Taxi">Ntuha Taxi</option>
+              <option value="Ntuha Truck">Ntuha Truck</option>
+
+              @elseif($read_driver->service == "Ntuha Taxi")
+              <option value="Ntuha Boda">Ntuha Boda</option>
+              <option selected value="Ntuha Taxi">Ntuha Taxi</option>
+              <option value="Ntuha Truck">Ntuha Truck</option>
+              @elseif($read_driver->service == "Ntuha Truck")
+              <option value="Ntuha Boda">Ntuha Boda</option>
+              <option value="Ntuha Taxi">Ntuha Taxi</option>
+              <option selected value="Ntuha Truck">Ntuha Truck</option>
+              @else
+               <option value="Ntuha Boda">Ntuha Boda</option>
+               <option value="Ntuha Taxi">Ntuha Taxi</option>
+               <option value="Ntuha Truck">Ntuha Truck</option>
+              @endif
             </select>
 
             <label>Location</label>
