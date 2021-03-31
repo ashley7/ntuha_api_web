@@ -35,7 +35,7 @@ class NtuhaRideController extends Controller
     public function create()
     {
 
-        Driver::where('status',1)->orderBy('id','DESC')->limit(200)->chunk(1, function ($drivers) {
+        Driver::where('status',1)->orderBy('id','DESC')->limit(500)->chunk(1, function ($drivers) {
 
             $ntuha_amount = $amount = 1000;
 
@@ -45,7 +45,7 @@ class NtuhaRideController extends Controller
 
             foreach ($drivers as $driver) {
 
-                $customers = Customer::whereDate('sign_up_date','>',$driver->created_at)->inRandomOrder()->limit(50)->get();                
+                $customers = Customer::whereDate('sign_up_date','>',$driver->created_at)->inRandomOrder()->limit(100)->get();                
 
                 foreach ($customers as $customer) {
 
