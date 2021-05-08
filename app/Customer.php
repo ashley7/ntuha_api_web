@@ -36,6 +36,11 @@ class Customer extends Model
 
         }else{
 
+            if($occupation == 1)
+                $occupation = "Farmer";
+            elseif($occupation == 2)
+                $occupation = "Commuter";
+
             $saveCustomer->occupation = $occupation;
 
         }      

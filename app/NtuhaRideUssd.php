@@ -74,7 +74,7 @@ class NtuhaRideUssd extends Model
     {
     	$response  = "CON What is your occupation?";     
         $response  .= "\n1. Farmer";     
-        $response  .= "\n2. Comutor";    
+        $response  .= "\n2. Commuter";    
         NtuhaRideUssd::loadMenu($response);
     }
 
