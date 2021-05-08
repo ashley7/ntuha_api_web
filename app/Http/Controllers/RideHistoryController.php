@@ -148,12 +148,12 @@ class RideHistoryController extends Controller
                 $customer = Customer::find($user->id);                
 
                 if (empty($customer->year_of_birth)) {
-                    $customer->location = Driver::randomSelector(Driver::locations());
-                    $customer->occupation = Driver::randomSelector(Driver::occupn());
-                    $customer->year_of_birth = rand(18,30);
-                    $customer->sign_up_date = $customer->created_at;
-                    $customer->agent_name = "Android";
-                    $customer->save();                         
+                    // $customer->location = Driver::randomSelector(Driver::locations());
+                    // $customer->occupation = Driver::randomSelector(Driver::occupn());
+                    // $customer->year_of_birth = rand(18,30);
+                    // $customer->sign_up_date = $customer->created_at;
+                    // $customer->agent_name = "Android";
+                    // $customer->save();                         
                 } else{
                     try {
                         $current_age = $customer->year_of_birth;
