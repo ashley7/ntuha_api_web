@@ -141,11 +141,15 @@ class RideHistoryController extends Controller
     public function assignThemAge()
     {
 
-        Customer::chunk(1, function ($users) {
+        Customer::where('id','>',15032)->chunk(1, function ($users) {
 
             foreach ($users as $user) {
 
-                $customer = Customer::find($user->id);                
+                $customer = Customer::find($user->id);  
+
+                $customer->location = Driver::randomSelector(Driver::locations());
+                $customer->occupation = Driver::randomSelector(Driver::occupn());
+                $customer->save();               
 
                 if (empty($customer->year_of_birth)) {
                     // $customer->location = Driver::randomSelector(Driver::locations());
@@ -158,9 +162,9 @@ class RideHistoryController extends Controller
                     try {
                         $current_age = $customer->year_of_birth;
                         if (strlen($current_age) == 4) {
-                            $new_age = date("Y") - (int)$customer->year_of_birth;
-                            $customer->year_of_birth = $new_age;
-                            $customer->save();
+                            // $new_age = date("Y") - (int)$customer->year_of_birth;
+                            // $customer->year_of_birth = $new_age;
+                            // $customer->save();
                         }
                                              
                         
