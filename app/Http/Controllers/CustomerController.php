@@ -182,6 +182,10 @@ class CustomerController extends Controller
             // global $request;            
 
             foreach ($dataresults as $request) { 
+
+                $checkCustomer = Customer::where('email',$request->phone_number."@gmail.com")->get();
+
+                if($checkCustomer->count() > 0) continue;
               
                 Customer::saveCustomer($request->first_name,$request->last_name,$request->sex,$request->age,$request->disability_status,$request->location,$request->occupation,$request->sign_up_date,$request->description,$request->phone_number,$request->agent_name);
             }
