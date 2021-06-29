@@ -225,14 +225,15 @@ class CustomerController extends Controller
    public function changeAge()
    {
 
-        $customers = Customer::where('year_of_birth','>',1000)->get();
+        Customer::where('year_of_birth','>',1000)->chunk(1, function ($customers) {
 
         foreach ($customers as $value) {
-            $date_bone = 2020 - (int)$value->year_of_birth;
+            $date_bone = 2021 - (int)$value->year_of_birth;
             $customer = Customer::find($value->id);
             $customer->year_of_birth = $date_bone;
             $customer->save();
-        }
+            }
+        });
 
         return redirect()->route('customers.index');
        
