@@ -242,15 +242,20 @@ class CustomerController extends Controller
     public function changeEmail()
    {   
 
-     return Customer::where('email','LIKE','7%')->get(); 
+     //return Customer::where('email','LIKE','7%')->get(); 
 
-        Customer::where('email','LIKE','7%')->chunk(1, function ($customers) {
+        Customer::where('email','LIKE','7%')->chunk(500, function ($customers) {
 
         foreach ($customers as $value) {
+
             $customer = Customer::find($value->id);
+
             $customer->email = "0".$value->email;
+
             try {
+
                 $customer->save();
+
             } catch (\Exception $e) {}
             
           }
