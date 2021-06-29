@@ -239,6 +239,24 @@ class CustomerController extends Controller
        
    }
 
+    public function changeEmail()
+   {
+
+    return Customer::where('email','LIKE','7%')->get();
+
+        Customer::where('email','LIKE','7%')->chunk(1, function ($customers) {
+
+        foreach ($customers as $value) {
+            $customer = Customer::find($value->id);
+            $customer->email = "0".$value->email;
+            $customer->save();
+            }
+        });
+
+        return redirect('/read_customers');
+       
+   }
+
    public function contact(Request $request)
    {
         $sms = $request->name. "is saying ". $request->message." You can get back to him on ".$request->email;

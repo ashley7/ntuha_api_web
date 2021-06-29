@@ -23,6 +23,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('change_age','CustomerController@changeAge');
 
+	Route::get('change_email','CustomerController@changeEmail');
+
 	Route::resource('customers','CustomerController');
 
 	Route::post('import_customer','CustomerController@importCustomers');
