@@ -247,7 +247,10 @@ class CustomerController extends Controller
         foreach ($customers as $value) {
             $customer = Customer::find($value->id);
             $customer->email = "0".$value->email;
-            $customer->save();
+            try {
+                $customer->save();
+            } catch (\Exception $e) {}
+            
           }
         });
 
