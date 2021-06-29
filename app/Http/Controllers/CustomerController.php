@@ -240,7 +240,9 @@ class CustomerController extends Controller
    }
 
     public function changeEmail()
-   {    
+   {   
+
+     return Customer::where('email','LIKE','7%')->get(); 
 
         Customer::where('email','LIKE','7%')->chunk(1, function ($customers) {
 
