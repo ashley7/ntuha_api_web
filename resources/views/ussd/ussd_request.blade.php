@@ -10,6 +10,9 @@
               <thead>         
                   <th>Created at</th>
                   <th>Customer</th>
+                  <td>Gender</td>
+                  <td>Occupation</td>
+                  <td>Disability status</td>
                   <th>Driver</th>
                   <th>Service</th>
                   <th>Product</th>                                              
@@ -38,7 +41,35 @@
                          ?>
                         
                        </td>
-                       <td>
+
+                      <td>
+                        <?php 
+
+                          try {
+                            echo $order->customer->sex;
+                          } catch (\Exception $e) {}
+
+                         ?>
+                      </td>
+
+                      <td>
+                        <?php 
+                        try {
+                          echo $order->customer->occupation;
+                        } catch (\Exception $e) {}
+
+                         ?>
+                      </td>
+                      <td><?php 
+
+                        try {
+                          echo $order->customer->disability_status;
+                        } catch (\Exception $e) {}
+
+
+                       ?></td>
+                      
+                      <td>
                         <?php 
                         try {
                           ?>

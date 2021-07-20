@@ -59,7 +59,10 @@
           <thead>         
             <th>Date</th>
             <th>Driver</th>
-            <th>Customer</th>                                              
+            <th>Customer</th> 
+            <td>Gender</td>
+            <td>Occupation</td>
+            <td>Disability status</td>                                             
             <th>From</th>                                              
             <th>To</th>
             <th>Amount</th>                                            
@@ -103,6 +106,10 @@
                    } catch (\Exception $e) {}
                     ?>
                   </td>
+                <td>{{ $rides->customer->sex }}</td>
+                 <td>{{ $rides->customer->occupation }}</td>
+                 <td>{{ $rides->customer->disability_status }}</td>
+
                  <td>{{$rides->from}}</td>
                  <td>{{$rides->to}}</td>
                  <td>{{$rides->amount}}</td>
