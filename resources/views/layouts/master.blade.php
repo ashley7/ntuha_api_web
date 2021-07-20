@@ -127,7 +127,7 @@
                                    <!-- <li> <a href="/rides">Customer Rides</a></li> -->
                                    <li> <a href="/ntuha_rides">Customer Rides</a></li>
 
-                                   <li> <a href="/ussd_requests">Rides Requests</a></li>
+                                   <li> <a href="/ussd_requests">Rides USSD Requests</a></li>
 
                                    <hr>
 
@@ -149,7 +149,7 @@
                                     <li><a href="/get_revenue_reports">Revenue</a></li>
                                     <li><a href="/load_customer">Customers</a></li>
                                     <li><a href="/get_driver_report">Drivers</a></li>
-                                    
+                                    <li><a href="/gen_ussd_report">USSD rides</a></li>
                                 </ul>
                             </li>                        
                           

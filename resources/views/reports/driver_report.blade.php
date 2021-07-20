@@ -6,7 +6,7 @@
 
     <div class="row text-center">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="card-box widget-box-one">
+          <div class="widget-box-one">
               <div class="wigdet-one-content">
 
                 <figure class="highcharts-figure">

@@ -33,7 +33,50 @@ class NtuhaRideUssdController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+
+            'title' => 'Select date ranges for USSD',           
+
+        ];
+
+        return view("reports.gen_ussd_report")->with($data);
+    }
+
+    public function genUssdReport(Request $request)
+    {
+
+        $days = $ntuha_totals  = $records = [];
+
+        $driver_report = NtuhaRideUssd::whereBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->get();
+
+        $read_ntuha_ride = NtuhaRideUssd::whereBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->select([\DB::raw('DATE(created_at) AS date'),\DB::raw('SUM(amount) AS total')])->groupBy('date')->orderBy('date')->get();
+
+        $records['name'] = 'Daily USSD rides';
+
+        foreach ($read_ntuha_ride as $value) {
+
+            $days[] = $value->date;
+
+            $ntuha_totals[] =  $value->total;         
+
+        } 
+
+        $records['data'] = $ntuha_totals;  
+
+        $title = "USSD rides between ".$request->from." and ".$request->to;
+
+        $data = [
+
+            'ussd_request' => $driver_report,
+            'title' => $title,
+            'records' => json_encode([$records]),
+            'days' => json_encode($days),
+        ];
+ 
+        return view('reports.ussd_ride_report')->with($data);
+
+
+         
     }
 
     /**

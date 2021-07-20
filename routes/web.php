@@ -91,6 +91,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('rider_details/{rider_id}','DriverController@riderDetails');
 
+	Route::post('gen_ussd_report','NtuhaRideUssdController@genUssdReport');
 
 });
 
