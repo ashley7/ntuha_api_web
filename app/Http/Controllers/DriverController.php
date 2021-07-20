@@ -307,7 +307,7 @@ class DriverController extends Controller
 
         $driver_report = Driver::whereBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->get();
 
-        $read_ntuha_ride = Driver::whereDateBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->select([\DB::Raw('DATE(created_at) date'),\DB::raw('COUNT(*) AS total')])->groupBy('date')->orderBy('date')->get();
+        $read_ntuha_ride = Driver::whereDateBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->select([\DB::Raw('DATE(created_at) AS date'),\DB::raw('COUNT(*) AS total')])->groupBy('date')->orderBy('date')->get();
 
         $records['name'] = 'Daily driver recruitment';
 
