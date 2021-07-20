@@ -95,7 +95,7 @@
                   borderWidth: 0
               }
           },
-          colors:['#8B0000','#FF0000','#B22222','#DC143C','#F08080','#FF4500'],
+          colors:['#8B0000','#FF0000','#B22222'],
           series: {!! $records !!}
       });
 
