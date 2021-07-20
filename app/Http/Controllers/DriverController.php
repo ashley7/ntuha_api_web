@@ -303,16 +303,35 @@ class DriverController extends Controller
     public function driverReport(Request $request)
     {
 
+        $days = $ntuha_totals  = $records = [];
+
         $driver_report = Driver::whereBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->get();
+
+        $read_ntuha_ride = Driver::whereBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->select([\DB::raw('created_at'),\DB::raw('COUNT(*) AS total')])->groupBy('created_at')->orderBy('created_at')->get();
+
+        $records['name'] = 'Dailt driver recruitment';
+
+        foreach ($read_ntuha_ride as $value) {
+
+            $days[] = $value->created_at;
+
+            $ntuha_totals[] =  $value->total;         
+
+        } 
+
+        $records['data'] = $ntuha_totals;  
+
 
         $title = "Drivers that registred between ".$request->from." and ".$request->to;
 
             $data = [
                 'read_local_drivers' => $driver_report,
-                'title' => $title
+                'title' => $title,
+                'records' => json_encode($records),
+                'days' => json_encode($days),
             ];
  
-            return view('reports.driver_report')->with($data);
+        return view('reports.driver_report')->with($data);
         
     }
 
