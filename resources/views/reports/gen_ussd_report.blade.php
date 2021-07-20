@@ -26,7 +26,7 @@
 
                 <br><br>
 
-                <button type="submit" class="btn btn-danger" >Save</button>
+                <button type="submit" class="btn btn-danger" >Generate</button>
 
               </div>
             </div>
