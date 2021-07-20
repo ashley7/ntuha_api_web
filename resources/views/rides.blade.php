@@ -10,6 +10,9 @@
             <th>Date</th>
             <th>Driver</th>
             <th>Customer</th>                                              
+            <th>Gender</th>                                              
+            <th>Occupation</th>                                              
+            <th>Disability status</th>                                              
             <th>From</th>                                              
             <th>To</th>
             <th>Amount</th>                                            
@@ -27,6 +30,10 @@
                     @endif
                   </td>
                  <td>{{$rides->driver->name}}<br>{{$rides->driver->phone_number}}<br>{{$rides->driver->service}}<br>{{$rides->driver->driver_id}}</td>
+                 
+                 <td>{{ $rides->customer->sex }}</td>
+                 <td>{{ $rides->customer->occupation }}</td>
+                 <td>{{ $rides->customer->disability_status }}</td>
                  <td>
                   <?php
                     try {

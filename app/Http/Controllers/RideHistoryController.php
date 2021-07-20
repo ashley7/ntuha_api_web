@@ -162,9 +162,9 @@ class RideHistoryController extends Controller
                     try {
                         $current_age = $customer->year_of_birth;
                         if (strlen($current_age) == 4) {
-                            // $new_age = date("Y") - (int)$customer->year_of_birth;
-                            // $customer->year_of_birth = $new_age;
-                            // $customer->save();
+                            $new_age = (int)date("Y") - (int)$customer->year_of_birth;
+                            $customer->year_of_birth = $new_age;
+                            $customer->save();
                         }
                                              
                         
