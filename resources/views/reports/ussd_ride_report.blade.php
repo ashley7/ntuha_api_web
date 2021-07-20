@@ -2,30 +2,22 @@
 
 @section('content')
 <h4 style="text-transform: capitalize;">{{$title}}</h4>
- 
-
 
 <div class="row text-center">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="card-box widget-box-one">
           <div class="wigdet-one-content">
-
             <figure class="highcharts-figure">
                 <div id="container"></div>                 
             </figure>
-               
-               
           </div>
       </div>
   </div>
 </div>
 
-
-
   <div class="card-box">   
     <div class="card-body">
-
-           <div class="table-responsive">
+        <div class="table-responsive">
           <table class="table table-hover table-striped" id="working_drivers">
               <thead>         
                   <th>Created at</th>
@@ -149,7 +141,7 @@
               type: 'line'
           },
           title: {
-              text: 'Daily USSD Revenue'
+              text: 'Daily USSD Revenue and Ride count'
           },
           subtitle: {
               text: 'Source: https://ntuhaug.com'

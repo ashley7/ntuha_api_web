@@ -120,11 +120,12 @@ class NtuhaRideController extends Controller
 
         if ($reportname == "revenue") {
 
-            $read_ntuha_ride = NtuhaRide::whereBetween('date',[$request->from."-1 day",$request->to."+1 day"])->select([\DB::raw('date'),\DB::raw('SUM(amount) AS total'),\DB::raw('SUM(ntuha_amount) as ntuha_amount')])->groupBy('date')->orderBy('date')->get();
+            $read_ntuha_ride = NtuhaRide::whereBetween('date',[$request->from."-1 day",$request->to."+1 day"])->select([\DB::raw('DATE(date) AS date'),\DB::raw('SUM(amount) AS total'),\DB::raw('SUM(ntuha_amount) as ntuha_amount')])->groupBy('date')->orderBy('date')->get();
 
             $title = "Transactions from ".$request->from." to ".$request->to;
 
             $records['name'] = 'Overall revenue';
+
             $ntuha_records['name'] = 'Ntuha revenue';
 
             foreach ($read_ntuha_ride as $value) {
@@ -144,9 +145,9 @@ class NtuhaRideController extends Controller
             $all_data  = array();
 
             array_push($all_data,$records);
-            array_push($all_data,$ntuha_records);
 
- 
+            array_push($all_data,$ntuha_records);
+             
             $data = [               
                 'title' => $title,
                 'from' => $request->from,
