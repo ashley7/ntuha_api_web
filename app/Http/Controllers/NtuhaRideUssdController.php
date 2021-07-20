@@ -47,21 +47,33 @@ class NtuhaRideUssdController extends Controller
 
         $days = $ntuha_totals  = $records = [];
 
+        $ntuha_count  = $record_count = [];
+
         $driver_report = NtuhaRideUssd::whereBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->get();
 
-        $read_ntuha_ride = NtuhaRideUssd::whereBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->select([\DB::raw('DATE(created_at) AS date'),\DB::raw('SUM(amount) AS total')])->groupBy('date')->orderBy('date')->get();
+        $read_ntuha_ride = NtuhaRideUssd::whereBetween('created_at',[$request->from."-1 day",$request->to."+1 day"])->select([\DB::raw('DATE(created_at) AS date'),\DB::raw('SUM(amount) AS total'), \DB::raw('COUNT(*) AS total_rides')])->groupBy('date')->orderBy('date')->get();
 
-        $records['name'] = 'Daily USSD rides';
+        $records['name'] = 'Daily USSD revenue';
+        $record_count['name'] = 'No. of daily USSD ride';
 
         foreach ($read_ntuha_ride as $value) {
 
             $days[] = $value->date;
 
-            $ntuha_totals[] =  $value->total;         
+            $ntuha_totals[] =  $value->total;
 
-        } 
+            $ntuha_count[] =   $value->total_rides; 
 
-        $records['data'] = $ntuha_totals;  
+        }
+
+        $array_data = array();
+
+        $records['data'] = $ntuha_totals; 
+
+        $record_count['data']  = $ntuha_count;
+
+        array_push($array_data,$records);
+        array_push($array_data,$record_count);
 
         $title = "USSD rides between ".$request->from." and ".$request->to;
 
@@ -69,7 +81,7 @@ class NtuhaRideUssdController extends Controller
 
             'ussd_request' => $driver_report,
             'title' => $title,
-            'records' => json_encode([$records]),
+            'records' => json_encode($array_data),
             'days' => json_encode($days),
         ];
  
