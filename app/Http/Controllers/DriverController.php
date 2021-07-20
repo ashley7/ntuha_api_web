@@ -327,7 +327,7 @@ class DriverController extends Controller
             $data = [
                 'read_local_drivers' => $driver_report,
                 'title' => $title,
-                'records' => json_encode($records),
+                'records' => json_encode([$records]),
                 'days' => json_encode($days),
             ];
  
