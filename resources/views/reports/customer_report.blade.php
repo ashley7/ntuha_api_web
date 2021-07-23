@@ -83,24 +83,22 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
                         if($num_rides > 0) {
 
                           echo "Active";
-
                          
                           $dates[] = $sign_up_date;
 
                           $dates = array_unique($dates);
 
-                          if (in_array($sign_up_date, $dates)) {                          
+                          $counter = $counter + 1;
 
-                            $date_records[] = ($date_records[$sign_up_date] + 1);
+                          $date_records[] = $counter;
+
+                          if (in_array($sign_up_date, $dates)) {
+                                                   
+                            $date_records[$sign_up_date] = ($date_records[$sign_up_date] + 1); 
+
+                            $counter = 0;           
+                          
                             
-                          }else{
-
-                            $counter = 0;
-
-                            $counter = $counter + 1;
-
-                            $date_records[] = $counter;
-
                           }
 
                         }else{
