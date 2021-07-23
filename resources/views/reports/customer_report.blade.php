@@ -11,11 +11,12 @@
             <div class="widget-box-one">
               <div class="wigdet-one-content">
 
-                <figure class="highcharts-figure">
+                  <hr>
+               
                   <h3>No. of active customers in selected period</h3>
 
-                    <div id="container"></div>                 
-                </figure>
+                  <h1>  <div id="count_active"></div>       </h1>
+               
                    
                    
               </div>
@@ -77,12 +78,8 @@
 @endsection
 
 @push('scripts')
-   <script>
-     $.(document).ready(function(){
-
-         $("#container").text({{ $counter }})
-
-     })
+   <script>  
+      $("#count_active").text({{ $counter }})  
    </script>
 
 @endpush

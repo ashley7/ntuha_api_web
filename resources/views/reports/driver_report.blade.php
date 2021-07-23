@@ -12,10 +12,12 @@
           <div class="widget-box-one">
               <div class="wigdet-one-content">
 
+                <hr>
+
                 <h3>Active riders in selected period</h3>
 
                
-                  <div id="count_active"></div>                 
+                <h1>  <div id="count_active"></div>   </h1>
                  
                    
               </div>
@@ -96,11 +98,11 @@
 @push('scripts')
  
    <script>
-     $.(document).ready(function(){
+  
 
-         $("#count_active").text({{ $counter }})
+         $("#count_active").html({{ $counter }})
 
-     })
+    
    </script>
 
 
