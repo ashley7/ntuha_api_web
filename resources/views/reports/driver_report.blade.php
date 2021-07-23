@@ -4,8 +4,25 @@
  <div class="card-box">
     <h4>{{$title}}</h4>
 
+    <?php $counter = 0; ?>
+
     <div class="row text-center">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+          <div class="widget-box-one">
+              <div class="wigdet-one-content">
+
+                <h3>Active riders in selected period</h3>
+
+               
+                  <div id="count_active"></div>                 
+                 
+                   
+              </div>
+          </div>
+      </div>
+
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
           <div class="widget-box-one">
               <div class="wigdet-one-content">
 
@@ -49,7 +66,23 @@
                           </td>
 
                           <td>
-                              {{ App\Customer::countDriverRides($driver->id,$from,$to) }}
+                              <?php 
+
+                                $ridesCount = App\Customer::countDriverRides($driver->id,$from,$to);
+
+                                if($ridesCount > 0){
+
+                                  echo "Active";
+
+                                  $counter = $counter + 1;
+
+                                }else{
+
+                                  echo "Not active";
+
+                                }
+
+                               ?>
                           </td>
                       </tr>                    
                    @endforeach
@@ -61,6 +94,16 @@
 @endsection
 
 @push('scripts')
+ 
+   <script>
+     $.(document).ready(function(){
+
+         $("#count_active").text({{ $counter }})
+
+     })
+   </script>
+
+
 
   <script src="{{asset('js/charts/highcharts.js')}}"></script>
   <script src="{{asset('js/charts/highcharts-3d.js')}}"></script>

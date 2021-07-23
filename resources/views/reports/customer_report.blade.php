@@ -1,9 +1,29 @@
 @extends('layouts.master')
 
 @section('content')
+<?php $counter = 0; ?>
  <div class="card-box">
     <h4>{{$title}}</h4>
-    <div class="card-body">      
+    <div class="card-body">
+
+        <div class="row text-center">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="widget-box-one">
+              <div class="wigdet-one-content">
+
+                <figure class="highcharts-figure">
+                  <h3>No. of active customers in selected period</h3>
+
+                    <div id="container"></div>                 
+                </figure>
+                   
+                   
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         <div class="table-responsive">
             <table class="table table-hover table-striped" id="ussd_customers">
               <thead>                              
@@ -15,7 +35,7 @@
                 <th>Disability status</th>
                 <th>Location</th>
                 <th>Occupation</th>                
-                <th>No. rides btn<br>selected period</th>                
+                <th>Status</th>                
               </thead>
               <tbody>
                 @foreach($customers as $customer)                  
@@ -29,7 +49,23 @@
                     <td>{{$customer->location}}</td>
                     <td>{{$customer->occupation}}</td>
                     <td>
-                      {{ App\Customer::countCustomerRides($customer->id,$from,$to)  }}
+                      <?php
+                        $num_rides = App\Customer::countCustomerRides($customer->id,$from,$to); 
+
+                        if($num_rides > 0) {
+
+                          echo "Active";
+
+                          $counter = $counter + 1;
+
+                        }else{
+
+                          echo "Not active";
+
+                        }
+
+
+                       ?>
                     </td>
                   </tr>             
                 @endforeach
@@ -39,3 +75,14 @@
         </div>
       </div>        
 @endsection
+
+@push('scripts')
+   <script>
+     $.(document).ready(function(){
+
+         $("#container").text({{ $counter }})
+
+     })
+   </script>
+
+@endpush
