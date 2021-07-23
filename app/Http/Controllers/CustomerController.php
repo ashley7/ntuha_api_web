@@ -218,6 +218,7 @@ class CustomerController extends Controller
                 'title' => $title,
                 'from' => $request->from,
                 'to' => $request->to,
+                
             ];
  
             return view('reports.customer_report')->with($data);
