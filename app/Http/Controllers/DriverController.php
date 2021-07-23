@@ -329,6 +329,8 @@ class DriverController extends Controller
             'title' => $title,
             'records' => json_encode([$records]),
             'days' => json_encode($days),
+            'from' => $request->from,
+            'to' => $request->to,
         ];
  
         return view('reports.driver_report')->with($data);

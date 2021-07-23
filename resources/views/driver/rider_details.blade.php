@@ -159,7 +159,11 @@
     plotOptions: {
         line: {
             pointPadding: 0.2,
-            borderWidth: 0
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
         }
     },
     series: {!! $records !!}

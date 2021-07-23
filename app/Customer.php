@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Driver;
+use App\NtuhaRide;
 
 class Customer extends Model
 {
@@ -60,6 +61,25 @@ class Customer extends Model
     public static function checkCustomer($phone_number)
     {
         return Customer::where('email',$phone_number."@gmail.com")->get();         
+    }
+
+
+    public static function countCustomerRides($customer_id,$from,$to)
+    {
+
+        $rides = NtuhaRide::where('customer_id',$customer_id)->whereBetween('date',[$from,$to])->get();
+
+        return $rides->count();
+
+    }
+
+     public static function countDriverRides($driver_id,$from,$to)
+    {
+
+        $rides = NtuhaRide::where('driver_id',$driver_id)->whereBetween('date',[$from,$to])->get();
+
+        return $rides->count();
+        
     }
 
    

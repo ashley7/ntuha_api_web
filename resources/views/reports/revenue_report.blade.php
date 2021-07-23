@@ -175,7 +175,11 @@
           plotOptions: {
               line: {
                   pointPadding: 0.2,
-                  borderWidth: 0
+                  borderWidth: 0,
+                  dataLabels: {
+                      enabled: true
+                  },
+                  enableMouseTracking: false
               }
           },
           colors:['#8B0000','#FF0000','#B22222','#DC143C','#F08080','#FF4500'],

@@ -31,6 +31,7 @@
                     <th>Motor</th>
                     <th>Service</th>
                     <th>ID number</th>                 
+                    <th>No. rides btn<br>selected period</th>                 
                 </thead>
 
                 <tbody>
@@ -43,7 +44,13 @@
                           <td>{{$driver['motor_type']}} ({{$driver['number_plate']}})</td>
                           <td>{{$driver['service']}}</td>
 
-                          <td>{{$driver['identification_number']}} ({{$driver['identification_type']}})</td>
+                          <td>
+                            {{$driver['identification_number']}} ({{$driver['identification_type']}})
+                          </td>
+
+                          <td>
+                              {{ App\Customer::countDriverRides($driver->id,$from,$to) }}
+                          </td>
                       </tr>                    
                    @endforeach
                 </tbody>
@@ -92,7 +99,11 @@
           plotOptions: {
               line: {
                   pointPadding: 0.2,
-                  borderWidth: 0
+                  borderWidth: 0,
+                  dataLabels: {
+                      enabled: true
+                  },
+                  enableMouseTracking: false
               }
           },
           colors:['#8B0000','#FF0000','#B22222'],

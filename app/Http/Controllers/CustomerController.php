@@ -215,7 +215,9 @@ class CustomerController extends Controller
 
             $data = [
                 'customers' => $customerReport,
-                'title' => $title
+                'title' => $title,
+                'from' => $request->from,
+                'to' => $request->to,
             ];
  
             return view('reports.customer_report')->with($data);
@@ -273,6 +275,8 @@ class CustomerController extends Controller
         } catch (\Exception $e) {}       
         return back();       
    }
+
+
 
 
 }

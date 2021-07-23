@@ -15,6 +15,7 @@
                 <th>Disability status</th>
                 <th>Location</th>
                 <th>Occupation</th>                
+                <th>No. rides btn<br>selected period</th>                
               </thead>
               <tbody>
                 @foreach($customers as $customer)                  
@@ -27,6 +28,9 @@
                     <td>{{$customer->disability_status}}</td>
                     <td>{{$customer->location}}</td>
                     <td>{{$customer->occupation}}</td>
+                    <td>
+                      {{ App\Customer::countCustomerRides($customer->id,$from,$to)  }}
+                    </td>
                   </tr>             
                 @endforeach
               </tbody>
