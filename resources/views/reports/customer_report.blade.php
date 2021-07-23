@@ -138,7 +138,7 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
               type: 'line'
           },
           title: {
-              text: '{{ Active customers }}'
+              text: 'Active customers'
           },
           subtitle: {
               text: 'Source: https://ntuhaug.com'
