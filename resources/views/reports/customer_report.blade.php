@@ -106,12 +106,9 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
 
             <?php
 
-              array_unique($dates);
+              $dates = array_unique($dates);
 
-              $dateHeaders['data'] = [$date_records];
-
-
-
+              $dateHeaders['data'] = $date_records;
 
              ?>       
           </div>
