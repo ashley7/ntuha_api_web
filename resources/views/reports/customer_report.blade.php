@@ -17,24 +17,9 @@
     <h4>{{$title}}</h4>
     <div class="card-body">
 
-        <div class="row text-center">
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-            <div class="widget-box-one">
-              <div class="wigdet-one-content">
+        <div class="row text-center">         
 
-                  <hr>
-               
-                  <h3>No. of active customers in selected period</h3>
-
-                  <h1>  <div id="count_active"></div>       </h1>
-               
-                   
-                   
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="widget-box-one">
                 <div class="wigdet-one-content">
 
@@ -135,9 +120,7 @@
 @endsection
 
 @push('scripts')
-   <script>  
-      $("#count_active").text({{ $counterDisplay }})  
-   </script>
+ 
 
  
 
