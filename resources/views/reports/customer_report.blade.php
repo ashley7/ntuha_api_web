@@ -84,11 +84,24 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
 
                           echo "Active";
 
-                          $counter = $counter + 1;
-
-                          $date_records[] = $counter;
-
+                         
                           $dates[] = $sign_up_date;
+
+                          $dates = array_unique($dates);
+
+                          if (in_array($sign_up_date, $dates)) {                          
+
+                            $date_records[] = ($date_records[$sign_up_date] + 1)
+                            
+                          }else{
+
+                            $counter = 0;
+
+                            $counter = $counter + 1;
+
+                            $date_records[] = $counter;
+
+                          }
 
                         }else{
 
@@ -106,7 +119,7 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
 
             <?php
 
-              $dates = array_unique($dates);
+              
 
               $dateHeaders['data'] = $date_records;
 
