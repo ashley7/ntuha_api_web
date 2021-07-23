@@ -91,7 +91,7 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
 
                           if (in_array($sign_up_date, $dates)) {                          
 
-                            $date_records[] = ($date_records[$sign_up_date] + 1)
+                            $date_records[] = ($date_records[$sign_up_date] + 1);
                             
                           }else{
 
