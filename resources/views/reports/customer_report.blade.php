@@ -106,7 +106,9 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
 
             <?php
 
-              $dateHeaders['name'] = $date_records;
+              array_unique($dates);
+
+              $dateHeaders['data'] = [$date_records];
 
 
 
@@ -136,7 +138,7 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
               type: 'line'
           },
           title: {
-              text: '{{ $title}}'
+              text: '{{ Active customers }}'
           },
           subtitle: {
               text: 'Source: https://ntuhaug.com'
@@ -169,7 +171,7 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
               }
           },
           colors:['#8B0000','#FF0000','#B22222'],
-          series: {!!  json_encode($dateHeaders) !!}
+          series: {!!  json_encode([$dateHeaders]) !!}
       });
 
   </script>
