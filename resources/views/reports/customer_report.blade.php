@@ -96,7 +96,7 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
 
                             $key = array_search($sign_up_date, $dates);
                                                    
-                            $date_records[$key] = ($date_records[$sign_up_date] + 1); 
+                            $date_records[$key] = ($date_records[$key] + 1); 
 
                             $counter = 0;           
                           
