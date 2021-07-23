@@ -122,6 +122,10 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
 
             <?php
 
+            foreach (array_keys($date_records, 1) as $key) {
+                unset($date_records[$key]);
+            }
+
               
 
               $dateHeaders['data'] = $date_records;
