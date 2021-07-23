@@ -244,7 +244,7 @@
               }
           },
           colors:['#8B0000','#FF0000','#B22222'],
-          series: {!! json_encode($dateHeaders) !!}
+          series: {!! json_encode([$dateHeaders]) !!}
       });
 
   </script>
