@@ -4,6 +4,7 @@
 <?php 
 
 $counter = 0;
+$counterDisplay = 0;
 
 $dates = [];
 $date_records = [];
@@ -83,6 +84,8 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
                         if($num_rides > 0) {
 
                           echo "Active";
+
+                          $counterDisplay = $counterDisplay + 1;
                          
                           $dates[] = $sign_up_date;
 
@@ -131,7 +134,7 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
 
 @push('scripts')
    <script>  
-      $("#count_active").text({{ $counter }})  
+      $("#count_active").text({{ $counterDisplay }})  
    </script>
 
  
