@@ -86,7 +86,7 @@ $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
 
                           $counter = $counter + 1;
 
-                          $date_records[$sign_up_date] = $counter;
+                          $date_records[] = $counter;
 
                           $dates[] = $sign_up_date;
 
