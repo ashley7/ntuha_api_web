@@ -3,16 +3,14 @@
 @section('content')
 <?php 
 
-$counter = 0;
-$counterDisplay = 0;
+  $counter = 0;
+  $counterDisplay = 0;
 
-$dates = [];
-$date_records = [];
-$dateHeaders = [];
+  $dates = [];
+  $date_records = [];
+  $dateHeaders = [];
 
-$dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
-
-
+  $dateHeaders['name'] = "Daily active riders from ".$from." to ".$to;
 
 ?>
  <div class="card-box">
