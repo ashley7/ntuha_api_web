@@ -13,8 +13,8 @@ class UsersTableSeeder extends Seeder
     {
         $saveUser = new User();
         $saveUser->name = "Admin";
-        $saveUser->email = "ntuharide@gmailcom";
-        $saveUser->password = \Hash::make("admin123");
+        $saveUser->email = "app.users21@gmail.com";
+        $saveUser->password = \Hash::make("admin123@");
         $saveUser->remember_token = str_random(32);
         $saveUser->save();
     }
