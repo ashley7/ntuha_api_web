@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::any('activate_driver','DriverController@activate_driver');
 
 Route::any('service_price','DriverController@service_price');
