@@ -174,7 +174,7 @@ class UserController extends Controller
 
         $this->validate($request,$rules);
 
-        Mail::to("ashley7520charles@gmail.com")->send(new SendEmail($request->message));
+        Mail::to("ashley7520charles@gmail.com")->send(new SendEmail($request->message,$request->email,$request->name));
 
         return back()->with(['status'=>'Your message has been recieved, we shall follow up shortly']);
         
