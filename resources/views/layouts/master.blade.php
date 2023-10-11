@@ -60,8 +60,10 @@
                             <li class="nav-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                    <!-- <img src="back_end/assets/images/users/avatar-1.jpg" alt="{{Auth::user()->name}}" class="img-circle"> -->
+                                   @guest
+                                   @else
                                     <span style="color: #FFF;">{{Auth::user()->name}}</span>
+                                    @endguest
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-arrow profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->                                 
@@ -94,6 +96,10 @@
                     <div id="navigation">
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
+
+                        @guest 
+
+                        @else
 
                             <li class="has-submenu">
                                 <a href="/home"><i class="zmdi zmdi-view-dashboard"></i>  Dashboard</a>
@@ -161,6 +167,8 @@
                                 </ul>
                             </li>                        
                         </ul>
+
+                        @endguest
                     </div>  
                 </div>  
             </div>  
