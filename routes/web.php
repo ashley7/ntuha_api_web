@@ -1,6 +1,9 @@
 <?php
 ini_set('max_execution_time', '1200');
 use App\Http\Controllers\DriverController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('front');
 });
@@ -117,6 +120,7 @@ Route::get('/test_route', function () {
 
 });
 
+Route::get("delete_my_account","UserController@delete_my_account");
 
-
+Route::post("delete_my_account","UserController@removeaccount");
 

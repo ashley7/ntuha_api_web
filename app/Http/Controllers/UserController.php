@@ -150,5 +150,33 @@ class UserController extends Controller
                 DriverController::sendSMS($customer_phone,$message);
             }
         }                
-    }      
+    }  
+
+    public function delete_my_account() {
+
+        $data = [
+            'title'=>'Delete my account',
+        ];
+
+        return view('user.delete_account')->with($data);
+        
+    }
+
+    public function removeaccount(Request $request) {
+
+        $rules = [
+            'message'=>'required',
+            'name'=>'required',
+            'email'=>'required',
+        ];
+
+        $this->validate($request,$rules);
+
+        $headers = "From: ". $request->email;
+
+        mail("ashley7520charles@gmail.com","Ntuha ride",$request->message,$headers);
+
+        return back()->with(['status'=>'Your message has been recieved, we shall follow up shortly']);
+        
+    }   
 }
