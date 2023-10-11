@@ -8,6 +8,8 @@ use App\User;
 use App\Customer;
 use App\Driver;
 use App\Http\Controllers\DriverController;
+use App\Mail\SendEmail;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -172,9 +174,7 @@ class UserController extends Controller
 
         $this->validate($request,$rules);
 
-        $headers = "From: ". $request->email;
-
-        mail("ashley7520charles@gmail.com","Ntuha ride",$request->message,$headers);
+        Mail::to("ashley7520charles@gmail.com")->send(new SendEmail($request->message));
 
         return back()->with(['status'=>'Your message has been recieved, we shall follow up shortly']);
         
