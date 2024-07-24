@@ -88,8 +88,11 @@
            <div class="margin-100">
             <h1>We're Ntuha,</h1>
             <h3>Reliable, Fast and Safe <strong><em>free</em></strong> too!</h3>
-           </div>
-            <a href="http://tiny.cc/wywc7y" class="btn btn-primary btn-lg">Download <i class="fa fa-cloud-download"></i></a>
+
+            <br> <br>
+
+            <a href="https://play.google.com/store/apps/details?id=com.ntuha.transport&hl=en" class="btn btn-primary btn-lg">Download <i class="fa fa-cloud-download"></i></a>
+             </div>
           </div>
         </div>
         

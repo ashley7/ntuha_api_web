@@ -85,8 +85,8 @@ https://templatemo.com/tm-540-lava-landing-page
                         <h1>We are <em>NTUHA</em></h1>
                         <p>A mobile and USSD enabled platform that allows <a href="#">farmers, traders, and other users (commuters)</a> to search for available means of transport for their agro inputs and produce in a way that makes them gain high income.<a href="#">Using Mobile App and USSD applicatication</a>.
                            Users can get affordable transportation through Ntuha Boda, Ntuha Taxi, and Ntuha Truck to transport their items safely.</p> 
-                        <a href="http://tiny.cc/wywc7y" class="main-button-slider">DOWNLOAD NTUHA RIDE</a>
-                        <a href="#" class="main-button-slider">DIAL *284*11#</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.ntuha.transport&hl=en" class="main-button-slider">DOWNLOAD NTUHA RIDE</a>
+                        <!-- <a href="#" class="main-button-slider">DIAL *284*11#</a> -->
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@ https://templatemo.com/tm-540-lava-landing-page
                             <img src="/assets/images/features-icon-1.png" alt="">
                             <h4>Ntuha Boda</h4>
                             <p>A user can choose to use the platform by requesting a boda-boda (motorcycle) as means of transport. The boda option can help both commuters and farmers for transportation.</p>
-                            <a href="http://tiny.cc/wywc7y" class="main-button">
+                            <a href="https://play.google.com/store/apps/details?id=com.ntuha.transport&hl=en" class="main-button">
                                 Download Now
                             </a>
                         </div>
@@ -121,7 +121,7 @@ https://templatemo.com/tm-540-lava-landing-page
                             <img src="/assets/images/features-icon-2.png" alt="">
                             <h4>Ntuha Taxi</h4>
                             <p>Users especially commuters, need a ride from home to work or any destination. They can be able to request for a Taxi/Cab from our mobile app or USSD platform</p>
-                            <a href="http://tiny.cc/wywc7y" class="main-button">
+                            <a href="https://play.google.com/store/apps/details?id=com.ntuha.transport&hl=en" class="main-button">
                                 Download Now
                             </a>
                         </div>
@@ -135,7 +135,7 @@ https://templatemo.com/tm-540-lava-landing-page
                             <img src="/assets/images/features-icon-3.png" alt="">
                             <h4>Ntuha Truck</h4>
                             <p>Farmers especially, you may want to transport your bulk produce or inputs from your farm to the market; perhaps from the input store to your farm. Ntuha Truck is the ideal transportation.</p>
-                            <a href="http://tiny.cc/wywc7y" class="main-button">
+                            <a href="https://play.google.com/store/apps/details?id=com.ntuha.transport&hl=en" class="main-button">
                                 Download Now
                             </a>
                         </div>
@@ -383,6 +383,7 @@ https://templatemo.com/tm-540-lava-landing-page
             <div class="row">
                 <div class="col-lg-12">
                     <div class="sub-footer">
+                        <a href="/terms_of_use">Terms of Use</a>
                         <p>Copyright &copy; 2018-2020 Ntuha Services Ltd.
 
                         | Designed by <a rel="nofollow" href="tel:+256785972745">Ibabaza Media Ltd.</a></p>

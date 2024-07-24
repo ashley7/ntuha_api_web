@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('front');
 });
 
+Route::get('/terms_of_use', function () {
+    return view('terms_of_use');
+});
+
 Auth::routes();
 
 Route::resource('user_psw_reset','CustomerController');
