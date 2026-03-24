@@ -34,19 +34,17 @@ class User extends Authenticatable
 
     public static function databaseObject()
     {
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
-        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
+        // $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
+        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
 
-        $database = $firebase->getDatabase();
+        // $database = $firebase->getDatabase();
 
-        return $database;
+        // return $database;
+           $factory = (new Factory)
+                    ->withServiceAccount(base_path(env('FIREBASE_CREDENTIALS')))
+                    ->withDatabaseUri(env('FIREBASE_DATABASE'));
 
-
-        //    $factory = (new Factory)
-        //             ->withServiceAccount(base_path(env('FIREBASE_CREDENTIALS')))
-        //             ->withDatabaseUri(env('FIREBASE_DATABASE'));
-
-        //     return $factory->createDatabase();
+            return $factory->createDatabase();
     }
 
     public static function sendSMS($phone_number,$message)
