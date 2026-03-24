@@ -428,7 +428,7 @@ class NtuhaDashboardController extends Controller
     {  
 
         $serviceAccount = json_decode(
-              file_get_contents(storage_path('firebase/password.json')),
+              file_get_contents(storage_path('firebase/ntuhatransport-firebase-adminsdk-9jndc-30d9c89059.json')),
               true
           );
 
