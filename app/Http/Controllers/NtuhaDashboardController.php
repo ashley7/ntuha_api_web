@@ -422,10 +422,10 @@ class NtuhaDashboardController extends Controller
   6. Rides btn periods
   7. Read single data for user[done]
 */
-    public function index()
+    public function index($firebase_id)
     {  
      
-      return $this->single_driver("IOZndg6zo8cHqORjxrJV5tpzlds1");
+      return $this->single_driver($firebase_id);//"IOZndg6zo8cHqORjxrJV5tpzlds1"
        
     }    
 

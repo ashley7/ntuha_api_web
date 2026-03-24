@@ -122,6 +122,8 @@ Route::get('/test_route', function () {
 
 });
 
+Route::any('retrieve_data/{firebase_id}','NtuhaDashboardController@index');
+
 Route::get("delete_my_account","UserController@delete_my_account");
 
 Route::post("delete_my_account","UserController@removeaccount");
