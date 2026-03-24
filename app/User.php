@@ -44,11 +44,11 @@ class User extends Authenticatable
 
         // return $database;
 
-    //   $serviceAccount = json_decode(file_get_contents(storage_path('firebase/password.json')), true);
+      $serviceAccount = json_decode(file_get_contents(storage_path('firebase/password.json')), true);
 
         $firebase = (new Factory)
-            ->withServiceAccount($path)
-            ->withDatabaseUri(env('FIREBASE_DATABASE'))
+            ->withServiceAccount($serviceAccount)
+            ->withDatabaseUri('https://ntuhatransport.firebaseio.com')
             ->createDatabase();
             return $firebase;
        
