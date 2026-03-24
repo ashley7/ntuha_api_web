@@ -425,9 +425,8 @@ class NtuhaDashboardController extends Controller
     public function index($firebase_id)
     {  
      
-      // return $this->single_driver($firebase_id);//"IOZndg6zo8cHqORjxrJV5tpzlds1"   
-      $jsonPath = storage_path('firebase/password.json');
-      return file_exists($jsonPath); 
+      return $this->single_driver($firebase_id);//"IOZndg6zo8cHqORjxrJV5tpzlds1"   
+       
        
     }    
 
