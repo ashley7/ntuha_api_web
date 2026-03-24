@@ -40,11 +40,12 @@ class User extends Authenticatable
         // $database = $firebase->getDatabase();
 
         // return $database;
-           $factory = (new Factory)
-                    ->withServiceAccount(base_path(env('FIREBASE_CREDENTIALS')))
-                    ->withDatabaseUri(env('FIREBASE_DATABASE'));
+        $path = base_path(config('firebase.credentials'));
 
-            return $factory->createDatabase();
+        return (new Factory)
+            ->withServiceAccount($path)
+            ->withDatabaseUri(config('firebase.database'))
+            ->createDatabase();
     }
 
     public static function sendSMS($phone_number,$message)
