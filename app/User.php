@@ -44,14 +44,24 @@ class User extends Authenticatable
 
         // return $database;
 
-      $serviceAccount = json_decode(file_get_contents(storage_path('firebase/password.json')), true);
+    //   $serviceAccount = json_decode(file_get_contents(storage_path('firebase/password.json')), true);
 
-        $firebase = (new Factory)
-            ->withServiceAccount($serviceAccount)
-            ->withDatabaseUri('https://ntuhatransport.firebaseio.com/')//https://ntuhatransport.firebaseio.com/
-            ->createDatabase();
-            return $firebase;
+    //     $firebase = (new Factory)
+    //         ->withServiceAccount($serviceAccount)
+    //         ->withDatabaseUri('https://ntuhatransport.firebaseio.com/')//https://ntuhatransport.firebaseio.com/
+    //         ->createDatabase();
+    //         return $firebase;
        
+            $serviceAccount = json_decode(
+                file_get_contents(storage_path('firebase/password.json')),
+                true
+            );
+
+            $firebase = (new Factory)
+                ->withServiceAccount($serviceAccount)
+                ->withDatabaseUri('https://ntuhatransport.firebaseio.com')
+                ->createDatabase();
+            return $firebase;
     }
 
     public static function sendSMS($phone_number,$message)
