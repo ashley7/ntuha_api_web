@@ -437,6 +437,11 @@ class NtuhaDashboardController extends Controller
             ->withDatabaseUri('https://ntuhatransport.firebaseio.com')
             ->createDatabase();
 
+
+             
+        return $firebase->getReference('Users')->getChild("Drivers")->orderByKey()->equalTo("1Hv3P6Z2TaMc9klSAiiNZJV3qRU2")->getValue();//this is a single object for one user
+   
+
    
  
         return $this->single_driver($firebase_id); 
