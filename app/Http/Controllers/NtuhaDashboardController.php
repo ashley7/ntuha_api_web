@@ -11,6 +11,8 @@ use App\Http\Controllers\DriverController;
 use App\User;
 use App\Customer;
 use Illuminate\Support\Facades\Mail;
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\ServiceAccount;
 
 class NtuhaDashboardController extends Controller
 {
@@ -247,7 +249,7 @@ class NtuhaDashboardController extends Controller
     public static function single_driver($driver_id)
     {
         $data = array();
-        $user_details = NtuhaDashboardController::user_details("Drivers",$driver_id);
+           $user_details = NtuhaDashboardController::user_details("Drivers",$driver_id);
          foreach ($user_details as $key => $value) {
             $result = [];
             try {
@@ -424,8 +426,21 @@ class NtuhaDashboardController extends Controller
 */
     public function index($firebase_id)
     {  
-     
-      return $this->single_driver($firebase_id);//"IOZndg6zo8cHqORjxrJV5tpzlds1"   
+
+        $path = realpath(storage_path('firebase/password.json'));
+
+        $firebase = (new Factory)
+            ->withServiceAccount($path)
+            ->withDatabaseUri('https://ntuhatransport.firebaseio.com')
+            ->createDatabase();
+
+        // Just return a success message
+        return response()->json([
+            'status' => 'connected',
+            'tables' => $firebase->getReference()->getChildKeys() // optional: list top-level keys
+        ]);
+ 
+        return $this->single_driver($firebase_id); 
        
        
     }    

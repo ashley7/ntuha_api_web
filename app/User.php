@@ -35,7 +35,7 @@ class User extends Authenticatable
     public static function databaseObject()
     {
 
-        // $path = realpath(storage_path('firebase/password.json'));
+        $path = realpath(storage_path('firebase/password.json'));
 
         // $serviceAccount = ServiceAccount::fromJsonFile($path);
         // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
@@ -44,12 +44,13 @@ class User extends Authenticatable
 
         // return $database;
 
-        $firebase = (new Factory)
-        ->withServiceAccount(realpath(storage_path('firebase/password.json')))
-        ->withDatabaseUri(env('FIREBASE_DATABASE'))
-        ->createDatabase();
+    //   $serviceAccount = json_decode(file_get_contents(storage_path('firebase/password.json')), true);
 
-        return $firebase;
+        $firebase = (new Factory)
+            ->withServiceAccount($path)
+            ->withDatabaseUri(env('FIREBASE_DATABASE'))
+            ->createDatabase();
+            return $firebase;
        
     }
 
