@@ -432,7 +432,7 @@ class NtuhaDashboardController extends Controller
                 true
             );
 
-            return  $serviceAccount;
+ 
 
             $firebase = (new Factory)
                 ->withServiceAccount($serviceAccount)
