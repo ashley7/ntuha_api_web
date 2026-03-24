@@ -44,6 +44,9 @@ class User extends Authenticatable
 
         // return $database;
 
+       
+
+
         $jsonPath = base_path(config('firebase.credentials'));
         $dbUrl = config('firebase.database');
 
@@ -51,10 +54,7 @@ class User extends Authenticatable
             throw new \Exception("Firebase JSON not found: " . $jsonPath);
         }
 
-        return (new Factory)
-            ->withServiceAccount($jsonPath)
-            ->withDatabaseUri($dbUrl)
-            ->createDatabase();
+        return (new Factory)->withServiceAccount($jsonPath)->withDatabaseUri($dbUrl)->createDatabase();
     }
 
     public static function sendSMS($phone_number,$message)
