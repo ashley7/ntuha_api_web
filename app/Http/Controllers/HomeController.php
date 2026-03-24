@@ -8,6 +8,7 @@ use App\Driver;
 use App\NtuhaRideUssd;
 use App\NtuhaRide;
 use App\Http\Controllers\NtuhaDashboardController;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -48,8 +49,8 @@ class HomeController extends Controller
         $commuters = Customer::where('occupation','Commuter')->count();
         $both = Customer::where('occupation','Farmer and Commuter')->count();
 
-        $user_info_by_age = \DB::table('customers')
-                 ->select('year_of_birth as age','sex', \DB::raw('count(*) as total'))
+        $user_info_by_age = DB::table('customers')
+                 ->select('year_of_birth as age','sex', DB::raw('count(*) as total'))
                  ->groupBy('age','sex')
                  ->get();           
 
@@ -99,8 +100,8 @@ class HomeController extends Controller
         $gender[] = ['Female',$female];
 
 
-        $user_info_by_occupation = \DB::table('customers')
-                 ->select('occupation','sex', \DB::raw('count(*) as total'))
+        $user_info_by_occupation = DB::table('customers')
+                 ->select('occupation','sex', DB::raw('count(*) as total'))
                  ->groupBy('occupation','sex')
                  ->get();
 

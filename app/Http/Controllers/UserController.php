@@ -69,7 +69,7 @@ class UserController extends Controller
 
         $sms = "Dear ".$save_user->name." your Ntuha ride password is ".$pin." Visit ".$_SERVER['HTTP_HOST']." to Login";
 
-        NtuhaDashboardController::send_Email($save_user->email,"Ntuha ride password",$sms,"ntuha.deliveries@gmail.com");
+        NtuhaDashboardController::send_Email($save_user->email,"Ntuha ride password",$sms,"ibabazamedia@gmail.com");
 
         $data = [
             'status'=>'User created successfully'

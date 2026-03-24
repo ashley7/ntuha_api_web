@@ -182,5 +182,8 @@ class NtuhaRide extends Model
             }else{
                 return [NtuhaRide::randomItemSeletor($arrLoc),NtuhaRide::randomItemSeletor($arrLoc)];
             }         
-        }  
-    }
+        }
+
+
+    
+}

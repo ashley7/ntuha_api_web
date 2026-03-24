@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Driver;
 use App\Price;
 use App\NtuhaRide;
-use App\includes\AfricasTalkingGateway;
-use App\Http\Controllers\FrontEndController;
+ 
+use App\User;
+use Illuminate\Support\Facades\Response;
+ 
 
 class DriverController extends Controller
 {
@@ -153,38 +155,17 @@ class DriverController extends Controller
     public static function SMS($destination, $message)
     {
 
-        if ($destination[0] == 0) {
-             $destination = ltrim($destination, '0');
-             $destination = "256".$destination;
-        }
-
-        $sender = "Ntuha ride";
-        $email = 'ashley7520charles@gmail.com';
-        $password = 'inovation#';
-        $url = "http://159.203.140.131/index.php/api?";
-        $parameters = 'sender=[SENDERID]&contacts=[DESTINATION]&message=[MESSAGE]&username=[EMAIL]&password=[PASSWORD]';
-        $parameters = str_replace('[EMAIL]',$email,$parameters);
-        $parameters = str_replace('[PASSWORD]',urlencode($password),$parameters);
-        $parameters = str_replace('[DESTINATION]',$destination,$parameters);
-        $parameters = str_replace('[MESSAGE]',urlencode($message),$parameters);
-        $parameters = str_replace('[SENDERID]',urlencode($sender),$parameters);
-        $post_url = $url.$parameters;
-        $response = file($post_url);
-        return $response[0];
+        User::sendSMS($destination,$message);
     }
 
 
     public static function sendSMS($phone_number,$message)
     { 
 
-        if ($phone_number[0] == 0) {
-            $phone_number = ltrim($phone_number, '0');
-        }
-
-        $gateway = new AfricasTalkingGateway(env('API_USERNAME'),env('API_KEY'));
-        $gateway->sendMessage("+256".$phone_number, $message);
+       User::sendSMS($phone_number,$message);       
 
     }
+    
 
     public function activate_driver(Request $request)
     {
@@ -197,7 +178,7 @@ class DriverController extends Controller
         if ($driver->count() == 0) {
              $response['status'] = "FAILED";
              $response['message'] = "Invalid Driver credetials";
-             return \Response::json([$response]);
+             return Response::json([$response]);
         }elseif($driver->count() == 1){
             $driver_data = $driver->last();
             $driver_data->status = 1;
@@ -279,7 +260,7 @@ class DriverController extends Controller
     {
         $driver = Driver::where('driver_id',$driver_nunder)->get()->last();
         if (!empty($driver)) {
-            return "https://ntuhaug.com/images/".$driver->input_img;
+            return "https://ntuharide.ibabazamedia.com/images/".$driver->input_img;
         }else{
             return env("DEFAULT_IMAGE");
         }

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\DriverController;
 use App\User;
 use App\Customer;
-
+use Illuminate\Support\Facades\Mail;
 
 class NtuhaDashboardController extends Controller
 {
@@ -400,10 +400,10 @@ class NtuhaDashboardController extends Controller
         'email'=>$sms
       ];
    
-      \Mail::send(['text'=>'layouts.mail'], $data, function($message) use ($to,$subject,$from) {
+      Mail::send(['text'=>'layouts.mail'], $data, function($message) use ($to,$subject,$from) {
 
         $message->to($to, env("APP_NAME"))->subject($subject);
-        $message->from('ntuha.deliveries@gmail.com','Ntuha ride');
+        $message->from('ibabazamedia@gmail.com','Ntuha ride');
 
       });
          

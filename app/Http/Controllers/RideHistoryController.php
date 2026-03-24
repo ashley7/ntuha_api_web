@@ -108,7 +108,7 @@ class RideHistoryController extends Controller
     {
         $response = array();
         $phone_number = $request->phone_number;
-        $driver = Driver::all()->where('email',$phone_number.'@gmail.com');
+        $driver = Driver::where('email',$phone_number.'@gmail.com')->get();
         if ($driver->count() == 0) {
             $response['status'] = "NOTFOUND";
             $response['message'] = "The user was not found.";

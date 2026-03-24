@@ -11,6 +11,7 @@ use App\Withdraw;
 use App\NtuhaRide;
 use App\Customer;
 use App\Driver;
+use Illuminate\Support\Facades\Response;
 
 class FrontEndController extends Controller
 {
@@ -149,13 +150,13 @@ class FrontEndController extends Controller
             $save_payment->save();
             $response['status'] = "SUCCESS";
             $response['message'] = "Thank you, Your transaction has been successful";         
-            return \Response::json([$response]);
+            return Response::json([$response]);
 
         } catch (\Exception $e) {
 
             $response['status'] = "FAILED";
             $response['message'] = "Payment failed";
-            return \Response::json([$response]);
+            return Response::json([$response]);
             
         }        
     }
@@ -163,45 +164,7 @@ class FrontEndController extends Controller
 
     public  function check_payment_approval(Request $request)
     {
-        $response = array();
-
-        \Beyonic::setApiKey(env("BEYONIC_API_KEY"));
-
-        $collection_request = \Beyonic_Collection_Request::get((int)$request->transaction_id);
-        
-        $update_status = Payment::all()->where('transaction_id',$request->transaction_id)->last();
-
-        if (empty($update_status)) {
-            $response['status'] = "Error";
-            $response['message'] = "Transaction id ".$request->transaction_id." does not exist.";
-            return \Response::json([$response]);
-        }
-
-        $update_status->status = $collection_request->status;
-        $update_status->amount = $collection_request->amount;
-        $update_status->save();
-
-        if ($collection_request->status == "successful") {
-
-            $response['message'] = "Payment approved";
-            $response['status'] = $collection_request->status;
-            $message = "Your Ntuha ride account has been updated by ".$collection_request->amount;
-            DriverController::sendSMS($phone_number,$message);
-            return \Response::json([$response]);
-
-        }elseif ($collection_request->status == "pending") {
-
-            $response['status'] = $collection_request->status;
-            $response['message'] = "Payment not yet approved";
-            return \Response::json([$response]);
-
-        }else{
-
-            $response['status'] = "EXPIRED";
-            $response['message'] = $collection_request->status;
-            return \Response::json([$response]);
-
-        }
+       
     }
 
     public function record_account_ride(Request $request)
@@ -212,12 +175,12 @@ class FrontEndController extends Controller
 
         $ntuha_amount = 1000;
 
-        if ($driver->service == "Ntuha Boda") {
-            $ntuha_amount = 200;
-        }elseif($driver->service == "Ntuha Taxi"){
-            $ntuha_amount = 500;
-        }
+        $pricing = Price::where('type',$driver->service)->all()->last();
 
+        if($pricing){
+            $ntuha_amount = $pricing->price;
+        }  
+        
         NtuhaRide::saveRide($driver->id,$customer->id,$request->amount_paid,$request->from,$request->to,date('Y-m-d'),date('Y-m'),$ntuha_amount);
 
         $phone_number = str_replace("@gmail.com", "", $request->email);
@@ -287,7 +250,7 @@ class FrontEndController extends Controller
         $response["ntuha_amount"] = $total_unpaid;
         $response["number_of_rides"] = $number_of_rides;
         
-        return \Response::json([$response]);
+        return Response::json([$response]);
     }
 
     public function customer_number_of_rides(Request $request)
@@ -329,7 +292,7 @@ class FrontEndController extends Controller
 
         $subscription_type = $driver_email = "";
 
-        $read_price = Price::all()->where('type',$request->service)->last();
+        $read_price = Price::where('type',$request->service)->get()->last();
 
         $driver = NtuhaDashboardController::single_driver($request->driver_id);
 
@@ -432,12 +395,12 @@ class FrontEndController extends Controller
             $response["payment_type"] = $payment_type;
             $response["rate_type"] = $read_price->ratetype;
 
-            return \Response::json([$response]);
+            return Response::json([$response]);
                     
         }else{
             $response["status"] = "FAILED";
             $response["message"] = "No Price found";
-            return \Response::json([$response]);
+            return Response::json([$response]);
         }
         
     }
@@ -451,7 +414,7 @@ class FrontEndController extends Controller
         $response["RAVE_ENCRYPTION_KEY"] = env("RAVE_ENCRYPTION_KEY");
         $response["status"] = "SUCCESS";
 
-        return \Response::json([$response]);  
+        return Response::json([$response]);  
         
     }
 }

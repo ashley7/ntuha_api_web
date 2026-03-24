@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\NtuhaDashboardController;
 use App\User;
 use App\Customer;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerController extends Controller
 {
@@ -146,7 +147,7 @@ class CustomerController extends Controller
             'email'=>$sms
           ];
        
-          \Mail::send(['text'=>'layouts.mail'], $data, function($message) use ($to,$subject,$from) {
+          Mail::send(['text'=>'layouts.mail'], $data, function($message) use ($to,$subject,$from) {
  
             $message->to($to, env("APP_NAME"))->subject($subject);
             $message->from('ntuha.deliveries@gmail.com','Ntuha ride');
@@ -272,7 +273,7 @@ class CustomerController extends Controller
    {
         $sms = $request->name. "is saying ". $request->message." You can get back to him on ".$request->email;
         try {
-            mail("ntuha.deliveries@gmail.com", "Ntuha ride Contact us", $sms);
+            mail("ibabazamedia@gmail.com", "Ntuha ride Contact us", $sms);
         } catch (\Exception $e) {}       
         return back();       
    }
