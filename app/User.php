@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public static function databaseObject()
     {
-        $serviceAccount = ServiceAccount::fromJsonFile(env('FIREBASE_CREDENTIALS'));
+        $serviceAccount = ServiceAccount::fromJsonFile("/var/www/ntuha_api_web/storage/firebase/password.json");
         $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
 
         $database = $firebase->getDatabase();
