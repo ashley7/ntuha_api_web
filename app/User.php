@@ -57,6 +57,8 @@ class User extends Authenticatable
                 true
             );
 
+            return  $serviceAccount;
+
             $firebase = (new Factory)
                 ->withServiceAccount($serviceAccount)
                 ->withDatabaseUri('https://ntuhatransport.firebaseio.com')
