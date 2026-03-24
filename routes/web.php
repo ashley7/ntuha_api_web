@@ -4,7 +4,7 @@ use App\Http\Controllers\DriverController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('', function () {
     return view('front');
 });
 
