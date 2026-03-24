@@ -427,22 +427,17 @@ class NtuhaDashboardController extends Controller
     public function index($firebase_id)
     {  
 
-        $serviceAccount = json_decode(
-              file_get_contents(storage_path('firebase/ntuhatransport-firebase-adminsdk-9jndc-30d9c89059.json')),
-              true
-          );
+        // $serviceAccount = json_decode(
+        //       file_get_contents(storage_path('firebase/ntuhatransport-firebase-adminsdk-9jndc-30d9c89059.json')),
+        //       true
+        //   );
 
-        $firebase = (new Factory)
-            ->withServiceAccount($serviceAccount)
-            ->withDatabaseUri('https://ntuhatransport.firebaseio.com')
-            ->createDatabase();
-
-
+        // $firebase = (new Factory)
+        //     ->withServiceAccount($serviceAccount)
+        //     ->withDatabaseUri('https://ntuhatransport.firebaseio.com')
+        //     ->createDatabase();      
              
-        return $firebase->getReference('Users')->getChild("Drivers")->orderByKey()->equalTo("1Hv3P6Z2TaMc9klSAiiNZJV3qRU2")->getValue();//this is a single object for one user
-   
-
-   
+        // return $firebase->getReference('Users')->getChild("Drivers")->orderByKey()->equalTo("1Hv3P6Z2TaMc9klSAiiNZJV3qRU2")->getValue();//this is a single object for one user   
  
         return $this->single_driver($firebase_id); 
        

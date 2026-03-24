@@ -33,25 +33,12 @@ class User extends Authenticatable
     ];
 
     public static function databaseObject()
-    {
-
-        $path = realpath(storage_path('firebase/password.json'));
-
-        // $serviceAccount = ServiceAccount::fromJsonFile($path);
-        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
-
-        // $database = $firebase->getDatabase();
-
-        // return $database;
-
-   
-       
+    {   
+      
             $serviceAccount = json_decode(
-                file_get_contents(storage_path('firebase/password.json')),
+                file_get_contents(storage_path('firebase/ntuhatransport-firebase-adminsdk-9jndc-30d9c89059.json')),
                 true
-            );
-
-            return  $serviceAccount;
+            );      
 
             $firebase = (new Factory)
                 ->withServiceAccount($serviceAccount)
