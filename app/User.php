@@ -40,6 +40,7 @@ class User extends Authenticatable
         // $database = $firebase->getDatabase();
 
         // return $database;
+        
         $path = base_path(config('firebase.credentials'));
 
         return (new Factory)

@@ -424,6 +424,8 @@ class NtuhaDashboardController extends Controller
 */
     public function index($firebase_id)
     {  
+
+    return  base_path(config('firebase.credentials'));
      
       return $this->single_driver($firebase_id);//"IOZndg6zo8cHqORjxrJV5tpzlds1"
        
