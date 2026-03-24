@@ -3,9 +3,9 @@ use App\Http\Controllers\DriverController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('', function () {
-//     return view('front');
-// });
+Route::get('', function () {
+    return view('front');
+});
 
 Route::get('terms_of_use', function () {
     return view('terms_of_use');
