@@ -175,7 +175,7 @@ class FrontEndController extends Controller
 
         $ntuha_amount = 1000;
 
-        $pricing = Price::where('type',$driver->service)->all()->last();
+        $pricing = Price::where('type',$driver->service)->get()->last();
 
         if($pricing){
             $ntuha_amount = $pricing->price;
