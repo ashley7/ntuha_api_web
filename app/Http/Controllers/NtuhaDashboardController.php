@@ -425,7 +425,20 @@ class NtuhaDashboardController extends Controller
     public function index($firebase_id)
     {  
 
-    return  base_path(config('firebase.credentials'));
+    $path = base_path(config('firebase.credentials'));
+
+    if (!file_exists($path)) {
+        throw new \Exception("Firebase JSON file not found at: " . $path);
+    }
+
+    // Read file
+    $json = file_get_contents($path);
+
+    // Decode JSON
+    $data = json_decode($json, true);
+
+    // Optional: pretty print
+    return response()->json($data);
      
       return $this->single_driver($firebase_id);//"IOZndg6zo8cHqORjxrJV5tpzlds1"
        
