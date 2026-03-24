@@ -427,18 +427,17 @@ class NtuhaDashboardController extends Controller
     public function index($firebase_id)
     {  
 
-            $serviceAccount = json_decode(
-                file_get_contents(storage_path('firebase/password.json')),
-                true
-            );
+           $serviceAccount = json_decode(
+        file_get_contents(storage_path('firebase/password.json')),
+        true
+    );
 
- 
+    $firebase = (new Factory)
+        ->withServiceAccount($serviceAccount)
+        ->withDatabaseUri('https://ntuhatransport.firebaseio.com')
+        ->createDatabase();
 
-            $firebase = (new Factory)
-                ->withServiceAccount($serviceAccount)
-                ->withDatabaseUri('https://ntuhatransport.firebaseio.com')
-                ->createDatabase();
-            return $firebase;
+    return "Firebase connected OK";
  
         return $this->single_driver($firebase_id); 
        
