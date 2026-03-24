@@ -1,14 +1,13 @@
 <?php
-ini_set('max_execution_time', '1200');
 use App\Http\Controllers\DriverController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('', function () {
-    return view('front');
-});
+// Route::get('', function () {
+//     return view('front');
+// });
 
-Route::get('/terms_of_use', function () {
+Route::get('terms_of_use', function () {
     return view('terms_of_use');
 });
 
@@ -22,7 +21,7 @@ Route::get('provide_driver','NtuhaRideUssdController@provideDriver');
 
 Route::group(['middleware' => 'auth'], function () {
 	
-	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('home', 'HomeController@index')->name('home');
 
 	Route::post('customer','CustomerController@saveCustomer');
 	
@@ -101,22 +100,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('gen_ussd_report','NtuhaRideUssdController@genUssdReport');
 
 });
+ 
 
-Route::get('/beyonic', function () {
-    \Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
-
-	$collection_request = \Beyonic_Collection_Request::create(array(
-	  "phonenumber" => "+256787444081",
-	  "amount" => "500",
-	  "currency" => "BXC",
-	  "metadata" => array("email"=>"123ASDAsd123"),
-	  "send_instructions" => True
-	));
-
-	return json_encode($collection_request);
-});
-
-Route::get('/test_route', function () {
+Route::get('test_route', function () {
 
     DriverController::SMS("0787444081","Hello Ntuha ride");
 
