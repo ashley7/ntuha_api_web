@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public static function databaseObject()
     {
-        $serviceAccount = ServiceAccount::fromJsonFile(base_path(env('FIREBASE_CREDENTIALS')));
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.''.env('FIREBASE_CREDENTIALS'));
         $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
 
         $database = $firebase->getDatabase();
