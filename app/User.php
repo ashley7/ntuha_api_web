@@ -35,22 +35,19 @@ class User extends Authenticatable
     public static function databaseObject()
     {
 
-        // $path = base_path(config('firebase.credentials'));
+        $path = realpath(storage_path('firebase/password.json'));
 
-        // $serviceAccount = ServiceAccount::fromJsonFile($path);
-        // $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
+        $serviceAccount = ServiceAccount::fromJsonFile($path);
+        $firebase = (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri(env('FIREBASE_DATABASE'))->create();
 
-        // $database = $firebase->getDatabase();
+        $database = $firebase->getDatabase();
 
-        // return $database;
+        return $database;
 
        
-        $firebase = (new Factory)
-                    ->withServiceAccount(realpath(storage_path('firebase/password.json')))
-                    ->withDatabaseUri(env('FIREBASE_DATABASE'))
-                    ->createDatabase();
+        // $firebase = (new Factory)->withServiceAccount(realpath(storage_path('firebase/password.json')))->withDatabaseUri(env('FIREBASE_DATABASE'))->createDatabase();
 
-        return $firebase;
+        // return $firebase;
 
        
     }
