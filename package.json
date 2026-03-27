@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "browser-sync": "^2.26.3",
-        "gulp": "^3.9.1",
+        "gulp": "^4.0.2",
         "laravel-elixir-vue": "^0.1.8"
     }
 }
